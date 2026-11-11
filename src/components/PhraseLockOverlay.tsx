@@ -10,14 +10,19 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useMemo, useState } from "react";
-import type { LanguageCode } from "../schemas/curriculum";
+import type { CourseId } from "../schemas/curriculum";
 import {
   isSpeechRecognitionSupported,
   listenOnce,
+  resolveCourseSpeechLocales,
   speakText,
 } from "../services/speechService";
 import type { UserPreferences } from "../state/preferences";
 import type { OfflineLibraryHandle } from "../state/useOfflineLibrary";
+import {
+  normalizeCourseWeightsMap,
+  resolveCourseDisplayName,
+} from "../utils/formatters";
 import { resolveTransition, SHEET_SPRING } from "../utils/motionPresets";
 import {
   scoreBestSpeechMatch,
@@ -27,44 +32,13 @@ import { RubyText } from "./ui/RubyText";
 
 interface LockPromptItem {
   id: string;
-  language: LanguageCode;
+  courseId: CourseId;
   nativeText: string;
   rubyHtml?: string;
   reading?: string;
   meaning: string;
+  extraReferences?: string[];
 }
-
-const EMERGENCY_STARTER_PROMPTS: LockPromptItem[] = [
-  {
-    id: "fallback-ja-1",
-    language: "ja",
-    nativeText: "ありがとうございます",
-    reading: "arigatou gozaimasu",
-    meaning: "Thank you very much",
-  },
-  {
-    id: "fallback-ja-2",
-    language: "ja",
-    nativeText: "これをお願いします",
-    rubyHtml: "これを<ruby>願<rt>ねが</rt></ruby>いします",
-    reading: "kore o onegaishimasu",
-    meaning: "This one, please",
-  },
-  {
-    id: "fallback-de-1",
-    language: "de",
-    nativeText: "Grüß Gott, ein Sackerl bitte",
-    reading: "gruess gott, ein sackerl bitte",
-    meaning: "Hello (Austria), a bag please",
-  },
-  {
-    id: "fallback-de-2",
-    language: "de",
-    nativeText: "Zahlen, bitte",
-    reading: "zahlen bitte",
-    meaning: "The bill, please",
-  },
-];
 
 function isSafeRedirectScheme(rawScheme: string): boolean {
   const trimmed = rawScheme.trim();
@@ -113,43 +87,110 @@ export function PhraseLockOverlay({
     return diff > 0 ? Math.ceil(diff / 60_000) : 0;
   }, [prefs.unlockExpiryMs, mountedAtMs]);
 
+  const normalizedWeights = useMemo(
+    () => normalizeCourseWeightsMap(prefs.enrolledCourses),
+    [prefs.enrolledCourses]
+  );
+
   const promptItem: LockPromptItem = useMemo(() => {
-    const eligiblePool = library.eligibleCards
-      .filter((c) => c.phraseLockEligible)
-      .map((c) => ({
-        id: c.id,
-        language: c.language,
-        nativeText:
-          c.language === "de" && !prefs.austrianMode && c.standardGermanText
-            ? c.standardGermanText
-            : c.targetText,
-        rubyHtml: c.rubyHtml,
-        reading: c.reading,
-        meaning: c.frontPrompt,
-      }));
+    const lockCards = library.eligibleCards.filter((c) => c.phraseLockEligible);
+    const cardPool =
+      lockCards.length > 0 ? lockCards : library.eligibleCards;
 
-    const source =
-      eligiblePool.length > 0 ? eligiblePool : EMERGENCY_STARTER_PROMPTS;
-    const jaItems = source.filter((p) => p.language === "ja");
-    const deItems = source.filter((p) => p.language === "de");
+    if (cardPool.length > 0) {
+      const byCourse = new Map<CourseId, LockPromptItem[]>();
+      for (const card of cardPool) {
+        const variantId = prefs.enrolledCourses[card.courseId]?.activeVariantId;
+        const resolvedNative =
+          variantId && card.variantTargets?.[variantId]
+            ? card.variantTargets[variantId]
+            : card.targetText;
+        const extraVariants = card.variantTargets
+          ? Object.values(card.variantTargets)
+          : [];
 
-    const roll = (seedNonce * 100) % 100;
-    const wantJa = roll < prefs.japaneseSplitPercent;
-    const bucket =
-      wantJa && jaItems.length > 0
-        ? jaItems
-        : !wantJa && deItems.length > 0
-        ? deItems
-        : source;
+        const item: LockPromptItem = {
+          id: card.id,
+          courseId: card.courseId,
+          nativeText: resolvedNative,
+          rubyHtml:
+            resolvedNative === card.targetText ? card.rubyHtml : undefined,
+          reading: card.reading,
+          meaning: card.frontPrompt,
+          extraReferences: [card.targetText, ...extraVariants],
+        };
 
-    const pickIdx = Math.floor((seedNonce * 9973) % bucket.length);
-    return bucket[pickIdx];
+        const arr = byCourse.get(card.courseId) ?? [];
+        arr.push(item);
+        byCourse.set(card.courseId, arr);
+      }
+
+      const courseIds = Array.from(byCourse.keys());
+      const weightSum = courseIds.reduce(
+        (sum, id) => sum + Math.max(0.5, normalizedWeights[id] ?? 1),
+        0
+      );
+
+      const roll = ((seedNonce * 10_000) % 1000) / 1000;
+      let cumulative = 0;
+      let chosenCourseId = courseIds[0];
+
+      for (const id of courseIds) {
+        cumulative += Math.max(0.5, normalizedWeights[id] ?? 1) / weightSum;
+        if (roll <= cumulative) {
+          chosenCourseId = id;
+          break;
+        }
+      }
+
+      const bucket = byCourse.get(chosenCourseId) ?? [];
+      const pickIdx = Math.floor((seedNonce * 9973) % bucket.length);
+      return bucket[pickIdx];
+    }
+
+    const fallbackDescriptor = Array.from(
+      library.descriptorsByCourseId.values()
+    )[0];
+    if (fallbackDescriptor) {
+      return {
+        id: `starter-${fallbackDescriptor.id}`,
+        courseId: fallbackDescriptor.id,
+        nativeText: fallbackDescriptor.nativeName,
+        reading: fallbackDescriptor.name.toLowerCase(),
+        meaning: `${fallbackDescriptor.name} (download Unit 1 for full phrase pool)`,
+      };
+    }
+
+    return {
+      id: "starter-universal",
+      courseId: "en",
+      nativeText: "Ready to focus",
+      meaning: "Download Unit 1 in Courses to unlock native phrase prompts",
+    };
   }, [
     library.eligibleCards,
-    prefs.austrianMode,
-    prefs.japaneseSplitPercent,
+    library.descriptorsByCourseId,
+    prefs.enrolledCourses,
+    normalizedWeights,
     seedNonce,
   ]);
+
+  const promptDescriptor = library.descriptorsByCourseId.get(
+    promptItem.courseId
+  );
+  const promptEnrollment = prefs.enrolledCourses[promptItem.courseId];
+  const promptLocales = resolveCourseSpeechLocales(
+    promptDescriptor,
+    promptEnrollment?.activeVariantId
+  );
+  const promptCourseLabel = promptDescriptor
+    ? resolveCourseDisplayName(
+        promptItem.courseId,
+        promptDescriptor,
+        promptEnrollment?.activeVariantId
+      )
+    : "Starter Prompt";
+  const promptDir = promptDescriptor?.textDirection ?? "ltr";
 
   const safeScheme =
     targetAppScheme && isSafeRedirectScheme(targetAppScheme)
@@ -175,8 +216,7 @@ export function PhraseLockOverlay({
     setIsListening(true);
 
     const outcome = await listenOnce({
-      language: promptItem.language,
-      austrianMode: prefs.austrianMode,
+      sttLocale: promptLocales.sttLocale,
       timeoutMs: 6500,
       onInterim: (t) => setSpokenTranscript(t),
     });
@@ -194,12 +234,12 @@ export function PhraseLockOverlay({
     const references = [
       promptItem.nativeText,
       promptItem.reading ?? "",
+      ...(promptItem.extraReferences ?? []),
     ].filter(Boolean);
 
     const { bestScore, bestTranscript } = scoreBestSpeechMatch(
       outcome.candidates,
-      references,
-      promptItem.language
+      references
     );
     setSpokenTranscript(bestTranscript);
     setScore(bestScore);
@@ -214,12 +254,9 @@ export function PhraseLockOverlay({
     const references = [
       promptItem.nativeText,
       promptItem.reading ?? "",
+      ...(promptItem.extraReferences ?? []),
     ].filter(Boolean);
-    const typedScore = scoreSingleCandidate(
-      typedInput,
-      references,
-      promptItem.language
-    );
+    const typedScore = scoreSingleCandidate(typedInput, references);
     setScore(typedScore);
     if (typedScore >= prefs.phraseLockAccuracy) {
       grantUnlockAndRedirect();
@@ -306,11 +343,7 @@ export function PhraseLockOverlay({
         <div className="hig-card p-6 text-center space-y-4">
           <div className="flex items-center justify-between">
             <span className="rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[12px] font-medium text-[var(--ink-secondary)]">
-              {promptItem.language === "ja"
-                ? "Japanese"
-                : prefs.austrianMode
-                ? "Austrian German"
-                : "German"}
+              {promptCourseLabel}
             </span>
             <div className="flex items-center gap-1.5">
               <button
@@ -318,8 +351,7 @@ export function PhraseLockOverlay({
                 onClick={() =>
                   void speakText({
                     text: promptItem.nativeText,
-                    language: promptItem.language,
-                    austrianMode: prefs.austrianMode,
+                    locales: promptLocales.ttsLocales,
                     rate: 0.92,
                   })
                 }
@@ -341,12 +373,16 @@ export function PhraseLockOverlay({
           </div>
 
           <div className="py-2 space-y-2 min-w-0">
-            <div className="text-[28px] sm:text-[32px] font-bold leading-snug text-[var(--ink-primary)] break-words">
-              {promptItem.language === "ja" ? (
+            <div
+              dir={promptDir}
+              className="text-[28px] sm:text-[32px] font-bold leading-snug text-[var(--ink-primary)] break-words"
+            >
+              {promptDescriptor?.readingFeatures.rubyAnnotations &&
+              promptItem.rubyHtml ? (
                 <RubyText
                   rubyHtml={promptItem.rubyHtml}
                   fallbackText={promptItem.nativeText}
-                  showFurigana={prefs.showFurigana}
+                  showFurigana={promptEnrollment?.showRubyAnnotations ?? true}
                 />
               ) : (
                 promptItem.nativeText
@@ -377,7 +413,8 @@ export function PhraseLockOverlay({
                     : "bg-[var(--status-warn-bg)] text-[var(--status-warn)]"
                 }`}
               >
-                Match {score}% (need {prefs.phraseLockAccuracy}% — try once more)
+                Match {score}% (need {prefs.phraseLockAccuracy}% — try once
+                more)
               </div>
             )}
 
@@ -447,6 +484,7 @@ export function PhraseLockOverlay({
             <form onSubmit={handleCheckTyped} className="space-y-2.5 pt-1">
               <input
                 id="phrase-lock-type-input"
+                dir={promptDir}
                 type="text"
                 value={typedInput}
                 onChange={(e) => setTypedInput(e.target.value)}

@@ -4,26 +4,33 @@ import {
   type DailyActivityRecord,
   type LessonCompletionRecord,
   offlineDb,
+  type StoredCourseBlueprint,
+  type StoredCourseDescriptor,
   type StoredUnitMeta,
   type StoredUnitShard,
   type StoryCompletionRecord,
   toLocalDateKey,
 } from "../db/offlineDb";
 import {
+  type CourseBlueprint,
+  type CourseDescriptor,
+  type CourseId,
   type GradedStory,
   isTierIncluded,
-  type LanguageCode,
   type Manifest,
+  type ManifestCourseEntry,
   type ManifestUnitEntry,
   type ReferenceSheet,
   type SrsCard,
-  type SyllabusBlueprint,
   TIER_ORDER,
   type UnderstandingTier,
 } from "../schemas/curriculum";
 import {
   computeUnitBytesForTier,
+  descriptorFromManifestEntry,
   downloadUnitDeltaShards,
+  fetchAndCacheCourseBlueprint,
+  fetchAndCacheCourseDescriptor,
   maybeAutoDownloadNextUnits,
   removeUnitDownload,
   summarizeInstalledUnit,
@@ -42,13 +49,18 @@ export function notifyOfflineDbChanged(): void {
 
 export function useOfflineLibrary(prefs: UserPreferences) {
   const [manifest, setManifest] = useState<Manifest | null>(null);
-  const [blueprint, setBlueprint] = useState<SyllabusBlueprint | null>(null);
   const [isSyncingCatalog, setIsSyncingCatalog] = useState<boolean>(true);
   const [catalogError, setCatalogError] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState<boolean>(() =>
     typeof navigator !== "undefined" ? !navigator.onLine : false
   );
 
+  const [storedDescriptors, setStoredDescriptors] = useState<
+    StoredCourseDescriptor[]
+  >([]);
+  const [storedBlueprints, setStoredBlueprints] = useState<
+    StoredCourseBlueprint[]
+  >([]);
   const [installedMetas, setInstalledMetas] = useState<StoredUnitMeta[]>([]);
   const [installedShards, setInstalledShards] = useState<StoredUnitShard[]>([]);
   const [cardReviews, setCardReviews] = useState<CardReviewRecord[]>([]);
@@ -70,16 +82,28 @@ export function useOfflineLibrary(prefs: UserPreferences) {
 
   const reloadLocalTables = useCallback(async () => {
     const todayKey = toLocalDateKey();
-    const [metas, shards, reviews, lessons, stories, activity] =
-      await Promise.all([
-        offlineDb.unitMeta.toArray(),
-        offlineDb.unitShards.toArray(),
-        offlineDb.cardReviews.toArray(),
-        offlineDb.lessonCompletions.toArray(),
-        offlineDb.storyCompletions.toArray(),
-        offlineDb.dailyActivity.get(todayKey),
-      ]);
+    const [
+      descriptors,
+      blueprints,
+      metas,
+      shards,
+      reviews,
+      lessons,
+      stories,
+      activity,
+    ] = await Promise.all([
+      offlineDb.courseDescriptors.toArray(),
+      offlineDb.courseBlueprints.toArray(),
+      offlineDb.unitMeta.toArray(),
+      offlineDb.unitShards.toArray(),
+      offlineDb.cardReviews.toArray(),
+      offlineDb.lessonCompletions.toArray(),
+      offlineDb.storyCompletions.toArray(),
+      offlineDb.dailyActivity.get(todayKey),
+    ]);
 
+    setStoredDescriptors(descriptors);
+    setStoredBlueprints(blueprints);
     setInstalledMetas(metas);
     setInstalledShards(shards);
     setCardReviews(reviews);
@@ -89,18 +113,15 @@ export function useOfflineLibrary(prefs: UserPreferences) {
   }, []);
 
   const fetchCatalogAndApply = useCallback(async () => {
-    const outcome = await syncCatalogIndex(prefs.customCurriculumRepo);
+    const outcome = await syncCatalogIndex(prefs.repoConfig);
     if (outcome.manifest) {
       setManifest(outcome.manifest);
-    }
-    if (outcome.blueprint) {
-      setBlueprint(outcome.blueprint);
     }
     setCatalogError(
       outcome.error && !outcome.manifest ? outcome.error : null
     );
     setIsSyncingCatalog(false);
-  }, [prefs.customCurriculumRepo]);
+  }, [prefs.repoConfig]);
 
   const refreshCatalog = useCallback(async () => {
     setIsSyncingCatalog(true);
@@ -112,21 +133,36 @@ export function useOfflineLibrary(prefs: UserPreferences) {
     let active = true;
     const todayKey = toLocalDateKey();
     void Promise.all([
+      offlineDb.courseDescriptors.toArray(),
+      offlineDb.courseBlueprints.toArray(),
       offlineDb.unitMeta.toArray(),
       offlineDb.unitShards.toArray(),
       offlineDb.cardReviews.toArray(),
       offlineDb.lessonCompletions.toArray(),
       offlineDb.storyCompletions.toArray(),
       offlineDb.dailyActivity.get(todayKey),
-    ]).then(([metas, shards, reviews, lessons, stories, activity]) => {
-      if (!active) return;
-      setInstalledMetas(metas);
-      setInstalledShards(shards);
-      setCardReviews(reviews);
-      setLessonCompletions(lessons);
-      setStoryCompletions(stories);
-      setTodayActivity(activity ?? null);
-    });
+    ]).then(
+      ([
+        descriptors,
+        blueprints,
+        metas,
+        shards,
+        reviews,
+        lessons,
+        stories,
+        activity,
+      ]) => {
+        if (!active) return;
+        setStoredDescriptors(descriptors);
+        setStoredBlueprints(blueprints);
+        setInstalledMetas(metas);
+        setInstalledShards(shards);
+        setCardReviews(reviews);
+        setLessonCompletions(lessons);
+        setStoryCompletions(stories);
+        setTodayActivity(activity ?? null);
+      }
+    );
 
     dbChangeListeners.add(reloadLocalTables);
     return () => {
@@ -137,13 +173,10 @@ export function useOfflineLibrary(prefs: UserPreferences) {
 
   useEffect(() => {
     let active = true;
-    void syncCatalogIndex(prefs.customCurriculumRepo).then((outcome) => {
+    void syncCatalogIndex(prefs.repoConfig).then((outcome) => {
       if (!active) return;
       if (outcome.manifest) {
         setManifest(outcome.manifest);
-      }
-      if (outcome.blueprint) {
-        setBlueprint(outcome.blueprint);
       }
       setCatalogError(
         outcome.error && !outcome.manifest ? outcome.error : null
@@ -153,7 +186,35 @@ export function useOfflineLibrary(prefs: UserPreferences) {
     return () => {
       active = false;
     };
-  }, [prefs.customCurriculumRepo]);
+  }, [prefs.repoConfig]);
+
+  const enrolledIdsKey = useMemo(
+    () => Object.keys(prefs.enrolledCourses).sort().join(","),
+    [prefs.enrolledCourses]
+  );
+
+  useEffect(() => {
+    if (!manifest || !enrolledIdsKey) return;
+    let active = true;
+    const enrolledIds = enrolledIdsKey.split(",").filter(Boolean);
+    const tasks = enrolledIds.map(async (courseId) => {
+      const entry = manifest.courses.find((c) => c.courseId === courseId);
+      if (!entry) return;
+      await Promise.all([
+        fetchAndCacheCourseDescriptor(entry, prefs.repoConfig),
+        fetchAndCacheCourseBlueprint(entry, prefs.repoConfig),
+      ]);
+    });
+
+    void Promise.all(tasks).then(() => {
+      if (!active) return;
+      void reloadLocalTables();
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [manifest, enrolledIdsKey, prefs.repoConfig, reloadLocalTables]);
 
   useEffect(() => {
     const onOnline = () => {
@@ -169,6 +230,37 @@ export function useOfflineLibrary(prefs: UserPreferences) {
       window.removeEventListener("offline", onOffline);
     };
   }, [refreshCatalog]);
+
+  const manifestCourseMap = useMemo(() => {
+    const map = new Map<CourseId, ManifestCourseEntry>();
+    if (manifest) {
+      for (const entry of manifest.courses) {
+        map.set(entry.courseId, entry);
+      }
+    }
+    return map;
+  }, [manifest]);
+
+  const descriptorsByCourseId = useMemo(() => {
+    const map = new Map<CourseId, CourseDescriptor>();
+    if (manifest) {
+      for (const entry of manifest.courses) {
+        map.set(entry.courseId, descriptorFromManifestEntry(entry));
+      }
+    }
+    for (const stored of storedDescriptors) {
+      map.set(stored.courseId, stored.descriptor);
+    }
+    return map;
+  }, [manifest, storedDescriptors]);
+
+  const blueprintsByCourseId = useMemo(() => {
+    const map = new Map<CourseId, CourseBlueprint>();
+    for (const stored of storedBlueprints) {
+      map.set(stored.courseId, stored.blueprint);
+    }
+    return map;
+  }, [storedBlueprints]);
 
   const shardsByUnitId = useMemo(() => {
     const map = new Map<string, StoredUnitShard[]>();
@@ -211,82 +303,87 @@ export function useOfflineLibrary(prefs: UserPreferences) {
   );
 
   const outdatedOrUpgradeUnits = useMemo(() => {
-    if (!manifest) {
-      return {
-        outdatedUnits: [] as Array<{
-          unit: ManifestUnitEntry;
-          lang: LanguageCode;
-        }>,
-        missingTierUnits: {
-          ja: { units: [] as ManifestUnitEntry[], deltaBytes: 0 },
-          de: { units: [] as ManifestUnitEntry[], deltaBytes: 0 },
-        },
-      };
-    }
-
     const outdatedUnits: Array<{
       unit: ManifestUnitEntry;
-      lang: LanguageCode;
+      courseId: CourseId;
     }> = [];
-    const missingTierUnits = {
-      ja: { units: [] as ManifestUnitEntry[], deltaBytes: 0 },
-      de: { units: [] as ManifestUnitEntry[], deltaBytes: 0 },
-    };
+    const missingTierByCourse: Record<
+      CourseId,
+      { units: ManifestUnitEntry[]; deltaBytes: number }
+    > = {};
 
-    for (const lang of ["ja", "de"] as const) {
-      const userTier = prefs.tiers[lang];
-      for (const unit of manifest.languages[lang].units) {
+    if (!manifest) {
+      return { outdatedUnits, missingTierByCourse };
+    }
+
+    for (const [courseId, enrollment] of Object.entries(
+      prefs.enrolledCourses
+    )) {
+      const courseEntry = manifestCourseMap.get(courseId);
+      if (!courseEntry) continue;
+
+      missingTierByCourse[courseId] = { units: [], deltaBytes: 0 };
+
+      for (const unit of courseEntry.units) {
         const localShards = shardsByUnitId.get(unit.unitId) ?? [];
         if (localShards.length === 0) continue;
 
-        const summary = summarizeInstalledUnit(unit, userTier, localShards);
+        const summary = summarizeInstalledUnit(
+          unit,
+          enrollment.tier,
+          localShards
+        );
         if (summary.outdatedTiers.length > 0) {
-          outdatedUnits.push({ unit, lang });
+          outdatedUnits.push({ unit, courseId });
         }
         if (summary.missingTiersForGoal.length > 0) {
           const { deltaBytesToFetch } = computeUnitBytesForTier(
             unit,
-            userTier,
+            enrollment.tier,
             localShards
           );
-          missingTierUnits[lang].units.push(unit);
-          missingTierUnits[lang].deltaBytes += deltaBytesToFetch;
+          missingTierByCourse[courseId].units.push(unit);
+          missingTierByCourse[courseId].deltaBytes += deltaBytesToFetch;
         }
       }
     }
 
-    return { outdatedUnits, missingTierUnits };
-  }, [manifest, prefs.tiers, shardsByUnitId]);
+    return { outdatedUnits, missingTierByCourse };
+  }, [manifest, manifestCourseMap, prefs.enrolledCourses, shardsByUnitId]);
 
   const eligibleCards = useMemo(() => {
     const cards: SrsCard[] = [];
     for (const shard of installedShards) {
-      const targetTier = prefs.tiers[shard.language];
-      if (!isTierIncluded(shard.tier, targetTier)) continue;
+      const enrollment = prefs.enrolledCourses[shard.courseId];
+      if (!enrollment || enrollment.status !== "active") continue;
+      if (!isTierIncluded(shard.tier, enrollment.tier)) continue;
       cards.push(...shard.payload.srsCards);
     }
     return cards;
-  }, [installedShards, prefs.tiers]);
+  }, [installedShards, prefs.enrolledCourses]);
 
   const eligibleStories = useMemo(() => {
     const stories: GradedStory[] = [];
     for (const shard of installedShards) {
-      const targetTier = prefs.tiers[shard.language];
-      if (!isTierIncluded(shard.tier, targetTier)) continue;
+      const enrollment = prefs.enrolledCourses[shard.courseId];
+      if (!enrollment || enrollment.status !== "active") continue;
+      if (!isTierIncluded(shard.tier, enrollment.tier)) continue;
       stories.push(...shard.payload.gradedStories);
     }
     return stories;
-  }, [installedShards, prefs.tiers]);
+  }, [installedShards, prefs.enrolledCourses]);
 
   const aggregatedReferenceSheets = useMemo(() => {
-    const byId = new Map<string, ReferenceSheet>();
+    const byKey = new Map<string, ReferenceSheet>();
     for (const shard of installedShards) {
-      const targetTier = prefs.tiers[shard.language];
-      if (!isTierIncluded(shard.tier, targetTier)) continue;
+      const enrollment = prefs.enrolledCourses[shard.courseId];
+      if (!enrollment || enrollment.status !== "active") continue;
+      if (!isTierIncluded(shard.tier, enrollment.tier)) continue;
       for (const sheet of shard.payload.referenceSheets) {
-        const existing = byId.get(sheet.id);
+        const compositeKey = `${shard.courseId}:${sheet.id}`;
+        const existing = byKey.get(compositeKey);
         if (!existing) {
-          byId.set(sheet.id, { ...sheet, rows: [...sheet.rows] });
+          byKey.set(compositeKey, { ...sheet, rows: [...sheet.rows] });
         } else {
           const seenRows = new Set(existing.rows.map((r) => r.id));
           for (const row of sheet.rows) {
@@ -298,16 +395,19 @@ export function useOfflineLibrary(prefs: UserPreferences) {
         }
       }
     }
-    return Array.from(byId.values());
-  }, [installedShards, prefs.tiers]);
+    return Array.from(byKey.values());
+  }, [installedShards, prefs.enrolledCourses]);
 
   const downloadUnit = useCallback(
     async (
       unitEntry: ManifestUnitEntry,
-      language: LanguageCode,
+      courseId: CourseId,
       overrideTier?: UnderstandingTier
     ) => {
-      const targetTier = overrideTier ?? prefs.tiers[language];
+      const enrollment = prefs.enrolledCourses[courseId];
+      const targetTier = overrideTier ?? enrollment?.tier ?? "conversational";
+      const courseEntry = manifestCourseMap.get(courseId);
+
       setDownloadErrors((prev) => {
         const next = { ...prev };
         delete next[unitEntry.unitId];
@@ -317,9 +417,10 @@ export function useOfflineLibrary(prefs: UserPreferences) {
       try {
         await downloadUnitDeltaShards({
           unitEntry,
-          language,
+          courseId,
+          courseEntry,
           targetTier,
-          customRepoOverride: prefs.customCurriculumRepo,
+          repoConfig: prefs.repoConfig,
           onProgress: (prog) => {
             setDownloadProgress((prev) => ({
               ...prev,
@@ -347,7 +448,7 @@ export function useOfflineLibrary(prefs: UserPreferences) {
         });
       }
     },
-    [prefs.customCurriculumRepo, prefs.tiers, reloadLocalTables]
+    [manifestCourseMap, prefs.enrolledCourses, prefs.repoConfig, reloadLocalTables]
   );
 
   const removeUnit = useCallback(
@@ -360,24 +461,26 @@ export function useOfflineLibrary(prefs: UserPreferences) {
   );
 
   const syncUnitUpdatesOrUpgrades = useCallback(
-    async (items: Array<{ unit: ManifestUnitEntry; lang: LanguageCode }>) => {
-      for (const { unit, lang } of items) {
-        await downloadUnit(unit, lang);
+    async (items: Array<{ unit: ManifestUnitEntry; courseId: CourseId }>) => {
+      for (const { unit, courseId } of items) {
+        await downloadUnit(unit, courseId);
       }
     },
     [downloadUnit]
   );
 
   const triggerWifiPrefetchAfterUnit = useCallback(
-    async (language: LanguageCode, completedUnitNumber: number) => {
+    async (courseId: CourseId, completedUnitNumber: number) => {
       if (!manifest) return;
+      const enrollment = prefs.enrolledCourses[courseId];
+      if (!enrollment) return;
       const fetched = await maybeAutoDownloadNextUnits({
         manifest,
-        language,
+        courseId,
         afterUnitNumber: completedUnitNumber,
-        targetTier: prefs.tiers[language],
+        targetTier: enrollment.tier,
         autoDownloadWifi: prefs.autoDownloadWifi,
-        customRepoOverride: prefs.customCurriculumRepo,
+        repoConfig: prefs.repoConfig,
       });
       if (fetched.length > 0) {
         await reloadLocalTables();
@@ -387,19 +490,35 @@ export function useOfflineLibrary(prefs: UserPreferences) {
     [
       manifest,
       prefs.autoDownloadWifi,
-      prefs.customCurriculumRepo,
-      prefs.tiers,
+      prefs.enrolledCourses,
+      prefs.repoConfig,
       reloadLocalTables,
     ]
   );
 
+  const ensureCourseAssets = useCallback(
+    async (courseId: CourseId) => {
+      const entry = manifestCourseMap.get(courseId);
+      if (!entry) return;
+      await Promise.all([
+        fetchAndCacheCourseDescriptor(entry, prefs.repoConfig),
+        fetchAndCacheCourseBlueprint(entry, prefs.repoConfig),
+      ]);
+      await reloadLocalTables();
+    },
+    [manifestCourseMap, prefs.repoConfig, reloadLocalTables]
+  );
+
   return {
     manifest,
-    blueprint,
+    manifestCourseMap,
+    descriptorsByCourseId,
+    blueprintsByCourseId,
     isSyncingCatalog,
     catalogError,
     isOffline,
     refreshCatalog,
+    ensureCourseAssets,
     installedMetas,
     installedShards,
     shardsByUnitId,

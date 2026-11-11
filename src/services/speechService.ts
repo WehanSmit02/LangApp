@@ -1,4 +1,4 @@
-import type { LanguageCode } from "../schemas/curriculum";
+import type { CourseDescriptor } from "../schemas/curriculum";
 
 interface SpeechRecognitionAlternativeLike {
   transcript: string;
@@ -55,6 +55,38 @@ export function isSpeechSynthesisSupported(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window;
 }
 
+export function resolveCourseSpeechLocales(
+  descriptor?: Pick<
+    CourseDescriptor,
+    "id" | "ttsLocales" | "sttLocale" | "variants"
+  > | null,
+  activeVariantId?: string
+): { ttsLocales: string[]; sttLocale: string } {
+  if (!descriptor) {
+    return { ttsLocales: ["en-US"], sttLocale: "en-US" };
+  }
+
+  const matchedVariant = activeVariantId
+    ? descriptor.variants?.find((v) => v.id === activeVariantId)
+    : descriptor.variants?.find((v) => v.defaultEnabled);
+
+  const orderedTts: string[] = [];
+  if (matchedVariant?.ttsLocale) {
+    orderedTts.push(matchedVariant.ttsLocale);
+  }
+  for (const loc of descriptor.ttsLocales) {
+    if (!orderedTts.includes(loc)) {
+      orderedTts.push(loc);
+    }
+  }
+
+  const sttLocale = matchedVariant?.ttsLocale ?? descriptor.sttLocale;
+  return {
+    ttsLocales: orderedTts.length > 0 ? orderedTts : [descriptor.id],
+    sttLocale,
+  };
+}
+
 let cachedVoices: SpeechSynthesisVoice[] = [];
 
 function refreshVoices(): SpeechSynthesisVoice[] {
@@ -73,36 +105,42 @@ if (typeof window !== "undefined" && "speechSynthesis" in window) {
   };
 }
 
-function selectVoice(
-  targetBcp47: string,
-  fallbackPrefix: string
-): { voice: SpeechSynthesisVoice | null; resolvedLang: string } {
+function selectVoiceFromChain(locales: string[]): {
+  voice: SpeechSynthesisVoice | null;
+  resolvedLang: string;
+} {
   const voices = refreshVoices();
-  const normalizedTarget = targetBcp47.toLowerCase().replace("_", "-");
-  const normalizedPrefix = fallbackPrefix.toLowerCase();
+  const chain = locales.length > 0 ? locales : ["en-US"];
 
-  const exactMatches = voices.filter(
-    (v) => v.lang.toLowerCase().replace("_", "-") === normalizedTarget
-  );
-  if (exactMatches.length > 0) {
-    const preferred =
-      exactMatches.find((v) => v.localService) ?? exactMatches[0];
-    return { voice: preferred, resolvedLang: targetBcp47 };
-  }
-
-  const prefixMatches = voices.filter((v) =>
-    v.lang.toLowerCase().replace("_", "-").startsWith(normalizedPrefix)
-  );
-  if (prefixMatches.length > 0) {
-    const deDeMatch = prefixMatches.find((v) =>
-      v.lang.toLowerCase().replace("_", "-").startsWith("de-de")
+  for (const candidate of chain) {
+    const normalizedTarget = candidate.toLowerCase().replace(/_/g, "-");
+    const exactMatches = voices.filter(
+      (v) => v.lang.toLowerCase().replace(/_/g, "-") === normalizedTarget
     );
-    const chosen =
-      deDeMatch ?? prefixMatches.find((v) => v.localService) ?? prefixMatches[0];
-    return { voice: chosen, resolvedLang: chosen.lang || fallbackPrefix };
+    if (exactMatches.length > 0) {
+      const preferred =
+        exactMatches.find((v) => v.localService) ?? exactMatches[0];
+      return { voice: preferred, resolvedLang: candidate };
+    }
   }
 
-  return { voice: null, resolvedLang: targetBcp47 };
+  for (const candidate of chain) {
+    const primarySubtag = candidate
+      .toLowerCase()
+      .replace(/_/g, "-")
+      .split("-")[0];
+    const prefixMatches = voices.filter((v) => {
+      const vNorm = v.lang.toLowerCase().replace(/_/g, "-");
+      return vNorm === primarySubtag || vNorm.startsWith(`${primarySubtag}-`);
+    });
+    if (prefixMatches.length > 0) {
+      const preferred =
+        prefixMatches.find((v) => v.localService) ?? prefixMatches[0];
+      return { voice: preferred, resolvedLang: preferred.lang || candidate };
+    }
+  }
+
+  return { voice: null, resolvedLang: chain[0] };
 }
 
 export function stopSpeaking(): void {
@@ -113,12 +151,11 @@ export function stopSpeaking(): void {
 
 export function speakText(options: {
   text: string;
-  language: LanguageCode | "en";
-  austrianMode?: boolean;
+  locales: string[];
   rate?: number;
   signal?: AbortSignal;
 }): Promise<void> {
-  const { text, language, austrianMode = true, rate = 1.0, signal } = options;
+  const { text, locales, rate = 1.0, signal } = options;
 
   if (signal?.aborted) {
     return Promise.resolve();
@@ -144,18 +181,7 @@ export function speakText(options: {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    const requestedTag =
-      language === "en"
-        ? "en-US"
-        : language === "ja"
-        ? "ja-JP"
-        : austrianMode
-        ? "de-AT"
-        : "de-DE";
-    const fallbackPrefix =
-      language === "en" ? "en" : language === "ja" ? "ja" : "de";
-
-    const { voice, resolvedLang } = selectVoice(requestedTag, fallbackPrefix);
+    const { voice, resolvedLang } = selectVoiceFromChain(locales);
     if (voice) {
       utterance.voice = voice;
     }
@@ -171,7 +197,10 @@ export function speakText(options: {
     };
 
     // Chromium on Android/Linux occasionally drops onend on longer utterances
-    const estimatedMs = Math.max(3500, Math.ceil((text.length * 140) / rate) + 2200);
+    const estimatedMs = Math.max(
+      3500,
+      Math.ceil((text.length * 140) / rate) + 2200
+    );
     const watchdog = window.setTimeout(finish, estimatedMs);
 
     utterance.onend = finish;
@@ -197,19 +226,12 @@ export interface RecognitionOutcome {
 }
 
 export function listenOnce(options: {
-  language: LanguageCode;
-  austrianMode?: boolean;
+  sttLocale: string;
   timeoutMs?: number;
   onInterim?: (transcript: string) => void;
   signal?: AbortSignal;
 }): Promise<RecognitionOutcome> {
-  const {
-    language,
-    austrianMode = true,
-    timeoutMs = 6500,
-    onInterim,
-    signal,
-  } = options;
+  const { sttLocale, timeoutMs = 6500, onInterim, signal } = options;
 
   const RecognitionCtor = getRecognitionConstructor();
   if (!RecognitionCtor) {
@@ -218,8 +240,7 @@ export function listenOnce(options: {
 
   return new Promise((resolve) => {
     const recognition = new RecognitionCtor();
-    recognition.lang =
-      language === "ja" ? "ja-JP" : austrianMode ? "de-AT" : "de-DE";
+    recognition.lang = sttLocale || "en-US";
     recognition.interimResults = true;
     recognition.continuous = false;
     recognition.maxAlternatives = 4;
@@ -299,7 +320,8 @@ export function listenOnce(options: {
     try {
       recognition.start();
     } catch (err) {
-      lastError = err instanceof Error ? err.message : "microphone-start-failed";
+      lastError =
+        err instanceof Error ? err.message : "microphone-start-failed";
       finish();
     }
   });

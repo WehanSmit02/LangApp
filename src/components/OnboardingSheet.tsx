@@ -3,40 +3,57 @@ import {
   Calendar,
   Check,
   Download,
+  Lock,
   RefreshCw,
   Sparkles,
   WifiOff,
 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { BRAND } from "../config/brand";
 import {
+  type CourseId,
+  type ManifestCourseEntry,
   TIER_META,
   TIER_ORDER,
   type UnderstandingTier,
 } from "../schemas/curriculum";
 import { computeUnitBytesForTier } from "../services/courseSyncService";
-import type { UserPreferences } from "../state/preferences";
+import {
+  buildInitialEnrollmentFromManifest,
+  createEnrollmentFromDescriptor,
+  type EnrolledCourseConfig,
+  getOrderedEnrolledCourses,
+  type UserPreferences,
+} from "../state/preferences";
 import type { OfflineLibraryHandle } from "../state/useOfflineLibrary";
 import {
+  applyEqualSplitAcrossActive,
+  applyTwoCoursePreset,
   computeDaysRemaining,
-  computeWeeklyHoursSplit,
+  computeMultiCourseWeeklyHours,
   formatBytesHuman,
   formatGoalDateHuman,
+  formatPercentHuman,
+  rebalanceEnrolledCourses,
+  resolveCourseDisplayName,
+  updateCourseWeightWithRebalance,
 } from "../utils/formatters";
 import { resolveTransition, SHEET_SPRING } from "../utils/motionPresets";
+import { SegmentedControl } from "./ui/SegmentedControl";
 import { SwitchToggle } from "./ui/SwitchToggle";
 
-const SPLIT_PRESETS = [
-  { label: "92.5 / 7.5", ja: 92.5 },
-  { label: "80 / 20", ja: 80 },
-  { label: "50 / 50", ja: 50 },
+const TWO_COURSE_PRESETS = [
+  { label: "92.5 / 7.5", primary: 92.5 },
+  { label: "80 / 20", primary: 80 },
+  { label: "50 / 50", primary: 50 },
 ] as const;
 
 export function OnboardingSheet({
   prefs,
   updatePrefs,
   library,
+  onOpenRepoSettings,
 }: {
   prefs: UserPreferences;
   updatePrefs: (
@@ -45,6 +62,7 @@ export function OnboardingSheet({
       | ((prev: UserPreferences) => UserPreferences)
   ) => void;
   library: OfflineLibraryHandle;
+  onOpenRepoSettings: () => void;
 }) {
   const prefersReducedMotion = useReducedMotion();
   const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -53,28 +71,173 @@ export function OnboardingSheet({
 
   const transition = resolveTransition(prefersReducedMotion, SHEET_SPRING);
 
-  const jaUnit1 = library.manifest?.languages.ja.units[0] ?? null;
-  const deUnit1 = library.manifest?.languages.de.units[0] ?? null;
-
-  const jaStarterBytes = jaUnit1
-    ? computeUnitBytesForTier(jaUnit1, prefs.tiers.ja).deltaBytesToFetch
-    : 44_000;
-  const deStarterBytes = deUnit1
-    ? computeUnitBytesForTier(deUnit1, prefs.tiers.de).deltaBytesToFetch
-    : 14_000;
-  const totalStarterBytes = jaStarterBytes + deStarterBytes;
-
-  const weeklySplit = computeWeeklyHoursSplit(
-    prefs.focusSessionsPerDay,
-    prefs.focusSessionMinutes,
-    prefs.japaneseSplitPercent
+  const manifestCourses = useMemo(
+    () => library.manifest?.courses ?? [],
+    [library.manifest]
   );
 
-  const setTier = (lang: "ja" | "de", tier: UnderstandingTier) => {
-    updatePrefs((prev) => ({
-      ...prev,
-      tiers: { ...prev.tiers, [lang]: tier },
-    }));
+  const effectiveEnrolled: Record<CourseId, EnrolledCourseConfig> = useMemo(() => {
+    if (Object.keys(prefs.enrolledCourses).length > 0) {
+      return prefs.enrolledCourses;
+    }
+    return buildInitialEnrollmentFromManifest(manifestCourses);
+  }, [prefs.enrolledCourses, manifestCourses]);
+
+  const activeEnrollments = useMemo(
+    () => getOrderedEnrolledCourses(effectiveEnrolled, "active"),
+    [effectiveEnrolled]
+  );
+
+  const persistWorkingEnrollment = (
+    mutator: (
+      base: Record<CourseId, EnrolledCourseConfig>
+    ) => Record<CourseId, EnrolledCourseConfig>
+  ) => {
+    updatePrefs((prev) => {
+      const seed =
+        Object.keys(prev.enrolledCourses).length > 0
+          ? prev.enrolledCourses
+          : buildInitialEnrollmentFromManifest(manifestCourses);
+      const nextEnrolled = mutator(seed);
+      const firstActive =
+        getOrderedEnrolledCourses(nextEnrolled, "active")[0]?.courseId ?? "";
+      return {
+        ...prev,
+        enrolledCourses: nextEnrolled,
+        activeCourseTab: prev.activeCourseTab || firstActive,
+      };
+    });
+  };
+
+  const handleToggleCourseSelection = (entry: ManifestCourseEntry) => {
+    persistWorkingEnrollment((base) => {
+      const existing = base[entry.courseId];
+      const activeList = Object.values(base).filter((c) => c.status === "active");
+
+      if (existing && existing.status === "active") {
+        if (activeList.length <= 1) {
+          return base;
+        }
+        const without = { ...base };
+        delete without[entry.courseId];
+        return rebalanceEnrolledCourses(without);
+      }
+
+      const added: Record<CourseId, EnrolledCourseConfig> = {
+        ...base,
+        [entry.courseId]: createEnrollmentFromDescriptor(entry.descriptor, {
+          tier: activeList.length === 0 ? "conversational" : "essential",
+          weightPercent:
+            activeList.length === 0
+              ? 100
+              : Math.round(100 / (activeList.length + 1)),
+          status: "active",
+        }),
+      };
+      return rebalanceEnrolledCourses(added);
+    });
+  };
+
+  const handleSetCourseTier = (courseId: CourseId, tier: UnderstandingTier) => {
+    persistWorkingEnrollment((base) => {
+      const target = base[courseId];
+      if (!target) return base;
+      return {
+        ...base,
+        [courseId]: { ...target, tier },
+      };
+    });
+  };
+
+  const handleSetCourseVariant = (courseId: CourseId, variantId: string) => {
+    persistWorkingEnrollment((base) => {
+      const target = base[courseId];
+      if (!target) return base;
+      return {
+        ...base,
+        [courseId]: { ...target, activeVariantId: variantId },
+      };
+    });
+  };
+
+  const handleSetGoalDate = (courseId: CourseId, goalDate: string) => {
+    persistWorkingEnrollment((base) => {
+      const target = base[courseId];
+      if (!target) return base;
+      return {
+        ...base,
+        [courseId]: { ...target, goalDate },
+      };
+    });
+  };
+
+  const weeklyAllocation = useMemo(
+    () =>
+      computeMultiCourseWeeklyHours(
+        prefs.focusSessionsPerDay,
+        prefs.focusSessionMinutes,
+        activeEnrollments.map((e) => {
+          const desc = library.descriptorsByCourseId.get(e.courseId);
+          return {
+            courseId: e.courseId,
+            name: resolveCourseDisplayName(e.courseId, desc, e.activeVariantId),
+            weightPercent: e.weightPercent,
+          };
+        })
+      ),
+    [
+      prefs.focusSessionsPerDay,
+      prefs.focusSessionMinutes,
+      activeEnrollments,
+      library.descriptorsByCourseId,
+    ]
+  );
+
+  const starterSummary = useMemo(() => {
+    const items = activeEnrollments.map((enrollment) => {
+      const courseEntry = library.manifestCourseMap.get(enrollment.courseId);
+      const descriptor = library.descriptorsByCourseId.get(enrollment.courseId);
+      const unit1 = courseEntry?.units[0] ?? null;
+      const bytes = unit1
+        ? computeUnitBytesForTier(unit1, enrollment.tier).deltaBytesToFetch
+        : 24_000;
+      return {
+        enrollment,
+        descriptor,
+        unit1,
+        bytes,
+        displayName: resolveCourseDisplayName(
+          enrollment.courseId,
+          descriptor,
+          enrollment.activeVariantId
+        ),
+      };
+    });
+    const totalBytes = items.reduce((sum, item) => sum + item.bytes, 0);
+    return { items, totalBytes };
+  }, [
+    activeEnrollments,
+    library.manifestCourseMap,
+    library.descriptorsByCourseId,
+  ]);
+
+  const completeOnboardingState = () => {
+    updatePrefs((prev) => {
+      const finalEnrolled =
+        Object.keys(prev.enrolledCourses).length > 0
+          ? rebalanceEnrolledCourses(prev.enrolledCourses)
+          : rebalanceEnrolledCourses(
+              buildInitialEnrollmentFromManifest(manifestCourses)
+            );
+      const firstActive =
+        getOrderedEnrolledCourses(finalEnrolled, "active")[0]?.courseId ?? "";
+      return {
+        ...prev,
+        enrolledCourses: finalEnrolled,
+        activeCourseTab: prev.activeCourseTab || firstActive,
+        onboardingCompleted: true,
+      };
+    });
   };
 
   const handleDownloadStarters = async () => {
@@ -84,25 +247,32 @@ export function OnboardingSheet({
       if (!library.manifest) {
         await library.refreshCatalog();
       }
-      const latestJa = library.manifest?.languages.ja.units[0];
-      const latestDe = library.manifest?.languages.de.units[0];
-      if (!latestJa || !latestDe) {
+
+      const targets = starterSummary.items.filter(
+        (item) => item.enrollment.weightPercent > 0 && item.unit1
+      );
+      if (targets.length === 0) {
         throw new Error(
-          "Starter units could not be loaded right now. Check your connection and retry."
+          "Starter units could not be reached yet. Check your connection or repository settings."
         );
       }
-      if (prefs.japaneseSplitPercent > 0) {
-        await library.downloadUnit(latestJa, "ja", prefs.tiers.ja);
+
+      for (const item of targets) {
+        if (item.unit1) {
+          await library.downloadUnit(
+            item.unit1,
+            item.enrollment.courseId,
+            item.enrollment.tier
+          );
+        }
       }
-      if (prefs.japaneseSplitPercent < 100) {
-        await library.downloadUnit(latestDe, "de", prefs.tiers.de);
-      }
-      updatePrefs({ onboardingCompleted: true });
+
+      completeOnboardingState();
     } catch (err) {
       setStarterError(
         err instanceof Error
           ? err.message
-          : "Download failed. Please check your connection and try again."
+          : "Download interrupted. Check your connection and try again."
       );
     } finally {
       setIsDownloadingStarter(false);
@@ -123,7 +293,9 @@ export function OnboardingSheet({
     >
       <motion.div
         initial={
-          prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 36, scale: 0.98 }
+          prefersReducedMotion
+            ? { opacity: 1 }
+            : { opacity: 0, y: 36, scale: 0.98 }
         }
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={transition}
@@ -138,8 +310,8 @@ export function OnboardingSheet({
                   dot === step
                     ? "w-6 bg-[var(--accent)]"
                     : dot < step
-                    ? "w-2 bg-[var(--accent)] opacity-50"
-                    : "w-2 bg-black/15 dark:bg-white/20"
+                      ? "w-2 bg-[var(--accent)] opacity-50"
+                      : "w-2 bg-black/15 dark:bg-white/20"
                 }`}
               />
             ))}
@@ -153,9 +325,13 @@ export function OnboardingSheet({
           {step === 1 && (
             <motion.div
               key="onboard-step-1"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }}
+              initial={
+                prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }
+              }
               animate={{ opacity: 1, x: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }}
+              exit={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }
+              }
               transition={{ duration: 0.16, ease: [0.25, 1, 0.5, 1] }}
               className="space-y-4"
             >
@@ -167,118 +343,198 @@ export function OnboardingSheet({
                   Welcome to {BRAND.appName}
                 </h1>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--ink-secondary)]">
-                  Choose how deep you want to go in each language. {BRAND.appName}{" "}
-                  downloads only the lesson tiers that match your goal.
+                  Select your languages and target depth. {BRAND.appName} pulls
+                  only the lesson tiers that match your goals.
                 </p>
               </div>
 
-              <div className="hig-card p-4 space-y-3">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-[16px] font-semibold">Japanese Goal</h2>
-                  <span className="rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]">
-                    Kana to JLPT N1
-                  </span>
+              {library.isSyncingCatalog && manifestCourses.length === 0 && (
+                <div className="hig-card p-5 space-y-3 animate-pulse">
+                  <div className="h-5 w-44 rounded-lg bg-[var(--bg-inset)]" />
+                  <div className="h-14 w-full rounded-xl bg-[var(--bg-inset)]" />
+                  <div className="h-14 w-full rounded-xl bg-[var(--bg-inset)]" />
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {TIER_ORDER.map((tier) => {
-                    const active = prefs.tiers.ja === tier;
-                    return (
-                      <button
-                        key={tier}
-                        id={`onboard-ja-tier-${tier}`}
-                        type="button"
-                        onClick={() => setTier("ja", tier)}
-                        className={`min-h-[48px] rounded-xl px-3 py-2.5 text-left transition-colors ${
-                          active
-                            ? "bg-[var(--accent)] text-white"
-                            : "bg-[var(--bg-inset)] text-[var(--ink-primary)] hover:opacity-90"
-                        }`}
-                      >
-                        <div className="text-[14px] font-semibold">
-                          {TIER_META[tier].label}
-                        </div>
-                        <div
-                          className={`text-[12px] ${
-                            active ? "text-white/85" : "text-[var(--ink-secondary)]"
-                          }`}
-                        >
-                          Tier {TIER_META[tier].number}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-                <p className="text-[13px] leading-relaxed text-[var(--ink-secondary)]">
-                  {TIER_META[prefs.tiers.ja].descriptionJa}
-                </p>
-              </div>
+              )}
 
-              <div className="hig-card p-4 space-y-3">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-[16px] font-semibold">German Goal</h2>
-                  <span className="rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]">
-                    Roots to CEFR C1
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {TIER_ORDER.map((tier) => {
-                    const active = prefs.tiers.de === tier;
-                    return (
-                      <button
-                        key={tier}
-                        id={`onboard-de-tier-${tier}`}
-                        type="button"
-                        onClick={() => setTier("de", tier)}
-                        className={`min-h-[48px] rounded-xl px-3 py-2.5 text-left transition-colors ${
-                          active
-                            ? "bg-[var(--accent)] text-white"
-                            : "bg-[var(--bg-inset)] text-[var(--ink-primary)] hover:opacity-90"
-                        }`}
-                      >
-                        <div className="text-[14px] font-semibold">
-                          {TIER_META[tier].label}
-                        </div>
-                        <div
-                          className={`text-[12px] ${
-                            active ? "text-white/85" : "text-[var(--ink-secondary)]"
-                          }`}
-                        >
-                          Tier {TIER_META[tier].number}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-                <p className="text-[13px] leading-relaxed text-[var(--ink-secondary)]">
-                  {TIER_META[prefs.tiers.de].descriptionDe}
-                </p>
-
-                <div className="hig-hairline-t pt-3 flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="text-[14px] font-medium text-[var(--ink-primary)]">
-                      Austrian Regional Focus
-                    </div>
-                    <div className="text-[12px] text-[var(--ink-secondary)]">
-                      Prioritizes Austrian phrasing (Grüß Gott, Sackerl, ÖBB Bahnsteig) and audio
-                    </div>
+              {library.catalogError && manifestCourses.length === 0 && (
+                <div className="hig-card p-4 space-y-3">
+                  <p className="text-[13px] text-[var(--status-danger)] break-words">
+                    {library.catalogError}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => void library.refreshCatalog()}
+                      className="inline-flex min-h-[42px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-[13px] font-semibold text-white"
+                    >
+                      <RefreshCw className="h-4 w-4" strokeWidth={2} />
+                      <span>Retry</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={onOpenRepoSettings}
+                      className="inline-flex min-h-[42px] items-center rounded-full bg-[var(--bg-pill)] px-4 text-[13px] font-medium text-[var(--ink-primary)]"
+                    >
+                      Repository Settings
+                    </button>
                   </div>
-                  <SwitchToggle
-                    id="onboard-austrian-switch"
-                    checked={prefs.austrianMode}
-                    onChange={(checked) => updatePrefs({ austrianMode: checked })}
-                    ariaLabel="Toggle Austrian Regional Focus"
-                  />
                 </div>
+              )}
+
+              {manifestCourses.length > 1 && (
+                <div className="flex flex-wrap gap-2">
+                  {manifestCourses.map((entry) => {
+                    const selected =
+                      effectiveEnrolled[entry.courseId]?.status === "active";
+                    return (
+                      <button
+                        key={entry.courseId}
+                        id={`onboard-toggle-course-${entry.courseId}`}
+                        type="button"
+                        onClick={() => handleToggleCourseSelection(entry)}
+                        className={`inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-colors ${
+                          selected
+                            ? "bg-[var(--accent)] text-white"
+                            : "bg-[var(--bg-pill)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
+                        }`}
+                      >
+                        {selected && (
+                          <Check className="h-3.5 w-3.5" strokeWidth={2.3} />
+                        )}
+                        <span>{entry.descriptor.name}</span>
+                        <span
+                          dir={entry.descriptor.textDirection}
+                          className={
+                            selected
+                              ? "text-white/80 font-normal"
+                              : "text-[var(--ink-secondary)] font-normal"
+                          }
+                        >
+                          {entry.descriptor.nativeName}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className="space-y-3">
+                {activeEnrollments.map((enrollment) => {
+                  const descriptor = library.descriptorsByCourseId.get(
+                    enrollment.courseId
+                  );
+                  if (!descriptor) return null;
+
+                  const activeTier = enrollment.tier;
+                  const tierDescription =
+                    descriptor.tierDescriptions?.[activeTier] ??
+                    TIER_META[activeTier].defaultDescription;
+                  const variants = descriptor.variants ?? [];
+
+                  return (
+                    <div
+                      key={enrollment.courseId}
+                      className="hig-card p-4 space-y-3"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-baseline gap-2 min-w-0">
+                          <h2 className="text-[16px] font-semibold truncate">
+                            {descriptor.name} Goal
+                          </h2>
+                          <span
+                            dir={descriptor.textDirection}
+                            className="text-[13px] text-[var(--ink-secondary)] shrink-0"
+                          >
+                            {descriptor.nativeName}
+                          </span>
+                        </div>
+                        <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]">
+                          {descriptor.proficiencyFramework.name}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2">
+                        {TIER_ORDER.map((tier) => {
+                          const active = activeTier === tier;
+                          return (
+                            <button
+                              key={tier}
+                              id={`onboard-${enrollment.courseId}-tier-${tier}`}
+                              type="button"
+                              onClick={() =>
+                                handleSetCourseTier(enrollment.courseId, tier)
+                              }
+                              className={`min-h-[48px] rounded-xl px-3 py-2.5 text-left transition-colors ${
+                                active
+                                  ? "bg-[var(--accent)] text-white"
+                                  : "bg-[var(--bg-inset)] text-[var(--ink-primary)] hover:opacity-90"
+                              }`}
+                            >
+                              <div className="text-[14px] font-semibold">
+                                {TIER_META[tier].label}
+                              </div>
+                              <div
+                                className={`text-[12px] ${
+                                  active
+                                    ? "text-white/85"
+                                    : "text-[var(--ink-secondary)]"
+                                }`}
+                              >
+                                Tier {TIER_META[tier].number}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <p className="text-[13px] leading-relaxed text-[var(--ink-secondary)]">
+                        {tierDescription}
+                      </p>
+
+                      {variants.length > 1 && (
+                        <div className="hig-hairline-t pt-3 space-y-2">
+                          <div className="text-[13px] font-medium text-[var(--ink-primary)]">
+                            Regional Focus & Voice
+                          </div>
+                          <SegmentedControl<string>
+                            id={`onboard-variant-${enrollment.courseId}`}
+                            ariaLabel={`${descriptor.name} regional focus`}
+                            compact
+                            value={
+                              enrollment.activeVariantId ?? variants[0].id
+                            }
+                            onChange={(variantId) =>
+                              handleSetCourseVariant(
+                                enrollment.courseId,
+                                variantId
+                              )
+                            }
+                            options={variants.map((v) => ({
+                              value: v.id,
+                              label: v.label,
+                            }))}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               <motion.button
                 id="onboard-next-1"
                 type="button"
+                disabled={activeEnrollments.length === 0}
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-                onClick={() => setStep(2)}
-                className="flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-6 text-[16px] font-semibold text-white"
+                onClick={() => {
+                  persistWorkingEnrollment((base) =>
+                    rebalanceEnrolledCourses(base)
+                  );
+                  setStep(2);
+                }}
+                className="flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-6 text-[16px] font-semibold text-white disabled:opacity-50"
               >
-                <span>Continue to Weekly Rhythm</span>
+                <span>Continue to Study Rhythm</span>
                 <ArrowRight className="h-4 w-4" strokeWidth={2} />
               </motion.button>
             </motion.div>
@@ -287,9 +543,13 @@ export function OnboardingSheet({
           {step === 2 && (
             <motion.div
               key="onboard-step-2"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }}
+              initial={
+                prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }
+              }
               animate={{ opacity: 1, x: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }}
+              exit={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }
+              }
               transition={{ duration: 0.16, ease: [0.25, 1, 0.5, 1] }}
               className="space-y-4"
             >
@@ -298,60 +558,165 @@ export function OnboardingSheet({
                   Set Your Weekly Split
                 </h1>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--ink-secondary)]">
-                  Balance your study sessions, flashcard reviews, and Phrase Lock prompts across both languages.
+                  Allocate focus blocks, flashcard reviews, and Phrase Lock
+                  prompts across your active courses.
                 </p>
               </div>
 
               <div className="hig-card p-4 space-y-4">
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-[15px] font-semibold tabular-nums">
-                    {prefs.japaneseSplitPercent}% Japanese
-                  </span>
-                  <span className="text-[15px] font-semibold text-[var(--ink-secondary)] tabular-nums">
-                    {Number((100 - prefs.japaneseSplitPercent).toFixed(1))}% German
-                  </span>
-                </div>
+                {activeEnrollments.length === 1 ? (
+                  <div className="flex items-center justify-between text-[15px] font-semibold tabular-nums">
+                    <span>
+                      100%{" "}
+                      {weeklyAllocation.allocations[0]?.name ??
+                        activeEnrollments[0].courseId}
+                    </span>
+                    <span className="text-[13px] font-medium text-[var(--ink-secondary)]">
+                      {weeklyAllocation.allocations[0]?.hoursLabel}
+                    </span>
+                  </div>
+                ) : activeEnrollments.length === 2 ? (
+                  <>
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span className="text-[15px] font-semibold tabular-nums">
+                        {formatPercentHuman(activeEnrollments[0].weightPercent)}{" "}
+                        {weeklyAllocation.allocations[0]?.name}
+                      </span>
+                      <span className="text-[15px] font-semibold text-[var(--ink-secondary)] tabular-nums">
+                        {formatPercentHuman(activeEnrollments[1].weightPercent)}{" "}
+                        {weeklyAllocation.allocations[1]?.name}
+                      </span>
+                    </div>
 
-                <input
-                  id="onboard-split-slider"
-                  type="range"
-                  min={0}
-                  max={100}
-                  step={2.5}
-                  value={prefs.japaneseSplitPercent}
-                  aria-label="Weekly Japanese percentage"
-                  onChange={(e) =>
-                    updatePrefs({ japaneseSplitPercent: Number(e.target.value) })
-                  }
-                  className="w-full accent-[var(--accent)] h-2 cursor-pointer"
-                />
+                    <input
+                      id="onboard-split-slider"
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={2.5}
+                      value={activeEnrollments[0].weightPercent}
+                      aria-label={`Weekly ${weeklyAllocation.allocations[0]?.name ?? ""} percentage`}
+                      onChange={(e) =>
+                        persistWorkingEnrollment((base) =>
+                          updateCourseWeightWithRebalance(
+                            base,
+                            activeEnrollments[0].courseId,
+                            Number(e.target.value),
+                            true
+                          )
+                        )
+                      }
+                      className="w-full accent-[var(--accent)] h-2 cursor-pointer"
+                    />
 
-                <div className="flex flex-wrap gap-2">
-                  {SPLIT_PRESETS.map((preset) => {
-                    const selected = prefs.japaneseSplitPercent === preset.ja;
-                    return (
-                      <button
-                        key={preset.label}
-                        type="button"
-                        onClick={() =>
-                          updatePrefs({ japaneseSplitPercent: preset.ja })
-                        }
-                        className={`min-h-[38px] rounded-full px-3.5 text-[13px] font-medium tabular-nums transition-colors ${
-                          selected
-                            ? "bg-[var(--accent)] text-white"
-                            : "bg-[var(--bg-pill)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
-                        }`}
-                      >
-                        {preset.label}
-                      </button>
-                    );
-                  })}
-                </div>
+                    <div className="flex flex-wrap gap-2">
+                      {TWO_COURSE_PRESETS.map((preset) => {
+                        const selected =
+                          Math.abs(
+                            activeEnrollments[0].weightPercent - preset.primary
+                          ) < 0.25;
+                        return (
+                          <button
+                            key={preset.label}
+                            type="button"
+                            onClick={() =>
+                              persistWorkingEnrollment((base) =>
+                                applyTwoCoursePreset(
+                                  base,
+                                  activeEnrollments[0].courseId,
+                                  preset.primary
+                                )
+                              )
+                            }
+                            className={`min-h-[38px] rounded-full px-3.5 text-[13px] font-medium tabular-nums transition-colors ${
+                              selected
+                                ? "bg-[var(--accent)] text-white"
+                                : "bg-[var(--bg-pill)] text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
+                            }`}
+                          >
+                            {preset.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--ink-secondary)]">
+                        <Lock className="h-3.5 w-3.5" strokeWidth={1.8} />
+                        <span>Rebalance to 100%</span>
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            persistWorkingEnrollment((base) =>
+                              applyEqualSplitAcrossActive(base)
+                            )
+                          }
+                          className="min-h-[34px] rounded-full bg-[var(--bg-pill)] px-3 text-[12px] font-medium text-[var(--ink-primary)]"
+                        >
+                          Equal Split
+                        </button>
+                        <SwitchToggle
+                          id="onboard-rebalance-lock"
+                          checked={prefs.rebalanceLocked}
+                          onChange={(locked) => {
+                            updatePrefs((prev) => ({
+                              ...prev,
+                              rebalanceLocked: locked,
+                              enrolledCourses: locked
+                                ? rebalanceEnrolledCourses(prev.enrolledCourses)
+                                : prev.enrolledCourses,
+                            }));
+                          }}
+                          ariaLabel="Keep course weights balanced to 100 percent"
+                        />
+                      </div>
+                    </div>
 
-                <div className="hig-hairline-t pt-3 flex items-center justify-between text-[13px] text-[var(--ink-secondary)] tabular-nums">
+                    {activeEnrollments.map((enrollment, idx) => {
+                      const alloc = weeklyAllocation.allocations[idx];
+                      return (
+                        <div key={enrollment.courseId} className="space-y-1">
+                          <div className="flex items-center justify-between text-[13px] font-medium tabular-nums">
+                            <span>{alloc?.name ?? enrollment.courseId}</span>
+                            <span>
+                              {formatPercentHuman(enrollment.weightPercent)}
+                            </span>
+                          </div>
+                          <input
+                            type="range"
+                            min={0}
+                            max={100}
+                            step={2.5}
+                            value={enrollment.weightPercent}
+                            aria-label={`${alloc?.name ?? enrollment.courseId} study percentage`}
+                            onChange={(e) =>
+                              persistWorkingEnrollment((base) =>
+                                updateCourseWeightWithRebalance(
+                                  base,
+                                  enrollment.courseId,
+                                  Number(e.target.value),
+                                  prefs.rebalanceLocked
+                                )
+                              )
+                            }
+                            className="w-full accent-[var(--accent)]"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                <div className="hig-hairline-t pt-3 flex flex-wrap items-center justify-between gap-2 text-[13px] text-[var(--ink-secondary)] tabular-nums">
                   <span>Weekly Focus Allocation</span>
                   <span className="font-semibold text-[var(--ink-primary)]">
-                    {weeklySplit.jaHoursLabel} · {weeklySplit.deHoursLabel}
+                    {weeklyAllocation.allocations
+                      .map((a) => a.hoursLabel)
+                      .join(" · ")}
                   </span>
                 </div>
               </div>
@@ -359,9 +724,12 @@ export function OnboardingSheet({
               <div className="hig-card divide-y divide-[var(--hairline)] px-4">
                 <div className="flex items-center justify-between py-3">
                   <div>
-                    <div className="text-[14px] font-medium">Daily Focus Sessions</div>
+                    <div className="text-[14px] font-medium">
+                      Daily Focus Sessions
+                    </div>
                     <div className="text-[12px] text-[var(--ink-secondary)] tabular-nums">
-                      {prefs.focusSessionsPerDay} × {prefs.focusSessionMinutes}m blocks
+                      {prefs.focusSessionsPerDay} × {prefs.focusSessionMinutes}m
+                      blocks
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -369,7 +737,9 @@ export function OnboardingSheet({
                       <button
                         key={count}
                         type="button"
-                        onClick={() => updatePrefs({ focusSessionsPerDay: count })}
+                        onClick={() =>
+                          updatePrefs({ focusSessionsPerDay: count })
+                        }
                         className={`min-h-[40px] min-w-[40px] rounded-xl text-[14px] font-semibold tabular-nums ${
                           prefs.focusSessionsPerDay === count
                             ? "bg-[var(--accent)] text-white"
@@ -396,7 +766,9 @@ export function OnboardingSheet({
                     aria-label="Daily reading and practice minutes"
                     value={prefs.dailyPracticeMinutes}
                     onChange={(e) =>
-                      updatePrefs({ dailyPracticeMinutes: Number(e.target.value) })
+                      updatePrefs({
+                        dailyPracticeMinutes: Number(e.target.value),
+                      })
                     }
                     className="min-h-[40px] rounded-xl bg-[var(--bg-inset)] px-3 text-[14px] font-medium tabular-nums"
                   >
@@ -412,50 +784,46 @@ export function OnboardingSheet({
                     <span>Optional Departure or Goal Dates</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <label className="block rounded-xl bg-[var(--bg-inset)] px-3 py-2">
-                      <span className="block text-[12px] text-[var(--ink-secondary)]">
-                        Japan Goal Date
-                        {prefs.goalDates.ja
-                          ? ` · ${
-                              computeDaysRemaining(prefs.goalDates.ja)?.label ??
-                              formatGoalDateHuman(prefs.goalDates.ja)
-                            }`
-                          : ""}
-                      </span>
-                      <input
-                        type="date"
-                        value={prefs.goalDates.ja}
-                        onChange={(e) =>
-                          updatePrefs((prev) => ({
-                            ...prev,
-                            goalDates: { ...prev.goalDates, ja: e.target.value },
-                          }))
-                        }
-                        className="mt-0.5 w-full bg-transparent text-[14px] font-medium"
-                      />
-                    </label>
-                    <label className="block rounded-xl bg-[var(--bg-inset)] px-3 py-2">
-                      <span className="block text-[12px] text-[var(--ink-secondary)]">
-                        {prefs.austrianMode ? "Austria" : "Germany"} Goal Date
-                        {prefs.goalDates.de
-                          ? ` · ${
-                              computeDaysRemaining(prefs.goalDates.de)?.label ??
-                              formatGoalDateHuman(prefs.goalDates.de)
-                            }`
-                          : ""}
-                      </span>
-                      <input
-                        type="date"
-                        value={prefs.goalDates.de}
-                        onChange={(e) =>
-                          updatePrefs((prev) => ({
-                            ...prev,
-                            goalDates: { ...prev.goalDates, de: e.target.value },
-                          }))
-                        }
-                        className="mt-0.5 w-full bg-transparent text-[14px] font-medium"
-                      />
-                    </label>
+                    {activeEnrollments.map((enrollment) => {
+                      const desc = library.descriptorsByCourseId.get(
+                        enrollment.courseId
+                      );
+                      const label = resolveCourseDisplayName(
+                        enrollment.courseId,
+                        desc,
+                        enrollment.activeVariantId
+                      );
+                      const countdown = computeDaysRemaining(
+                        enrollment.goalDate
+                      );
+                      return (
+                        <label
+                          key={enrollment.courseId}
+                          className="block rounded-xl bg-[var(--bg-inset)] px-3 py-2"
+                        >
+                          <span className="block text-[12px] text-[var(--ink-secondary)] truncate">
+                            {label}
+                            {enrollment.goalDate
+                              ? ` · ${
+                                  countdown?.label ??
+                                  formatGoalDateHuman(enrollment.goalDate)
+                                }`
+                              : ""}
+                          </span>
+                          <input
+                            type="date"
+                            value={enrollment.goalDate}
+                            onChange={(e) =>
+                              handleSetGoalDate(
+                                enrollment.courseId,
+                                e.target.value
+                              )
+                            }
+                            className="mt-0.5 w-full bg-transparent text-[14px] font-medium"
+                          />
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -485,9 +853,13 @@ export function OnboardingSheet({
           {step === 3 && (
             <motion.div
               key="onboard-step-3"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }}
+              initial={
+                prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: 14 }
+              }
               animate={{ opacity: 1, x: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }}
+              exit={
+                prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -14 }
+              }
               transition={{ duration: 0.16, ease: [0.25, 1, 0.5, 1] }}
               className="space-y-4"
             >
@@ -496,52 +868,49 @@ export function OnboardingSheet({
                   Download Starter Units
                 </h1>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-[var(--ink-secondary)]">
-                  Fetch Unit 1 for offline Guided lessons, Hands-Free audio loops, flashcards, and graded stories.
+                  Fetch Unit 1 for offline Guided lessons, Hands-Free audio
+                  loops, flashcards, and graded stories.
                 </p>
               </div>
 
               <div className="hig-card divide-y divide-[var(--hairline)] px-4">
-                <div className="flex items-center justify-between py-3.5 gap-3">
-                  <div className="min-w-0">
-                    <div className="text-[15px] font-semibold truncate">
-                      {jaUnit1?.title ?? "Japanese Unit 1 · Greetings & Konbini"}
+                {starterSummary.items.map((item) => {
+                  const tierNum = TIER_META[item.enrollment.tier].number;
+                  return (
+                    <div
+                      key={item.enrollment.courseId}
+                      className="flex items-center justify-between py-3.5 gap-3"
+                    >
+                      <div className="min-w-0">
+                        <div className="text-[15px] font-semibold truncate">
+                          {item.unit1?.title ?? `${item.displayName} · Unit 1`}
+                        </div>
+                        <div className="text-[13px] text-[var(--ink-secondary)]">
+                          {item.displayName} ·{" "}
+                          {TIER_META[item.enrollment.tier].label} (
+                          {tierNum === 1
+                            ? "Tier 1 only"
+                            : `Tiers 1–${tierNum}`}
+                          )
+                        </div>
+                      </div>
+                      <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-secondary)] tabular-nums">
+                        {formatBytesHuman(item.bytes)}
+                      </span>
                     </div>
-                    <div className="text-[13px] text-[var(--ink-secondary)]">
-                      Japanese · {TIER_META[prefs.tiers.ja].label} (Tiers 1–
-                      {TIER_META[prefs.tiers.ja].number})
-                    </div>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-secondary)] tabular-nums">
-                    {formatBytesHuman(jaStarterBytes)}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between py-3.5 gap-3">
-                  <div className="min-w-0">
-                    <div className="text-[15px] font-semibold truncate">
-                      {deUnit1?.title ?? "German Unit 1 · Austrian Greetings & Café"}
-                    </div>
-                    <div className="text-[13px] text-[var(--ink-secondary)]">
-                      {prefs.austrianMode ? "Austrian German" : "German"} ·{" "}
-                      {TIER_META[prefs.tiers.de].label} (
-                      {TIER_META[prefs.tiers.de].number === 1
-                        ? "Tier 1 only"
-                        : `Tiers 1–${TIER_META[prefs.tiers.de].number}`}
-                      )
-                    </div>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-secondary)] tabular-nums">
-                    {formatBytesHuman(deStarterBytes)}
-                  </span>
-                </div>
+                  );
+                })}
 
                 <div className="flex items-center justify-between py-3 text-[13px] text-[var(--ink-secondary)]">
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="h-4 w-4 text-[var(--accent)]" strokeWidth={1.8} />
+                    <Sparkles
+                      className="h-4 w-4 text-[var(--accent)]"
+                      strokeWidth={1.8}
+                    />
                     <span>Cached locally for instant offline study</span>
                   </span>
                   <span className="font-semibold text-[var(--ink-primary)] tabular-nums">
-                    Total {formatBytesHuman(totalStarterBytes)}
+                    Total {formatBytesHuman(starterSummary.totalBytes)}
                   </span>
                 </div>
               </div>
@@ -553,7 +922,7 @@ export function OnboardingSheet({
                       <span>Downloading starter shards...</span>
                       <span>
                         {formatBytesHuman(activeProgressBytes)} /{" "}
-                        {formatBytesHuman(totalStarterBytes)}
+                        {formatBytesHuman(starterSummary.totalBytes)}
                       </span>
                     </div>
                     <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--bg-inset)]">
@@ -565,7 +934,8 @@ export function OnboardingSheet({
                             Math.max(
                               12,
                               Math.round(
-                                (activeProgressBytes / Math.max(1, totalStarterBytes)) *
+                                (activeProgressBytes /
+                                  Math.max(1, starterSummary.totalBytes)) *
                                   100
                               )
                             )
@@ -580,7 +950,8 @@ export function OnboardingSheet({
                   <div className="flex items-center gap-2.5 rounded-2xl bg-[var(--status-warn-bg)] px-4 py-3 text-[13px] text-[var(--status-warn)]">
                     <WifiOff className="h-4 w-4 shrink-0" strokeWidth={1.8} />
                     <span>
-                      You appear to be offline. Connect briefly to download Unit 1, or explore the app shell first.
+                      You appear to be offline. Connect briefly to download Unit
+                      1, or explore the app shell first.
                     </span>
                   </div>
                 )}
@@ -611,7 +982,10 @@ export function OnboardingSheet({
                 >
                   {isDownloadingStarter ? (
                     <>
-                      <RefreshCw className="h-4 w-4 animate-spin" strokeWidth={2} />
+                      <RefreshCw
+                        className="h-4 w-4 animate-spin"
+                        strokeWidth={2}
+                      />
                       <span>Installing Starter Units...</span>
                     </>
                   ) : (
@@ -633,7 +1007,7 @@ export function OnboardingSheet({
                   <button
                     id="onboard-skip-to-catalog"
                     type="button"
-                    onClick={() => updatePrefs({ onboardingCompleted: true })}
+                    onClick={completeOnboardingState}
                     className="inline-flex min-h-[44px] items-center gap-1.5 px-3 text-[14px] font-medium text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
                   >
                     <Check className="h-4 w-4" strokeWidth={1.8} />

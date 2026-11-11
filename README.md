@@ -1,6 +1,6 @@
 # Lang
 
-Offline-first Progressive Web App for adaptive Japanese (`Kana → JLPT N1`) and German / Austrian (`Survival Roots → CEFR C1`) study, backed by an on-demand GitHub curriculum CDN.
+Offline-first Progressive Web App (Capacitor-ready for iOS and Android) with direct-from-repository course syncing (`curriculum-data`) and a zero-rebuild dynamic multi-language capability engine.
 
 ## Local Development
 
@@ -10,15 +10,17 @@ npm run curriculum:validate
 npm run dev
 ```
 
-Build the production PWA bundle:
+In development (`npm run dev`), Vite attaches a local `/curriculum/*` middleware backed by the top-level [`curriculum/`](./curriculum) directory. You can toggle **Use Local Workspace Curriculum** under **Settings → Course Repository**.
+
+Build the host-agnostic production PWA shell (`< 250 KB` gzipped; coursework is never bundled into `dist/`):
 
 ```bash
 npm run build
 ```
 
-## Renaming the Brand
+## Renaming the Brand & Repository Coordinates
 
-All user-facing names, IndexedDB identifiers, local storage prefixes, and default repository coordinates live in [`src/config/brand.ts`](./src/config/brand.ts):
+All user-facing brand strings, IndexedDB names, storage prefixes, and default GitHub curriculum coordinates live in [`src/config/brand.ts`](./src/config/brand.ts):
 
 ```ts
 export const BRAND = {
@@ -26,35 +28,42 @@ export const BRAND = {
   slug: "lang",
   dbName: "lang_offline_db",
   storagePrefix: "lang_prefs_",
-  defaultRepoOwner: "WehanSmit02",
-  defaultRepoName: "LangApp",
-  defaultBranch: "main",
+  curriculumRepo: {
+    owner: "WehanSmit02",
+    repo: "LangApp",
+    branch: "curriculum-data",
+  },
 } as const;
 ```
 
-Edit `BRAND` in that single file to rename the app across headers, onboarding, PWA manifest metadata, Capacitor config, and local storage keys.
+## Direct-from-Repo Course Sync (`curriculum-data`)
 
-## Enabling GitHub Pages Hosting & Curriculum CDN
+Course manifests, capability descriptors (`course.json`), syllabus blueprints, and additive unit tier shards (`tier-1-essential.json` through `tier-4-fluent.json`) live on the dedicated `curriculum-data` branch so daily course generation never triggers frontend rebuilds.
 
-1. Push the repository to GitHub on the `main` branch.
-2. Open **Settings → Pages** in your GitHub repository.
-3. Under **Build and deployment → Source**, select **GitHub Actions**.
-4. The [`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml) workflow automatically validates curriculum shards, builds the Vite PWA shell (`< 250 KB` gzipped), and serves `curriculum/manifest.json` plus unit tier shards on demand.
+Under **Settings → Course Repository**, Lang supports three transport modes:
 
-## Automated Daily Course Generation
+1. **Public Direct (Default)**: Fetches `manifest.json` and unit shards from `raw.githubusercontent.com/<owner>/<repo>/<branch>/curriculum/...` using simple CORS `GET` requests (zero custom headers, minute-bucketed `?v=` cache busting on manifests, `?sha=` on immutable shards) with automatic failover to `cdn.jsdelivr.net`.
+2. **Private Token (Optional)**: Routes requests through `api.github.com/repos/<owner>/<repo>/contents/curriculum/...` using a Fine-Grained Personal Access Token with **Contents: Read-only** permission.
+3. **Local Workspace (`DEV` only)**: Serves local `/curriculum/*` directly from your working tree.
 
-The [`.github/workflows/daily-curriculum.yml`](./.github/workflows/daily-curriculum.yml) workflow expands the 60-unit Japanese and German courses every day at `03:00 UTC` (or on demand via **Actions → Daily Curriculum Shards → Run workflow**):
+## Automated Daily Course Expansion & Adding New Languages
 
-1. Open **Settings → Secrets and variables → Actions** in your GitHub repository.
-2. Click **New repository secret** and add `GEMINI_API_KEY` with your Google Gemini API key.
-3. Each run selects the next ungenerated syllabus unit from `public/curriculum/syllabus-blueprint.json`, generates all 4 additive tier shards (`tier-1-essential.json` through `tier-4-fluent.json`), validates `<ruby>` Furigana and German compound splits via Zod, updates `lexicon-ledger.json` and `manifest.json` SHA-256 hashes, and commits to `main`.
+1. In your GitHub repository, open **Settings → Actions → General → Workflow permissions** and select **Read and write permissions**.
+2. Open **Settings → Secrets and variables → Actions** and add `GEMINI_API_KEY`.
+3. **Daily Course Expansion**: [`.github/workflows/daily-curriculum.yml`](./.github/workflows/daily-curriculum.yml) runs at `03:00 UTC` (or manually via `workflow_dispatch`), checks out the `curriculum-data` branch, generates the next ungenerated unit across all 4 Understanding Tiers, validates capability flags and SHA-256 hashes, and pushes to `curriculum-data`.
+4. **Add Any New Language (Zero App Rebuilds)**:
+   - **On GitHub**: Run **Actions → Add Language Course** ([`.github/workflows/add-language.yml`](./.github/workflows/add-language.yml)) with `course_id` (for example `ko`, `es`, `ar`), `course_name` (`Korean`), and optional `regional_variants`.
+   - **Locally**:
+     ```bash
+     npm run curriculum:add-language -- --id ko --name Korean
+     npm run curriculum:validate
+     ```
+   - Tap **Courses → Add Language** inside the app to enroll immediately—the app automatically adapts study-split sliders, reading toggles (`<ruby>` annotations, compound dividers, romanization), script soundboards, RTL/LTR layout, TTS/STT locales, SM-2 queues, and Phrase Lock from `course.json`.
 
-## Wiring Up iOS Shortcuts (`?lock=1`)
+## Capacitor Mobile Wrapping & Phrase Lock (`?lock=1`)
 
-Phrase Lock intercepts distracting app launches and prompts for one spoken phrase (weighted by your Japanese/German split) before granting a timed unlock window:
-
-1. Open **Lang → Settings → Phrase Lock Automation** and tap **Copy iOS Shortcuts URL** for your target app (for example, `https://<owner>.github.io/<repo>/?lock=1&app=Instagram&scheme=instagram%3A%2F%2F`).
-2. Open the **Shortcuts** app on iOS → **Automation** → **New Automation**.
-3. Choose **App** → select the target app (e.g. Instagram) → **Is Opened** → **Run Immediately**.
-4. Add the **Open URLs** action and paste the copied `?lock=1` URL.
-5. Speaking the prompt above your configured accuracy threshold (or using the quiet-room **Type to Unlock** option) grants a 15-minute pass and redirects straight back to the app scheme.
+- **Capacitor**: [`capacitor.config.ts`](./capacitor.config.ts) is preconfigured for iOS and Android wrapping (`npx cap sync`), alongside the native Android foreground shield reference in [`native-android/PhraseLockAccessibilityService.kt`](./native-android/PhraseLockAccessibilityService.kt).
+- **iOS Shortcuts Automation**:
+  1. Open **Settings → Phrase Lock Automation** and tap **Copy iOS Shortcuts URL** for your target app (`https://<your-host>/?lock=1&app=Instagram&scheme=instagram%3A%2F%2F`).
+  2. In iOS **Shortcuts → Automation → New Automation**, choose **App → Is Opened → Run Immediately** and add **Open URLs** with the copied link.
+  3. Speaking the prompted phrase above your accuracy threshold (or using **Type to Unlock** in quiet spaces) grants a timed unlock pass and redirects straight back to the target app.

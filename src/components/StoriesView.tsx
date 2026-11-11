@@ -11,20 +11,28 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { offlineDb } from "../db/offlineDb";
 import {
+  type CourseId,
   type GradedStory,
-  type LanguageCode,
   type StoryToken,
   TIER_META,
 } from "../schemas/curriculum";
-import { speakText, stopSpeaking } from "../services/speechService";
-import type { UserPreferences } from "../state/preferences";
+import {
+  resolveCourseSpeechLocales,
+  speakText,
+  stopSpeaking,
+} from "../services/speechService";
+import {
+  getOrderedEnrolledCourses,
+  type UserPreferences,
+} from "../state/preferences";
 import {
   notifyOfflineDbChanged,
   type OfflineLibraryHandle,
 } from "../state/useOfflineLibrary";
+import { resolveCourseDisplayName } from "../utils/formatters";
 import { POPOVER_TRANSITION, resolveTransition } from "../utils/motionPresets";
+import { CourseSwitcher } from "./ui/CourseSwitcher";
 import { CompoundWordText, RubyText } from "./ui/RubyText";
-import { SegmentedControl } from "./ui/SegmentedControl";
 
 export function StoriesView({
   prefs,
@@ -47,12 +55,12 @@ export function StoriesView({
     POPOVER_TRANSITION
   );
 
-  const [langFilter, setLangFilter] = useState<"all" | LanguageCode>("all");
+  const [courseFilter, setCourseFilter] = useState<string>("all");
   const [selectedStoryId, setSelectedStoryId] = useState<string | null>(null);
   const [activeTokenKey, setActiveTokenKey] = useState<string | null>(null);
   const [selectedToken, setSelectedToken] = useState<{
     token: StoryToken;
-    language: LanguageCode;
+    courseId: CourseId;
   } | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [readingParagraphIdx, setReadingParagraphIdx] = useState<number | null>(
@@ -68,10 +76,23 @@ export function StoriesView({
     };
   }, []);
 
+  const activeEnrollments = useMemo(
+    () => getOrderedEnrolledCourses(prefs.enrolledCourses, "active"),
+    [prefs.enrolledCourses]
+  );
+
+  const effectiveFilter =
+    courseFilter === "all" ||
+    activeEnrollments.some((c) => c.courseId === courseFilter)
+      ? courseFilter
+      : "all";
+
   const stories = useMemo(() => {
-    if (langFilter === "all") return library.eligibleStories;
-    return library.eligibleStories.filter((s) => s.language === langFilter);
-  }, [library.eligibleStories, langFilter]);
+    if (effectiveFilter === "all") return library.eligibleStories;
+    return library.eligibleStories.filter(
+      (s) => s.courseId === effectiveFilter
+    );
+  }, [library.eligibleStories, effectiveFilter]);
 
   const activeStory: GradedStory | null = useMemo(
     () =>
@@ -91,6 +112,13 @@ export function StoriesView({
       return;
     }
 
+    const descriptor = library.descriptorsByCourseId.get(story.courseId);
+    const enrollment = prefs.enrolledCourses[story.courseId];
+    const locales = resolveCourseSpeechLocales(
+      descriptor,
+      enrollment?.activeVariantId
+    );
+
     const controller = new AbortController();
     readAbortRef.current = controller;
 
@@ -99,8 +127,7 @@ export function StoriesView({
       setReadingParagraphIdx(i);
       await speakText({
         text: story.paragraphs[i].nativeText,
-        language: story.language,
-        austrianMode: prefs.austrianMode,
+        locales: locales.ttsLocales,
         rate: prefs.storySpeechRate,
         signal: controller.signal,
       });
@@ -130,7 +157,7 @@ export function StoriesView({
       await offlineDb.storyCompletions.put({
         storyId: story.id,
         unitId: story.unitId,
-        language: story.language,
+        courseId: story.courseId,
         completedAt: Date.now(),
         score,
       });
@@ -155,7 +182,8 @@ export function StoriesView({
             Download a unit to unlock graded stories
           </h2>
           <p className="mx-auto max-w-md text-[14px] leading-relaxed text-[var(--ink-secondary)]">
-            Every unit includes level-matched stories with tap-word meanings, read-aloud audio, and comprehension checks.
+            Every unit includes level-matched stories with tap-word meanings,
+            read-aloud audio, and comprehension checks.
           </p>
           <motion.button
             id="stories-empty-courses-cta"
@@ -174,6 +202,38 @@ export function StoriesView({
 
   if (activeStory) {
     const completion = library.storyCompletionById.get(activeStory.id);
+    const storyDescriptor = library.descriptorsByCourseId.get(
+      activeStory.courseId
+    );
+    const storyEnrollment = prefs.enrolledCourses[activeStory.courseId];
+    const storyDir = storyDescriptor?.textDirection ?? "ltr";
+    const rubyFeature = storyDescriptor?.readingFeatures.rubyAnnotations;
+    const compoundFeature = storyDescriptor?.readingFeatures.compoundSplitter;
+    const showRuby = storyEnrollment?.showRubyAnnotations ?? true;
+    const showCompoundDots = storyEnrollment?.showCompoundDividers ?? true;
+
+    const toggleStoryReadingFlag = (
+      key: "showRubyAnnotations" | "showCompoundDividers"
+    ) => {
+      if (!storyEnrollment) return;
+      updatePrefs((prev) => ({
+        ...prev,
+        enrolledCourses: {
+          ...prev.enrolledCourses,
+          [activeStory.courseId]: {
+            ...prev.enrolledCourses[activeStory.courseId],
+            [key]: !prev.enrolledCourses[activeStory.courseId][key],
+          },
+        },
+      }));
+    };
+
+    const tokenLocales = selectedToken
+      ? resolveCourseSpeechLocales(
+          library.descriptorsByCourseId.get(selectedToken.courseId),
+          prefs.enrolledCourses[selectedToken.courseId]?.activeVariantId
+        )
+      : null;
 
     return (
       <div className="space-y-4">
@@ -194,37 +254,33 @@ export function StoriesView({
           </button>
 
           <div className="flex flex-wrap items-center gap-2">
-            {activeStory.language === "ja" ? (
+            {rubyFeature && (
               <button
-                id="story-furigana-toggle"
+                id="story-ruby-toggle"
                 type="button"
-                onClick={() =>
-                  updatePrefs({ showFurigana: !prefs.showFurigana })
-                }
+                onClick={() => toggleStoryReadingFlag("showRubyAnnotations")}
                 className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium ${
-                  prefs.showFurigana
+                  showRuby
                     ? "bg-[var(--accent-soft)] text-[var(--accent)]"
                     : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
                 }`}
               >
-                Furigana {prefs.showFurigana ? "On" : "Off"}
+                {rubyFeature.label} {showRuby ? "On" : "Off"}
               </button>
-            ) : (
+            )}
+
+            {compoundFeature && (
               <button
                 id="story-compound-toggle"
                 type="button"
-                onClick={() =>
-                  updatePrefs({
-                    showCompoundDividers: !prefs.showCompoundDividers,
-                  })
-                }
+                onClick={() => toggleStoryReadingFlag("showCompoundDividers")}
                 className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium ${
-                  prefs.showCompoundDividers
+                  showCompoundDots
                     ? "bg-[var(--accent-soft)] text-[var(--accent)]"
                     : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
                 }`}
               >
-                Compound Dots {prefs.showCompoundDividers ? "On" : "Off"}
+                {compoundFeature.label} {showCompoundDots ? "On" : "Off"}
               </button>
             )}
 
@@ -268,7 +324,10 @@ export function StoriesView({
             <div className="text-[13px] font-medium text-[var(--ink-secondary)]">
               {activeStory.setting} · {TIER_META[activeStory.tier].label}
             </div>
-            <h1 className="text-[24px] sm:text-[28px] font-bold leading-tight text-[var(--ink-primary)]">
+            <h1
+              dir={storyDir}
+              className="text-[24px] sm:text-[28px] font-bold leading-tight text-[var(--ink-primary)]"
+            >
               {activeStory.title}
             </h1>
             <p className="text-[15px] text-[var(--ink-secondary)]">
@@ -277,7 +336,7 @@ export function StoriesView({
           </header>
 
           <AnimatePresence>
-            {selectedToken && (
+            {selectedToken && tokenLocales && (
               <motion.div
                 key={activeTokenKey ?? "glossary-popover"}
                 initial={
@@ -296,7 +355,10 @@ export function StoriesView({
               >
                 <div className="space-y-1 min-w-0">
                   <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-[19px] font-bold text-[var(--ink-primary)] break-words">
+                    <span
+                      dir={storyDir}
+                      className="text-[19px] font-bold text-[var(--ink-primary)] break-words"
+                    >
                       {selectedToken.token.compoundParts
                         ? selectedToken.token.compoundParts.join("·")
                         : selectedToken.token.surface}
@@ -323,8 +385,7 @@ export function StoriesView({
                     onClick={() =>
                       void speakText({
                         text: selectedToken.token.surface,
-                        language: selectedToken.language,
-                        austrianMode: prefs.austrianMode,
+                        locales: tokenLocales.ttsLocales,
                         rate: 0.92,
                       })
                     }
@@ -359,7 +420,10 @@ export function StoriesView({
                     isReadingThis ? "bg-[var(--accent-soft)] p-3 -mx-3" : ""
                   }`}
                 >
-                  <p className="text-[19px] sm:text-[20px] text-[var(--ink-primary)] leading-[2.05] break-words">
+                  <p
+                    dir={storyDir}
+                    className="text-[19px] sm:text-[20px] text-[var(--ink-primary)] leading-[2.05] break-words"
+                  >
                     {paragraph.segments.map((token, tIdx) => {
                       const tokenKey = `${pIdx}-${tIdx}`;
                       const interactive = Boolean(token.meaning);
@@ -377,7 +441,7 @@ export function StoriesView({
                             setActiveTokenKey(tokenKey);
                             setSelectedToken({
                               token,
-                              language: activeStory.language,
+                              courseId: activeStory.courseId,
                             });
                           }}
                           className={`inline rounded-md px-0.5 transition-colors text-left ${
@@ -386,18 +450,20 @@ export function StoriesView({
                               : "hover:bg-black/[0.05] dark:hover:bg-white/[0.08] decoration-dotted underline decoration-black/20 dark:decoration-white/25 underline-offset-4"
                           }`}
                         >
-                          {activeStory.language === "ja" ? (
+                          {rubyFeature && token.rubyHtml ? (
                             <RubyText
                               rubyHtml={token.rubyHtml}
                               fallbackText={token.surface}
-                              showFurigana={prefs.showFurigana}
+                              showFurigana={showRuby}
                             />
-                          ) : (
+                          ) : compoundFeature && token.compoundParts ? (
                             <CompoundWordText
                               surface={token.surface}
                               compoundParts={token.compoundParts}
-                              showDividers={prefs.showCompoundDividers}
+                              showDividers={showCompoundDots}
                             />
+                          ) : (
+                            token.surface
                           )}
                         </button>
                       );
@@ -460,7 +526,11 @@ export function StoriesView({
                             key={optIdx}
                             type="button"
                             onClick={() =>
-                              void handleAnswerQuestion(activeStory, q.id, optIdx)
+                              void handleAnswerQuestion(
+                                activeStory,
+                                q.id,
+                                optIdx
+                              )
                             }
                             className={`min-h-[44px] w-full rounded-xl px-3.5 py-2 text-left text-[14px] transition-colors break-words ${btnClass}`}
                           >
@@ -484,6 +554,20 @@ export function StoriesView({
     );
   }
 
+  const filterOptions = [
+    ...(activeEnrollments.length > 1
+      ? [{ value: "all", label: "All Stories", textLabel: "All Stories" }]
+      : []),
+    ...activeEnrollments.map((e) => {
+      const label = resolveCourseDisplayName(
+        e.courseId,
+        library.descriptorsByCourseId.get(e.courseId),
+        e.activeVariantId
+      );
+      return { value: e.courseId, label, textLabel: label };
+    }),
+  ];
+
   return (
     <div className="space-y-4">
       <section className="hig-card p-4 sm:p-5 space-y-4">
@@ -492,30 +576,33 @@ export function StoriesView({
             Stories
           </h1>
           <p className="mt-1 text-[14px] text-[var(--ink-secondary)]">
-            Tap any word for instant meaning, toggle Furigana or German root dots, and listen aloud.
+            Tap any word for instant meaning, toggle reading aids, and listen
+            aloud.
           </p>
         </div>
 
-        <SegmentedControl<"all" | LanguageCode>
-          id="stories-lang-filter"
-          ariaLabel="Filter stories by language"
-          compact
-          value={langFilter}
-          onChange={setLangFilter}
-          options={[
-            { value: "all", label: "All Stories" },
-            { value: "ja", label: "Japanese" },
-            {
-              value: "de",
-              label: prefs.austrianMode ? "Austrian German" : "German",
-            },
-          ]}
-        />
+        {filterOptions.length > 1 && (
+          <CourseSwitcher<string>
+            id="stories-lang-filter"
+            ariaLabel="Filter stories by course"
+            compact
+            value={effectiveFilter}
+            onChange={setCourseFilter}
+            options={filterOptions}
+          />
+        )}
       </section>
 
       <div className="space-y-3">
         {stories.map((story) => {
           const done = library.storyCompletionById.get(story.id);
+          const desc = library.descriptorsByCourseId.get(story.courseId);
+          const courseLabel = resolveCourseDisplayName(
+            story.courseId,
+            desc,
+            prefs.enrolledCourses[story.courseId]?.activeVariantId
+          );
+
           return (
             <button
               key={story.id}
@@ -531,12 +618,7 @@ export function StoriesView({
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]">
-                  {story.language === "ja"
-                    ? "Japanese"
-                    : prefs.austrianMode
-                    ? "Austrian German"
-                    : "German"}{" "}
-                  · {TIER_META[story.tier].shortLabel}
+                  {courseLabel} · {TIER_META[story.tier].shortLabel}
                 </span>
                 {done && (
                   <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--status-success)] tabular-nums">
@@ -546,7 +628,10 @@ export function StoriesView({
                 )}
               </div>
 
-              <h2 className="text-[18px] font-semibold text-[var(--ink-primary)] break-words">
+              <h2
+                dir={desc?.textDirection ?? "ltr"}
+                className="text-[18px] font-semibold text-[var(--ink-primary)] break-words"
+              >
                 {story.title}
               </h2>
               <p className="text-[14px] text-[var(--ink-secondary)]">

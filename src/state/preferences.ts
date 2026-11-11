@@ -1,60 +1,145 @@
 import { useSyncExternalStore } from "react";
 import { BRAND } from "../config/brand";
-import type { LanguageCode, UnderstandingTier } from "../schemas/curriculum";
+import type {
+  CourseDescriptor,
+  CourseId,
+  ManifestCourseEntry,
+  UnderstandingTier,
+} from "../schemas/curriculum";
+import {
+  type CurriculumRepoConfig,
+  DEFAULT_REPO_CONFIG,
+} from "../services/githubRepoSync";
 
 export type ThemePreference = "system" | "light" | "dark";
+export type CourseEnrollmentStatus = "active" | "paused";
+
+export interface EnrolledCourseConfig {
+  courseId: CourseId;
+  status: CourseEnrollmentStatus;
+  tier: UnderstandingTier;
+  weightPercent: number;
+  activeVariantId?: string;
+  goalDate: string;
+  showRubyAnnotations: boolean;
+  showCompoundDividers: boolean;
+  showRomanization: boolean;
+}
 
 export interface UserPreferences {
   onboardingCompleted: boolean;
-  tiers: Record<LanguageCode, UnderstandingTier>;
-  austrianMode: boolean;
-  japaneseSplitPercent: number;
+  enrolledCourses: Record<CourseId, EnrolledCourseConfig>;
+  activeCourseTab: CourseId;
+  rebalanceLocked: boolean;
   focusSessionsPerDay: number;
   focusSessionMinutes: number;
   dailyPracticeMinutes: number;
-  goalDates: {
-    ja: string;
-    de: string;
-  };
   autoDownloadWifi: boolean;
-  customCurriculumRepo: string;
+  repoConfig: CurriculumRepoConfig;
   theme: ThemePreference;
-  showFurigana: boolean;
-  showCompoundDividers: boolean;
   storySpeechRate: 0.8 | 1.0;
   phraseLockAccuracy: 60 | 75 | 90;
   phraseLockDurationMinutes: number;
   unlockExpiryMs: number;
 }
 
-const PREFS_KEY = `${BRAND.storagePrefix}settings_v1`;
+const PREFS_KEY = `${BRAND.storagePrefix}settings_v2`;
 const UNLOCK_KEY = `${BRAND.storagePrefix}unlock_expiry_ms`;
 
 export const DEFAULT_PREFERENCES: UserPreferences = {
   onboardingCompleted: false,
-  tiers: {
-    ja: "conversational",
-    de: "essential",
-  },
-  austrianMode: true,
-  japaneseSplitPercent: 92.5,
+  enrolledCourses: {},
+  activeCourseTab: "",
+  rebalanceLocked: true,
   focusSessionsPerDay: 3,
   focusSessionMinutes: 60,
   dailyPracticeMinutes: 50,
-  goalDates: {
-    ja: "",
-    de: "",
-  },
   autoDownloadWifi: true,
-  customCurriculumRepo: "",
+  repoConfig: DEFAULT_REPO_CONFIG,
   theme: "system",
-  showFurigana: true,
-  showCompoundDividers: true,
   storySpeechRate: 1.0,
   phraseLockAccuracy: 75,
   phraseLockDurationMinutes: 15,
   unlockExpiryMs: 0,
 };
+
+export function createEnrollmentFromDescriptor(
+  descriptor: Pick<
+    CourseDescriptor,
+    "id" | "variants" | "readingFeatures" | "proficiencyFramework"
+  >,
+  options?: {
+    tier?: UnderstandingTier;
+    weightPercent?: number;
+    status?: CourseEnrollmentStatus;
+  }
+): EnrolledCourseConfig {
+  const defaultVariant =
+    descriptor.variants?.find((v) => v.defaultEnabled) ??
+    descriptor.variants?.[0];
+
+  return {
+    courseId: descriptor.id,
+    status: options?.status ?? "active",
+    tier: options?.tier ?? "conversational",
+    weightPercent: options?.weightPercent ?? 100,
+    activeVariantId: defaultVariant?.id,
+    goalDate: "",
+    showRubyAnnotations:
+      descriptor.readingFeatures.rubyAnnotations?.enabledByDefault ?? true,
+    showCompoundDividers:
+      descriptor.readingFeatures.compoundSplitter?.enabledByDefault ?? true,
+    showRomanization:
+      descriptor.readingFeatures.romanizationLine?.enabledByDefault ?? true,
+  };
+}
+
+export function buildInitialEnrollmentFromManifest(
+  courses: ManifestCourseEntry[]
+): Record<CourseId, EnrolledCourseConfig> {
+  if (courses.length === 0) return {};
+  if (courses.length === 1) {
+    const first = courses[0];
+    return {
+      [first.courseId]: createEnrollmentFromDescriptor(first.descriptor, {
+        tier: "conversational",
+        weightPercent: 100,
+      }),
+    };
+  }
+
+  const primary = courses[0];
+  const secondary = courses[1];
+  return {
+    [primary.courseId]: createEnrollmentFromDescriptor(primary.descriptor, {
+      tier: "conversational",
+      weightPercent: 92.5,
+    }),
+    [secondary.courseId]: createEnrollmentFromDescriptor(secondary.descriptor, {
+      tier: "essential",
+      weightPercent: 7.5,
+    }),
+  };
+}
+
+export function getOrderedEnrolledCourses(
+  enrolledCourses: Record<CourseId, EnrolledCourseConfig>,
+  filterStatus?: CourseEnrollmentStatus
+): EnrolledCourseConfig[] {
+  const list = Object.values(enrolledCourses);
+  const filtered = filterStatus
+    ? list.filter((c) => c.status === filterStatus)
+    : list;
+  return filtered.sort((a, b) => {
+    if (a.status !== b.status) {
+      return a.status === "active" ? -1 : 1;
+    }
+    if (b.weightPercent !== a.weightPercent) {
+      return b.weightPercent - a.weightPercent;
+    }
+    return a.courseId.localeCompare(b.courseId);
+  });
+}
 
 function readInitialPreferences(): UserPreferences {
   if (typeof window === "undefined") {
@@ -67,18 +152,15 @@ function readInitialPreferences(): UserPreferences {
     const parsed = raw ? (JSON.parse(raw) as Partial<UserPreferences>) : {};
     const unlockExpiryMs = rawUnlock
       ? Number(rawUnlock) || 0
-      : parsed.unlockExpiryMs ?? 0;
+      : (parsed.unlockExpiryMs ?? 0);
 
     return {
       ...DEFAULT_PREFERENCES,
       ...parsed,
-      tiers: {
-        ...DEFAULT_PREFERENCES.tiers,
-        ...(parsed.tiers ?? {}),
-      },
-      goalDates: {
-        ...DEFAULT_PREFERENCES.goalDates,
-        ...(parsed.goalDates ?? {}),
+      enrolledCourses: parsed.enrolledCourses ?? {},
+      repoConfig: {
+        ...DEFAULT_REPO_CONFIG,
+        ...(parsed.repoConfig ?? {}),
       },
       unlockExpiryMs,
     };

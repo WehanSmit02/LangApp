@@ -8,9 +8,15 @@ import {
   SunMedium,
   WifiOff,
 } from "lucide-react";
-import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  MotionConfig,
+  motion,
+  useReducedMotion,
+} from "motion/react";
 import { useMemo, useState } from "react";
 import { CoursesView } from "./components/CoursesView";
+import { ExploreCoursesSheet } from "./components/ExploreCoursesSheet";
 import { OnboardingSheet } from "./components/OnboardingSheet";
 import { PhraseLockOverlay } from "./components/PhraseLockOverlay";
 import { PracticeView } from "./components/PracticeView";
@@ -61,8 +67,13 @@ export function App() {
     deepLink.locked
   );
   const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
+  const [exploreCoursesOpen, setExploreCoursesOpen] = useState<boolean>(false);
 
   const handleOpenUnitFromToday = (unitId: string) => {
+    const unitMeta = library.metaByUnitId.get(unitId);
+    if (unitMeta) {
+      updatePrefs({ activeCourseTab: unitMeta.courseId });
+    }
     setActiveStudioUnitId(unitId);
     setActiveTab("courses");
   };
@@ -147,6 +158,7 @@ export function App() {
               library={library}
               activeUnitId={activeStudioUnitId}
               onSelectUnit={setActiveStudioUnitId}
+              onOpenExploreCourses={() => setExploreCoursesOpen(true)}
             />
           )}
 
@@ -237,8 +249,26 @@ export function App() {
             prefs={prefs}
             updatePrefs={updatePrefs}
             library={library}
+            onOpenRepoSettings={() => setSettingsOpen(true)}
           />
         )}
+
+        <AnimatePresence>
+          {exploreCoursesOpen && (
+            <ExploreCoursesSheet
+              key="explore-courses-sheet"
+              prefs={prefs}
+              updatePrefs={updatePrefs}
+              library={library}
+              onClose={() => setExploreCoursesOpen(false)}
+              onSelectCourseTab={(courseId) => {
+                updatePrefs({ activeCourseTab: courseId });
+                setActiveStudioUnitId(null);
+                setActiveTab("courses");
+              }}
+            />
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {phraseLockOpen && (
@@ -261,6 +291,10 @@ export function App() {
               prefs={prefs}
               updatePrefs={updatePrefs}
               library={library}
+              onOpenExploreCourses={() => {
+                setSettingsOpen(false);
+                setExploreCoursesOpen(true);
+              }}
               onClose={() => setSettingsOpen(false)}
             />
           )}

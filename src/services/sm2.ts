@@ -1,5 +1,5 @@
 import type { CardReviewRecord } from "../db/offlineDb";
-import type { LanguageCode, SrsCard } from "../schemas/curriculum";
+import type { CourseId, SrsCard } from "../schemas/curriculum";
 
 export type ReviewGrade = "again" | "hard" | "good" | "easy";
 
@@ -28,7 +28,7 @@ export function computeSm2Update(
       record: {
         cardId: card.id,
         unitId: card.unitId,
-        language: card.language,
+        courseId: card.courseId,
         tier: card.tier,
         repetitions: 0,
         easinessFactor: Number(nextEf.toFixed(2)),
@@ -58,14 +58,17 @@ export function computeSm2Update(
   } else {
     const multiplier =
       grade === "hard" ? 1.2 : grade === "good" ? nextEf : nextEf * 1.3;
-    intervalDays = Math.max(prevInterval + 1, Math.round(prevInterval * multiplier));
+    intervalDays = Math.max(
+      prevInterval + 1,
+      Math.round(prevInterval * multiplier)
+    );
   }
 
   return {
     record: {
       cardId: card.id,
       unitId: card.unitId,
-      language: card.language,
+      courseId: card.courseId,
       tier: card.tier,
       repetitions: prevReps + 1,
       easinessFactor: nextEf,
@@ -105,82 +108,96 @@ export function previewCardIntervals(
 export function buildWeightedReviewQueue(
   eligibleCards: SrsCard[],
   reviewMap: Map<string, CardReviewRecord>,
-  japaneseSplitPercent: number,
+  courseWeights: Record<CourseId, number>,
   nowMs = Date.now(),
   dailyNewLimit = 24,
   includeAhead = false
 ): SrsCard[] {
-  const dueJa: SrsCard[] = [];
-  const dueDe: SrsCard[] = [];
-  const unseenJa: SrsCard[] = [];
-  const unseenDe: SrsCard[] = [];
-  const aheadJa: SrsCard[] = [];
-  const aheadDe: SrsCard[] = [];
+  const buckets = new Map<
+    CourseId,
+    { due: SrsCard[]; unseen: SrsCard[]; ahead: SrsCard[] }
+  >();
 
   for (const card of eligibleCards) {
-    const rev = reviewMap.get(card.id);
-    const isJa = card.language === "ja";
-    if (!rev) {
-      (isJa ? unseenJa : unseenDe).push(card);
-    } else if (rev.dueAt <= nowMs) {
-      (isJa ? dueJa : dueDe).push(card);
-    } else if (includeAhead) {
-      (isJa ? aheadJa : aheadDe).push(card);
+    let bucket = buckets.get(card.courseId);
+    if (!bucket) {
+      bucket = { due: [], unseen: [], ahead: [] };
+      buckets.set(card.courseId, bucket);
     }
+    const rev = reviewMap.get(card.id);
+    if (!rev) {
+      bucket.unseen.push(card);
+    } else if (rev.dueAt <= nowMs) {
+      bucket.due.push(card);
+    } else if (includeAhead) {
+      bucket.ahead.push(card);
+    }
+  }
+
+  if (buckets.size === 0) {
+    return [];
   }
 
   const sortByDue = (a: SrsCard, b: SrsCard) =>
     (reviewMap.get(a.id)?.dueAt ?? 0) - (reviewMap.get(b.id)?.dueAt ?? 0);
 
-  dueJa.sort(sortByDue);
-  dueDe.sort(sortByDue);
-  aheadJa.sort(sortByDue);
-  aheadDe.sort(sortByDue);
-
-  const jaRatio = Math.min(1, Math.max(0, japaneseSplitPercent / 100));
-  const targetNewJa = Math.round(dailyNewLimit * jaRatio);
-  const targetNewDe = Math.max(
-    japaneseSplitPercent < 100 && unseenDe.length > 0 ? 1 : 0,
-    dailyNewLimit - targetNewJa
+  const courseIds = Array.from(buckets.keys());
+  const rawWeightSum = courseIds.reduce(
+    (sum, id) => sum + Math.max(0, courseWeights[id] ?? 0),
+    0
   );
 
-  const poolJa = [
-    ...dueJa,
-    ...unseenJa.slice(0, targetNewJa),
-    ...(includeAhead ? aheadJa.slice(0, 12) : []),
-  ];
-  const poolDe = [
-    ...dueDe,
-    ...unseenDe.slice(0, targetNewDe),
-    ...(includeAhead ? aheadDe.slice(0, 8) : []),
-  ];
+  const pools = courseIds.map((courseId) => {
+    const bucket = buckets.get(courseId)!;
+    bucket.due.sort(sortByDue);
+    bucket.ahead.sort(sortByDue);
+
+    const ratio =
+      rawWeightSum > 0
+        ? Math.max(0, courseWeights[courseId] ?? 0) / rawWeightSum
+        : 1 / courseIds.length;
+
+    const targetNew =
+      ratio > 0 && bucket.unseen.length > 0
+        ? Math.max(1, Math.round(dailyNewLimit * ratio))
+        : 0;
+    const aheadCap = Math.max(4, Math.round(16 * ratio));
+
+    const cards = [
+      ...bucket.due,
+      ...bucket.unseen.slice(0, targetNew),
+      ...(includeAhead ? bucket.ahead.slice(0, aheadCap) : []),
+    ];
+
+    return {
+      courseId,
+      ratio: ratio > 0 ? ratio : 0.01,
+      cards,
+      cursor: 0,
+      served: 0,
+    };
+  });
 
   const queue: SrsCard[] = [];
-  let jaCursor = 0;
-  let deCursor = 0;
-  let jaServed = 0;
   let totalServed = 0;
 
-  while (jaCursor < poolJa.length || deCursor < poolDe.length) {
-    const canServeJa = jaCursor < poolJa.length;
-    const canServeDe = deCursor < poolDe.length;
+  while (pools.some((p) => p.cursor < p.cards.length)) {
+    let chosen = pools.find((p) => p.cursor < p.cards.length)!;
+    let largestDeficit = -Infinity;
 
-    let pickLang: LanguageCode;
-    if (canServeJa && canServeDe) {
-      const currentRatio = totalServed === 0 ? 0 : jaServed / totalServed;
-      pickLang = currentRatio <= jaRatio ? "ja" : "de";
-    } else {
-      pickLang = canServeJa ? "ja" : "de";
+    for (const pool of pools) {
+      if (pool.cursor >= pool.cards.length) continue;
+      const actualShare = totalServed === 0 ? 0 : pool.served / totalServed;
+      const deficit = pool.ratio - actualShare;
+      if (deficit > largestDeficit) {
+        largestDeficit = deficit;
+        chosen = pool;
+      }
     }
 
-    if (pickLang === "ja") {
-      queue.push(poolJa[jaCursor]);
-      jaCursor += 1;
-      jaServed += 1;
-    } else {
-      queue.push(poolDe[deCursor]);
-      deCursor += 1;
-    }
+    queue.push(chosen.cards[chosen.cursor]);
+    chosen.cursor += 1;
+    chosen.served += 1;
     totalServed += 1;
   }
 

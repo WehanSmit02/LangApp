@@ -24,6 +24,7 @@ import {
 import {
   isSpeechRecognitionSupported,
   listenOnce,
+  resolveCourseSpeechLocales,
   speakText,
   stopSpeaking,
 } from "../services/speechService";
@@ -33,6 +34,7 @@ import {
   notifyOfflineDbChanged,
   type OfflineLibraryHandle,
 } from "../state/useOfflineLibrary";
+import { resolveCourseDisplayName } from "../utils/formatters";
 import { scoreBestSpeechMatch } from "../utils/phoneticScore";
 import { CompoundWordText, RubyText } from "./ui/RubyText";
 import { SegmentedControl } from "./ui/SegmentedControl";
@@ -67,22 +69,28 @@ export function LessonStudio({
 }) {
   const prefersReducedMotion = useReducedMotion();
   const [mode, setMode] = useState<StudioMode>("guided");
-  const [drillSelections, setDrillSelections] = useState<Record<string, string>>(
-    {}
-  );
+  const [drillSelections, setDrillSelections] = useState<
+    Record<string, string>
+  >({});
   const [unitMarkedDone, setUnitMarkedDone] = useState<boolean>(() =>
     library.completionByUnitId.has(unitId)
   );
 
   const storedMeta = library.metaByUnitId.get(unitId);
-  const unitShards = useMemo(() => {
-    const raw = library.shardsByUnitId.get(unitId) ?? [];
-    if (!storedMeta) return raw;
-    const userTier = prefs.tiers[storedMeta.language];
-    return raw.filter((s) => isTierIncluded(s.tier, userTier));
-  }, [library.shardsByUnitId, unitId, storedMeta, prefs.tiers]);
+  const rawUnitShards = useMemo(
+    () => library.shardsByUnitId.get(unitId) ?? [],
+    [library.shardsByUnitId, unitId]
+  );
 
-  const language = storedMeta?.language ?? unitShards[0]?.language ?? "ja";
+  const courseId = storedMeta?.courseId ?? rawUnitShards[0]?.courseId ?? "";
+  const enrollment = prefs.enrolledCourses[courseId];
+  const descriptor = library.descriptorsByCourseId.get(courseId) ?? null;
+
+  const unitShards = useMemo(() => {
+    const userTier = enrollment?.tier ?? "conversational";
+    return rawUnitShards.filter((s) => isTierIncluded(s.tier, userTier));
+  }, [rawUnitShards, enrollment?.tier]);
+
   const steps = useMemo(
     () => unitShards.flatMap((s) => s.payload.lessonSteps),
     [unitShards]
@@ -92,28 +100,61 @@ export function LessonStudio({
     [unitShards]
   );
 
+  const speechLocales = useMemo(
+    () => resolveCourseSpeechLocales(descriptor, enrollment?.activeVariantId),
+    [descriptor, enrollment?.activeVariantId]
+  );
+
+  const textDir = descriptor?.textDirection ?? "ltr";
+  const courseDisplayLabel = resolveCourseDisplayName(
+    courseId,
+    descriptor,
+    enrollment?.activeVariantId
+  );
+
+  const rubyFeature = descriptor?.readingFeatures.rubyAnnotations;
+  const compoundFeature = descriptor?.readingFeatures.compoundSplitter;
+  const romanizationFeature = descriptor?.readingFeatures.romanizationLine;
+
+  const showRuby = enrollment?.showRubyAnnotations ?? true;
+  const showCompoundDots = enrollment?.showCompoundDividers ?? true;
+  const showRomanization = enrollment?.showRomanization ?? true;
+
+  const toggleCourseFlag = (
+    key: "showRubyAnnotations" | "showCompoundDividers" | "showRomanization"
+  ) => {
+    if (!enrollment) return;
+    updatePrefs((prev) => ({
+      ...prev,
+      enrolledCourses: {
+        ...prev.enrolledCourses,
+        [courseId]: {
+          ...prev.enrolledCourses[courseId],
+          [key]: !prev.enrolledCourses[courseId][key],
+        },
+      },
+    }));
+  };
+
   const resolveStepNative = useCallback(
     (step: LessonStep): string => {
-      if (
-        language === "de" &&
-        !prefs.austrianMode &&
-        step.standardGermanVariant
-      ) {
-        return step.standardGermanVariant.nativeText;
+      const variantId = enrollment?.activeVariantId;
+      if (variantId && step.variantForms?.[variantId]) {
+        return step.variantForms[variantId].nativeText;
       }
       return step.nativeText;
     },
-    [language, prefs.austrianMode]
+    [enrollment?.activeVariantId]
   );
 
   const resolveDrillExpected = (drill: Drill): string => {
+    const variantId = enrollment?.activeVariantId;
     if (
-      language === "de" &&
-      !prefs.austrianMode &&
-      drill.standardGermanAnswer &&
-      drill.options.includes(drill.standardGermanAnswer)
+      variantId &&
+      drill.variantAnswers?.[variantId] &&
+      drill.options.includes(drill.variantAnswers[variantId])
     ) {
-      return drill.standardGermanAnswer;
+      return drill.variantAnswers[variantId];
     }
     return drill.correctAnswer;
   };
@@ -121,8 +162,7 @@ export function LessonStudio({
   const handlePlayPhrase = (text: string, rate: number) => {
     void speakText({
       text,
-      language,
-      austrianMode: prefs.austrianMode,
+      locales: speechLocales.ttsLocales,
       rate,
     });
   };
@@ -133,7 +173,7 @@ export function LessonStudio({
     async (handsFreeDone = false) => {
       await offlineDb.lessonCompletions.put({
         unitId,
-        language,
+        courseId,
         completedAt: Date.now(),
         drillsCompleted: drillAnsweredCount,
         handsFreeCompleted: handsFreeDone,
@@ -143,12 +183,12 @@ export function LessonStudio({
 
       if (storedMeta) {
         void library.triggerWifiPrefetchAfterUnit(
-          language,
+          courseId,
           storedMeta.unitNumber
         );
       }
     },
-    [unitId, language, drillAnsweredCount, storedMeta, library]
+    [unitId, courseId, drillAnsweredCount, storedMeta, library]
   );
 
   const [hfIndex, setHfIndex] = useState<number>(0);
@@ -216,7 +256,7 @@ export function LessonStudio({
       setHfPhase("scenario");
       await speakText({
         text: currentStep.scenarioPrompt,
-        language: "en",
+        locales: ["en-US"],
         rate: 1.0,
         signal: controller.signal,
       });
@@ -225,8 +265,7 @@ export function LessonStudio({
       setHfPhase("slow-native");
       await speakText({
         text: targetPhrase,
-        language,
-        austrianMode: prefs.austrianMode,
+        locales: speechLocales.ttsLocales,
         rate: 0.82,
         signal: controller.signal,
       });
@@ -238,8 +277,7 @@ export function LessonStudio({
       setHfPhase("natural-native");
       await speakText({
         text: targetPhrase,
-        language,
-        austrianMode: prefs.austrianMode,
+        locales: speechLocales.ttsLocales,
         rate: 0.98,
         signal: controller.signal,
       });
@@ -248,8 +286,7 @@ export function LessonStudio({
       if (isSpeechRecognitionSupported()) {
         setHfPhase("listening");
         const rec = await listenOnce({
-          language,
-          austrianMode: prefs.austrianMode,
+          sttLocale: speechLocales.sttLocale,
           timeoutMs: 6500,
           onInterim: (t) => {
             if (!cancelled) setHfInterim(t);
@@ -269,15 +306,18 @@ export function LessonStudio({
           setHfPhase("shadow-pause");
           await new Promise((r) => window.setTimeout(r, 4200));
         } else {
+          const variantPhrases = currentStep.variantForms
+            ? Object.values(currentStep.variantForms).map((v) => v.nativeText)
+            : [];
           const references = [
             targetPhrase,
             currentStep.nativeText,
             currentStep.romanization ?? "",
+            ...variantPhrases,
           ].filter(Boolean);
           const { bestScore, bestTranscript } = scoreBestSpeechMatch(
             rec.candidates,
-            references,
-            language
+            references
           );
           setHfInterim(bestTranscript);
           setHfScore(bestScore);
@@ -314,8 +354,7 @@ export function LessonStudio({
     hfIndex,
     mode,
     steps,
-    language,
-    prefs.austrianMode,
+    speechLocales,
     resolveStepNative,
     handleCompleteUnit,
   ]);
@@ -338,7 +377,7 @@ export function LessonStudio({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <button
           id="studio-back-btn"
           type="button"
@@ -352,46 +391,58 @@ export function LessonStudio({
           <span>Courses</span>
         </button>
 
-        {language === "ja" ? (
-          <button
-            id="studio-furigana-toggle"
-            type="button"
-            onClick={() => updatePrefs({ showFurigana: !prefs.showFurigana })}
-            className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium transition-colors ${
-              prefs.showFurigana
-                ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
-            }`}
-          >
-            Furigana {prefs.showFurigana ? "On" : "Off"}
-          </button>
-        ) : (
-          <button
-            id="studio-compound-toggle"
-            type="button"
-            onClick={() =>
-              updatePrefs({ showCompoundDividers: !prefs.showCompoundDividers })
-            }
-            className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium transition-colors ${
-              prefs.showCompoundDividers
-                ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
-            }`}
-          >
-            Root Dots {prefs.showCompoundDividers ? "On" : "Off"}
-          </button>
-        )}
+        <div className="flex flex-wrap items-center gap-2">
+          {rubyFeature && (
+            <button
+              id="studio-ruby-toggle"
+              type="button"
+              onClick={() => toggleCourseFlag("showRubyAnnotations")}
+              className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium transition-colors ${
+                showRuby
+                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                  : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
+              }`}
+            >
+              {rubyFeature.label} {showRuby ? "On" : "Off"}
+            </button>
+          )}
+
+          {compoundFeature && (
+            <button
+              id="studio-compound-toggle"
+              type="button"
+              onClick={() => toggleCourseFlag("showCompoundDividers")}
+              className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium transition-colors ${
+                showCompoundDots
+                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                  : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
+              }`}
+            >
+              {compoundFeature.label} {showCompoundDots ? "On" : "Off"}
+            </button>
+          )}
+
+          {romanizationFeature && (
+            <button
+              id="studio-romanization-toggle"
+              type="button"
+              onClick={() => toggleCourseFlag("showRomanization")}
+              className={`min-h-[40px] rounded-full px-3.5 text-[13px] font-medium transition-colors ${
+                showRomanization
+                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                  : "bg-[var(--bg-pill)] text-[var(--ink-secondary)]"
+              }`}
+            >
+              {romanizationFeature.label} {showRomanization ? "On" : "Off"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="hig-card p-4 sm:p-5 space-y-4">
         <div className="min-w-0">
           <div className="text-[13px] font-medium text-[var(--ink-secondary)]">
-            Unit {storedMeta?.unitNumber ?? 1} ·{" "}
-            {language === "ja"
-              ? "Japanese"
-              : prefs.austrianMode
-              ? "Austrian German"
-              : "Standard German"}
+            Unit {storedMeta?.unitNumber ?? 1} · {courseDisplayLabel}
           </div>
           <h1 className="mt-0.5 text-[22px] font-bold leading-tight text-[var(--ink-primary)]">
             {storedMeta?.meta.title ?? "Lesson Studio"}
@@ -432,6 +483,24 @@ export function LessonStudio({
           <section aria-label="Pattern Cards" className="space-y-3">
             {steps.map((step, idx) => {
               const displayTarget = resolveStepNative(step);
+              const useRuby =
+                Boolean(rubyFeature) &&
+                Boolean(step.rubyHtml) &&
+                displayTarget === step.nativeText;
+              const useCompound =
+                Boolean(compoundFeature) &&
+                Boolean(step.compoundParts) &&
+                step.compoundParts!.join("").toLowerCase() ===
+                  displayTarget.replace(/[.,!?;:]/g, "").toLowerCase();
+
+              const alternateVariants = step.variantForms
+                ? Object.entries(step.variantForms).filter(
+                    ([vId, vExpr]) =>
+                      vId !== enrollment?.activeVariantId &&
+                      vExpr.nativeText !== displayTarget
+                  )
+                : [];
+
               return (
                 <article
                   key={step.id}
@@ -451,59 +520,72 @@ export function LessonStudio({
                   </p>
 
                   <div className="hig-inset p-4 space-y-2 min-w-0">
-                    <div className="text-[21px] sm:text-[23px] font-semibold text-[var(--ink-primary)] break-words">
-                      {language === "ja" ? (
+                    <div
+                      dir={textDir}
+                      className="text-[21px] sm:text-[23px] font-semibold text-[var(--ink-primary)] break-words"
+                    >
+                      {useRuby ? (
                         <RubyText
                           rubyHtml={step.rubyHtml}
                           fallbackText={displayTarget}
-                          showFurigana={prefs.showFurigana}
+                          showFurigana={showRuby}
                         />
-                      ) : step.compoundParts && prefs.austrianMode ? (
+                      ) : useCompound ? (
                         <CompoundWordText
                           surface={displayTarget}
-                          compoundParts={
-                            step.compoundParts.join("").toLowerCase() ===
-                            displayTarget
-                              .replace(/[.,!?]/g, "")
-                              .toLowerCase()
-                              ? step.compoundParts
-                              : undefined
-                          }
-                          showDividers={prefs.showCompoundDividers}
+                          compoundParts={step.compoundParts}
+                          showDividers={showCompoundDots}
                         />
                       ) : (
                         displayTarget
                       )}
                     </div>
 
-                    {step.romanization && (
-                      <div className="text-[13px] text-[var(--ink-secondary)]">
-                        {step.romanization}
-                      </div>
-                    )}
+                    {step.romanization &&
+                      (!romanizationFeature || showRomanization) && (
+                        <div className="text-[13px] text-[var(--ink-secondary)]">
+                          {step.romanization}
+                        </div>
+                      )}
 
                     <div className="text-[15px] font-medium text-[var(--ink-primary)]">
                       {step.translation}
                     </div>
 
-                    {step.compoundParts && step.compoundParts.length >= 2 && (
-                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                        {step.compoundParts.map((part, pIdx) => (
-                          <span
-                            key={`${step.id}-part-${pIdx}`}
-                            className="rounded-lg bg-[var(--bg-elevated)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]"
-                          >
-                            {part}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                    {compoundFeature &&
+                      showCompoundDots &&
+                      step.compoundParts &&
+                      step.compoundParts.length >= 2 && (
+                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                          {step.compoundParts.map((part, pIdx) => (
+                            <span
+                              key={`${step.id}-part-${pIdx}`}
+                              className="rounded-lg bg-[var(--bg-elevated)] px-2.5 py-0.5 text-[12px] font-medium text-[var(--ink-secondary)]"
+                            >
+                              {part}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
-                    {language === "de" && step.standardGermanVariant && (
-                      <div className="pt-1 text-[12px] text-[var(--ink-secondary)]">
-                        {prefs.austrianMode
-                          ? `Standard German: ${step.standardGermanVariant.nativeText} (${step.standardGermanVariant.note})`
-                          : `Austrian form: ${step.nativeText}`}
+                    {alternateVariants.map(([vId, vExpr]) => {
+                      const vMeta = descriptor?.variants?.find(
+                        (v) => v.id === vId
+                      );
+                      return (
+                        <div
+                          key={vId}
+                          className="pt-1 text-[12px] text-[var(--ink-secondary)]"
+                        >
+                          {vMeta?.label ?? vId}: {vExpr.nativeText}
+                          {vExpr.note ? ` (${vExpr.note})` : ""}
+                        </div>
+                      );
+                    })}
+
+                    {step.regionalNote && (
+                      <div className="pt-0.5 text-[12px] text-[var(--accent)]">
+                        {step.regionalNote}
                       </div>
                     )}
 
@@ -546,7 +628,8 @@ export function LessonStudio({
                   Sentence Transformation Drills
                 </h2>
                 <p className="text-[13px] text-[var(--ink-secondary)]">
-                  Tap the natural transformation to check immediately and hear it aloud.
+                  Tap the natural transformation to check immediately and hear
+                  it aloud.
                 </p>
               </div>
 
@@ -560,13 +643,19 @@ export function LessonStudio({
                       drill.acceptedVariants?.includes(chosen));
 
                   return (
-                    <div key={drill.id} className="py-4 first:pt-1 last:pb-1 space-y-3">
+                    <div
+                      key={drill.id}
+                      className="py-4 first:pt-1 last:pb-1 space-y-3"
+                    >
                       <div className="space-y-1">
                         <div className="text-[14px] font-semibold text-[var(--ink-primary)]">
                           {dIdx + 1}. {drill.prompt}
                         </div>
                         {drill.baseSentence && (
-                          <div className="text-[13px] text-[var(--ink-secondary)]">
+                          <div
+                            dir={textDir}
+                            className="text-[13px] text-[var(--ink-secondary)]"
+                          >
                             Base: {drill.baseSentence}
                           </div>
                         )}
@@ -595,6 +684,7 @@ export function LessonStudio({
                           return (
                             <button
                               key={option}
+                              dir={textDir}
                               type="button"
                               onClick={() => {
                                 setDrillSelections((prev) => ({
@@ -735,12 +825,18 @@ export function LessonStudio({
                 <p className="text-[15px] text-[var(--ink-secondary)]">
                   {currentHfStep.scenarioPrompt}
                 </p>
-                <div className="text-[28px] sm:text-[32px] font-bold leading-snug text-[var(--ink-primary)] break-words">
-                  {language === "ja" ? (
+                <div
+                  dir={textDir}
+                  className="text-[28px] sm:text-[32px] font-bold leading-snug text-[var(--ink-primary)] break-words"
+                >
+                  {rubyFeature &&
+                  currentHfStep.rubyHtml &&
+                  resolveStepNative(currentHfStep) ===
+                    currentHfStep.nativeText ? (
                     <RubyText
                       rubyHtml={currentHfStep.rubyHtml}
                       fallbackText={resolveStepNative(currentHfStep)}
-                      showFurigana={prefs.showFurigana}
+                      showFurigana={showRuby}
                     />
                   ) : (
                     resolveStepNative(currentHfStep)

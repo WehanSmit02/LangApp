@@ -1,17 +1,23 @@
-import { resolveCurriculumBaseUrl } from "../config/brand";
 import { offlineDb, type StoredUnitShard } from "../db/offlineDb";
 import {
-  type LanguageCode,
+  type CourseBlueprint,
+  CourseBlueprintSchema,
+  type CourseDescriptor,
+  CourseDescriptorSchema,
+  type CourseId,
   type Manifest,
+  type ManifestCourseEntry,
   ManifestSchema,
   type ManifestUnitEntry,
-  type SyllabusBlueprint,
-  SyllabusBlueprintSchema,
   TierShardSchema,
   tiersUpTo,
   type UnderstandingTier,
   UnitMetaSchema,
 } from "../schemas/curriculum";
+import {
+  type CurriculumRepoConfig,
+  fetchCurriculumJson,
+} from "./githubRepoSync";
 
 export interface UnitDownloadProgress {
   unitId: string;
@@ -29,125 +35,120 @@ export interface UnitInstallSummary {
   isReadyForGoal: boolean;
 }
 
-function getBaseUrl(customOverride?: string): string {
-  const runtimeBase = import.meta.env.BASE_URL || "/";
-  return resolveCurriculumBaseUrl(customOverride, runtimeBase);
-}
-
-async function fetchJsonWithProgress<T>(
-  url: string,
-  expectedBytes: number,
-  onChunkBytes?: (deltaBytes: number) => void
-): Promise<T> {
-  const response = await fetch(url, { cache: "no-cache" });
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} while fetching ${url}`);
-  }
-
-  if (!response.body || !onChunkBytes) {
-    const text = await response.text();
-    onChunkBytes?.(expectedBytes || text.length);
-    return JSON.parse(text) as T;
-  }
-
-  const reader = response.body.getReader();
-  const chunks: Uint8Array[] = [];
-  let reportedBytes = 0;
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    if (value) {
-      chunks.push(value);
-      reportedBytes += value.byteLength;
-      onChunkBytes(value.byteLength);
-    }
-  }
-
-  if (expectedBytes > reportedBytes) {
-    onChunkBytes(expectedBytes - reportedBytes);
-  }
-
-  const totalLen = chunks.reduce((acc, c) => acc + c.byteLength, 0);
-  const merged = new Uint8Array(totalLen);
-  let offset = 0;
-  for (const chunk of chunks) {
-    merged.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-
-  const decoded = new TextDecoder("utf-8").decode(merged);
-  return JSON.parse(decoded) as T;
-}
-
-export async function syncCatalogIndex(customRepoOverride?: string): Promise<{
+export async function syncCatalogIndex(
+  repoConfig: CurriculumRepoConfig
+): Promise<{
   manifest: Manifest | null;
-  blueprint: SyllabusBlueprint | null;
   fromCache: boolean;
   error?: string;
 }> {
-  const baseUrl = getBaseUrl(customRepoOverride);
   const cached = await offlineDb.cachedCatalog.get("primary");
 
   if (typeof navigator !== "undefined" && !navigator.onLine && cached) {
     return {
       manifest: cached.manifest,
-      blueprint: cached.blueprint ?? null,
       fromCache: true,
     };
   }
 
   try {
-    const [manifestRes, blueprintRes] = await Promise.all([
-      fetch(`${baseUrl}/manifest.json`, { cache: "no-cache" }),
-      fetch(`${baseUrl}/syllabus-blueprint.json`, { cache: "no-cache" }).catch(
-        () => null
-      ),
-    ]);
-
-    if (!manifestRes.ok) {
-      throw new Error(`Manifest returned status ${manifestRes.status}`);
-    }
-
-    const rawManifest = await manifestRes.json();
+    const rawManifest = await fetchCurriculumJson<unknown>(
+      "manifest.json",
+      repoConfig,
+      { cacheBustMinute: true }
+    );
     const manifest = ManifestSchema.parse(rawManifest);
-
-    let blueprint: SyllabusBlueprint | undefined = cached?.blueprint;
-    if (blueprintRes && blueprintRes.ok) {
-      const rawBp = await blueprintRes.json();
-      blueprint = SyllabusBlueprintSchema.parse(rawBp);
-    }
 
     await offlineDb.cachedCatalog.put({
       id: "primary",
       fetchedAt: Date.now(),
       manifest,
-      blueprint,
     });
 
     return {
       manifest,
-      blueprint: blueprint ?? null,
       fromCache: false,
     };
   } catch (err) {
     if (cached) {
       return {
         manifest: cached.manifest,
-        blueprint: cached.blueprint ?? null,
         fromCache: true,
         error: err instanceof Error ? err.message : "Offline mode active",
       };
     }
     return {
       manifest: null,
-      blueprint: null,
       fromCache: false,
       error:
         err instanceof Error
           ? err.message
-          : "Unable to reach curriculum server.",
+          : "Unable to reach course repository.",
     };
+  }
+}
+
+export function descriptorFromManifestEntry(
+  entry: ManifestCourseEntry
+): CourseDescriptor {
+  const { hasScriptGrids: _ignored, ...rest } = entry.descriptor;
+  return rest;
+}
+
+export async function fetchAndCacheCourseDescriptor(
+  entry: ManifestCourseEntry,
+  repoConfig: CurriculumRepoConfig
+): Promise<CourseDescriptor> {
+  const cached = await offlineDb.courseDescriptors.get(entry.courseId);
+  if (typeof navigator !== "undefined" && !navigator.onLine && cached) {
+    return cached.descriptor;
+  }
+
+  try {
+    const raw = await fetchCurriculumJson<unknown>(
+      entry.courseDescriptorPath,
+      repoConfig,
+      { cacheBustMinute: true }
+    );
+    const descriptor = CourseDescriptorSchema.parse(raw);
+    await offlineDb.courseDescriptors.put({
+      courseId: entry.courseId,
+      fetchedAt: Date.now(),
+      descriptor,
+    });
+    return descriptor;
+  } catch {
+    if (cached) {
+      return cached.descriptor;
+    }
+    return descriptorFromManifestEntry(entry);
+  }
+}
+
+export async function fetchAndCacheCourseBlueprint(
+  entry: ManifestCourseEntry,
+  repoConfig: CurriculumRepoConfig
+): Promise<CourseBlueprint | null> {
+  const cached = await offlineDb.courseBlueprints.get(entry.courseId);
+  if (typeof navigator !== "undefined" && !navigator.onLine && cached) {
+    return cached.blueprint;
+  }
+
+  try {
+    const raw = await fetchCurriculumJson<unknown>(
+      entry.blueprintPath,
+      repoConfig,
+      { cacheBustMinute: true }
+    );
+    const blueprint = CourseBlueprintSchema.parse(raw);
+    await offlineDb.courseBlueprints.put({
+      courseId: entry.courseId,
+      fetchedAt: Date.now(),
+      blueprint,
+    });
+    return blueprint;
+  } catch {
+    return cached?.blueprint ?? null;
   }
 }
 
@@ -200,8 +201,7 @@ export function summarizeInstalledUnit(
   }
 
   const isReadyForGoal =
-    installedTiers.length > 0 &&
-    missingTiersForGoal.length === 0;
+    installedTiers.length > 0 && missingTiersForGoal.length === 0;
 
   return {
     unitId: unitEntry.unitId,
@@ -215,20 +215,21 @@ export function summarizeInstalledUnit(
 
 export async function downloadUnitDeltaShards(options: {
   unitEntry: ManifestUnitEntry;
-  language: LanguageCode;
+  courseId: CourseId;
+  courseEntry?: ManifestCourseEntry;
   targetTier: UnderstandingTier;
-  customRepoOverride?: string;
+  repoConfig: CurriculumRepoConfig;
   onProgress?: (progress: UnitDownloadProgress) => void;
 }): Promise<void> {
   const {
     unitEntry,
-    language,
+    courseId,
+    courseEntry,
     targetTier,
-    customRepoOverride,
+    repoConfig,
     onProgress,
   } = options;
 
-  const baseUrl = getBaseUrl(customRepoOverride);
   const requiredTiers = tiersUpTo(targetTier);
   const existingShards = await offlineDb.unitShards
     .where("unitId")
@@ -244,11 +245,15 @@ export async function downloadUnitDeltaShards(options: {
   });
 
   const existingMeta = await offlineDb.unitMeta.get(unitEntry.unitId);
+  const existingDescriptor = await offlineDb.courseDescriptors.get(courseId);
+
   const totalBytes =
     tiersToDownload.reduce(
       (sum, t) => sum + (unitEntry.shards[t]?.bytes ?? 0),
       0
-    ) + (existingMeta ? 0 : 900);
+    ) +
+    (existingMeta ? 0 : 900) +
+    (!existingDescriptor && courseEntry ? 1200 : 0);
 
   let loadedBytes = 0;
 
@@ -264,16 +269,25 @@ export async function downloadUnitDeltaShards(options: {
 
   report("Preparing unit", 0);
 
+  if (!existingDescriptor && courseEntry) {
+    await fetchAndCacheCourseDescriptor(courseEntry, repoConfig);
+    report("Course soundboard & settings", 1200);
+  }
+
   if (!existingMeta) {
-    const rawMeta = await fetchJsonWithProgress<unknown>(
-      `${baseUrl}/${unitEntry.directory}/meta.json`,
-      900,
-      (delta) => report("Unit overview", delta)
+    const rawMeta = await fetchCurriculumJson<unknown>(
+      `${unitEntry.directory}/meta.json`,
+      repoConfig,
+      {
+        expectedBytes: 900,
+        cacheBustMinute: true,
+        onChunkBytes: (delta) => report("Unit overview", delta),
+      }
     );
     const meta = UnitMetaSchema.parse(rawMeta);
     await offlineDb.unitMeta.put({
       unitId: meta.unitId,
-      language,
+      courseId,
       unitNumber: meta.unitNumber,
       stageId: meta.stageId,
       installedAt: Date.now(),
@@ -285,17 +299,21 @@ export async function downloadUnitDeltaShards(options: {
     const descriptor = unitEntry.shards[tier];
     if (!descriptor) continue;
 
-    const rawShard = await fetchJsonWithProgress<unknown>(
-      `${baseUrl}/${unitEntry.directory}/${descriptor.file}`,
-      descriptor.bytes,
-      (delta) => report(descriptor.file, delta)
+    const rawShard = await fetchCurriculumJson<unknown>(
+      `${unitEntry.directory}/${descriptor.file}`,
+      repoConfig,
+      {
+        expectedBytes: descriptor.bytes,
+        sha256: descriptor.sha256,
+        onChunkBytes: (delta) => report(descriptor.file, delta),
+      }
     );
     const parsedShard = TierShardSchema.parse(rawShard);
 
     await offlineDb.unitShards.put({
       shardKey: `${unitEntry.unitId}:${tier}`,
       unitId: unitEntry.unitId,
-      language,
+      courseId,
       tier,
       sha256: descriptor.sha256,
       bytes: descriptor.bytes,
@@ -341,28 +359,33 @@ export function isWifiLikeConnection(): boolean {
 
 export async function maybeAutoDownloadNextUnits(options: {
   manifest: Manifest;
-  language: LanguageCode;
+  courseId: CourseId;
   afterUnitNumber: number;
   targetTier: UnderstandingTier;
   autoDownloadWifi: boolean;
-  customRepoOverride?: string;
+  repoConfig: CurriculumRepoConfig;
 }): Promise<string[]> {
   const {
     manifest,
-    language,
+    courseId,
     afterUnitNumber,
     targetTier,
     autoDownloadWifi,
-    customRepoOverride,
+    repoConfig,
   } = options;
 
   if (!autoDownloadWifi || !isWifiLikeConnection()) {
     return [];
   }
 
+  const courseEntry = manifest.courses.find((c) => c.courseId === courseId);
+  if (!courseEntry) {
+    return [];
+  }
+
   const allShards = await offlineDb.unitShards
-    .where("language")
-    .equals(language)
+    .where("courseId")
+    .equals(courseId)
     .toArray();
   const byUnit = new Map<string, StoredUnitShard[]>();
   for (const s of allShards) {
@@ -371,7 +394,7 @@ export async function maybeAutoDownloadNextUnits(options: {
     byUnit.set(s.unitId, arr);
   }
 
-  const candidates = manifest.languages[language].units
+  const candidates = courseEntry.units
     .filter((u) => u.unitNumber > afterUnitNumber)
     .sort((a, b) => a.unitNumber - b.unitNumber)
     .slice(0, 2);
@@ -387,9 +410,10 @@ export async function maybeAutoDownloadNextUnits(options: {
       try {
         await downloadUnitDeltaShards({
           unitEntry: unit,
-          language,
+          courseId,
+          courseEntry,
           targetTier,
-          customRepoOverride,
+          repoConfig,
         });
         downloadedIds.push(unit.unitId);
       } catch {

@@ -10,27 +10,36 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  recordFocusMinutes,
-  toggleHomeworkCheck,
-} from "../db/offlineDb";
+import { recordFocusMinutes, toggleHomeworkCheck } from "../db/offlineDb";
 import { TIER_META } from "../schemas/curriculum";
 import { buildWeightedReviewQueue } from "../services/sm2";
-import type { UserPreferences } from "../state/preferences";
+import {
+  getOrderedEnrolledCourses,
+  type UserPreferences,
+} from "../state/preferences";
 import {
   notifyOfflineDbChanged,
   type OfflineLibraryHandle,
 } from "../state/useOfflineLibrary";
 import {
-  buildDaySchedule,
+  buildDynamicDaySchedule,
   computeDaysRemaining,
-  computeWeeklyHoursSplit,
+  computeMultiCourseWeeklyHours,
   formatGoalDateHuman,
   formatTimerClock,
   getMondayBasedDayIndex,
+  normalizeCourseWeightsMap,
+  resolveCourseDisplayName,
   WEEKDAY_LABELS,
 } from "../utils/formatters";
 import { resolveTransition, SEGMENT_SPRING } from "../utils/motionPresets";
+
+const BAR_SEGMENT_CLASSES = [
+  "bg-[var(--accent)]",
+  "bg-black/25 dark:bg-white/35",
+  "bg-black/45 dark:bg-white/55",
+  "bg-black/15 dark:bg-white/20",
+] as const;
 
 export function TodayView({
   prefs,
@@ -46,7 +55,10 @@ export function TodayView({
   onOpenSettings: () => void;
 }) {
   const prefersReducedMotion = useReducedMotion();
-  const springTransition = resolveTransition(prefersReducedMotion, SEGMENT_SPRING);
+  const springTransition = resolveTransition(
+    prefersReducedMotion,
+    SEGMENT_SPRING
+  );
 
   const todayIndex = getMondayBasedDayIndex();
   const [selectedDayIndex, setSelectedDayIndex] = useState<number>(todayIndex);
@@ -101,37 +113,85 @@ export function TodayView({
     totalSessionSeconds,
   ]);
 
-  const weeklySplit = useMemo(
+  const activeEnrollments = useMemo(
+    () => getOrderedEnrolledCourses(prefs.enrolledCourses, "active"),
+    [prefs.enrolledCourses]
+  );
+
+  const normalizedWeights = useMemo(
+    () => normalizeCourseWeightsMap(prefs.enrolledCourses),
+    [prefs.enrolledCourses]
+  );
+
+  const activeCourseInputs = useMemo(
     () =>
-      computeWeeklyHoursSplit(
+      activeEnrollments.map((enrollment) => {
+        const descriptor = library.descriptorsByCourseId.get(
+          enrollment.courseId
+        );
+        const manifestEntry = library.manifestCourseMap.get(
+          enrollment.courseId
+        );
+        const displayLabel = resolveCourseDisplayName(
+          enrollment.courseId,
+          descriptor,
+          enrollment.activeVariantId
+        );
+        return {
+          courseId: enrollment.courseId,
+          name: descriptor?.name ?? displayLabel,
+          displayLabel,
+          weightPercent:
+            normalizedWeights[enrollment.courseId] ?? enrollment.weightPercent,
+          hasScriptGrids: Boolean(
+            descriptor?.scriptGrids?.length ||
+              manifestEntry?.descriptor.hasScriptGrids
+          ),
+          tier: enrollment.tier,
+          goalDate: enrollment.goalDate,
+        };
+      }),
+    [
+      activeEnrollments,
+      library.descriptorsByCourseId,
+      library.manifestCourseMap,
+      normalizedWeights,
+    ]
+  );
+
+  const weeklyAllocation = useMemo(
+    () =>
+      computeMultiCourseWeeklyHours(
         prefs.focusSessionsPerDay,
         prefs.focusSessionMinutes,
-        prefs.japaneseSplitPercent
+        activeCourseInputs.map((c) => ({
+          courseId: c.courseId,
+          name: c.displayLabel,
+          weightPercent: c.weightPercent,
+        }))
       ),
     [
       prefs.focusSessionsPerDay,
       prefs.focusSessionMinutes,
-      prefs.japaneseSplitPercent,
+      activeCourseInputs,
     ]
   );
 
   const daySchedule = useMemo(
     () =>
-      buildDaySchedule(
+      buildDynamicDaySchedule(
         selectedDayIndex,
         prefs.focusSessionsPerDay,
         prefs.focusSessionMinutes,
         prefs.dailyPracticeMinutes,
-        prefs.japaneseSplitPercent,
-        prefs.austrianMode
+        activeCourseInputs
       ),
     [
       selectedDayIndex,
       prefs.focusSessionsPerDay,
       prefs.focusSessionMinutes,
       prefs.dailyPracticeMinutes,
-      prefs.japaneseSplitPercent,
-      prefs.austrianMode,
+      activeCourseInputs,
     ]
   );
 
@@ -142,30 +202,47 @@ export function TodayView({
       buildWeightedReviewQueue(
         library.eligibleCards,
         library.reviewByCardId,
-        prefs.japaneseSplitPercent,
+        normalizedWeights,
         todayMountMs
       ).length,
     [
       library.eligibleCards,
       library.reviewByCardId,
-      prefs.japaneseSplitPercent,
+      normalizedWeights,
       todayMountMs,
     ]
   );
 
   const nextInstalledUnit = useMemo(() => {
-    const metas = [...library.installedMetas].sort(
-      (a, b) => a.unitNumber - b.unitNumber
-    );
+    const activeIds = new Set(activeEnrollments.map((c) => c.courseId));
+    const metas = library.installedMetas
+      .filter((m) => activeIds.has(m.courseId))
+      .sort((a, b) => a.unitNumber - b.unitNumber);
     return (
       metas.find((m) => !library.completionByUnitId.has(m.unitId)) ??
       metas[0] ??
       null
     );
-  }, [library.installedMetas, library.completionByUnitId]);
+  }, [activeEnrollments, library.installedMetas, library.completionByUnitId]);
 
-  const jaCountdown = computeDaysRemaining(prefs.goalDates.ja);
-  const deCountdown = computeDaysRemaining(prefs.goalDates.de);
+  const activeCountdowns = useMemo(
+    () =>
+      activeCourseInputs
+        .map((c) => {
+          const remaining = computeDaysRemaining(c.goalDate);
+          return remaining ? { course: c, remaining } : null;
+        })
+        .filter(
+          (
+            item
+          ): item is {
+            course: (typeof activeCourseInputs)[number];
+            remaining: { days: number; label: string };
+          } => item !== null
+        ),
+    [activeCourseInputs]
+  );
+
   const checkedHomework = new Set(
     library.todayActivity?.checkedHomeworkIds ?? []
   );
@@ -175,7 +252,7 @@ export function TodayView({
 
   const activeSession =
     daySchedule.sessions[
-      Math.min(activeSessionIdx, daySchedule.sessions.length - 1)
+      Math.min(activeSessionIdx, Math.max(0, daySchedule.sessions.length - 1))
     ];
 
   const handleToggleTimer = () => {
@@ -237,41 +314,35 @@ export function TodayView({
           >
             <Calendar className="h-4 w-4 shrink-0" strokeWidth={1.8} />
             <span className="tabular-nums">
-              {jaCountdown
-                ? `Japan · ${jaCountdown.label}`
-                : deCountdown
-                ? `${prefs.austrianMode ? "Austria" : "Germany"} · ${deCountdown.label}`
+              {activeCountdowns[0]
+                ? `${activeCountdowns[0].course.displayLabel} · ${activeCountdowns[0].remaining.label}`
                 : "Set goal dates"}
             </span>
           </button>
         </div>
 
-        <div className="mt-3.5 flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-primary)]">
-            <span>Japan · {TIER_META[prefs.tiers.ja].label}</span>
-            {prefs.goalDates.ja && (
-              <span className="text-[var(--ink-secondary)] tabular-nums">
-                ({formatGoalDateHuman(prefs.goalDates.ja)})
-              </span>
-            )}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-primary)]">
-            <span>
-              {prefs.austrianMode ? "Austria" : "Germany"} ·{" "}
-              {TIER_META[prefs.tiers.de].label}
-            </span>
-            {prefs.goalDates.de && (
-              <span className="text-[var(--ink-secondary)] tabular-nums">
-                ({formatGoalDateHuman(prefs.goalDates.de)})
-              </span>
-            )}
-          </span>
-          {deCountdown && jaCountdown && (
-            <span className="inline-flex items-center rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] text-[var(--ink-secondary)] tabular-nums">
-              {prefs.austrianMode ? "Austria" : "Germany"}: {deCountdown.label}
-            </span>
-          )}
-        </div>
+        {activeCourseInputs.length > 0 && (
+          <div className="mt-3.5 flex flex-wrap items-center gap-2">
+            {activeCourseInputs.map((course) => {
+              const countdown = computeDaysRemaining(course.goalDate);
+              return (
+                <span
+                  key={course.courseId}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-pill)] px-3 py-1 text-[13px] font-medium text-[var(--ink-primary)]"
+                >
+                  <span>
+                    {course.displayLabel} · {TIER_META[course.tier].label}
+                  </span>
+                  {course.goalDate && (
+                    <span className="text-[var(--ink-secondary)] tabular-nums">
+                      ({countdown?.label ?? formatGoalDateHuman(course.goalDate)})
+                    </span>
+                  )}
+                </span>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {library.installedShards.length === 0 && (
@@ -284,7 +355,8 @@ export function TodayView({
               Ready for your first unit
             </h2>
             <p className="text-[14px] leading-relaxed text-[var(--ink-secondary)]">
-              Choose your goal level and download Unit 1 to start your first session offline.
+              Choose your goal level and download Unit 1 to start your first
+              session offline.
             </p>
           </div>
           <motion.button
@@ -354,7 +426,9 @@ export function TodayView({
               ) : (
                 <>
                   <Play className="h-4 w-4" strokeWidth={2} />
-                  <span>{remainingSeconds < totalSessionSeconds ? "Resume" : "Start"}</span>
+                  <span>
+                    {remainingSeconds < totalSessionSeconds ? "Resume" : "Start"}
+                  </span>
                 </>
               )}
             </motion.button>
@@ -430,173 +504,183 @@ export function TodayView({
         )}
       </section>
 
-      <section
-        aria-labelledby="weekly-allocation-heading"
-        className="hig-card p-4 sm:p-5 space-y-4"
-      >
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2
-            id="weekly-allocation-heading"
-            className="text-[17px] font-semibold text-[var(--ink-primary)]"
-          >
-            Weekly Allocation
-          </h2>
-          <span className="text-[13px] font-medium text-[var(--ink-secondary)] tabular-nums">
-            {weeklySplit.jaHoursLabel} · {weeklySplit.deHoursLabel}
-          </span>
-        </div>
-
-        <div
-          aria-hidden="true"
-          className="flex h-2.5 w-full overflow-hidden rounded-full bg-[var(--bg-inset)]"
+      {activeCourseInputs.length > 0 && (
+        <section
+          aria-labelledby="weekly-allocation-heading"
+          className="hig-card p-4 sm:p-5 space-y-4"
         >
-          <div
-            className="h-full bg-[var(--accent)] transition-all duration-200"
-            style={{ width: `${prefs.japaneseSplitPercent}%` }}
-          />
-          <div
-            className="h-full bg-black/20 dark:bg-white/25 transition-all duration-200"
-            style={{ width: `${100 - prefs.japaneseSplitPercent}%` }}
-          />
-        </div>
-
-        <div
-          role="tablist"
-          aria-label="Day of week schedule"
-          className="grid grid-cols-7 rounded-xl bg-[var(--bg-inset)] p-1"
-        >
-          {WEEKDAY_LABELS.map((dayLabel, idx) => {
-            const selected = idx === selectedDayIndex;
-            const isToday = idx === todayIndex;
-            return (
-              <button
-                key={dayLabel}
-                id={`weekday-tab-${dayLabel.toLowerCase()}`}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                onClick={() => setSelectedDayIndex(idx)}
-                className={`relative z-10 flex min-h-[44px] flex-col items-center justify-center rounded-[9px] text-[13px] font-medium transition-colors ${
-                  selected
-                    ? "text-[var(--ink-primary)] font-semibold"
-                    : "text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
-                }`}
-              >
-                {selected && (
-                  <motion.span
-                    layoutId="today-weekday-pill"
-                    transition={springTransition}
-                    className="absolute inset-0 -z-10 rounded-[9px] bg-[var(--bg-elevated)] shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
-                  />
-                )}
-                <span>{dayLabel}</span>
-                {isToday && (
-                  <span className="mt-0.5 h-1 w-1 rounded-full bg-[var(--accent)]" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="divide-y divide-[var(--hairline)]">
-          {daySchedule.sessions.map((block) => {
-            const isCurrentFocus = block.index === activeSessionIdx;
-            const isDone =
-              selectedDayIndex === todayIndex &&
-              completedSessions.has(block.index);
-            return (
-              <button
-                key={block.index}
-                type="button"
-                onClick={() => setActiveSessionIdx(block.index)}
-                className="flex min-h-[54px] w-full items-center justify-between gap-3 py-3 text-left min-w-0"
-              >
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[14px] font-semibold text-[var(--ink-primary)] truncate">
-                      {block.title}
-                    </span>
-                    {isCurrentFocus && (
-                      <span className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[11px] font-semibold text-[var(--accent)]">
-                        Selected
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-[13px] text-[var(--ink-secondary)] truncate">
-                    {block.subtitle}
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-2">
-                  <span className="text-[13px] text-[var(--ink-secondary)] tabular-nums">
-                    {block.durationMinutes}m
-                  </span>
-                  {isDone && (
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--status-success-bg)] text-[var(--status-success)]">
-                      <Check className="h-3.5 w-3.5" strokeWidth={2.2} />
-                    </span>
-                  )}
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="hig-hairline-t pt-3.5 space-y-2">
-          <div className="flex items-center justify-between">
-            <h3 className="text-[14px] font-semibold text-[var(--ink-primary)]">
-              Daily Reading & Practice
-            </h3>
-            <span className="text-[12px] text-[var(--ink-secondary)] tabular-nums">
-              {prefs.dailyPracticeMinutes}m total
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2
+              id="weekly-allocation-heading"
+              className="text-[17px] font-semibold text-[var(--ink-primary)]"
+            >
+              Weekly Allocation
+            </h2>
+            <span className="text-[13px] font-medium text-[var(--ink-secondary)] tabular-nums">
+              {weeklyAllocation.allocations
+                .map((a) => a.hoursLabel)
+                .join(" · ")}
             </span>
           </div>
 
-          <div className="divide-y divide-[var(--hairline)]">
-            {daySchedule.homework.map((hw) => {
-              const checked = checkedHomework.has(hw.id);
+          <div
+            aria-hidden="true"
+            className="flex h-2.5 w-full overflow-hidden rounded-full bg-[var(--bg-inset)]"
+          >
+            {weeklyAllocation.allocations.map((alloc, idx) => (
+              <div
+                key={alloc.courseId}
+                className={`h-full transition-all duration-200 ${
+                  BAR_SEGMENT_CLASSES[idx % BAR_SEGMENT_CLASSES.length]
+                }`}
+                style={{ width: `${alloc.weightPercent}%` }}
+              />
+            ))}
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="Day of week schedule"
+            className="grid grid-cols-7 rounded-xl bg-[var(--bg-inset)] p-1"
+          >
+            {WEEKDAY_LABELS.map((dayLabel, idx) => {
+              const selected = idx === selectedDayIndex;
+              const isToday = idx === todayIndex;
               return (
                 <button
-                  key={hw.id}
-                  id={`hw-check-${hw.id}`}
+                  key={dayLabel}
+                  id={`weekday-tab-${dayLabel.toLowerCase()}`}
                   type="button"
-                  onClick={() => void handleCheckHomework(hw.id)}
-                  className="flex min-h-[46px] w-full items-center justify-between gap-3 py-2 text-left min-w-0"
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => setSelectedDayIndex(idx)}
+                  className={`relative z-10 flex min-h-[44px] flex-col items-center justify-center rounded-[9px] text-[13px] font-medium transition-colors ${
+                    selected
+                      ? "text-[var(--ink-primary)] font-semibold"
+                      : "text-[var(--ink-secondary)] hover:text-[var(--ink-primary)]"
+                  }`}
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors ${
-                        checked
-                          ? "bg-[var(--accent)] text-white"
-                          : "bg-[var(--bg-inset)]"
-                      }`}
-                    >
-                      {checked && <Check className="h-3.5 w-3.5" strokeWidth={2.4} />}
-                    </span>
-                    <span
-                      className={`text-[14px] min-w-0 break-words ${
-                        checked
-                          ? "line-through text-[var(--ink-secondary)]"
-                          : "text-[var(--ink-primary)]"
-                      }`}
-                    >
-                      {hw.label}
-                    </span>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--ink-secondary)]">
-                    {hw.language === "both"
-                      ? "JP + DE"
-                      : hw.language === "ja"
-                      ? "Japanese"
-                      : prefs.austrianMode
-                      ? "Austria"
-                      : "German"}
-                  </span>
+                  {selected && (
+                    <motion.span
+                      layoutId="today-weekday-pill"
+                      transition={springTransition}
+                      className="absolute inset-0 -z-10 rounded-[9px] bg-[var(--bg-elevated)] shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
+                    />
+                  )}
+                  <span>{dayLabel}</span>
+                  {isToday && (
+                    <span className="mt-0.5 h-1 w-1 rounded-full bg-[var(--accent)]" />
+                  )}
                 </button>
               );
             })}
           </div>
-        </div>
-      </section>
+
+          <div className="divide-y divide-[var(--hairline)]">
+            {daySchedule.sessions.map((block) => {
+              const isCurrentFocus = block.index === activeSessionIdx;
+              const isDone =
+                selectedDayIndex === todayIndex &&
+                completedSessions.has(block.index);
+              return (
+                <button
+                  key={block.index}
+                  type="button"
+                  onClick={() => setActiveSessionIdx(block.index)}
+                  className="flex min-h-[54px] w-full items-center justify-between gap-3 py-3 text-left min-w-0"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[14px] font-semibold text-[var(--ink-primary)] truncate">
+                        {block.title}
+                      </span>
+                      {isCurrentFocus && (
+                        <span className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-[11px] font-semibold text-[var(--accent)]">
+                          Selected
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-[13px] text-[var(--ink-secondary)] truncate">
+                      {block.subtitle}
+                    </div>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span className="text-[13px] text-[var(--ink-secondary)] tabular-nums">
+                      {block.durationMinutes}m
+                    </span>
+                    {isDone && (
+                      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--status-success-bg)] text-[var(--status-success)]">
+                        <Check className="h-3.5 w-3.5" strokeWidth={2.2} />
+                      </span>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="hig-hairline-t pt-3.5 space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="text-[14px] font-semibold text-[var(--ink-primary)]">
+                Daily Reading & Practice
+              </h3>
+              <span className="text-[12px] text-[var(--ink-secondary)] tabular-nums">
+                {prefs.dailyPracticeMinutes}m total
+              </span>
+            </div>
+
+            <div className="divide-y divide-[var(--hairline)]">
+              {daySchedule.homework.map((hw) => {
+                const checked = checkedHomework.has(hw.id);
+                const hwCourseName =
+                  hw.courseId === "all"
+                    ? "All Active"
+                    : resolveCourseDisplayName(
+                        hw.courseId,
+                        library.descriptorsByCourseId.get(hw.courseId),
+                        prefs.enrolledCourses[hw.courseId]?.activeVariantId
+                      );
+
+                return (
+                  <button
+                    key={hw.id}
+                    id={`hw-check-${hw.id}`}
+                    type="button"
+                    onClick={() => void handleCheckHomework(hw.id)}
+                    className="flex min-h-[46px] w-full items-center justify-between gap-3 py-2 text-left min-w-0"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors ${
+                          checked
+                            ? "bg-[var(--accent)] text-white"
+                            : "bg-[var(--bg-inset)]"
+                        }`}
+                      >
+                        {checked && (
+                          <Check className="h-3.5 w-3.5" strokeWidth={2.4} />
+                        )}
+                      </span>
+                      <span
+                        className={`text-[14px] min-w-0 break-words ${
+                          checked
+                            ? "line-through text-[var(--ink-secondary)]"
+                            : "text-[var(--ink-primary)]"
+                        }`}
+                      >
+                        {hw.label}
+                      </span>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-[var(--bg-pill)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--ink-secondary)]">
+                      {hwCourseName}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

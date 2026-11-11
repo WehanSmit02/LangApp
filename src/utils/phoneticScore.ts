@@ -1,30 +1,23 @@
-import type { LanguageCode } from "../schemas/curriculum";
-
-function katakanaToHiragana(input: string): string {
+function foldKatakanaToHiragana(input: string): string {
   return input.replace(/[\u30a1-\u30f6]/g, (char) =>
     String.fromCharCode(char.charCodeAt(0) - 0x60)
   );
 }
 
-export function normalizeSpeechString(
-  raw: string,
-  language: LanguageCode
-): string {
-  let text = raw
-    .trim()
-    .toLowerCase()
-    .replace(/[.,!?;:()[\]"'„“»«。、！？「」『』・〜~…—–-]/g, "");
+export function normalizeSpeechString(raw: string): string {
+  const folded = foldKatakanaToHiragana(
+    raw.normalize("NFKC").trim().toLowerCase()
+  )
+    .replace(/ß/g, "ss")
+    .replace(/[\p{P}\p{S}]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-  if (language === "ja") {
-    text = katakanaToHiragana(text).replace(/\s+/g, "");
-  } else {
-    text = text
-      .replace(/ß/g, "ss")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  return text;
+  // Remove arbitrary STT spaces inserted between CJK, Kana, Thai, or Lao characters while keeping word spaces in alphabetic scripts
+  return folded.replace(
+    /([\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}])\s+(?=[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}])/gu,
+    "$1"
+  );
 }
 
 function levenshteinDistance(a: string, b: string): number {
@@ -57,16 +50,15 @@ function levenshteinDistance(a: string, b: string): number {
 
 export function scoreSingleCandidate(
   spoken: string,
-  referenceTargets: string[],
-  language: LanguageCode
+  referenceTargets: string[]
 ): number {
-  const normalizedSpoken = normalizeSpeechString(spoken, language);
+  const normalizedSpoken = normalizeSpeechString(spoken);
   if (!normalizedSpoken) return 0;
 
   let best = 0;
   for (const ref of referenceTargets) {
     if (!ref) continue;
-    const normalizedRef = normalizeSpeechString(ref, language);
+    const normalizedRef = normalizeSpeechString(ref);
     if (!normalizedRef) continue;
     if (normalizedSpoken === normalizedRef) return 100;
 
@@ -83,14 +75,13 @@ export function scoreSingleCandidate(
 
 export function scoreBestSpeechMatch(
   transcriptCandidates: string[],
-  referenceTargets: string[],
-  language: LanguageCode
+  referenceTargets: string[]
 ): { bestScore: number; bestTranscript: string } {
   let bestScore = 0;
   let bestTranscript = transcriptCandidates[0] ?? "";
 
   for (const candidate of transcriptCandidates) {
-    const score = scoreSingleCandidate(candidate, referenceTargets, language);
+    const score = scoreSingleCandidate(candidate, referenceTargets);
     if (score > bestScore) {
       bestScore = score;
       bestTranscript = candidate;
