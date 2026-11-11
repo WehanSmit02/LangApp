@@ -5,17 +5,13 @@ on:
     - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
-      language:
-        description: 'Language course to expand'
+      target_course:
+        description: 'Target course ID (e.g. "all", "ja", "de", "ko")'
         required: true
         default: 'all'
-        type: choice
-        options:
-          - all
-          - ja
-          - de
-      units_count:
-        description: 'Units per language to generate'
+        type: string
+      units_per_course:
+        description: 'Units per course to generate'
         required: true
         default: '1'
         type: choice
@@ -27,17 +23,18 @@ permissions:
   contents: write
 
 concurrency:
-  group: daily-curriculum-generation
+  group: curriculum-data-pipeline
   cancel-in-progress: false
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out main repository
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -48,24 +45,47 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate next syllabus shards
+      - name: Prepare curriculum-data worktree
+        run: |
+          if git ls-remote --exit-code --heads origin curriculum-data >/dev/null 2>&1; then
+            git fetch origin curriculum-data:curriculum-data
+            git worktree add .curriculum-worktree curriculum-data
+          else
+            git worktree add --detach .curriculum-worktree
+            (
+              cd .curriculum-worktree
+              git checkout --orphan curriculum-data
+              git rm -rf . >/dev/null 2>&1 || true
+              cp -R ../curriculum ./curriculum
+              git config user.name "${{ github.repository_owner }}"
+              git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+              git add curriculum
+              git commit -m "seed initial curriculum-data branch"
+            )
+          fi
+
+      - name: Generate next sequential unit shards
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          INPUT_LANGUAGE: ${{ inputs.language || 'all' }}
-          INPUT_UNITS_COUNT: ${{ inputs.units_count || '1' }}
+          CURRICULUM_DIR: .curriculum-worktree/curriculum
+          INPUT_TARGET_COURSE: ${{ inputs.target_course || 'all' }}
+          INPUT_UNITS_PER_COURSE: ${{ inputs.units_per_course || '1' }}
         run: npm run curriculum:generate
 
-      - name: Validate curriculum shards and manifest hashes
+      - name: Validate curriculum-data shards and hashes
+        env:
+          CURRICULUM_DIR: .curriculum-worktree/curriculum
         run: npm run curriculum:validate
 
-      - name: Commit and push updated shards
+      - name: Commit and push to curriculum-data
         run: |
-          if [ -z "$(git status --porcelain public/curriculum)" ]; then
-            echo "No new curriculum shards generated."
-            exit 0
+          cd .curriculum-worktree
+          git add curriculum
+          if [ -z "$(git status --porcelain curriculum)" ]; then
+            echo "No curriculum changes to publish."
+          else
+            git config user.name "${{ github.repository_owner }}"
+            git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+            git commit -m "publish daily curriculum shards"
           fi
-          git config user.name "${{ github.repository_owner }}"
-          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
-          git add public/curriculum
-          git commit -m "add daily curriculum shards for next syllabus unit"
-          git push origin main
+          git push origin curriculum-data

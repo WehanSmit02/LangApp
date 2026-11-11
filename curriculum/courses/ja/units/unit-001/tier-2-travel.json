@@ -1,0 +1,673 @@
+{
+  "shardId": "ja-unit-001-travel",
+  "unitId": "ja-unit-001",
+  "tier": "travel",
+  "tierNumber": 2,
+  "focusSummary": "Polite です/ます sentence builders (〜をください, 〜はどこですか, クレジットカードで払えますか), ordering hot counter snacks, finding konbini ATMs, and tax-free counter requests.",
+  "introducedLexiconIds": [
+    "ja-u001-t2-lex-01",
+    "ja-u001-t2-lex-02",
+    "ja-u001-t2-lex-03",
+    "ja-u001-t2-lex-04",
+    "ja-u001-t2-lex-05",
+    "ja-u001-t2-lex-06",
+    "ja-u001-t2-lex-07",
+    "ja-u001-t2-lex-08"
+  ],
+  "introducedGrammarIds": [
+    "ja-u001-t2-gram-01",
+    "ja-u001-t2-gram-02",
+    "ja-u001-t2-gram-03"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "願",
+    "水",
+    "弁",
+    "当",
+    "箸",
+    "払",
+    "免",
+    "税",
+    "店"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u001-t2-step-01",
+      "tier": "travel",
+      "heading": "Ordering Hot Counter Items: 〜をください",
+      "explanation": "Next to every konbini register sits a glass warmer filled with crispy fried chicken, steamed buns (肉まん), and oden. Name the item + をください ('Please give me...') to ask the clerk to grab it for you.",
+      "scenarioPrompt": "You spot freshly steamed pork buns in the glass case beside the konbini register.",
+      "nativeText": "すみません、肉まんをください。",
+      "rubyHtml": "すみません、<ruby>肉<rt>にく</rt></ruby>まんをください。",
+      "romanization": "Sumimasen, nikuman o kudasai.",
+      "translation": "Excuse me, a steamed pork bun, please.",
+      "literalBreakdown": "すみません (excuse me) + 肉まん (pork bun) + を (object marker) + ください (please give me)",
+      "usageTip": "Use 〜をください specifically when asking for physical items; use 〜をお願いします for services, payments, or general requests."
+    },
+    {
+      "id": "ja-u001-t2-step-02",
+      "tier": "travel",
+      "heading": "Finding ATMs, Restrooms & Counters: 〜はどこですか",
+      "explanation": "Slot any place or item before はどこですか ('Where is...?') for an instant, polite location question. Konbini ATMs (especially 7-Bank and Lawson Bank) reliably accept international debit cards.",
+      "scenarioPrompt": "You step into a large convenience store and need to withdraw cash from the ATM.",
+      "nativeText": "すみません、ATMはどこですか。",
+      "romanization": "Sumimasen, ē-tī-emu wa doko desu ka.",
+      "translation": "Excuse me, where is the ATM?",
+      "literalBreakdown": "すみません (excuse me) + ATM + は (topic marker) + どこ (where) + ですか (is it?)",
+      "usageTip": "Common answers to listen for: あちらです ('Over there'), 奥です (おくです, 'In the back'), or 右です (みぎです, 'On the right')."
+    },
+    {
+      "id": "ja-u001-t2-step-03",
+      "tier": "travel",
+      "heading": "Checking Payment Methods: クレジットカードで払えますか",
+      "explanation": "Attach で ('by means of') to your payment method + 払えますか (potential form of 払う, 'can I pay?'). Essential at smaller bakeries, market stalls, or pharmacy counters.",
+      "scenarioPrompt": "You are buying snacks at a local shop and want to check if they accept credit cards before handing one over.",
+      "nativeText": "クレジットカードで払えますか。",
+      "rubyHtml": "クレジットカードで<ruby>払<rt>はら</rt></ruby>えますか。",
+      "romanization": "Kurejitto kādo de haraemasu ka.",
+      "translation": "Can I pay by credit card?",
+      "literalBreakdown": "クレジットカード (credit card) + で (by means of) + 払えます (can pay) + か (question)",
+      "usageTip": "If a shop is cash-only, the clerk will gently say 「現金のみです」 (げんきんのみです, 'Cash only')."
+    },
+    {
+      "id": "ja-u001-t2-step-04",
+      "tier": "travel",
+      "heading": "Tax-Free Counter & Passport Checks: 免税カウンター",
+      "explanation": "At drugstores, electronics stores, and select flagship stores, purchases of ¥5,000+ (pre-tax) qualify for duty-free (免税, menzei) checkout when you present your original passport.",
+      "scenarioPrompt": "You have a basket of skincare and souvenirs at a multi-floor store and look for the tax-free register.",
+      "nativeText": "免税カウンターはどこですか。パスポートがあります。",
+      "rubyHtml": "<ruby>免税<rt>めんぜい</rt></ruby>カウンターはどこですか。パスポートがあります。",
+      "romanization": "Menzei kauntā wa doko desu ka. Pasupōto ga arimasu.",
+      "translation": "Where is the tax-free counter? I have my passport.",
+      "literalBreakdown": "免税 (tax-exemption) + カウンター (counter) + はどこですか (where is?) / パスポート (passport) + があります (have)",
+      "usageTip": "Remember that consumable tax-free items are sealed in a special clear bag that must stay unopened until you depart Japan."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u001-t2-drill-01",
+      "tier": "travel",
+      "prompt": "You want to check whether you can pay with a credit card at a neighborhood bakery. Which sentence is natural and polite?",
+      "cue": "Ask 'Can I pay by credit card?' using the means particle で",
+      "options": [
+        "クレジットカードはどこですか。",
+        "クレジットカードを温めますか。",
+        "クレジットカードから出ます。",
+        "クレジットカードで払えますか。"
+      ],
+      "correctAnswer": "クレジットカードで払えますか。",
+      "acceptedVariants": [
+        "カードで払えますか。",
+        "クレジットカードではらえますか。"
+      ],
+      "explanation": "Payment methods take the particle で ('by means of') followed by 払えますか ('can one pay?')."
+    },
+    {
+      "id": "ja-u001-t2-drill-02",
+      "tier": "travel",
+      "prompt": "You want to order hot fried chicken (ホットチキン) from the glass case beside the konbini register. Complete the request:",
+      "baseSentence": "すみません、ホットチキン＿＿＿。",
+      "cue": "Polite request for an item ('...please give me')",
+      "options": [
+        "をください",
+        "はどこですか",
+        "がありますか",
+        "で払います"
+      ],
+      "correctAnswer": "をください",
+      "acceptedVariants": [
+        "をお願いします"
+      ],
+      "explanation": "Noun + をください politely asks the clerk to hand you a specific item from behind the counter."
+    },
+    {
+      "id": "ja-u001-t2-drill-03",
+      "tier": "travel",
+      "prompt": "You are inside a department store and looking for the tax-free checkout desk. How do you ask where it is?",
+      "cue": "Ask where the 免税カウンター (tax-free counter) is located",
+      "options": [
+        "免税カウンターをください。",
+        "免税カウンターはどこですか。",
+        "免税カウンターで温めますか。",
+        "免税カウンターは大丈夫です。"
+      ],
+      "correctAnswer": "免税カウンターはどこですか。",
+      "explanation": "Place + はどこですか is the standard polite pattern for asking where any counter, facility, or landmark is."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u001-t2-card-01",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "frontPrompt": "Can I pay by credit card?",
+      "targetText": "クレジットカードで払えますか。",
+      "rubyHtml": "クレジットカードで<ruby>払<rt>はら</rt></ruby>えますか。",
+      "reading": "くれじっとかーどではらえますか。",
+      "contextSentence": "すみません、ここはクレジットカードで払えますか。",
+      "contextRubyHtml": "すみません、ここはクレジットカードで<ruby>払<rt>はら</rt></ruby>えますか。",
+      "contextTranslation": "Excuse me, can I pay by credit card here?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t2-card-02",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "frontPrompt": "Excuse me, where is the ATM?",
+      "targetText": "すみません、ATMはどこですか。",
+      "reading": "すみません、えーてぃーえむはどこですか。",
+      "contextSentence": "すみません、ATMはどこですか。現金をおろしたいです。",
+      "contextRubyHtml": "すみません、ATMはどこですか。<ruby>現金<rt>げんきん</rt></ruby>をおろしたいです。",
+      "contextTranslation": "Excuse me, where is the ATM? I'd like to withdraw cash.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t2-card-03",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "frontPrompt": "Water and chopsticks, please.",
+      "targetText": "お水とお箸をください。",
+      "rubyHtml": "お<ruby>水<rt>みず</rt></ruby>とお<ruby>箸<rt>はし</rt></ruby>をください。",
+      "reading": "おみずとおはしをください。",
+      "contextSentence": "お弁当を買ったので、お水とお箸をください。",
+      "contextRubyHtml": "お<ruby>弁当<rt>べんとう</rt></ruby>を<ruby>買<rt>か</rt></ruby>ったので、お<ruby>水<rt>みず</rt></ruby>とお<ruby>箸<rt>はし</rt></ruby>をください。",
+      "contextTranslation": "Since I bought a bento, water and chopsticks please.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t2-card-04",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "frontPrompt": "Where is the tax-free counter?",
+      "targetText": "免税カウンターはどこですか。",
+      "rubyHtml": "<ruby>免税<rt>めんぜい</rt></ruby>カウンターはどこですか。",
+      "reading": "めんぜいかうんたーはどこですか。",
+      "contextSentence": "すみません、免税カウンターはどこですか。",
+      "contextRubyHtml": "すみません、<ruby>免税<rt>めんぜい</rt></ruby>カウンターはどこですか。",
+      "contextTranslation": "Excuse me, where is the tax-free counter?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t2-card-05",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "frontPrompt": "Tax-free / Duty-free",
+      "targetText": "免税",
+      "rubyHtml": "<ruby>免税<rt>めんぜい</rt></ruby>",
+      "reading": "めんぜい",
+      "contextSentence": "このお店は免税ができます。",
+      "contextRubyHtml": "このお<ruby>店<rt>みせ</rt></ruby>は<ruby>免税<rt>めんぜい</rt></ruby>ができます。",
+      "contextTranslation": "This shop offers tax-free shopping.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u001-t2-story-01",
+      "unitId": "ja-unit-001",
+      "tier": "travel",
+      "title": "よるのホットスナックとATM",
+      "titleTranslation": "Late-Night Hot Snacks and the ATM",
+      "setting": "9:45 PM inside a bustling Shibuya convenience store after an evening walk.",
+      "paragraphs": [
+        {
+          "nativeText": "夜にお店へ入って、「すみません、ATMはどこですか」と聞きます。店員さんは「あちらの奥です」と教えてくれます。",
+          "rubyHtml": "<ruby>夜<rt>よる</rt></ruby>にお<ruby>店<rt>みせ</rt></ruby>へ<ruby>入<rt>はい</rt></ruby>って、「すみません、ATMはどこですか」と<ruby>聞<rt>き</rt></ruby>きます。<ruby>店員<rt>てんいん</rt></ruby>さんは「あちらの<ruby>奥<rt>おく</rt></ruby>です」と<ruby>教<rt>おし</rt></ruby>えてくれます。",
+          "translation": "Entering the shop at night, I ask, 'Excuse me, where is the ATM?' The clerk kindly tells me, 'It's in the back over there.'",
+          "segments": [
+            {
+              "surface": "夜",
+              "rubyHtml": "<ruby>夜<rt>よる</rt></ruby>",
+              "reading": "よる",
+              "meaning": "night / evening"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at / in (time marker)"
+            },
+            {
+              "surface": "お店",
+              "rubyHtml": "お<ruby>店<rt>みせ</rt></ruby>",
+              "reading": "おみせ",
+              "meaning": "shop / store"
+            },
+            {
+              "surface": "へ",
+              "reading": "え",
+              "meaning": "toward / into"
+            },
+            {
+              "surface": "入って",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>って",
+              "reading": "はいって",
+              "meaning": "entering"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "すみません",
+              "reading": "すみません",
+              "meaning": "excuse me"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "ATM",
+              "reading": "えーてぃーえむ",
+              "meaning": "ATM / cash machine"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "どこ",
+              "reading": "どこ",
+              "meaning": "where"
+            },
+            {
+              "surface": "ですか",
+              "reading": "ですか",
+              "meaning": "is it? (polite question)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きます",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きます",
+              "reading": "ききます",
+              "meaning": "ask (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "store clerk"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "あちら",
+              "reading": "あちら",
+              "meaning": "over there (polite)"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "linking particle"
+            },
+            {
+              "surface": "奥",
+              "rubyHtml": "<ruby>奥<rt>おく</rt></ruby>",
+              "reading": "おく",
+              "meaning": "the back / interior"
+            },
+            {
+              "surface": "です",
+              "reading": "です",
+              "meaning": "is (polite)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "教えてくれます",
+              "rubyHtml": "<ruby>教<rt>おし</rt></ruby>えてくれます",
+              "reading": "おしえてくれます",
+              "meaning": "kindly tells / shows me"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "ATMを使ったあと、お水とサラダを持ってレジに行きます。温かいケースを見て、「肉まんもください」と言います。",
+          "rubyHtml": "ATMを<ruby>使<rt>つか</rt></ruby>ったあと、お<ruby>水<rt>みず</rt></ruby>とサラダを<ruby>持<rt>も</rt></ruby>ってレジに<ruby>行<rt>い</rt></ruby>きます。<ruby>温<rt>あたた</rt></ruby>かいケースを<ruby>見<rt>み</rt></ruby>て、「<ruby>肉<rt>にく</rt></ruby>まんもください」と<ruby>言<rt>い</rt></ruby>います。",
+          "translation": "After using the ATM, I take water and a salad to the register. Looking at the warm display case, I say, 'A steamed pork bun too, please.'",
+          "segments": [
+            {
+              "surface": "ATM",
+              "reading": "えーてぃーえむ",
+              "meaning": "ATM"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "使った",
+              "rubyHtml": "<ruby>使<rt>つか</rt></ruby>った",
+              "reading": "つかった",
+              "meaning": "used"
+            },
+            {
+              "surface": "あと",
+              "reading": "あと",
+              "meaning": "after"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "お水",
+              "rubyHtml": "お<ruby>水<rt>みず</rt></ruby>",
+              "reading": "おみず",
+              "meaning": "water (polite)"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "サラダ",
+              "reading": "さらだ",
+              "meaning": "salad"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "持って",
+              "rubyHtml": "<ruby>持<rt>も</rt></ruby>って",
+              "reading": "もって",
+              "meaning": "holding / carrying"
+            },
+            {
+              "surface": "レジ",
+              "reading": "れじ",
+              "meaning": "register"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to (destination)"
+            },
+            {
+              "surface": "行きます",
+              "rubyHtml": "<ruby>行<rt>い</rt></ruby>きます",
+              "reading": "いきます",
+              "meaning": "go (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "温かい",
+              "rubyHtml": "<ruby>温<rt>あたた</rt></ruby>かい",
+              "reading": "あたたかい",
+              "meaning": "warm"
+            },
+            {
+              "surface": "ケース",
+              "reading": "けーす",
+              "meaning": "display case"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "見て",
+              "rubyHtml": "<ruby>見<rt>み</rt></ruby>て",
+              "reading": "みて",
+              "meaning": "looking at"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "肉まん",
+              "rubyHtml": "<ruby>肉<rt>にく</rt></ruby>まん",
+              "reading": "にくまん",
+              "meaning": "steamed pork bun"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also / too"
+            },
+            {
+              "surface": "ください",
+              "reading": "ください",
+              "meaning": "please give me"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言います",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>います",
+              "reading": "いいます",
+              "meaning": "say (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "「お箸はお付けしますか」と聞かれて、「はい、お願いします。クレジットカードで払えますか」と聞きます。カードで払って、ホテルへ帰ります。",
+          "rubyHtml": "「お<ruby>箸<rt>はし</rt></ruby>はお<ruby>付<rt>つ</rt></ruby>けしますか」と<ruby>聞<rt>き</rt></ruby>かれて、「はい、お<ruby>願<rt>ねが</rt></ruby>いします。クレジットカードで<ruby>払<rt>はら</rt></ruby>えますか」と<ruby>聞<rt>き</rt></ruby>きます。カードで<ruby>払<rt>はら</rt></ruby>って、ホテルへ<ruby>帰<rt>かえ</rt></ruby>ります。",
+          "translation": "Asked 'Shall I include chopsticks?', I ask, 'Yes, please. Can I pay by credit card?' Paying by card, I head back toward my hotel.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "お箸",
+              "rubyHtml": "お<ruby>箸<rt>はし</rt></ruby>",
+              "reading": "おはし",
+              "meaning": "chopsticks (polite)"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "お付けしますか",
+              "rubyHtml": "お<ruby>付<rt>つ</rt></ruby>けしますか",
+              "reading": "おつけしますか",
+              "meaning": "shall I include / attach?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞かれて",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>かれて",
+              "reading": "きかれて",
+              "meaning": "being asked"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "はい",
+              "reading": "はい",
+              "meaning": "yes"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "クレジットカード",
+              "reading": "くれじっとかーど",
+              "meaning": "credit card"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "by means of"
+            },
+            {
+              "surface": "払えますか",
+              "rubyHtml": "<ruby>払<rt>はら</rt></ruby>えますか",
+              "reading": "はらえますか",
+              "meaning": "can I pay?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きます",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きます",
+              "reading": "ききます",
+              "meaning": "ask (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "カード",
+              "reading": "かーど",
+              "meaning": "card"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "with / by"
+            },
+            {
+              "surface": "払って",
+              "rubyHtml": "<ruby>払<rt>はら</rt></ruby>って",
+              "reading": "はらって",
+              "meaning": "paying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "ホテル",
+              "reading": "ほてる",
+              "meaning": "hotel"
+            },
+            {
+              "surface": "へ",
+              "reading": "え",
+              "meaning": "toward"
+            },
+            {
+              "surface": "帰ります",
+              "rubyHtml": "<ruby>帰<rt>かえ</rt></ruby>ります",
+              "reading": "かえります",
+              "meaning": "return / go back (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u001-t2-story-01-q1",
+          "question": "Where did the clerk say the ATM was located?",
+          "options": [
+            "Outside the exit door",
+            "On the second floor",
+            "In the back over there (あちらの奥)",
+            "Next to the hotel lobby"
+          ],
+          "correctIndex": 2,
+          "explanation": "The clerk replied 「あちらの奥です」 (Achira no oku desu — 'It is in the back over there')."
+        },
+        {
+          "id": "ja-u001-t2-story-01-q2",
+          "question": "Which hot item did the shopper add at the counter?",
+          "options": [
+            "Hot coffee",
+            "Bento soup",
+            "Roasted sweet potato",
+            "A steamed pork bun (肉まん)"
+          ],
+          "correctIndex": 3,
+          "explanation": "Seeing the warm display case, the shopper said 「肉まんもください」 ('A steamed pork bun too, please')."
+        },
+        {
+          "id": "ja-u001-t2-story-01-q3",
+          "question": "Even though the shopper used the ATM first, how did they actually pay at the register?",
+          "options": [
+            "By credit card",
+            "With a ¥10,000 bill",
+            "With loyalty points",
+            "With a transit pass"
+          ],
+          "correctIndex": 0,
+          "explanation": "They asked 「クレジットカードで払えますか」 and paid by card (カードで払って)."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": []
+}

@@ -3,111 +3,81 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { GoogleGenAI } from "@google/genai";
 import {
-  BLUEPRINT_PATH,
-  CURRICULUM_DIR,
-  LEDGER_PATH,
-  MANIFEST_PATH,
+  discoverCourseIds,
   readJsonFile,
+  resolveCurriculumRoot,
   scanAndValidateCurriculum,
-  writeManifestAndLedger,
+  writeManifestAndCourseLedgers,
 } from "./lib/curriculum-io.mjs";
 import {
-  LexiconLedgerSchema,
+  CourseBlueprintSchema,
+  CourseDescriptorSchema,
+  CourseLexiconLedgerSchema,
   ManifestSchema,
-  SyllabusBlueprintSchema,
   TIER_META,
   TIER_ORDER,
   TierShardSchema,
   UnitMetaSchema,
+  validateShardReadingCapabilities,
 } from "../src/schemas/curriculum.ts";
 
 function parseOptions() {
   const args = process.argv.slice(2);
-  let language = process.env.INPUT_LANGUAGE || "all";
-  let unitsCount = Number(process.env.INPUT_UNITS_COUNT || "1");
+  let targetCourse =
+    process.env.INPUT_TARGET_COURSE ||
+    process.env.INPUT_LANGUAGE ||
+    "all";
+  let unitsPerCourse = Number(
+    process.env.INPUT_UNITS_PER_COURSE ||
+      process.env.INPUT_UNITS_COUNT ||
+      "1"
+  );
   const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
   for (const arg of args) {
-    if (arg.startsWith("--language=")) {
-      language = arg.split("=")[1];
+    if (arg.startsWith("--course=") || arg.startsWith("--language=")) {
+      targetCourse = arg.split("=")[1];
     } else if (arg.startsWith("--units=")) {
-      unitsCount = Number(arg.split("=")[1]);
+      unitsPerCourse = Number(arg.split("=")[1]);
     }
   }
 
-  if (!["all", "ja", "de"].includes(language)) {
-    throw new Error(`Unsupported language option: ${language}`);
-  }
-  if (!Number.isInteger(unitsCount) || unitsCount < 1 || unitsCount > 4) {
-    unitsCount = 1;
+  if (!Number.isInteger(unitsPerCourse) || unitsPerCourse < 1 || unitsPerCourse > 4) {
+    unitsPerCourse = 1;
   }
 
-  return { language, unitsCount, model };
+  return { targetCourse: targetCourse.trim() || "all", unitsPerCourse, model };
 }
 
-function selectNextTargets(blueprint, manifest, languageFilter, maxUnits) {
-  const langs = languageFilter === "all" ? ["ja", "de"] : [languageFilter];
-  const targets = [];
-
-  for (const lang of langs) {
-    const installedByNumber = new Map(
-      manifest.languages[lang].units.map((u) => [u.unitNumber, u])
-    );
-
-    let addedForLang = 0;
-    for (const bpUnit of blueprint.languages[lang].units) {
-      if (addedForLang >= maxUnits) break;
-
-      const existing = installedByNumber.get(bpUnit.unitNumber);
-      if (!existing) {
-        targets.push({
-          lang,
-          blueprintUnit: bpUnit,
-          needsMeta: true,
-          missingTiers: [...TIER_ORDER],
-        });
-        addedForLang += 1;
-        continue;
-      }
-
-      const missingTiers = TIER_ORDER.filter((t) => !existing.shards[t]);
-      if (missingTiers.length > 0) {
-        targets.push({
-          lang,
-          blueprintUnit: bpUnit,
-          needsMeta: false,
-          missingTiers,
-        });
-        addedForLang += 1;
-      }
-    }
-  }
-
-  return targets;
-}
-
-async function generateWithRetry(ai, model, systemPrompt, basePrompt, schemaValidator, label) {
+export async function generateValidatedJson(
+  ai,
+  model,
+  systemInstruction,
+  basePrompt,
+  validatorFn,
+  label
+) {
   let feedback = "";
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const prompt = feedback
-      ? `${basePrompt}\n\nYour previous JSON failed strict Zod validation:\n${feedback}\nReturn corrected JSON only.`
+      ? `${basePrompt}\n\nYour previous JSON failed strict validation:\n${feedback}\nReturn corrected JSON only.`
       : basePrompt;
 
     const response = await ai.models.generateContent({
       model,
       contents: prompt,
       config: {
-        systemInstruction: systemPrompt,
+        systemInstruction,
         responseMimeType: "application/json",
-        temperature: 0.4,
+        temperature: 0.35,
       },
     });
 
     const rawText = response.text?.trim() ?? "";
     try {
       const parsed = JSON.parse(rawText);
-      return schemaValidator.parse(parsed);
+      return validatorFn(parsed);
     } catch (err) {
       feedback = err instanceof Error ? err.message : String(err);
       console.warn(`[${label}] Validation attempt ${attempt + 1} failed: ${feedback}`);
@@ -117,10 +87,10 @@ async function generateWithRetry(ai, model, systemPrompt, basePrompt, schemaVali
   throw new Error(`Failed to generate valid ${label} after 3 attempts.`);
 }
 
-function buildMetaPrompt(lang, bpUnit, stage) {
-  return `Generate a UnitMeta JSON object for ${lang.toUpperCase()} Unit ${bpUnit.unitNumber}:
+export function buildUnitMetaPrompt(descriptor, bpUnit, stage) {
+  return `Generate a UnitMeta JSON object for ${descriptor.name} (${descriptor.nativeName}, courseId: "${descriptor.id}") Unit ${bpUnit.unitNumber}:
 - unitId: "${bpUnit.unitId}"
-- language: "${lang}"
+- courseId: "${descriptor.id}"
 - unitNumber: ${bpUnit.unitNumber}
 - stageId: "${bpUnit.stageId}" (${stage.label})
 - title: "${bpUnit.title}"
@@ -128,12 +98,12 @@ function buildMetaPrompt(lang, bpUnit, stage) {
 - communicativeGoal: "${bpUnit.communicativeGoal}"
 - grammarFocus: "${bpUnit.grammarFocus}"
 - culturalNote: "${bpUnit.culturalNote}"
-${bpUnit.austrianFocus ? `- austrianFocus: "${bpUnit.austrianFocus}"` : ""}
+${bpUnit.regionalFocus ? `- regionalFocus: "${bpUnit.regionalFocus}"` : ""}
 
-Required exact JSON shape:
+Exact JSON shape required:
 {
   "unitId": "${bpUnit.unitId}",
-  "language": "${lang}",
+  "courseId": "${descriptor.id}",
   "unitNumber": ${bpUnit.unitNumber},
   "stageId": "${bpUnit.stageId}",
   "title": "${bpUnit.title}",
@@ -141,153 +111,274 @@ Required exact JSON shape:
   "summary": "2 concise human sentences explaining what the learner will handle in real life",
   "estimatedMinutes": 35,
   "communicativeCanDo": ["3 concrete real-world can-do outcomes"],
-  "culturalInsight": "Authentic cultural note (for German, highlight Austrian de-AT and Standard de-DE context)"
+  "culturalInsight": "Authentic cultural note tailored to ${descriptor.name}"
 }`;
 }
 
-function buildTierShardPrompt(lang, bpUnit, stage, tier, forbiddenLexiconIds, forbiddenGrammarIds) {
+export function buildTierShardPrompt(
+  descriptor,
+  bpUnit,
+  stage,
+  tier,
+  forbiddenLexiconIds,
+  forbiddenGrammarIds
+) {
   const tierInfo = TIER_META[tier];
-  const prefix = `${lang}-u${String(bpUnit.unitNumber).padStart(3, "0")}-t${tierInfo.number}`;
-  const isJa = lang === "ja";
-  const requiresRuby = isJa && tier !== "fluent";
+  const prefix = `${descriptor.id}-u${String(bpUnit.unitNumber).padStart(3, "0")}-t${tierInfo.number}`;
+  const tierScope =
+    descriptor.tierDescriptions?.[tier] ?? tierInfo.defaultDescription;
 
-  return `Generate a complete TierShard JSON object for:
+  const hasRuby = Boolean(descriptor.readingFeatures.rubyAnnotations);
+  const requiresRuby = hasRuby && tier !== "fluent";
+  const hasCompoundSplitter = Boolean(
+    descriptor.readingFeatures.compoundSplitter
+  );
+  const variantsList = descriptor.variants ?? [];
+
+  const capabilityInstructions = [
+    `- Authentic, natural ${descriptor.name} (${descriptor.nativeName}) expressions.`,
+    requiresRuby
+      ? `- CRITICAL RUBY RULE: Because this course enables "${descriptor.readingFeatures.rubyAnnotations.label}" (<ruby>), EVERY ideograph/Kanji character in gradedStories[].paragraphs[].rubyHtml AND in every gradedStories[].paragraphs[].segments[].rubyHtml MUST be wrapped inside <ruby>BASE<rt>READING</rt></ruby>. Zero bare ideographs outside <ruby> tags.`
+      : "",
+    hasCompoundSplitter
+      ? `- CRITICAL COMPOUND RULE: Because this course enables "${descriptor.readingFeatures.compoundSplitter.label}", include space tokens {"surface": " "} between words in gradedStories[].paragraphs[].segments and include at least 2 multi-root compound words with "compoundParts": ["Root1", "root2"] where compoundParts joined case-insensitively equals surface exactly.`
+      : `- In gradedStories[].paragraphs[].segments, tokenize words cleanly (including space tokens {"surface": " "} for space-delimited scripts) and include "meaning" (plus "reading" when helpful) on vocabulary tokens so tapping words opens the inline glossary.`,
+    variantsList.length > 0
+      ? `- REGIONAL VARIANTS: This course declares variants ${variantsList.map((v) => `${v.id} (${v.label})`).join(", ")}. Populate variantForms / variantAnswers / variantTargets / regionalNote where regional phrasing differs.`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `Generate a complete TierShard JSON object for ${descriptor.name}:
 - shardId: "${bpUnit.unitId}-${tier}"
 - unitId: "${bpUnit.unitId}"
-- language: "${lang}"
+- courseId: "${descriptor.id}"
 - tier: "${tier}"
 - tierNumber: ${tierInfo.number} (${tierInfo.label})
-- Stage: ${stage.label} (${stage.cefrOrJlpt})
+- Stage: ${stage.label} (${descriptor.proficiencyFramework.name})
 - Unit Theme: "${bpUnit.title}" — ${bpUnit.subtitle}
 - Communicative Goal: ${bpUnit.communicativeGoal}
 - Grammar Focus: ${bpUnit.grammarFocus}
-${bpUnit.austrianFocus ? `- Austrian Regional Focus (de-AT): ${bpUnit.austrianFocus}` : ""}
+${bpUnit.regionalFocus ? `- Regional Focus: ${bpUnit.regionalFocus}` : ""}
 
 Tier Pedagogical Scope:
-${isJa ? tierInfo.descriptionJa : tierInfo.descriptionDe}
+${tierScope}
 
-ID Prefix Rule:
-Prefix EVERY ID in this shard with "${prefix}-" (for example "${prefix}-lex-01", "${prefix}-gram-01", "${prefix}-step-01", "${prefix}-drill-01", "${prefix}-card-01", "${prefix}-story-01", "${prefix}-q-01", "${prefix}-row-01").
-Never reuse any of these existing lexicon IDs: ${JSON.stringify(forbiddenLexiconIds.slice(-160))}
-Never reuse any of these existing grammar IDs: ${JSON.stringify(forbiddenGrammarIds.slice(-100))}
+ID Prefix & Uniqueness Rule:
+Prefix EVERY ID in this shard with "${prefix}-" (e.g. "${prefix}-lex-01", "${prefix}-gram-01", "${prefix}-step-01", "${prefix}-drill-01", "${prefix}-card-01", "${prefix}-story-01", "${prefix}-q-01", "${prefix}-row-01").
+Never reuse any of these existing lexicon IDs: ${JSON.stringify(forbiddenLexiconIds.slice(-140))}
+Never reuse any of these existing grammar IDs: ${JSON.stringify(forbiddenGrammarIds.slice(-90))}
 
-Mandatory Content & Cultural Rules:
-${
-  isJa
-    ? `- Culturally authentic Japanese phrasing.
-- ${
-        requiresRuby
-          ? "CRITICAL: In gradedStories, EVERY Kanji character in paragraph.rubyHtml AND in every segment.rubyHtml MUST be wrapped inside <ruby>漢字<rt>かんじ</rt></ruby>. Zero bare Kanji characters outside <ruby> tags."
-          : "Tier 4 fluent story uses natural unassisted native Japanese prose."
-      }`
-    : `- Prioritize authentic Austrian German (de-AT) phrasing (e.g., Grüß Gott, Sackerl, Bankomat, Erdäpfel, Schlagobers, Verlängerter, Beisl, ÖBB Bahnsteig, Semmel, heuer) where natural, and populate standardGermanVariant / standardGermanText / austrianNote so learners also recognize Standard German (de-DE).
-- CRITICAL: In gradedStories, include space tokens {"surface": " "} between words, and include at least 2 German compound words in segments with compoundParts (e.g. "surface": "Hauptbahnhof", "compoundParts": ["Haupt", "bahn", "hof"]) where compoundParts joined case-insensitively equals surface exactly.`
-}
-- Provide 3 lessonSteps, 2 drills (each drill's correctAnswer MUST exactly match one of its 3-4 options), 5 srsCards (mark spoken-friendly cards phraseLockEligible: true), 1 gradedStories (2-3 paragraphs, 3 comprehension questions with valid correctIndex 0..options.length-1), and 1 referenceSheets (category one of: "particles", "counters", "konbini", "austrian-matrix", "lego-roots", "polite-patterns", "transit-dining", "idioms-register", with 3-5 rows).`;
+Capability & Schema Rules:
+${capabilityInstructions}
+- Provide 3 lessonSteps, 2 drills (correctAnswer MUST appear in options), 5 srsCards (mark spoken-friendly cards phraseLockEligible: true, with courseId: "${descriptor.id}"), 1 gradedStories (courseId: "${descriptor.id}", 2-3 paragraphs, 3 comprehension questions with valid correctIndex 0..options.length-1), and 1 referenceSheets (courseId: "${descriptor.id}", 3-5 rows).`;
 }
 
 async function main() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY environment variable is required to generate daily curriculum shards.");
+    throw new Error(
+      "GEMINI_API_KEY environment variable is required to generate curriculum shards."
+    );
   }
 
-  const { language, unitsCount, model } = parseOptions();
-  const { parsed: rawBlueprint } = await readJsonFile(BLUEPRINT_PATH);
-  const blueprint = SyllabusBlueprintSchema.parse(rawBlueprint);
+  const { targetCourse, unitsPerCourse, model } = parseOptions();
+  const curriculumRoot = resolveCurriculumRoot();
+  const manifestPath = path.join(curriculumRoot, "manifest.json");
 
-  if (!existsSync(MANIFEST_PATH) || !existsSync(LEDGER_PATH)) {
-    const initialScan = await scanAndValidateCurriculum();
-    if (initialScan.errors.length > 0) {
-      throw new Error(`Existing curriculum invalid: ${initialScan.errors.join("; ")}`);
+  const allCourseIds = await discoverCourseIds(curriculumRoot);
+  const selectedCourseIds =
+    targetCourse === "all"
+      ? allCourseIds
+      : allCourseIds.filter((id) => id === targetCourse);
+
+  if (selectedCourseIds.length === 0) {
+    throw new Error(
+      `Target course "${targetCourse}" not found in ${path.join(curriculumRoot, "courses")} (available: ${allCourseIds.join(", ")})`
+    );
+  }
+
+  if (!existsSync(manifestPath)) {
+    const preScan = await scanAndValidateCurriculum(curriculumRoot);
+    if (preScan.errors.length > 0) {
+      throw new Error(`Curriculum invalid before generation: ${preScan.errors.join("; ")}`);
     }
-    await writeManifestAndLedger(initialScan.manifestLanguages, initialScan.ledgerLanguages);
+    await writeManifestAndCourseLedgers(
+      curriculumRoot,
+      preScan.manifestCourses,
+      preScan.courseLedgers
+    );
   }
 
-  const { parsed: rawManifest } = await readJsonFile(MANIFEST_PATH);
+  const { parsed: rawManifest } = await readJsonFile(manifestPath);
   const manifest = ManifestSchema.parse(rawManifest);
-
-  const { parsed: rawLedger } = await readJsonFile(LEDGER_PATH);
-  const ledger = LexiconLedgerSchema.parse(rawLedger);
-
-  const targets = selectNextTargets(blueprint, manifest, language, unitsCount);
-  if (targets.length === 0) {
-    console.log("All 60 units across requested languages are already complete.");
-    return;
-  }
 
   const ai = new GoogleGenAI({ apiKey });
   const systemInstruction =
-    "You are a senior Japanese (JLPT N5-N1) and Austrian/Standard German (CEFR A1-C1) curriculum linguist. Output strictly valid JSON conforming to the requested schema with zero markdown fences.";
+    "You are an expert computational linguist and polyglot curriculum author. Output strictly valid JSON conforming to the requested schema with zero markdown fences.";
 
-  for (const target of targets) {
-    const { lang, blueprintUnit, needsMeta, missingTiers } = target;
-    const folderName = `unit-${String(blueprintUnit.unitNumber).padStart(3, "0")}`;
-    const unitDir = path.join(CURRICULUM_DIR, lang, folderName);
-    await mkdir(unitDir, { recursive: true });
+  let generatedUnitsTotal = 0;
 
-    const stage = blueprint.languages[lang].stages.find(
-      (s) => s.id === blueprintUnit.stageId
+  for (const courseId of selectedCourseIds) {
+    const courseDir = path.join(curriculumRoot, "courses", courseId);
+    const { parsed: rawDesc } = await readJsonFile(
+      path.join(courseDir, "course.json")
     );
-    if (!stage) {
-      throw new Error(`Missing stage ${blueprintUnit.stageId} in blueprint.`);
+    const descriptor = CourseDescriptorSchema.parse(rawDesc);
+
+    const { parsed: rawBp } = await readJsonFile(
+      path.join(courseDir, "syllabus-blueprint.json")
+    );
+    const blueprint = CourseBlueprintSchema.parse(rawBp);
+
+    const ledgerPath = path.join(courseDir, "lexicon-ledger.json");
+    const ledger = existsSync(ledgerPath)
+      ? CourseLexiconLedgerSchema.parse((await readJsonFile(ledgerPath)).parsed)
+      : {
+          schemaVersion: 2,
+          courseId,
+          updatedAt: new Date().toISOString(),
+          unitIds: [],
+          lexiconIds: [],
+          grammarIds: [],
+          orthographyItems: [],
+        };
+
+    const manifestCourse = manifest.courses.find((c) => c.courseId === courseId);
+    const installedByNum = new Map(
+      (manifestCourse?.units ?? []).map((u) => [u.unitNumber, u])
+    );
+
+    const targets = [];
+    for (const bpUnit of blueprint.units) {
+      if (targets.length >= unitsPerCourse) break;
+      const existing = installedByNum.get(bpUnit.unitNumber);
+      if (!existing) {
+        targets.push({
+          bpUnit,
+          needsMeta: true,
+          missingTiers: [...TIER_ORDER],
+        });
+        continue;
+      }
+      const missingTiers = TIER_ORDER.filter((t) => !existing.shards[t]);
+      if (missingTiers.length > 0) {
+        targets.push({
+          bpUnit,
+          needsMeta: false,
+          missingTiers,
+        });
+      }
     }
 
-    if (needsMeta) {
-      console.log(`Generating ${lang}/${folderName}/meta.json (${blueprintUnit.title})...`);
-      const meta = await generateWithRetry(
-        ai,
-        model,
-        systemInstruction,
-        buildMetaPrompt(lang, blueprintUnit, stage),
-        UnitMetaSchema,
-        `${lang}/${folderName}/meta.json`
-      );
-      await writeFile(
-        path.join(unitDir, "meta.json"),
-        `${JSON.stringify(meta, null, 2)}\n`,
-        "utf8"
-      );
+    if (targets.length === 0) {
+      console.log(`[${courseId}] All ${blueprint.units.length} units already complete.`);
+      continue;
     }
 
-    const forbiddenLex = [...ledger.languages[lang].lexiconIds];
-    const forbiddenGram = [...ledger.languages[lang].grammarIds];
+    const forbiddenLex = [...ledger.lexiconIds];
+    const forbiddenGram = [...ledger.grammarIds];
 
-    for (const tier of missingTiers) {
-      const shardFile = TIER_META[tier].shardFile;
-      console.log(`Generating ${lang}/${folderName}/${shardFile}...`);
-      const shard = await generateWithRetry(
-        ai,
-        model,
-        systemInstruction,
-        buildTierShardPrompt(lang, blueprintUnit, stage, tier, forbiddenLex, forbiddenGram),
-        TierShardSchema,
-        `${lang}/${folderName}/${shardFile}`
-      );
+    for (const target of targets) {
+      const folderName = `unit-${String(target.bpUnit.unitNumber).padStart(3, "0")}`;
+      const unitDir = path.join(courseDir, "units", folderName);
+      await mkdir(unitDir, { recursive: true });
 
-      forbiddenLex.push(...shard.introducedLexiconIds);
-      forbiddenGram.push(...shard.introducedGrammarIds);
+      const stage =
+        descriptor.proficiencyFramework.stages.find(
+          (s) => s.id === target.bpUnit.stageId
+        ) ?? descriptor.proficiencyFramework.stages[0];
 
-      await writeFile(
-        path.join(unitDir, shardFile),
-        `${JSON.stringify(shard, null, 2)}\n`,
-        "utf8"
-      );
+      if (target.needsMeta) {
+        console.log(
+          `Generating courses/${courseId}/units/${folderName}/meta.json (${target.bpUnit.title})...`
+        );
+        const meta = await generateValidatedJson(
+          ai,
+          model,
+          systemInstruction,
+          buildUnitMetaPrompt(descriptor, target.bpUnit, stage),
+          (data) => UnitMetaSchema.parse(data),
+          `${courseId}/${folderName}/meta.json`
+        );
+        await writeFile(
+          path.join(unitDir, "meta.json"),
+          `${JSON.stringify(meta, null, 2)}\n`,
+          "utf8"
+        );
+      }
+
+      for (const tier of target.missingTiers) {
+        const shardFile = TIER_META[tier].shardFile;
+        console.log(`Generating courses/${courseId}/units/${folderName}/${shardFile}...`);
+        const shard = await generateValidatedJson(
+          ai,
+          model,
+          systemInstruction,
+          buildTierShardPrompt(
+            descriptor,
+            target.bpUnit,
+            stage,
+            tier,
+            forbiddenLex,
+            forbiddenGram
+          ),
+          (data) => {
+            const parsedShard = TierShardSchema.parse(data);
+            const capIssues = validateShardReadingCapabilities(
+              parsedShard,
+              descriptor
+            );
+            if (capIssues.length > 0) {
+              throw new Error(capIssues.join("; "));
+            }
+            return parsedShard;
+          },
+          `${courseId}/${folderName}/${shardFile}`
+        );
+
+        forbiddenLex.push(...shard.introducedLexiconIds);
+        forbiddenGram.push(...shard.introducedGrammarIds);
+
+        await writeFile(
+          path.join(unitDir, shardFile),
+          `${JSON.stringify(shard, null, 2)}\n`,
+          "utf8"
+        );
+      }
+      generatedUnitsTotal += 1;
     }
   }
 
-  const postScan = await scanAndValidateCurriculum();
+  if (generatedUnitsTotal === 0) {
+    return;
+  }
+
+  const postScan = await scanAndValidateCurriculum(curriculumRoot);
   if (postScan.errors.length > 0) {
     throw new Error(
-      `Generated shards failed global curriculum checks:\n${postScan.errors.join("\n")}`
+      `Generated shards failed global validation:\n${postScan.errors.join("\n")}`
     );
   }
 
-  await writeManifestAndLedger(postScan.manifestLanguages, postScan.ledgerLanguages);
-  console.log(`Updated manifest.json and lexicon-ledger.json for ${targets.length} unit target(s).`);
+  await writeManifestAndCourseLedgers(
+    curriculumRoot,
+    postScan.manifestCourses,
+    postScan.courseLedgers
+  );
+  console.log(
+    `Updated manifest.json and course ledgers after generating ${generatedUnitsTotal} unit target(s).`
+  );
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+const isDirectExecution =
+  process.argv[1] &&
+  path.resolve(process.argv[1]).endsWith("generate-daily-content.mjs");
+
+if (isDirectExecution) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

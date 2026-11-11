@@ -3,24 +3,23 @@ import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
-  LexiconLedgerSchema,
+  CourseBlueprintSchema,
+  CourseDescriptorSchema,
+  CourseLexiconLedgerSchema,
   ManifestSchema,
-  SyllabusBlueprintSchema,
   TIER_META,
   TIER_ORDER,
   TierShardSchema,
   UnitMetaSchema,
+  validateShardReadingCapabilities,
 } from "../../src/schemas/curriculum.ts";
 
-export const CURRICULUM_DIR = path.resolve(process.cwd(), "public/curriculum");
-export const BLUEPRINT_PATH = path.join(CURRICULUM_DIR, "syllabus-blueprint.json");
-export const MANIFEST_PATH = path.join(CURRICULUM_DIR, "manifest.json");
-export const LEDGER_PATH = path.join(CURRICULUM_DIR, "lexicon-ledger.json");
-
-const LANGUAGE_TITLES = {
-  ja: "Japanese — Kana to JLPT N1",
-  de: "German & Austrian — Survival Roots to CEFR C1",
-};
+export function resolveCurriculumRoot() {
+  const envDir = process.env.CURRICULUM_DIR?.trim();
+  return envDir
+    ? path.resolve(process.cwd(), envDir)
+    : path.resolve(process.cwd(), "curriculum");
+}
 
 export function sha256Hex(buffer) {
   return createHash("sha256").update(buffer).digest("hex");
@@ -32,14 +31,28 @@ export async function readJsonFile(filePath) {
   return { raw, parsed };
 }
 
-export async function scanAndValidateCurriculum() {
-  if (!existsSync(BLUEPRINT_PATH)) {
-    throw new Error(`Missing syllabus blueprint at ${BLUEPRINT_PATH}`);
+export async function discoverCourseIds(curriculumRoot = resolveCurriculumRoot()) {
+  const coursesDir = path.join(curriculumRoot, "courses");
+  if (!existsSync(coursesDir)) {
+    return [];
   }
+  const entries = await readdir(coursesDir, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+    .map((entry) => entry.name)
+    .sort((a, b) => {
+      if (a === "ja") return -1;
+      if (b === "ja") return 1;
+      if (a === "de" && b !== "ja") return -1;
+      if (b === "de" && a !== "ja") return 1;
+      return a.localeCompare(b);
+    });
+}
 
-  const { parsed: rawBlueprint } = await readJsonFile(BLUEPRINT_PATH);
-  const blueprint = SyllabusBlueprintSchema.parse(rawBlueprint);
-
+export async function scanAndValidateCurriculum(
+  curriculumRoot = resolveCurriculumRoot()
+) {
+  const courseIds = await discoverCourseIds(curriculumRoot);
   const errors = [];
   const globalIds = new Map();
 
@@ -55,35 +68,94 @@ export async function scanAndValidateCurriculum() {
     }
   }
 
-  const manifestLanguages = {};
-  const ledgerLanguages = {};
+  if (courseIds.length === 0) {
+    errors.push(`No course directories found in ${path.join(curriculumRoot, "courses")}`);
+  }
 
-  for (const lang of ["ja", "de"]) {
-    const langDir = path.join(CURRICULUM_DIR, lang);
+  const manifestCourses = [];
+  const courseLedgers = {};
+
+  for (const courseId of courseIds) {
+    const courseDir = path.join(curriculumRoot, "courses", courseId);
+    const descriptorPath = path.join(courseDir, "course.json");
+    const blueprintPath = path.join(courseDir, "syllabus-blueprint.json");
+    const unitsRoot = path.join(courseDir, "units");
+
+    if (!existsSync(descriptorPath)) {
+      errors.push(`Missing course.json in courses/${courseId}`);
+      continue;
+    }
+    if (!existsSync(blueprintPath)) {
+      errors.push(`Missing syllabus-blueprint.json in courses/${courseId}`);
+      continue;
+    }
+
+    let descriptor;
+    try {
+      const { parsed } = await readJsonFile(descriptorPath);
+      descriptor = CourseDescriptorSchema.parse(parsed);
+      if (descriptor.id !== courseId) {
+        errors.push(
+          `courses/${courseId}/course.json declares id "${descriptor.id}" instead of "${courseId}"`
+        );
+      }
+    } catch (err) {
+      errors.push(`Invalid courses/${courseId}/course.json: ${err.message}`);
+      continue;
+    }
+
+    let blueprint;
+    try {
+      const { parsed } = await readJsonFile(blueprintPath);
+      blueprint = CourseBlueprintSchema.parse(parsed);
+      if (blueprint.courseId !== courseId) {
+        errors.push(
+          `courses/${courseId}/syllabus-blueprint.json declares courseId "${blueprint.courseId}"`
+        );
+      }
+    } catch (err) {
+      errors.push(
+        `Invalid courses/${courseId}/syllabus-blueprint.json: ${err.message}`
+      );
+      continue;
+    }
+
+    const validStageIds = new Set(
+      descriptor.proficiencyFramework.stages.map((s) => s.id)
+    );
+    for (const bpStage of blueprint.stages) {
+      if (!validStageIds.has(bpStage.id)) {
+        errors.push(
+          `courses/${courseId}: blueprint stage "${bpStage.id}" missing in course.json proficiencyFramework.stages`
+        );
+      }
+    }
+
     const blueprintMap = new Map(
-      blueprint.languages[lang].units.map((u) => [u.unitNumber, u])
+      blueprint.units.map((u) => [u.unitNumber, u])
     );
 
-    const dirEntries = existsSync(langDir)
-      ? await readdir(langDir, { withFileTypes: true })
+    const unitDirEntries = existsSync(unitsRoot)
+      ? await readdir(unitsRoot, { withFileTypes: true })
       : [];
-    const unitFolders = dirEntries
-      .filter((entry) => entry.isDirectory() && /^unit-\d{3}$/.test(entry.name))
-      .map((entry) => entry.name)
+    const unitFolders = unitDirEntries
+      .filter((e) => e.isDirectory() && /^unit-\d{3}$/.test(e.name))
+      .map((e) => e.name)
       .sort();
 
     const manifestUnits = [];
     const unitIds = [];
     const lexiconSet = new Set();
     const grammarSet = new Set();
-    const kanjiOrRootSet = new Set();
+    const orthographySet = new Set();
 
     for (const folder of unitFolders) {
-      const unitPath = path.join(langDir, folder);
+      const unitPath = path.join(unitsRoot, folder);
       const metaPath = path.join(unitPath, "meta.json");
+      const relUnitDir = `courses/${courseId}/units/${folder}`;
 
       if (!existsSync(metaPath)) {
-        errors.push(`Missing meta.json in ${lang}/${folder}`);
+        errors.push(`Missing meta.json in ${relUnitDir}`);
         continue;
       }
 
@@ -92,35 +164,34 @@ export async function scanAndValidateCurriculum() {
         const { parsed } = await readJsonFile(metaPath);
         unitMeta = UnitMetaSchema.parse(parsed);
       } catch (err) {
-        errors.push(`Invalid meta.json in ${lang}/${folder}: ${err.message}`);
+        errors.push(`Invalid ${relUnitDir}/meta.json: ${err.message}`);
         continue;
       }
 
       const expectedFolder = `unit-${String(unitMeta.unitNumber).padStart(3, "0")}`;
       if (folder !== expectedFolder) {
         errors.push(
-          `Folder "${folder}" does not match unitNumber ${unitMeta.unitNumber}`
+          `${relUnitDir}: folder name mismatches unitNumber ${unitMeta.unitNumber}`
         );
       }
-
-      if (unitMeta.language !== lang) {
+      if (unitMeta.courseId !== courseId) {
         errors.push(
-          `Unit ${unitMeta.unitId} declares language "${unitMeta.language}" inside ${lang}/`
+          `${relUnitDir}/meta.json: courseId "${unitMeta.courseId}" mismatches "${courseId}"`
         );
       }
 
       const bpUnit = blueprintMap.get(unitMeta.unitNumber);
       if (!bpUnit) {
         errors.push(
-          `Unit ${unitMeta.unitId} (#${unitMeta.unitNumber}) not found in syllabus-blueprint.json`
+          `${relUnitDir}: unit #${unitMeta.unitNumber} not declared in syllabus-blueprint.json`
         );
       } else if (bpUnit.stageId !== unitMeta.stageId) {
         errors.push(
-          `Unit ${unitMeta.unitId} stageId "${unitMeta.stageId}" mismatches blueprint "${bpUnit.stageId}"`
+          `${relUnitDir}: stageId "${unitMeta.stageId}" mismatches blueprint "${bpUnit.stageId}"`
         );
       }
 
-      registerUniqueId("unit", unitMeta.unitId, `${lang}/${folder}/meta.json`);
+      registerUniqueId("unit", unitMeta.unitId, `${relUnitDir}/meta.json`);
       unitIds.push(unitMeta.unitId);
 
       const shardDescriptors = {};
@@ -132,7 +203,7 @@ export async function scanAndValidateCurriculum() {
           continue;
         }
 
-        const originLabel = `${lang}/${folder}/${shardMeta.shardFile}`;
+        const originLabel = `${relUnitDir}/${shardMeta.shardFile}`;
         let rawBytes;
         let shard;
         try {
@@ -144,37 +215,42 @@ export async function scanAndValidateCurriculum() {
           continue;
         }
 
+        const capabilityIssues = validateShardReadingCapabilities(
+          shard,
+          descriptor
+        );
+        for (const capIssue of capabilityIssues) {
+          errors.push(`${originLabel}: ${capIssue}`);
+        }
+
         if (shard.unitId !== unitMeta.unitId) {
           errors.push(
             `${originLabel}: shard unitId "${shard.unitId}" mismatches "${unitMeta.unitId}"`
           );
         }
-        if (shard.language !== lang) {
+        if (shard.courseId !== courseId) {
           errors.push(
-            `${originLabel}: shard language "${shard.language}" mismatches "${lang}"`
+            `${originLabel}: shard courseId "${shard.courseId}" mismatches "${courseId}"`
           );
         }
         if (shard.tier !== tier || shard.tierNumber !== shardMeta.number) {
           errors.push(
-            `${originLabel}: tier "${shard.tier}" (#${shard.tierNumber}) mismatches file ${shardMeta.shardFile}`
+            `${originLabel}: tier "${shard.tier}" (#${shard.tierNumber}) mismatches ${shardMeta.shardFile}`
           );
         }
 
         registerUniqueId("shard", shard.shardId, originLabel);
 
         for (const lexId of shard.introducedLexiconIds) {
-          registerUniqueId(`lexicon-${lang}`, lexId, originLabel);
+          registerUniqueId(`lexicon-${courseId}`, lexId, originLabel);
           lexiconSet.add(lexId);
         }
         for (const gramId of shard.introducedGrammarIds) {
-          registerUniqueId(`grammar-${lang}`, gramId, originLabel);
+          registerUniqueId(`grammar-${courseId}`, gramId, originLabel);
           grammarSet.add(gramId);
         }
-        for (const k of shard.introducedKanji ?? []) {
-          kanjiOrRootSet.add(k);
-        }
-        for (const r of shard.introducedRoots ?? []) {
-          kanjiOrRootSet.add(r);
+        for (const orth of shard.introducedOrthography ?? []) {
+          orthographySet.add(orth);
         }
 
         for (const step of shard.lessonSteps) {
@@ -195,14 +271,22 @@ export async function scanAndValidateCurriculum() {
 
         for (const card of shard.srsCards) {
           registerUniqueId("card", card.id, originLabel);
-          if (card.unitId !== unitMeta.unitId || card.language !== lang || card.tier !== tier) {
+          if (
+            card.unitId !== unitMeta.unitId ||
+            card.courseId !== courseId ||
+            card.tier !== tier
+          ) {
             errors.push(`${originLabel}: card "${card.id}" metadata mismatches parent shard`);
           }
         }
 
         for (const story of shard.gradedStories) {
           registerUniqueId("story", story.id, originLabel);
-          if (story.unitId !== unitMeta.unitId || story.language !== lang || story.tier !== tier) {
+          if (
+            story.unitId !== unitMeta.unitId ||
+            story.courseId !== courseId ||
+            story.tier !== tier
+          ) {
             errors.push(`${originLabel}: story "${story.id}" metadata mismatches parent shard`);
           }
           for (const q of story.questions) {
@@ -216,7 +300,16 @@ export async function scanAndValidateCurriculum() {
         }
 
         for (const sheet of shard.referenceSheets) {
-          registerUniqueId("ref-sheet-instance", `${shard.shardId}:${sheet.id}`, originLabel);
+          registerUniqueId(
+            "ref-sheet-instance",
+            `${shard.shardId}:${sheet.id}`,
+            originLabel
+          );
+          if (sheet.courseId !== courseId) {
+            errors.push(
+              `${originLabel}: referenceSheet "${sheet.id}" courseId mismatches "${courseId}"`
+            );
+          }
           for (const row of sheet.rows) {
             registerUniqueId("ref-row", row.id, originLabel);
           }
@@ -234,7 +327,7 @@ export async function scanAndValidateCurriculum() {
       manifestUnits.push({
         unitId: unitMeta.unitId,
         unitNumber: unitMeta.unitNumber,
-        directory: `${lang}/${folder}`,
+        directory: relUnitDir,
         stageId: unitMeta.stageId,
         title: unitMeta.title,
         subtitle: unitMeta.subtitle,
@@ -243,46 +336,74 @@ export async function scanAndValidateCurriculum() {
       });
     }
 
-    manifestLanguages[lang] = {
-      language: lang,
-      title: LANGUAGE_TITLES[lang],
-      stages: blueprint.languages[lang].stages,
-      units: manifestUnits,
-    };
+    const { scriptGrids, ...descriptorWithoutGrids } = descriptor;
 
-    ledgerLanguages[lang] = {
+    manifestCourses.push({
+      courseId,
+      version: 2,
+      courseDescriptorPath: `courses/${courseId}/course.json`,
+      blueprintPath: `courses/${courseId}/syllabus-blueprint.json`,
+      unitCount: manifestUnits.length,
+      totalPlannedUnits: blueprint.units.length,
+      descriptor: {
+        ...descriptorWithoutGrids,
+        hasScriptGrids: Boolean(scriptGrids && scriptGrids.length > 0),
+      },
+      units: manifestUnits,
+    });
+
+    courseLedgers[courseId] = {
+      schemaVersion: 2,
+      courseId,
+      updatedAt: new Date().toISOString(),
       unitIds,
       lexiconIds: Array.from(lexiconSet),
       grammarIds: Array.from(grammarSet),
-      kanjiOrRoots: Array.from(kanjiOrRootSet),
+      orthographyItems: Array.from(orthographySet),
     };
   }
 
   return {
+    curriculumRoot,
+    courseIds,
     errors,
-    blueprint,
-    manifestLanguages,
-    ledgerLanguages,
+    manifestCourses,
+    courseLedgers,
   };
 }
 
-export async function writeManifestAndLedger(manifestLanguages, ledgerLanguages, timestamp) {
+export async function writeManifestAndCourseLedgers(
+  curriculumRoot,
+  manifestCourses,
+  courseLedgers,
+  timestamp
+) {
   const updatedAt = timestamp || new Date().toISOString();
 
   const manifest = ManifestSchema.parse({
-    schemaVersion: 1,
+    schemaVersion: 2,
     updatedAt,
-    languages: manifestLanguages,
+    courses: manifestCourses,
   });
 
-  const ledger = LexiconLedgerSchema.parse({
-    schemaVersion: 1,
-    updatedAt,
-    languages: ledgerLanguages,
-  });
+  const manifestPath = path.join(curriculumRoot, "manifest.json");
+  await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 
-  await writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
-  await writeFile(LEDGER_PATH, `${JSON.stringify(ledger, null, 2)}\n`, "utf8");
+  const writtenLedgers = {};
+  for (const [courseId, rawLedger] of Object.entries(courseLedgers)) {
+    const ledger = CourseLexiconLedgerSchema.parse({
+      ...rawLedger,
+      updatedAt,
+    });
+    const ledgerPath = path.join(
+      curriculumRoot,
+      "courses",
+      courseId,
+      "lexicon-ledger.json"
+    );
+    await writeFile(ledgerPath, `${JSON.stringify(ledger, null, 2)}\n`, "utf8");
+    writtenLedgers[courseId] = ledger;
+  }
 
-  return { manifest, ledger };
+  return { manifest, writtenLedgers };
 }

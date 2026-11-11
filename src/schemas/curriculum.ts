@@ -1,7 +1,11 @@
 import { z } from "zod";
 
-export const LanguageCodeSchema = z.enum(["ja", "de"]);
-export type LanguageCode = z.infer<typeof LanguageCodeSchema>;
+export const CourseIdSchema = z
+  .string()
+  .min(2)
+  .max(24)
+  .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$/);
+export type CourseId = z.infer<typeof CourseIdSchema>;
 
 export const UnderstandingTierSchema = z.enum([
   "essential",
@@ -25,8 +29,7 @@ export const TIER_META: Record<
     label: string;
     shortLabel: string;
     shardFile: string;
-    descriptionJa: string;
-    descriptionDe: string;
+    defaultDescription: string;
   }
 > = {
   essential: {
@@ -34,40 +37,32 @@ export const TIER_META: Record<
     label: "Necessary Words",
     shortLabel: "Necessary Words",
     shardFile: "tier-1-essential.json",
-    descriptionJa:
-      "Survival phrases, polite greetings, numbers, prices, menu & station signs, and Hiragana/Katakana recognition.",
-    descriptionDe:
-      "Polite Austrian & German greetings, numbers, signs, café & transit essentials, and compound-word root splitting.",
+    defaultDescription:
+      "High-frequency survival phrases, polite greetings, numbers, prices, transit & menu signage, and core script or word-root recognition.",
   },
   travel: {
     number: 2,
     label: "Travel Ready",
     shortLabel: "Travel Ready",
     shardFile: "tier-2-travel.json",
-    descriptionJa:
-      "Adds Desu/Masu sentence builders, counters, izakaya & restaurant ordering, directions, konbini interactions, and survival Kanji.",
-    descriptionDe:
-      "Adds polite requests (Ich hätte gern...), Kaffeehaus & Beisl ordering, ÖBB rail transfers, hotel check-in, and practical phrases.",
+    defaultDescription:
+      "Polite sentence builders, counters & quantities, restaurant and café ordering, directions, station transfers, and everyday interactions.",
   },
   conversational: {
     number: 3,
     label: "Conversational",
     shortLabel: "Conversational",
     shardFile: "tier-3-conversational.json",
-    descriptionJa:
-      "Unscripted social give-and-take (~JLPT N4–N3): plain/casual forms, past & conditional storytelling, multi-clause connectors, and 400+ Kanji.",
-    descriptionDe:
-      "Natural conversation (~CEFR B1): Perfekt storytelling, subordinate connectors (weil, obwohl), everyday banter, and Austrian ear-tuning.",
+    defaultDescription:
+      "Unscripted social give-and-take: casual and polite registers, past & conditional storytelling, multi-clause connectors, and regional ear-tuning.",
   },
   fluent: {
     number: 4,
     label: "Full Fluency",
     shortLabel: "Full Fluency",
     shardFile: "tier-4-fluent.json",
-    descriptionJa:
-      "Complete mastery (JLPT N1): honorific Keigo, nuanced idioms, 2,136 Jōyō Kanji, professional register, and unassisted native readings.",
-    descriptionDe:
-      "Complete mastery (CEFR C1): Konjunktiv II diplomacy, participial structures, regional idioms, abstract discourse, and native prose.",
+    defaultDescription:
+      "Complete mastery: diplomatic & honorific register, nuanced idioms, abstract and professional topics, and unassisted native readings.",
   },
 };
 
@@ -83,19 +78,101 @@ export function isTierIncluded(
   return TIER_ORDER.indexOf(itemTier) <= TIER_ORDER.indexOf(userTargetTier);
 }
 
-const KANJI_REGEX = /[\u4e00-\u9faf\u3400-\u4dbf]/;
+const CJK_IDEOGRAPH_REGEX = /[\u4e00-\u9faf\u3400-\u4dbf]/;
 const RUBY_PAIR_REGEX = /<ruby>[^<]+<rt>[^<]+<\/rt><\/ruby>/g;
 
-export function hasUnannotatedKanji(markup: string): boolean {
-  const stripped = markup.replace(RUBY_PAIR_REGEX, "");
-  return KANJI_REGEX.test(stripped);
+export function containsIdeographs(text: string): boolean {
+  return CJK_IDEOGRAPH_REGEX.test(text);
 }
 
-export const RegionalVariantSchema = z.object({
-  nativeText: z.string().min(1),
-  note: z.string().min(1),
+export function hasUnannotatedIdeographs(markup: string): boolean {
+  const stripped = markup.replace(RUBY_PAIR_REGEX, "");
+  return CJK_IDEOGRAPH_REGEX.test(stripped);
+}
+
+export const ProficiencyStageSchema = z.object({
+  id: z.string().min(1),
+  stageNumber: z.number().int().min(1).max(12).optional(),
+  label: z.string().min(1),
+  cefrOrJlpt: z.string().optional(),
+  summary: z.string().min(1),
+  recommendedTier: UnderstandingTierSchema.optional(),
 });
-export type RegionalVariant = z.infer<typeof RegionalVariantSchema>;
+export type ProficiencyStage = z.infer<typeof ProficiencyStageSchema>;
+
+export const CourseVariantSchema = z.object({
+  id: z.string().min(2),
+  label: z.string().min(1),
+  ttsLocale: z.string().min(2),
+  defaultEnabled: z.boolean().optional(),
+  description: z.string().optional(),
+});
+export type CourseVariant = z.infer<typeof CourseVariantSchema>;
+
+export const FeatureToggleDescriptorSchema = z.object({
+  enabledByDefault: z.boolean(),
+  label: z.string().min(1),
+});
+export type FeatureToggleDescriptor = z.infer<
+  typeof FeatureToggleDescriptorSchema
+>;
+
+export const ReadingFeaturesSchema = z.object({
+  rubyAnnotations: FeatureToggleDescriptorSchema.optional(),
+  compoundSplitter: FeatureToggleDescriptorSchema.optional(),
+  romanizationLine: FeatureToggleDescriptorSchema.optional(),
+});
+export type ReadingFeatures = z.infer<typeof ReadingFeaturesSchema>;
+
+export const ScriptGridCellSchema = z.object({
+  symbol: z.string().min(1),
+  sublabel: z.string().min(1),
+  tts: z.string().min(1),
+  sampleWord: z.string().optional(),
+  sampleMeaning: z.string().optional(),
+});
+export type ScriptGridCell = z.infer<typeof ScriptGridCellSchema>;
+
+export const ScriptGridSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  columns: z.number().int().min(2).max(12),
+  cells: z.array(ScriptGridCellSchema.nullable()).min(1),
+});
+export type ScriptGrid = z.infer<typeof ScriptGridSchema>;
+
+export const CourseDescriptorSchema = z.object({
+  id: CourseIdSchema,
+  name: z.string().min(1),
+  nativeName: z.string().min(1),
+  summary: z.string().min(1),
+  textDirection: z.enum(["ltr", "rtl"]),
+  ttsLocales: z.array(z.string().min(2)).min(1),
+  sttLocale: z.string().min(2),
+  tierDescriptions: z
+    .object({
+      essential: z.string().min(1),
+      travel: z.string().min(1),
+      conversational: z.string().min(1),
+      fluent: z.string().min(1),
+    })
+    .optional(),
+  proficiencyFramework: z.object({
+    name: z.string().min(1),
+    stages: z.array(ProficiencyStageSchema).min(1),
+  }),
+  variants: z.array(CourseVariantSchema).optional(),
+  readingFeatures: ReadingFeaturesSchema,
+  scriptGrids: z.array(ScriptGridSchema).optional(),
+});
+export type CourseDescriptor = z.infer<typeof CourseDescriptorSchema>;
+
+export const VariantExpressionSchema = z.object({
+  nativeText: z.string().min(1),
+  romanization: z.string().optional(),
+  note: z.string().optional(),
+});
+export type VariantExpression = z.infer<typeof VariantExpressionSchema>;
 
 export const LessonStepSchema = z.object({
   id: z.string().min(1),
@@ -108,7 +185,8 @@ export const LessonStepSchema = z.object({
   romanization: z.string().optional(),
   translation: z.string().min(1),
   literalBreakdown: z.string().optional(),
-  standardGermanVariant: RegionalVariantSchema.optional(),
+  variantForms: z.record(z.string(), VariantExpressionSchema).optional(),
+  regionalNote: z.string().optional(),
   compoundParts: z.array(z.string().min(1)).min(2).optional(),
   usageTip: z.string().optional(),
 });
@@ -123,7 +201,7 @@ export const DrillSchema = z.object({
   options: z.array(z.string().min(1)).min(3).max(4),
   correctAnswer: z.string().min(1),
   acceptedVariants: z.array(z.string().min(1)).optional(),
-  standardGermanAnswer: z.string().optional(),
+  variantAnswers: z.record(z.string(), z.string().min(1)).optional(),
   explanation: z.string().min(1),
 });
 export type Drill = z.infer<typeof DrillSchema>;
@@ -131,7 +209,7 @@ export type Drill = z.infer<typeof DrillSchema>;
 export const SrsCardSchema = z.object({
   id: z.string().min(1),
   unitId: z.string().min(1),
-  language: LanguageCodeSchema,
+  courseId: CourseIdSchema,
   tier: UnderstandingTierSchema,
   frontPrompt: z.string().min(1),
   targetText: z.string().min(1),
@@ -141,8 +219,8 @@ export const SrsCardSchema = z.object({
   contextRubyHtml: z.string().optional(),
   contextTranslation: z.string().min(1),
   compoundParts: z.array(z.string().min(1)).min(2).optional(),
-  austrianNote: z.string().optional(),
-  standardGermanText: z.string().optional(),
+  variantTargets: z.record(z.string(), z.string().min(1)).optional(),
+  regionalNote: z.string().optional(),
   phraseLockEligible: z.boolean(),
 });
 export type SrsCard = z.infer<typeof SrsCardSchema>;
@@ -174,100 +252,18 @@ export const StoryQuestionSchema = z.object({
 });
 export type StoryQuestion = z.infer<typeof StoryQuestionSchema>;
 
-export const GradedStorySchema = z
-  .object({
-    id: z.string().min(1),
-    unitId: z.string().min(1),
-    language: LanguageCodeSchema,
-    tier: UnderstandingTierSchema,
-    title: z.string().min(1),
-    titleTranslation: z.string().min(1),
-    setting: z.string().min(1),
-    paragraphs: z.array(StoryParagraphSchema).min(2),
-    questions: z.array(StoryQuestionSchema).length(3),
-  })
-  .superRefine((story, ctx) => {
-    const requiresFurigana =
-      story.language === "ja" && story.tier !== "fluent";
-
-    if (requiresFurigana) {
-      story.paragraphs.forEach((paragraph, pIdx) => {
-        if (KANJI_REGEX.test(paragraph.nativeText)) {
-          if (!paragraph.rubyHtml || !paragraph.rubyHtml.includes("<ruby>")) {
-            ctx.addIssue({
-              code: "custom",
-              path: ["paragraphs", pIdx, "rubyHtml"],
-              message:
-                "Japanese stories in Tiers 1-3 must include <ruby> markup whenever Kanji appears.",
-            });
-          } else if (hasUnannotatedKanji(paragraph.rubyHtml)) {
-            ctx.addIssue({
-              code: "custom",
-              path: ["paragraphs", pIdx, "rubyHtml"],
-              message:
-                "Every Kanji character in Japanese Tiers 1-3 rubyHtml must be wrapped inside <ruby>...<rt>...</rt></ruby>.",
-            });
-          }
-        }
-
-        paragraph.segments.forEach((seg, sIdx) => {
-          if (KANJI_REGEX.test(seg.surface)) {
-            if (!seg.rubyHtml || hasUnannotatedKanji(seg.rubyHtml)) {
-              ctx.addIssue({
-                code: "custom",
-                path: ["paragraphs", pIdx, "segments", sIdx, "rubyHtml"],
-                message: `Token "${seg.surface}" contains Kanji and requires complete <ruby> markup in Tiers 1-3.`,
-              });
-            }
-          }
-        });
-      });
-    }
-
-    if (story.language === "de") {
-      let compoundCount = 0;
-      story.paragraphs.forEach((paragraph, pIdx) => {
-        paragraph.segments.forEach((seg, sIdx) => {
-          if (seg.compoundParts && seg.compoundParts.length >= 2) {
-            compoundCount += 1;
-            const joined = seg.compoundParts.join("").toLowerCase();
-            const cleanSurface = seg.surface
-              .replace(/[.,!?;:"„“»«()]/g, "")
-              .toLowerCase();
-            if (joined !== cleanSurface) {
-              ctx.addIssue({
-                code: "custom",
-                path: ["paragraphs", pIdx, "segments", sIdx, "compoundParts"],
-                message: `Compound parts [${seg.compoundParts.join(", ")}] must join to match "${cleanSurface}".`,
-              });
-            }
-          }
-        });
-      });
-
-      if (compoundCount === 0) {
-        ctx.addIssue({
-          code: "custom",
-          path: ["paragraphs"],
-          message:
-            "German stories must include at least one compound word with root-split compoundParts.",
-        });
-      }
-    }
-  });
+export const GradedStorySchema = z.object({
+  id: z.string().min(1),
+  unitId: z.string().min(1),
+  courseId: CourseIdSchema,
+  tier: UnderstandingTierSchema,
+  title: z.string().min(1),
+  titleTranslation: z.string().min(1),
+  setting: z.string().min(1),
+  paragraphs: z.array(StoryParagraphSchema).min(2),
+  questions: z.array(StoryQuestionSchema).length(3),
+});
 export type GradedStory = z.infer<typeof GradedStorySchema>;
-
-export const ReferenceCategorySchema = z.enum([
-  "particles",
-  "counters",
-  "konbini",
-  "austrian-matrix",
-  "lego-roots",
-  "polite-patterns",
-  "transit-dining",
-  "idioms-register",
-]);
-export type ReferenceCategory = z.infer<typeof ReferenceCategorySchema>;
 
 export const ReferenceRowSchema = z.object({
   id: z.string().min(1),
@@ -283,8 +279,8 @@ export type ReferenceRow = z.infer<typeof ReferenceRowSchema>;
 
 export const ReferenceSheetSchema = z.object({
   id: z.string().min(1),
-  category: ReferenceCategorySchema,
-  language: LanguageCodeSchema,
+  category: z.string().min(1),
+  courseId: CourseIdSchema,
   tier: UnderstandingTierSchema,
   title: z.string().min(1),
   subtitle: z.string().min(1),
@@ -295,13 +291,12 @@ export type ReferenceSheet = z.infer<typeof ReferenceSheetSchema>;
 export const TierShardSchema = z.object({
   shardId: z.string().min(1),
   unitId: z.string().min(1),
-  language: LanguageCodeSchema,
+  courseId: CourseIdSchema,
   tier: UnderstandingTierSchema,
   tierNumber: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
   focusSummary: z.string().min(1),
   introducedLexiconIds: z.array(z.string().min(1)).min(1),
-  introducedKanji: z.array(z.string().min(1)).optional(),
-  introducedRoots: z.array(z.string().min(1)).optional(),
+  introducedOrthography: z.array(z.string().min(1)).optional(),
   introducedGrammarIds: z.array(z.string().min(1)),
   lessonSteps: z.array(LessonStepSchema).min(2),
   drills: z.array(DrillSchema).min(2),
@@ -311,10 +306,77 @@ export const TierShardSchema = z.object({
 });
 export type TierShard = z.infer<typeof TierShardSchema>;
 
+export function validateShardReadingCapabilities(
+  shard: TierShard,
+  descriptor: CourseDescriptor
+): string[] {
+  const issues: string[] = [];
+  const needsRubyCheck =
+    Boolean(descriptor.readingFeatures.rubyAnnotations) &&
+    shard.tier !== "fluent";
+  const needsCompoundCheck = Boolean(
+    descriptor.readingFeatures.compoundSplitter
+  );
+
+  shard.gradedStories.forEach((story, sIdx) => {
+    if (needsRubyCheck) {
+      story.paragraphs.forEach((paragraph, pIdx) => {
+        if (containsIdeographs(paragraph.nativeText)) {
+          if (
+            !paragraph.rubyHtml ||
+            !paragraph.rubyHtml.includes("<ruby>") ||
+            hasUnannotatedIdeographs(paragraph.rubyHtml)
+          ) {
+            issues.push(
+              `Story "${story.id}" paragraph ${pIdx + 1} requires complete <ruby> annotations for all ideographs in Tiers 1-3.`
+            );
+          }
+        }
+        paragraph.segments.forEach((seg, tokIdx) => {
+          if (containsIdeographs(seg.surface)) {
+            if (!seg.rubyHtml || hasUnannotatedIdeographs(seg.rubyHtml)) {
+              issues.push(
+                `Story "${story.id}" paragraph ${pIdx + 1} token #${tokIdx + 1} ("${seg.surface}") requires complete <ruby> markup.`
+              );
+            }
+          }
+        });
+      });
+    }
+
+    if (needsCompoundCheck) {
+      let compoundCount = 0;
+      story.paragraphs.forEach((paragraph, pIdx) => {
+        paragraph.segments.forEach((seg) => {
+          if (seg.compoundParts && seg.compoundParts.length >= 2) {
+            compoundCount += 1;
+            const joined = seg.compoundParts.join("").toLowerCase();
+            const cleanSurface = seg.surface
+              .replace(/[.,!?;:"„“»«()]/g, "")
+              .toLowerCase();
+            if (joined !== cleanSurface) {
+              issues.push(
+                `Story "${story.id}" paragraph ${pIdx + 1}: compoundParts [${seg.compoundParts.join(", ")}] must join to match "${cleanSurface}".`
+              );
+            }
+          }
+        });
+      });
+      if (compoundCount === 0) {
+        issues.push(
+          `Story #${sIdx + 1} ("${story.id}") in compoundSplitter course "${descriptor.id}" must include at least one root-split compound word.`
+        );
+      }
+    }
+  });
+
+  return issues;
+}
+
 export const UnitMetaSchema = z.object({
   unitId: z.string().min(1),
-  language: LanguageCodeSchema,
-  unitNumber: z.number().int().min(1).max(60),
+  courseId: CourseIdSchema,
+  unitNumber: z.number().int().min(1).max(200),
   stageId: z.string().min(1),
   title: z.string().min(1),
   subtitle: z.string().min(1),
@@ -334,19 +396,9 @@ export const ShardDescriptorSchema = z.object({
 });
 export type ShardDescriptor = z.infer<typeof ShardDescriptorSchema>;
 
-export const StageInfoSchema = z.object({
-  id: z.string().min(1),
-  stageNumber: z.number().int().min(1).max(6),
-  label: z.string().min(1),
-  cefrOrJlpt: z.string().min(1),
-  summary: z.string().min(1),
-  recommendedTier: UnderstandingTierSchema,
-});
-export type StageInfo = z.infer<typeof StageInfoSchema>;
-
 export const ManifestUnitEntrySchema = z.object({
   unitId: z.string().min(1),
-  unitNumber: z.number().int().min(1).max(60),
+  unitNumber: z.number().int().min(1).max(200),
   directory: z.string().min(1),
   stageId: z.string().min(1),
   title: z.string().min(1),
@@ -361,26 +413,29 @@ export const ManifestUnitEntrySchema = z.object({
 });
 export type ManifestUnitEntry = z.infer<typeof ManifestUnitEntrySchema>;
 
-export const LanguageManifestSchema = z.object({
-  language: LanguageCodeSchema,
-  title: z.string().min(1),
-  stages: z.array(StageInfoSchema).length(6),
+export const ManifestCourseEntrySchema = z.object({
+  courseId: CourseIdSchema,
+  version: z.number().int().positive(),
+  courseDescriptorPath: z.string().min(1),
+  blueprintPath: z.string().min(1),
+  unitCount: z.number().int().nonnegative(),
+  totalPlannedUnits: z.number().int().positive(),
+  descriptor: CourseDescriptorSchema.omit({ scriptGrids: true }).extend({
+    hasScriptGrids: z.boolean(),
+  }),
   units: z.array(ManifestUnitEntrySchema),
 });
-export type LanguageManifest = z.infer<typeof LanguageManifestSchema>;
+export type ManifestCourseEntry = z.infer<typeof ManifestCourseEntrySchema>;
 
 export const ManifestSchema = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(2),
   updatedAt: z.string().min(1),
-  languages: z.object({
-    ja: LanguageManifestSchema,
-    de: LanguageManifestSchema,
-  }),
+  courses: z.array(ManifestCourseEntrySchema),
 });
 export type Manifest = z.infer<typeof ManifestSchema>;
 
 export const BlueprintUnitSchema = z.object({
-  unitNumber: z.number().int().min(1).max(60),
+  unitNumber: z.number().int().min(1).max(200),
   unitId: z.string().min(1),
   stageId: z.string().min(1),
   title: z.string().min(1),
@@ -388,39 +443,25 @@ export const BlueprintUnitSchema = z.object({
   communicativeGoal: z.string().min(1),
   grammarFocus: z.string().min(1),
   culturalNote: z.string().min(1),
-  austrianFocus: z.string().optional(),
+  regionalFocus: z.string().optional(),
 });
 export type BlueprintUnit = z.infer<typeof BlueprintUnitSchema>;
 
-export const SyllabusBlueprintSchema = z.object({
-  schemaVersion: z.literal(1),
-  languages: z.object({
-    ja: z.object({
-      stages: z.array(StageInfoSchema).length(6),
-      units: z.array(BlueprintUnitSchema).length(60),
-    }),
-    de: z.object({
-      stages: z.array(StageInfoSchema).length(6),
-      units: z.array(BlueprintUnitSchema).length(60),
-    }),
-  }),
+export const CourseBlueprintSchema = z.object({
+  schemaVersion: z.literal(2),
+  courseId: CourseIdSchema,
+  stages: z.array(ProficiencyStageSchema).min(1),
+  units: z.array(BlueprintUnitSchema).min(1),
 });
-export type SyllabusBlueprint = z.infer<typeof SyllabusBlueprintSchema>;
+export type CourseBlueprint = z.infer<typeof CourseBlueprintSchema>;
 
-export const LedgerLanguageBucketSchema = z.object({
+export const CourseLexiconLedgerSchema = z.object({
+  schemaVersion: z.literal(2),
+  courseId: CourseIdSchema,
+  updatedAt: z.string().min(1),
   unitIds: z.array(z.string()),
   lexiconIds: z.array(z.string()),
   grammarIds: z.array(z.string()),
-  kanjiOrRoots: z.array(z.string()),
+  orthographyItems: z.array(z.string()),
 });
-export type LedgerLanguageBucket = z.infer<typeof LedgerLanguageBucketSchema>;
-
-export const LexiconLedgerSchema = z.object({
-  schemaVersion: z.literal(1),
-  updatedAt: z.string().min(1),
-  languages: z.object({
-    ja: LedgerLanguageBucketSchema,
-    de: LedgerLanguageBucketSchema,
-  }),
-});
-export type LexiconLedger = z.infer<typeof LexiconLedgerSchema>;
+export type CourseLexiconLedger = z.infer<typeof CourseLexiconLedgerSchema>;

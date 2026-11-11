@@ -1,0 +1,782 @@
+{
+  "shardId": "ja-unit-003-fluent",
+  "unitId": "ja-unit-003",
+  "tier": "fluent",
+  "tierNumber": 4,
+  "focusSummary": "Refined culinary & kaiseki vocabulary (旬の食材, 懐石料理, 献立), formal dining reservations & dietary pre-coordination, hospitality etiquette (お口に合いましたでしょうか), and unassisted native reading.",
+  "introducedLexiconIds": [
+    "ja-u003-t4-lex-01",
+    "ja-u003-t4-lex-02",
+    "ja-u003-t4-lex-03",
+    "ja-u003-t4-lex-04",
+    "ja-u003-t4-lex-05",
+    "ja-u003-t4-lex-06",
+    "ja-u003-t4-lex-07",
+    "ja-u003-t4-lex-08"
+  ],
+  "introducedGrammarIds": [
+    "ja-u003-t4-gram-01",
+    "ja-u003-t4-gram-02",
+    "ja-u003-t4-gram-03"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "旬",
+    "材",
+    "料",
+    "理",
+    "懐",
+    "石",
+    "予",
+    "約",
+    "献",
+    "立"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u003-t4-step-01",
+      "tier": "fluent",
+      "heading": "Seasonal Gastronomy: 旬の食材 & おまかせの献立",
+      "explanation": "Japanese fine dining—from counter sushi to 懐石料理 (kaiseki multi-course cuisine)—revolves around 旬 (しゅん, the brief peak window when a seasonal ingredient is at prime flavor) and the chef's curated 献立 (こんだて, course menu).",
+      "scenarioPrompt": "A chef sets down an autumn appetizer featuring matsutake mushrooms and sea bream.",
+      "nativeText": "本日は旬の食材をふんだんに取り入れた献立をご用意しております。",
+      "romanization": "Honjitsu wa shun no shokuzai o fundan ni toriireta kondate o go-yōi shite orimasu.",
+      "translation": "Today we have prepared a course menu generously featuring ingredients at the height of their season.",
+      "literalBreakdown": "本日は (today) + 旬の食材を (peak-season ingredients) + ふんだんに取り入れた (generously incorporated) + 献立をご用意しております (humbly prepared the menu)",
+      "usageTip": "走り (はしり, early-season first harvest), 旬 (しゅん, peak season), and 名残 (なごり, lingering farewell of the season) form the classic triad of kaiseki aesthetics."
+    },
+    {
+      "id": "ja-u003-t4-step-02",
+      "tier": "fluent",
+      "heading": "Formal Dining Reservations & Advance Dietary Requests",
+      "explanation": "Because kaiseki and omakase kitchens prep dashi stocks and seasonal courses days ahead, dietary restrictions (苦手な食材 or アレルギー) must be communicated politely at the time of reservation (ご予約).",
+      "scenarioPrompt": "You call a Kyoto ryōtei to reserve a private room for four guests and note a shellfish allergy in advance.",
+      "nativeText": "来週金曜日の十九時に四名で予約をお願いしたいのですが、同伴者の一人に甲殻類のアレルギーがございます。差し支えなければ別の食材にご変更いただけますでしょうか。",
+      "romanization": "Raishū kin'yōbi no jūku-ji ni yon-mei de yoyaku o onegai shitai no desu ga, dōhansha no hitori ni kōkakurui no arerugī ga gozaimasu. Sashitsukaenakereba betsu no shokuzai ni go-henkō itadakemasu deshō ka.",
+      "translation": "I would like to request a reservation for four at 7:00 PM next Friday; one of my companions has a crustacean allergy. If it is not an imposition, might you substitute a different ingredient?",
+      "literalBreakdown": "四名で (party of four, formal) + 同伴者の一人に (for one companion) + 甲殻類 (crustaceans) + 差し支えなければ (if there is no inconvenience)",
+      "usageTip": "In formal reservations, use 〜名 (めい) rather than 〜人 even for your own party (二名 'party of two', 四名 'party of four')."
+    },
+    {
+      "id": "ja-u003-t4-step-03",
+      "tier": "fluent",
+      "heading": "Responding to Chef & Host Humility: お口に合いましたでしょうか",
+      "explanation": "At the close of a refined meal, chefs or proprietresses (女将, おかみ) humbly ask お口に合いましたでしょうか ('Did the meal suit your palate?'). Respond with warm, specific appreciation rather than a terse 'はい'.",
+      "scenarioPrompt": "The chef steps out to see you off at the wooden gate as you depart.",
+      "nativeText": "「お口に合いましたでしょうか。」「ええ、どのお料理も出汁の香りが素晴らしく、心ゆくまで堪能いたしました。」",
+      "romanization": "'O-kuchi ni aimashita deshō ka.' 'Ē, dono o-ryōri mo dashi no kaori ga subarashiku, kokoroyuku made tannō itashimashita.'",
+      "translation": "'Did everything suit your palate?' 'Yes—the aroma of the dashi in every single dish was extraordinary, and I savored it to my heart's content.'",
+      "literalBreakdown": "お口に合いましたでしょうか (did it suit your palate?) / 出汁の香り (aroma of the dashi broth) + 心ゆくまで堪能いたしました (humbly savored to heart's content)",
+      "usageTip": "堪能する (たんのうする, 'to savor deeply / enjoy to the fullest') is the quintessential C1/N1 verb for praising culinary or artistic experiences."
+    },
+    {
+      "id": "ja-u003-t4-step-04",
+      "tier": "fluent",
+      "heading": "Discreetly Settling the Bill When Hosting: 席を外す",
+      "explanation": "In Japanese business hosting (会食, かいしょく), the host often slips out briefly toward the end of dessert—ostensibly to the restroom—to settle the bill discreetly at the counter so guests never glimpse the check.",
+      "scenarioPrompt": "Your guest offers to contribute at the exit, and you graciously wave it off as the host.",
+      "nativeText": "本日はお招きした側ですので、お気遣いなくお願いいたします。お忙しい中お時間をいただき、誠にありがとうございました。",
+      "romanization": "Honjitsu wa o-maneki shita gawa desu node, o-kizukai naku onegai itashimasu. O-isogashii naka o-jikan o itadaki, makoto ni arigatō gozaimashita.",
+      "translation": "As we are the ones who invited you today, please do not trouble yourself at all. Thank you sincerely for sparing your time out of your busy schedule.",
+      "literalBreakdown": "お招きした側ですので (since we are the inviting side) + お気遣いなく (without concern/consideration) + お時間をいただき (humbly receiving your time)",
+      "usageTip": "Following up the next morning with 「昨晩は楽しいひとときをありがとうございました」 cements lasting trust."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u003-t4-drill-01",
+      "tier": "fluent",
+      "prompt": "At the end of an omakase dinner, the proprietress asks 「お料理はお口に合いましたでしょうか。」 Which response strikes the most natural, appreciative tone?",
+      "cue": "Express heartfelt appreciation of the seasonal cuisine",
+      "options": [
+        "割り勘にしよう、一人三千円ね。",
+        "とりあえず生ビールを二杯お願いします。",
+        "運転を見合わせております。",
+        "ええ、旬の食材の味わいが素晴らしく、大変おいしくいただきました。"
+      ],
+      "correctAnswer": "ええ、旬の食材の味わいが素晴らしく、大変おいしくいただきました。",
+      "explanation": "大変おいしくいただきました (using humble いただく for 食べる) warmly honors the chef's craft."
+    },
+    {
+      "id": "ja-u003-t4-drill-02",
+      "tier": "fluent",
+      "prompt": "You are phoning an upscale restaurant to reserve a table for three guests in formal register. Which counter for people should you use?",
+      "baseSentence": "土曜日の十八時に＿＿＿で予約をお願いしたいのですが。",
+      "cue": "Formal counter for 3 people in reservations",
+      "options": [
+        "三名",
+        "三本",
+        "三枚",
+        "三杯"
+      ],
+      "correctAnswer": "三名",
+      "explanation": "While everyday conversation uses 三人, formal restaurant/hotel reservations use 〜名 (三名 = party of three)."
+    },
+    {
+      "id": "ja-u003-t4-drill-03",
+      "tier": "fluent",
+      "prompt": "Which word specifically refers to the fleeting peak season when a fish, vegetable, or fruit tastes its absolute best?",
+      "cue": "Single-kanji culinary term for peak seasonality",
+      "options": [
+        "抜",
+        "旬",
+        "札",
+        "勘"
+      ],
+      "correctAnswer": "旬",
+      "explanation": "旬 (しゅん) denotes both a ten-day calendar period and an ingredient's peak window of flavor and freshness."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u003-t4-card-01",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "frontPrompt": "Ingredients at the peak of their season",
+      "targetText": "旬の食材",
+      "reading": "しゅんのしょくざい",
+      "contextSentence": "この懐石料理店では、月ごとに旬の食材を生かした献立が楽しめます。",
+      "contextTranslation": "At this kaiseki restaurant, you can enjoy a monthly menu that brings out the best in peak-season ingredients.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t4-card-02",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "frontPrompt": "Did the food suit your palate? (humble chef/host inquiry)",
+      "targetText": "お口に合いましたでしょうか。",
+      "reading": "おくちにあいましたでしょうか。",
+      "contextSentence": "「本日のお料理はお口に合いましたでしょうか。」「ええ、心ゆくまで堪能いたしました。」",
+      "contextTranslation": "'Did today's dishes suit your palate?' 'Yes, I savored them to my heart's content.'",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t4-card-03",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "frontPrompt": "I would like to request a reservation for two at 7:00 PM.",
+      "targetText": "十九時に二名で予約をお願いしたいのですが。",
+      "reading": "じゅうくじににめいでよやくをおねがいしたいのですが。",
+      "contextSentence": "恐れ入りますが、来週土曜日の十九時に二名で予約をお願いしたいのですが。",
+      "contextTranslation": "Pardon me, I would like to request a reservation for two at 7:00 PM next Saturday.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t4-card-04",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "frontPrompt": "If it is no trouble, might you substitute a different ingredient?",
+      "targetText": "差し支えなければ、別の食材にご変更いただけますでしょうか。",
+      "reading": "さしつかえなければ、べつのしょくざいにごへんこういただけますでしょうか。",
+      "contextSentence": "そばアレルギーがございますので、差し支えなければ別の食材にご変更いただけますでしょうか。",
+      "contextTranslation": "As there is a buckwheat allergy, if it is not an inconvenience, could you substitute another ingredient?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t4-card-05",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "frontPrompt": "Please do not trouble yourself (when declining a guest's offer to pay)",
+      "targetText": "どうぞお気遣いなくお願いいたします。",
+      "reading": "どうぞおきづかいなくおねがいいたします。",
+      "contextSentence": "今宵はお招きした側ですので、どうぞお気遣いなくお願いいたします。",
+      "contextTranslation": "Since we invited you this evening, please do not trouble yourself at all.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u003-t4-story-01",
+      "unitId": "ja-unit-003",
+      "tier": "fluent",
+      "title": "秋の懐石と旬を味わう宵",
+      "titleTranslation": "An Autumn Evening of Kaiseki and Peak Seasonality",
+      "setting": "A quiet counter-seat kaiseki restaurant tucked behind stone paving in Kyoto's Gion district.",
+      "paragraphs": [
+        {
+          "nativeText": "海外から訪れた恩師をもてなすため、一か月前に予約を入れておいた祇園の懐石料理店を訪れた。予約の際に伝えていた甲殻類アレルギーにも細やかな配慮がなされ、手書きの献立には秋の旬の食材が美しく並んでいた。",
+          "translation": "To host a former mentor visiting from abroad, we visited a Gion kaiseki restaurant I had reserved a month in advance. Thoughtful care had been given to the crustacean allergy noted at booking, and the handwritten menu featured a graceful progression of peak autumn ingredients.",
+          "segments": [
+            {
+              "surface": "海外",
+              "reading": "かいがい",
+              "meaning": "overseas / abroad"
+            },
+            {
+              "surface": "から",
+              "reading": "から",
+              "meaning": "from"
+            },
+            {
+              "surface": "訪れた",
+              "reading": "おとずれた",
+              "meaning": "visited"
+            },
+            {
+              "surface": "恩師",
+              "reading": "おんし",
+              "meaning": "respected former teacher / mentor"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "もてなす",
+              "reading": "もてなす",
+              "meaning": "to host / entertain warmly"
+            },
+            {
+              "surface": "ため",
+              "reading": "ため",
+              "meaning": "in order to"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "一か月前",
+              "reading": "いっかげつまえ",
+              "meaning": "one month ago"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at (time)"
+            },
+            {
+              "surface": "予約を入れておいた",
+              "reading": "よやくをいれておいた",
+              "meaning": "had booked in advance"
+            },
+            {
+              "surface": "祇園",
+              "reading": "ぎおん",
+              "meaning": "Gion (historic Kyoto district)"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of / in"
+            },
+            {
+              "surface": "懐石料理店",
+              "reading": "かいせきりょうりてん",
+              "meaning": "kaiseki fine-dining restaurant"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "訪れた",
+              "reading": "おとずれた",
+              "meaning": "visited"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "予約の際",
+              "reading": "よやくのさい",
+              "meaning": "at the time of reservation"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at"
+            },
+            {
+              "surface": "伝えていた",
+              "reading": "つたえていた",
+              "meaning": "had communicated"
+            },
+            {
+              "surface": "甲殻類",
+              "reading": "こうかくるい",
+              "meaning": "crustacean / shellfish"
+            },
+            {
+              "surface": "アレルギー",
+              "reading": "あれるぎー",
+              "meaning": "allergy"
+            },
+            {
+              "surface": "にも",
+              "reading": "にも",
+              "meaning": "even toward"
+            },
+            {
+              "surface": "細やかな",
+              "reading": "こまやかな",
+              "meaning": "attentive / delicate"
+            },
+            {
+              "surface": "配慮",
+              "reading": "はいりょ",
+              "meaning": "consideration / accommodation"
+            },
+            {
+              "surface": "がなされ",
+              "reading": "がなされ",
+              "meaning": "was made, and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "手書き",
+              "reading": "てがき",
+              "meaning": "handwritten"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "献立",
+              "reading": "こんだて",
+              "meaning": "course menu"
+            },
+            {
+              "surface": "には",
+              "reading": "にわ",
+              "meaning": "on"
+            },
+            {
+              "surface": "秋",
+              "reading": "あき",
+              "meaning": "autumn"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "旬の食材",
+              "reading": "しゅんのしょくざい",
+              "meaning": "peak-season ingredients"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "美しく",
+              "reading": "うつくしく",
+              "meaning": "beautifully"
+            },
+            {
+              "surface": "並んでいた",
+              "reading": "ならんでいた",
+              "meaning": "were lined up"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "松茸と鱧の土瓶蒸しが運ばれてくると、澄んだ一番出汁の芳醇な香りが立ち上った。恩師も「素材の持ち味がこれほど繊細に引き出されているとは驚きました」と目を細め、季節の移ろいを映す器の数々に見入っていた。",
+          "translation": "When the earthenware teapot broth of matsutake mushroom and pike conger arrived, the rich fragrance of crystal-clear first-draw dashi wafted up. My mentor smiled warmly—'I am amazed at how delicately the natural character of each ingredient is drawn out'—admiring the vessels reflecting the turn of the seasons.",
+          "segments": [
+            {
+              "surface": "松茸",
+              "reading": "まつたけ",
+              "meaning": "matsutake pine mushroom"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "鱧",
+              "reading": "はも",
+              "meaning": "pike conger eel (Kyoto specialty)"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "土瓶蒸し",
+              "reading": "どびんむし",
+              "meaning": "broth steamed in an earthenware teapot"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "運ばれてくると",
+              "reading": "はこばれてくると",
+              "meaning": "when brought to us"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "澄んだ",
+              "reading": "すんだ",
+              "meaning": "clear / limpid"
+            },
+            {
+              "surface": "一番出汁",
+              "reading": "いちばんだし",
+              "meaning": "first-steeped dashi stock"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "芳醇な",
+              "reading": "ほうじゅんな",
+              "meaning": "rich / mellow and aromatic"
+            },
+            {
+              "surface": "香り",
+              "reading": "かおり",
+              "meaning": "fragrance / aroma"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "立ち上った",
+              "reading": "たちのぼった",
+              "meaning": "wafted upward"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "恩師",
+              "reading": "おんし",
+              "meaning": "mentor"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "素材",
+              "reading": "そざい",
+              "meaning": "raw ingredients"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "持ち味",
+              "reading": "もちあじ",
+              "meaning": "inherent flavor / natural quality"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "これほど",
+              "reading": "これほど",
+              "meaning": "to this extent"
+            },
+            {
+              "surface": "繊細に",
+              "reading": "せんさいに",
+              "meaning": "delicately / subtly"
+            },
+            {
+              "surface": "引き出されている",
+              "reading": "ひきだされている",
+              "meaning": "is drawn out"
+            },
+            {
+              "surface": "とは",
+              "reading": "とわ",
+              "meaning": "that... (emotive surprise)"
+            },
+            {
+              "surface": "驚きました",
+              "reading": "おどろきました",
+              "meaning": "was amazed"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "目を細め",
+              "reading": "めをほそめ",
+              "meaning": "narrowed eyes in fond delight"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "季節の移ろい",
+              "reading": "きせつのうつろい",
+              "meaning": "subtle transition of the seasons"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "映す",
+              "reading": "うつす",
+              "meaning": "reflecting / mirroring"
+            },
+            {
+              "surface": "器",
+              "reading": "うつわ",
+              "meaning": "ceramic/lacquer tableware vessels"
+            },
+            {
+              "surface": "の数々",
+              "reading": "のかずかず",
+              "meaning": "the array of"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at"
+            },
+            {
+              "surface": "見入っていた",
+              "reading": "みいっていた",
+              "meaning": "gazed intently in admiration"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "甘味の頃合いを見計らって席を外し、あらかじめ帳場で会計を済ませた。帰り際、店主から「お口に合いましたでしょうか」と声をかけられ、「一品ごとに秋を堪能いたしました。ごちそうさまでした」と深く一礼して暖簾をくぐった。",
+          "translation": "Timing my moment around dessert, I quietly excused myself from the counter and settled the bill in advance at the desk. On departing, when the chef asked 'Did everything suit your palate?', I bowed deeply—'We savored autumn in every single course. Thank you for a remarkable feast'—and stepped out beneath the noren curtain.",
+          "segments": [
+            {
+              "surface": "甘味",
+              "reading": "かんみ",
+              "meaning": "sweet dessert course"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "頃合い",
+              "reading": "ころあい",
+              "meaning": "opportune timing"
+            },
+            {
+              "surface": "を見計らって",
+              "reading": "をみはからって",
+              "meaning": "judging the right moment"
+            },
+            {
+              "surface": "席を外し",
+              "reading": "せきをはずし",
+              "meaning": "excused myself from my seat"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "あらかじめ",
+              "reading": "あらかじめ",
+              "meaning": "in advance"
+            },
+            {
+              "surface": "帳場",
+              "reading": "ちょうば",
+              "meaning": "cashier's desk (traditional)"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at"
+            },
+            {
+              "surface": "会計を済ませた",
+              "reading": "かいけいをすませた",
+              "meaning": "settled the bill"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "帰り際",
+              "reading": "かえりぎわ",
+              "meaning": "just upon leaving"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "店主",
+              "reading": "てんしゅ",
+              "meaning": "chef-proprietor"
+            },
+            {
+              "surface": "から",
+              "reading": "から",
+              "meaning": "by / from"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "お口に合いましたでしょうか",
+              "reading": "おくちにあいましたでしょうか",
+              "meaning": "did it suit your palate?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "声をかけられ",
+              "reading": "こえをかけられ",
+              "meaning": "being addressed"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "一品ごとに",
+              "reading": "いっぴんごとに",
+              "meaning": "with every single dish"
+            },
+            {
+              "surface": "秋",
+              "reading": "あき",
+              "meaning": "autumn"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "堪能いたしました",
+              "reading": "たんのういたしました",
+              "meaning": "humbly savored to the fullest"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "ごちそうさまでした",
+              "reading": "ごちそうさまでした",
+              "meaning": "thank you for the feast"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "深く",
+              "reading": "ふかく",
+              "meaning": "deeply"
+            },
+            {
+              "surface": "一礼して",
+              "reading": "いちれいして",
+              "meaning": "bowing once respectfully"
+            },
+            {
+              "surface": "暖簾をくぐった",
+              "reading": "のれんをくぐった",
+              "meaning": "passed beneath the noren curtain"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u003-t4-story-01-q1",
+          "question": "How had the narrator ensured a smooth dining experience for their mentor's crustacean allergy?",
+          "options": [
+            "Asked to remove ingredients only after the soup was served",
+            "Ordered only water and plain white rice at the door",
+            "Communicated the allergy a month ahead at the time of booking so the menu was thoughtfully adapted",
+            "Switched to a convenience store instead"
+          ],
+          "correctIndex": 2,
+          "explanation": "予約の際に伝えていた甲殻類アレルギーにも細やかな配慮がなされ shows the allergy was shared when booking in advance."
+        },
+        {
+          "id": "ja-u003-t4-story-01-q2",
+          "question": "What stood out to the mentor when tasting the 土瓶蒸し (teapot-steamed broth)?",
+          "options": [
+            "How heavily spiced it was with chili oil",
+            "That it was served ice-cold in a tall mug",
+            "That there were no seasonal ingredients used",
+            "How delicately the natural qualities of the seasonal ingredients were drawn out alongside the rich dashi aroma"
+          ],
+          "correctIndex": 3,
+          "explanation": "The mentor praised how 素材の持ち味がこれほど繊細に引き出されている ('the natural flavor of the ingredients is so delicately drawn out')."
+        },
+        {
+          "id": "ja-u003-t4-story-01-q3",
+          "question": "Why did the narrator quietly step away from their seat (席を外し) around dessert time?",
+          "options": [
+            "To settle the bill discreetly in advance as a gracious host",
+            "To catch an earlier local train home alone",
+            "Because they forgot their umbrella at the station",
+            "To ask the guests to split the bill evenly"
+          ],
+          "correctIndex": 0,
+          "explanation": "In formal Japanese hosting, excusing oneself around 甘味 (dessert) to pay at the 帳場 spares the honored guest any awkwardness over the bill."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": []
+}

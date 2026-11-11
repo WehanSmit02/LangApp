@@ -1,0 +1,748 @@
+{
+  "id": "ja",
+  "name": "Japanese",
+  "nativeName": "日本語",
+  "summary": "Kana literacy, everyday politeness, rail & dining survival through unassisted JLPT N1 fluency.",
+  "textDirection": "ltr",
+  "ttsLocales": [
+    "ja-JP"
+  ],
+  "sttLocale": "ja-JP",
+  "tierDescriptions": {
+    "essential": "Survival phrases, polite greetings, numbers, prices, menu & station signs, and Hiragana/Katakana recognition.",
+    "travel": "Adds Desu/Masu sentence builders, counters, izakaya & restaurant ordering, directions, konbini interactions, and survival Kanji.",
+    "conversational": "Unscripted social give-and-take (~JLPT N4-N3): plain/casual forms, past & conditional storytelling, multi-clause connectors, and 400+ Kanji.",
+    "fluent": "Complete mastery (JLPT N1): honorific Keigo, nuanced idioms, 2,136 Joyo Kanji, professional register, and unassisted native readings."
+  },
+  "proficiencyFramework": {
+    "name": "JLPT",
+    "stages": [
+      {
+        "id": "ja-stage-1",
+        "stageNumber": 1,
+        "label": "Stage 1: Kana & Survival",
+        "cefrOrJlpt": "Pre-N5",
+        "summary": "Immediate arrival confidence: Hiragana & Katakana sound-script literacy, konbini checkout decoding, polite social cushioning, and rail-gate survival.",
+        "recommendedTier": "essential"
+      },
+      {
+        "id": "ja-stage-2",
+        "stageNumber": 2,
+        "label": "Stage 2: JLPT N5",
+        "cefrOrJlpt": "JLPT N5",
+        "summary": "Core sentence architecture: Desu/Masu politeness, essential particles, Japanese counters, dining & hotel interactions, time expressions, and ~100 foundational Kanji.",
+        "recommendedTier": "travel"
+      },
+      {
+        "id": "ja-stage-3",
+        "stageNumber": 3,
+        "label": "Stage 3: JLPT N4",
+        "cefrOrJlpt": "JLPT N4",
+        "summary": "Everyday independence: Te-form chains, casual plain speech, potential & volitional verbs, giving/receiving favors, conditional clauses, and ~300 Kanji.",
+        "recommendedTier": "travel"
+      },
+      {
+        "id": "ja-stage-4",
+        "stageNumber": 4,
+        "label": "Stage 4: JLPT N3",
+        "cefrOrJlpt": "JLPT N3",
+        "summary": "Fluid social conversation: passive & causative-passive nuance, multi-clause storytelling, workplace rapport, regional ear-tuning, and ~650 Kanji.",
+        "recommendedTier": "conversational"
+      },
+      {
+        "id": "ja-stage-5",
+        "stageNumber": 5,
+        "label": "Stage 5: JLPT N2",
+        "cefrOrJlpt": "JLPT N2",
+        "summary": "Professional & media command: formal written connectors, full Sonkeigo/Kenjougo business honorifics, news & essay comprehension, and ~1,000+ Kanji.",
+        "recommendedTier": "conversational"
+      },
+      {
+        "id": "ja-stage-6",
+        "stageNumber": 6,
+        "label": "Stage 6: JLPT N1 (Full Fluency)",
+        "cefrOrJlpt": "JLPT N1",
+        "summary": "Unassisted native mastery: literary & classical grammar remnants, subtle rhetorical stance, four-character idioms (yojijukugo), and all 2,136 Jōyō Kanji.",
+        "recommendedTier": "fluent"
+      }
+    ]
+  },
+  "readingFeatures": {
+    "rubyAnnotations": {
+      "enabledByDefault": true,
+      "label": "Furigana"
+    },
+    "romanizationLine": {
+      "enabledByDefault": true,
+      "label": "Romaji"
+    }
+  },
+  "scriptGrids": [
+    {
+      "id": "hiragana",
+      "label": "Hiragana",
+      "columns": 5,
+      "cells": [
+        {
+          "symbol": "あ",
+          "sublabel": "a",
+          "tts": "あ",
+          "sampleWord": "あさ (asa)",
+          "sampleMeaning": "morning"
+        },
+        {
+          "symbol": "い",
+          "sublabel": "i",
+          "tts": "い",
+          "sampleWord": "いま (ima)",
+          "sampleMeaning": "now"
+        },
+        {
+          "symbol": "う",
+          "sublabel": "u",
+          "tts": "う",
+          "sampleWord": "うみ (umi)",
+          "sampleMeaning": "sea"
+        },
+        {
+          "symbol": "え",
+          "sublabel": "e",
+          "tts": "え",
+          "sampleWord": "えき (eki)",
+          "sampleMeaning": "station"
+        },
+        {
+          "symbol": "お",
+          "sublabel": "o",
+          "tts": "お",
+          "sampleWord": "おちゃ (ocha)",
+          "sampleMeaning": "green tea"
+        },
+        {
+          "symbol": "か",
+          "sublabel": "ka",
+          "tts": "か",
+          "sampleWord": "かさ (kasa)",
+          "sampleMeaning": "umbrella"
+        },
+        {
+          "symbol": "き",
+          "sublabel": "ki",
+          "tts": "き",
+          "sampleWord": "きっぷ (kippu)",
+          "sampleMeaning": "ticket"
+        },
+        {
+          "symbol": "く",
+          "sublabel": "ku",
+          "tts": "く",
+          "sampleWord": "くうこう (kuukou)",
+          "sampleMeaning": "airport"
+        },
+        {
+          "symbol": "け",
+          "sublabel": "ke",
+          "tts": "け",
+          "sampleWord": "けさ (kesa)",
+          "sampleMeaning": "this morning"
+        },
+        {
+          "symbol": "こ",
+          "sublabel": "ko",
+          "tts": "こ",
+          "sampleWord": "ここ (koko)",
+          "sampleMeaning": "here"
+        },
+        {
+          "symbol": "さ",
+          "sublabel": "sa",
+          "tts": "さ",
+          "sampleWord": "さかな (sakana)",
+          "sampleMeaning": "fish"
+        },
+        {
+          "symbol": "し",
+          "sublabel": "shi",
+          "tts": "し",
+          "sampleWord": "しお (shio)",
+          "sampleMeaning": "salt"
+        },
+        {
+          "symbol": "す",
+          "sublabel": "su",
+          "tts": "す",
+          "sampleWord": "すし (sushi)",
+          "sampleMeaning": "sushi"
+        },
+        {
+          "symbol": "せ",
+          "sublabel": "se",
+          "tts": "せ",
+          "sampleWord": "せかい (sekai)",
+          "sampleMeaning": "world"
+        },
+        {
+          "symbol": "そ",
+          "sublabel": "so",
+          "tts": "そ",
+          "sampleWord": "そと (soto)",
+          "sampleMeaning": "outside"
+        },
+        {
+          "symbol": "た",
+          "sublabel": "ta",
+          "tts": "た",
+          "sampleWord": "たまご (tamago)",
+          "sampleMeaning": "egg"
+        },
+        {
+          "symbol": "ち",
+          "sublabel": "chi",
+          "tts": "ち",
+          "sampleWord": "ちず (chizu)",
+          "sampleMeaning": "map"
+        },
+        {
+          "symbol": "つ",
+          "sublabel": "tsu",
+          "tts": "つ",
+          "sampleWord": "つぎ (tsugi)",
+          "sampleMeaning": "next"
+        },
+        {
+          "symbol": "て",
+          "sublabel": "te",
+          "tts": "て",
+          "sampleWord": "てがみ (tegami)",
+          "sampleMeaning": "letter"
+        },
+        {
+          "symbol": "と",
+          "sublabel": "to",
+          "tts": "と",
+          "sampleWord": "とけい (tokei)",
+          "sampleMeaning": "clock"
+        },
+        {
+          "symbol": "な",
+          "sublabel": "na",
+          "tts": "な",
+          "sampleWord": "なつ (natsu)",
+          "sampleMeaning": "summer"
+        },
+        {
+          "symbol": "に",
+          "sublabel": "ni",
+          "tts": "に",
+          "sampleWord": "にく (niku)",
+          "sampleMeaning": "meat"
+        },
+        {
+          "symbol": "ぬ",
+          "sublabel": "nu",
+          "tts": "ぬ",
+          "sampleWord": "ぬの (nuno)",
+          "sampleMeaning": "cloth"
+        },
+        {
+          "symbol": "ね",
+          "sublabel": "ne",
+          "tts": "ね",
+          "sampleWord": "ねこ (neko)",
+          "sampleMeaning": "cat"
+        },
+        {
+          "symbol": "の",
+          "sublabel": "no",
+          "tts": "の",
+          "sampleWord": "のみもの (nomimono)",
+          "sampleMeaning": "drink"
+        },
+        {
+          "symbol": "は",
+          "sublabel": "ha",
+          "tts": "は",
+          "sampleWord": "はし (hashi)",
+          "sampleMeaning": "chopsticks"
+        },
+        {
+          "symbol": "ひ",
+          "sublabel": "hi",
+          "tts": "ひ",
+          "sampleWord": "ひだり (hidari)",
+          "sampleMeaning": "left"
+        },
+        {
+          "symbol": "ふ",
+          "sublabel": "fu",
+          "tts": "ふ",
+          "sampleWord": "ふくろ (fukuro)",
+          "sampleMeaning": "bag"
+        },
+        {
+          "symbol": "へ",
+          "sublabel": "he",
+          "tts": "へ",
+          "sampleWord": "へや (heya)",
+          "sampleMeaning": "room"
+        },
+        {
+          "symbol": "ほ",
+          "sublabel": "ho",
+          "tts": "ほ",
+          "sampleWord": "ほん (hon)",
+          "sampleMeaning": "book"
+        },
+        {
+          "symbol": "ま",
+          "sublabel": "ma",
+          "tts": "ま",
+          "sampleWord": "まち (machi)",
+          "sampleMeaning": "town"
+        },
+        {
+          "symbol": "み",
+          "sublabel": "mi",
+          "tts": "み",
+          "sampleWord": "みず (mizu)",
+          "sampleMeaning": "water"
+        },
+        {
+          "symbol": "む",
+          "sublabel": "mu",
+          "tts": "む",
+          "sampleWord": "むりょう (muryou)",
+          "sampleMeaning": "free of charge"
+        },
+        {
+          "symbol": "め",
+          "sublabel": "me",
+          "tts": "め",
+          "sampleWord": "めいし (meishi)",
+          "sampleMeaning": "business card"
+        },
+        {
+          "symbol": "も",
+          "sublabel": "mo",
+          "tts": "も",
+          "sampleWord": "もの (mono)",
+          "sampleMeaning": "thing"
+        },
+        {
+          "symbol": "や",
+          "sublabel": "ya",
+          "tts": "や",
+          "sampleWord": "やさい (yasai)",
+          "sampleMeaning": "vegetables"
+        },
+        null,
+        {
+          "symbol": "ゆ",
+          "sublabel": "yu",
+          "tts": "ゆ",
+          "sampleWord": "ゆき (yuki)",
+          "sampleMeaning": "snow"
+        },
+        null,
+        {
+          "symbol": "よ",
+          "sublabel": "yo",
+          "tts": "よ",
+          "sampleWord": "よる (yoru)",
+          "sampleMeaning": "evening"
+        },
+        {
+          "symbol": "ら",
+          "sublabel": "ra",
+          "tts": "ら",
+          "sampleWord": "らいねん (rainen)",
+          "sampleMeaning": "next year"
+        },
+        {
+          "symbol": "り",
+          "sublabel": "ri",
+          "tts": "り",
+          "sampleWord": "りょこう (ryokou)",
+          "sampleMeaning": "travel"
+        },
+        {
+          "symbol": "る",
+          "sublabel": "ru",
+          "tts": "る",
+          "sampleWord": "るす (rusu)",
+          "sampleMeaning": "out of home"
+        },
+        {
+          "symbol": "れ",
+          "sublabel": "re",
+          "tts": "れ",
+          "sampleWord": "れきし (rekishi)",
+          "sampleMeaning": "history"
+        },
+        {
+          "symbol": "ろ",
+          "sublabel": "ro",
+          "tts": "ろ",
+          "sampleWord": "ろく (roku)",
+          "sampleMeaning": "six"
+        },
+        {
+          "symbol": "わ",
+          "sublabel": "wa",
+          "tts": "わ",
+          "sampleWord": "わたし (watashi)",
+          "sampleMeaning": "I / me"
+        },
+        null,
+        {
+          "symbol": "を",
+          "sublabel": "wo",
+          "tts": "を",
+          "sampleWord": "みずを (mizu o)",
+          "sampleMeaning": "object marker"
+        },
+        null,
+        {
+          "symbol": "ん",
+          "sublabel": "n",
+          "tts": "ん",
+          "sampleWord": "にほん (nihon)",
+          "sampleMeaning": "Japan"
+        }
+      ]
+    },
+    {
+      "id": "katakana",
+      "label": "Katakana",
+      "columns": 5,
+      "cells": [
+        {
+          "symbol": "ア",
+          "sublabel": "a",
+          "tts": "あ",
+          "sampleWord": "あさ (asa)",
+          "sampleMeaning": "morning"
+        },
+        {
+          "symbol": "イ",
+          "sublabel": "i",
+          "tts": "い",
+          "sampleWord": "いま (ima)",
+          "sampleMeaning": "now"
+        },
+        {
+          "symbol": "ウ",
+          "sublabel": "u",
+          "tts": "う",
+          "sampleWord": "うみ (umi)",
+          "sampleMeaning": "sea"
+        },
+        {
+          "symbol": "エ",
+          "sublabel": "e",
+          "tts": "え",
+          "sampleWord": "えき (eki)",
+          "sampleMeaning": "station"
+        },
+        {
+          "symbol": "オ",
+          "sublabel": "o",
+          "tts": "お",
+          "sampleWord": "おちゃ (ocha)",
+          "sampleMeaning": "green tea"
+        },
+        {
+          "symbol": "カ",
+          "sublabel": "ka",
+          "tts": "か",
+          "sampleWord": "かさ (kasa)",
+          "sampleMeaning": "umbrella"
+        },
+        {
+          "symbol": "キ",
+          "sublabel": "ki",
+          "tts": "き",
+          "sampleWord": "きっぷ (kippu)",
+          "sampleMeaning": "ticket"
+        },
+        {
+          "symbol": "ク",
+          "sublabel": "ku",
+          "tts": "く",
+          "sampleWord": "くうこう (kuukou)",
+          "sampleMeaning": "airport"
+        },
+        {
+          "symbol": "ケ",
+          "sublabel": "ke",
+          "tts": "け",
+          "sampleWord": "けさ (kesa)",
+          "sampleMeaning": "this morning"
+        },
+        {
+          "symbol": "コ",
+          "sublabel": "ko",
+          "tts": "こ",
+          "sampleWord": "ここ (koko)",
+          "sampleMeaning": "here"
+        },
+        {
+          "symbol": "サ",
+          "sublabel": "sa",
+          "tts": "さ",
+          "sampleWord": "さかな (sakana)",
+          "sampleMeaning": "fish"
+        },
+        {
+          "symbol": "シ",
+          "sublabel": "shi",
+          "tts": "し",
+          "sampleWord": "しお (shio)",
+          "sampleMeaning": "salt"
+        },
+        {
+          "symbol": "ス",
+          "sublabel": "su",
+          "tts": "す",
+          "sampleWord": "すし (sushi)",
+          "sampleMeaning": "sushi"
+        },
+        {
+          "symbol": "セ",
+          "sublabel": "se",
+          "tts": "せ",
+          "sampleWord": "せかい (sekai)",
+          "sampleMeaning": "world"
+        },
+        {
+          "symbol": "ソ",
+          "sublabel": "so",
+          "tts": "そ",
+          "sampleWord": "そと (soto)",
+          "sampleMeaning": "outside"
+        },
+        {
+          "symbol": "タ",
+          "sublabel": "ta",
+          "tts": "た",
+          "sampleWord": "たまご (tamago)",
+          "sampleMeaning": "egg"
+        },
+        {
+          "symbol": "チ",
+          "sublabel": "chi",
+          "tts": "ち",
+          "sampleWord": "ちず (chizu)",
+          "sampleMeaning": "map"
+        },
+        {
+          "symbol": "ツ",
+          "sublabel": "tsu",
+          "tts": "つ",
+          "sampleWord": "つぎ (tsugi)",
+          "sampleMeaning": "next"
+        },
+        {
+          "symbol": "テ",
+          "sublabel": "te",
+          "tts": "て",
+          "sampleWord": "てがみ (tegami)",
+          "sampleMeaning": "letter"
+        },
+        {
+          "symbol": "ト",
+          "sublabel": "to",
+          "tts": "と",
+          "sampleWord": "とけい (tokei)",
+          "sampleMeaning": "clock"
+        },
+        {
+          "symbol": "ナ",
+          "sublabel": "na",
+          "tts": "な",
+          "sampleWord": "なつ (natsu)",
+          "sampleMeaning": "summer"
+        },
+        {
+          "symbol": "ニ",
+          "sublabel": "ni",
+          "tts": "に",
+          "sampleWord": "にく (niku)",
+          "sampleMeaning": "meat"
+        },
+        {
+          "symbol": "ヌ",
+          "sublabel": "nu",
+          "tts": "ぬ",
+          "sampleWord": "ぬの (nuno)",
+          "sampleMeaning": "cloth"
+        },
+        {
+          "symbol": "ネ",
+          "sublabel": "ne",
+          "tts": "ね",
+          "sampleWord": "ねこ (neko)",
+          "sampleMeaning": "cat"
+        },
+        {
+          "symbol": "ノ",
+          "sublabel": "no",
+          "tts": "の",
+          "sampleWord": "のみもの (nomimono)",
+          "sampleMeaning": "drink"
+        },
+        {
+          "symbol": "ハ",
+          "sublabel": "ha",
+          "tts": "は",
+          "sampleWord": "はし (hashi)",
+          "sampleMeaning": "chopsticks"
+        },
+        {
+          "symbol": "ヒ",
+          "sublabel": "hi",
+          "tts": "ひ",
+          "sampleWord": "ひだり (hidari)",
+          "sampleMeaning": "left"
+        },
+        {
+          "symbol": "フ",
+          "sublabel": "fu",
+          "tts": "ふ",
+          "sampleWord": "ふくろ (fukuro)",
+          "sampleMeaning": "bag"
+        },
+        {
+          "symbol": "ヘ",
+          "sublabel": "he",
+          "tts": "へ",
+          "sampleWord": "へや (heya)",
+          "sampleMeaning": "room"
+        },
+        {
+          "symbol": "ホ",
+          "sublabel": "ho",
+          "tts": "ほ",
+          "sampleWord": "ほん (hon)",
+          "sampleMeaning": "book"
+        },
+        {
+          "symbol": "マ",
+          "sublabel": "ma",
+          "tts": "ま",
+          "sampleWord": "まち (machi)",
+          "sampleMeaning": "town"
+        },
+        {
+          "symbol": "ミ",
+          "sublabel": "mi",
+          "tts": "み",
+          "sampleWord": "みず (mizu)",
+          "sampleMeaning": "water"
+        },
+        {
+          "symbol": "ム",
+          "sublabel": "mu",
+          "tts": "む",
+          "sampleWord": "むりょう (muryou)",
+          "sampleMeaning": "free of charge"
+        },
+        {
+          "symbol": "メ",
+          "sublabel": "me",
+          "tts": "め",
+          "sampleWord": "めいし (meishi)",
+          "sampleMeaning": "business card"
+        },
+        {
+          "symbol": "モ",
+          "sublabel": "mo",
+          "tts": "も",
+          "sampleWord": "もの (mono)",
+          "sampleMeaning": "thing"
+        },
+        {
+          "symbol": "ヤ",
+          "sublabel": "ya",
+          "tts": "や",
+          "sampleWord": "やさい (yasai)",
+          "sampleMeaning": "vegetables"
+        },
+        null,
+        {
+          "symbol": "ユ",
+          "sublabel": "yu",
+          "tts": "ゆ",
+          "sampleWord": "ゆき (yuki)",
+          "sampleMeaning": "snow"
+        },
+        null,
+        {
+          "symbol": "ヨ",
+          "sublabel": "yo",
+          "tts": "よ",
+          "sampleWord": "よる (yoru)",
+          "sampleMeaning": "evening"
+        },
+        {
+          "symbol": "ラ",
+          "sublabel": "ra",
+          "tts": "ら",
+          "sampleWord": "らいねん (rainen)",
+          "sampleMeaning": "next year"
+        },
+        {
+          "symbol": "リ",
+          "sublabel": "ri",
+          "tts": "り",
+          "sampleWord": "りょこう (ryokou)",
+          "sampleMeaning": "travel"
+        },
+        {
+          "symbol": "ル",
+          "sublabel": "ru",
+          "tts": "る",
+          "sampleWord": "るす (rusu)",
+          "sampleMeaning": "out of home"
+        },
+        {
+          "symbol": "レ",
+          "sublabel": "re",
+          "tts": "れ",
+          "sampleWord": "れきし (rekishi)",
+          "sampleMeaning": "history"
+        },
+        {
+          "symbol": "ロ",
+          "sublabel": "ro",
+          "tts": "ろ",
+          "sampleWord": "ろく (roku)",
+          "sampleMeaning": "six"
+        },
+        {
+          "symbol": "ワ",
+          "sublabel": "wa",
+          "tts": "わ",
+          "sampleWord": "わたし (watashi)",
+          "sampleMeaning": "I / me"
+        },
+        null,
+        {
+          "symbol": "ヲ",
+          "sublabel": "wo",
+          "tts": "を",
+          "sampleWord": "みずを (mizu o)",
+          "sampleMeaning": "object marker"
+        },
+        null,
+        {
+          "symbol": "ン",
+          "sublabel": "n",
+          "tts": "ん",
+          "sampleWord": "にほん (nihon)",
+          "sampleMeaning": "Japan"
+        }
+      ]
+    }
+  ]
+}

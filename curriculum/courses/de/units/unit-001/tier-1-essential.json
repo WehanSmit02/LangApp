@@ -1,0 +1,989 @@
+{
+  "shardId": "de-unit-001-tier-1-essential",
+  "unitId": "de-unit-001",
+  "tier": "essential",
+  "tierNumber": 1,
+  "focusSummary": "Core Austrian & Standard German greetings, farewells, survival nouns (Sackerl, Bankomat, Beisl), Kaffeehaus staples (Verlängerter, Schlagobers), and first compound root splits.",
+  "introducedLexiconIds": [
+    "de-u001-t1-lex-gruess-gott",
+    "de-u001-t1-lex-auf-wiederschauen",
+    "de-u001-t1-lex-servus",
+    "de-u001-t1-lex-sackerl",
+    "de-u001-t1-lex-bankomat",
+    "de-u001-t1-lex-verlaengerter",
+    "de-u001-t1-lex-schlagobers",
+    "de-u001-t1-lex-beisl"
+  ],
+  "introducedGrammarIds": [
+    "de-u001-t1-gram-formal-vs-casual-greetings",
+    "de-u001-t1-gram-gender-articles-basics"
+  ],
+  "courseId": "de",
+  "introducedOrthography": [
+    "Kaffee",
+    "Haus",
+    "Schlag",
+    "Obers",
+    "Wieder",
+    "Schauen"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u001-t1-step-01",
+      "tier": "essential",
+      "heading": "Stepping Inside: Grüß Gott vs. Guten Tag",
+      "explanation": "Across Austria (and southern Bavaria), Grüß Gott is the standard, polite daytime greeting when entering any bakery, shop, lift, or Kaffeehaus. Despite containing the word Gott, it is completely secular social courtesy in modern everyday life.",
+      "scenarioPrompt": "You step into a small Viennese shop mid-morning and make eye contact with the clerk behind the counter.",
+      "nativeText": "Grüß Gott! Bitte schön.",
+      "translation": "Hello (Good day)! Here you go / How may I help you.",
+      "literalBreakdown": "Grüß (greet [may]) · Gott (God) · bitte (please) · schön (nicely)",
+      "usageTip": "Always greet staff briefly when entering a small Austrian boutique or bakery and say farewell when leaving—silence on entry reads as abrupt.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Grüß Gott! Bitte schön."
+        },
+        "de-DE": {
+          "nativeText": "Guten Tag! Bitte schön.",
+          "note": "In central and northern Germany (Berlin, Hamburg, Cologne), Guten Tag is the default polite daytime greeting."
+        }
+      },
+      "regionalNote": "DE: Guten Tag! Bitte schön. (In central and northern Germany (Berlin, Hamburg, Cologne), Guten Tag is the default polite daytime greeting.)"
+    },
+    {
+      "id": "de-u001-t1-step-02",
+      "tier": "essential",
+      "heading": "Warm Farewells & Friendly Servus",
+      "explanation": "When leaving a shop or café in Austria, locals say Auf Wiederschauen ('until looking again') rather than Germany's Auf Wiedersehen. Among friends, peers, or mountain hikers, Servus works for both 'hello' and 'bye'.",
+      "scenarioPrompt": "You thank the barista as you leave the counter, then wave to an Austrian friend waiting outside.",
+      "nativeText": "Danke schön, auf Wiederschauen! — Servus, Lukas!",
+      "translation": "Thank you very much, goodbye! — Hi, Lukas!",
+      "literalBreakdown": "Danke schön (thanks nicely) · auf (until) · Wieder·schauen (again-looking) — Servus (at your service / hi & bye)",
+      "compoundParts": [
+        "Wieder",
+        "schauen"
+      ],
+      "usageTip": "Reserve Servus for people you address with informal 'du' (friends, classmates, fellow hikers); stick to Grüß Gott and Auf Wiederschauen with strangers.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Danke schön, auf Wiederschauen! — Servus, Lukas!"
+        },
+        "de-DE": {
+          "nativeText": "Danke schön, auf Wiedersehen! — Hallo, Lukas!",
+          "note": "Standard German uses Auf Wiedersehen formally and Hallo (greeting) / Tschüss (farewell) casually."
+        }
+      },
+      "regionalNote": "DE: Danke schön, auf Wiedersehen! — Hallo, Lukas! (Standard German uses Auf Wiedersehen formally and Hallo (greeting) / Tschüss (farewell) casually.)"
+    },
+    {
+      "id": "de-u001-t1-step-03",
+      "tier": "essential",
+      "heading": "Everyday Survival Nouns: das Sackerl & der Bankomat",
+      "explanation": "Two words immediately distinguish Austrian everyday life from Germany: a shopping or paper bag is das Sackerl ('little sack', neuter), and an ATM is der Bankomat (masculine). Learning every noun together with its article (der, die, das) locks gender in effortlessly.",
+      "scenarioPrompt": "At a Vienna checkout you ask for a carrier bag, then ask where to find cash nearby.",
+      "nativeText": "Ein Sackerl, bitte. Und wo ist hier ein Bankomat?",
+      "translation": "A bag, please. And where is an ATM around here?",
+      "literalBreakdown": "Ein (a [neuter]) · Sackerl (bag) · bitte (please) · Und wo ist (and where is) · hier (here) · ein Bankomat (an ATM)",
+      "usageTip": "Never ask for 'eine Tüte' at an Austrian checkout if you can say 'ein Sackerl'—locals will understand 'Tüte', but 'Sackerl' instantly earns a warm smile.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Ein Sackerl, bitte. Und wo ist hier ein Bankomat?"
+        },
+        "de-DE": {
+          "nativeText": "Eine Tüte, bitte. Und wo ist hier ein Geldautomat?",
+          "note": "In Germany, a shopping bag is die Tüte (feminine) and an ATM is der Geldautomat."
+        }
+      },
+      "regionalNote": "DE: Eine Tüte, bitte. Und wo ist hier ein Geldautomat? (In Germany, a shopping bag is die Tüte (feminine) and an ATM is der Geldautomat.)"
+    },
+    {
+      "id": "de-u001-t1-step-04",
+      "tier": "essential",
+      "heading": "Kaffeehaus & Beisl Icons + Splitting Schlag·obers",
+      "explanation": "In a Viennese Kaffeehaus, nobody orders 'einen Kaffee'—you name the style! Ein Verlängerter ('lengthened one') is an espresso diluted with hot water, often served with Schlagobers (whipped cream: Schlag 'whip/beat' + Obers 'cream'). In the evening, locals gather at das Beisl, a cozy neighborhood bistro-pub.",
+      "scenarioPrompt": "You scan a chalkboard outside a classic Viennese café and spot today's afternoon and evening favorites.",
+      "nativeText": "Ein Verlängerter mit Schlagobers im Kaffeehaus — und am Abend ins Beisl.",
+      "translation": "An Americano-style black coffee with whipped cream in the coffeehouse — and in the evening to the neighborhood bistro.",
+      "literalBreakdown": "Ein Verlängerter (a lengthened espresso) · mit (with) · Schlag·obers (whip-cream) · im Kaffee·haus (in the coffee-house) · ins Beisl (into the bistro-pub)",
+      "compoundParts": [
+        "Schlag",
+        "obers"
+      ],
+      "usageTip": "German compounds always take their grammatical gender from the LAST root word: das Haus -> das Kaffeehaus; das Obers -> das Schlagobers.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Ein Verlängerter mit Schlagobers im Kaffeehaus — und am Abend ins Beisl."
+        },
+        "de-DE": {
+          "nativeText": "Ein Café Crème mit Schlagsahne im Café — und am Abend ins Wirtshaus.",
+          "note": "Germany uses Café Crème (or langer Kaffee), Schlagsahne for whipped cream, and Wirtshaus or Kneipe depending on whether food or drinks lead."
+        }
+      },
+      "regionalNote": "DE: Ein Café Crème mit Schlagsahne im Café — und am Abend ins Wirtshaus. (Germany uses Café Crème (or langer Kaffee), Schlagsahne for whipped cream, and Wirtshaus or Kneipe depending on whether food or drinks lead.)"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u001-t1-drill-01",
+      "tier": "essential",
+      "prompt": "You walk into a traditional bakery in Salzburg at 10:30 AM. Which greeting is most natural and polite?",
+      "cue": "Polite daytime entry greeting (Austrian default)",
+      "options": [
+        "Grüß Gott!",
+        "Gute Nacht!",
+        "Auf Wiederhören!",
+        "Prost!"
+      ],
+      "correctAnswer": "Grüß Gott!",
+      "acceptedVariants": [
+        "Guten Tag!"
+      ],
+      "explanation": "Grüß Gott! is the universal polite daytime greeting across Austria (corresponding to Guten Tag! in Standard German). Gute Nacht is only said before going to sleep, and Auf Wiederhören is exclusively for ending phone calls.",
+      "variantAnswers": {
+        "de-AT": "Grüß Gott!",
+        "de-DE": "Guten Tag!"
+      }
+    },
+    {
+      "id": "de-u001-t1-drill-02",
+      "tier": "essential",
+      "prompt": "At a supermarket in Vienna, your groceries won't fit in your backpack. What do you ask the cashier for?",
+      "baseSentence": "..., bitte.",
+      "cue": "Ask politely for a carrier bag",
+      "options": [
+        "Ein Sackerl, bitte.",
+        "Ein Bankomat, bitte.",
+        "Ein Beisl, bitte.",
+        "Auf Wiederschauen, bitte."
+      ],
+      "correctAnswer": "Ein Sackerl, bitte.",
+      "acceptedVariants": [
+        "Eine Tüte, bitte."
+      ],
+      "explanation": "Das Sackerl is the authentic Austrian noun for a carrier or paper bag (Standard German: die Tüte -> Eine Tüte, bitte).",
+      "variantAnswers": {
+        "de-AT": "Ein Sackerl, bitte.",
+        "de-DE": "Eine Tüte, bitte."
+      }
+    },
+    {
+      "id": "de-u001-t1-drill-03",
+      "tier": "essential",
+      "prompt": "Decode the compound noun Schlag·obers on a Viennese café menu. What are you getting alongside your Verlängerter?",
+      "cue": "Schlag (whip/beat) + Obers (cream)",
+      "options": [
+        "Whipped cream",
+        "Sparkling mineral water",
+        "An ATM receipt",
+        "A reserved corner table"
+      ],
+      "correctAnswer": "Whipped cream",
+      "explanation": "Splitting Schlag·obers into Schlag ('beat/whip') + Obers (Austrian for sweet cream; Standard German: Sahne -> Schlagsahne) immediately reveals 'whipped cream'."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u001-t1-srs-01",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Greet a shopkeeper or waiter politely during the day",
+      "targetText": "Grüß Gott!",
+      "reading": "gryːs ɡɔt",
+      "contextSentence": "Grüß Gott! Ein Sackerl, bitte.",
+      "contextTranslation": "Good day! A carrier bag, please.",
+      "phraseLockEligible": true,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "Grüß Gott!",
+        "de-DE": "Guten Tag!"
+      },
+      "regionalNote": "Default polite daytime greeting throughout Austria and Bavaria."
+    },
+    {
+      "id": "de-u001-t1-srs-02",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Say a polite goodbye when leaving a café or shop",
+      "targetText": "Auf Wiederschauen!",
+      "reading": "aʊf ˈviːdɐˌʃaʊən",
+      "contextSentence": "Danke schön, auf Wiederschauen!",
+      "contextTranslation": "Thank you very much, goodbye!",
+      "phraseLockEligible": true,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "Auf Wiederschauen!",
+        "de-DE": "Auf Wiedersehen!"
+      },
+      "regionalNote": "Literally 'until looking again'; warmer and far more common in Austria than Auf Wiedersehen."
+    },
+    {
+      "id": "de-u001-t1-srs-03",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Ask where an ATM is nearby",
+      "targetText": "Entschuldigung, wo ist hier ein Bankomat?",
+      "contextSentence": "Entschuldigung, wo ist hier ein Bankomat? Ich brauche Bargeld.",
+      "contextTranslation": "Excuse me, where is an ATM around here? I need cash.",
+      "phraseLockEligible": true,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "Entschuldigung, wo ist hier ein Bankomat?",
+        "de-DE": "Entschuldigung, wo ist hier ein Geldautomat?"
+      },
+      "regionalNote": "Der Bankomat is used everywhere in Austria; Germany uses der Geldautomat."
+    },
+    {
+      "id": "de-u001-t1-srs-04",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Order a classic Austrian lengthened espresso with whipped cream (short noun phrase)",
+      "targetText": "Ein Verlängerter mit Schlagobers, bitte.",
+      "contextSentence": "Grüß Gott! Ein Verlängerter mit Schlagobers, bitte.",
+      "contextTranslation": "Good day! A lengthened black coffee with whipped cream, please.",
+      "phraseLockEligible": true,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "Ein Verlängerter mit Schlagobers, bitte.",
+        "de-DE": "Ein Café Crème mit Schlagsahne, bitte."
+      },
+      "regionalNote": "Ein Verlängerter = espresso + hot water; Schlagobers = whipped cream."
+    },
+    {
+      "id": "de-u001-t1-srs-05",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Traditional cozy Austrian neighborhood bistro-pub (with article)",
+      "targetText": "das Beisl",
+      "reading": "das ˈbaɪzl̩",
+      "contextSentence": "Am Abend gehen wir zusammen ins Beisl.",
+      "contextTranslation": "In the evening we're going to the neighborhood bistro together.",
+      "phraseLockEligible": false,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "das Beisl",
+        "de-DE": "das Wirtshaus"
+      },
+      "regionalNote": "Quintessential Viennese/Austrian down-to-earth tavern serving hearty local food and beer or wine."
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u001-t1-story-01",
+      "unitId": "de-unit-001",
+      "tier": "essential",
+      "title": "Erster Morgen im Wiener Kaffeehaus",
+      "titleTranslation": "First Morning in a Viennese Coffeehouse",
+      "setting": "9:30 AM on a sunny side street near Vienna's Stephansplatz",
+      "paragraphs": [
+        {
+          "nativeText": "Klara geht am Morgen in ein kleines Kaffeehaus in Wien. „Grüß Gott!“, sagt der Kellner freundlich. Auf dem Tisch liegt die Speisekarte.",
+          "translation": "Klara goes into a small coffeehouse in Vienna in the morning. 'Good day!' says the waiter warmly. The menu lies on the table.",
+          "segments": [
+            {
+              "surface": "Klara",
+              "meaning": "Klara (given name)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "geht",
+              "meaning": "goes / walks"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "am",
+              "meaning": "in the (an + dem)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Morgen",
+              "meaning": "morning"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "in",
+              "meaning": "into"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ein",
+              "meaning": "a (neuter)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "kleines",
+              "meaning": "small"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Kaffeehaus",
+              "meaning": "traditional coffeehouse",
+              "compoundParts": [
+                "Kaffee",
+                "haus"
+              ],
+              "regionalNote": "Viennese Kaffeehäuser are historic social living rooms; Standard German often simply says Café."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "in",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Wien",
+              "meaning": "Vienna"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Grüß",
+              "meaning": "greet (part of Grüß Gott)",
+              "regionalNote": "Grüß Gott! is the standard polite greeting in Austria (DE: Guten Tag!)."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Gott",
+              "meaning": "God (in Grüß Gott = Good day!)",
+              "regionalNote": "Secular everyday greeting across Austria."
+            },
+            {
+              "surface": "!"
+            },
+            {
+              "surface": "“"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sagt",
+              "meaning": "says"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the (masculine)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Kellner",
+              "meaning": "waiter"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "freundlich",
+              "meaning": "friendly / warmly"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Auf",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "dem",
+              "meaning": "the (dative)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Tisch",
+              "meaning": "table"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "liegt",
+              "meaning": "lies"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "die",
+              "meaning": "the (feminine)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Speisekarte",
+              "meaning": "menu",
+              "compoundParts": [
+                "Speise",
+                "karte"
+              ]
+            },
+            {
+              "surface": "."
+            }
+          ]
+        },
+        {
+          "nativeText": "Klara bestellt: „Ein Verlängerter mit Schlagobers und ein Apfelkuchen, bitte.“ Dazu kommt sofort ein Glas Wasser.",
+          "translation": "Klara orders: 'A lengthened espresso with whipped cream and an apple cake, please.' A glass of water comes with it right away.",
+          "segments": [
+            {
+              "surface": "Klara",
+              "meaning": "Klara"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "bestellt",
+              "meaning": "orders"
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Ein",
+              "meaning": "a / one"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Verlängerter",
+              "meaning": "lengthened espresso (Americano-style coffee)",
+              "regionalNote": "Austrian coffeehouse classic; DE: ein Café Crème."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "mit",
+              "meaning": "with"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Schlagobers",
+              "meaning": "whipped cream",
+              "compoundParts": [
+                "Schlag",
+                "obers"
+              ],
+              "regionalNote": "Austrian standard for whipped cream; DE: Schlagsahne."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "und",
+              "meaning": "and"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ein",
+              "meaning": "an / one"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Apfelkuchen",
+              "meaning": "apple cake",
+              "compoundParts": [
+                "Apfel",
+                "kuchen"
+              ]
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "bitte",
+              "meaning": "please"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": "“"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Dazu",
+              "meaning": "along with it"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "kommt",
+              "meaning": "comes"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sofort",
+              "meaning": "immediately"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ein",
+              "meaning": "a"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Glas",
+              "meaning": "glass"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Wasser",
+              "meaning": "water"
+            },
+            {
+              "surface": "."
+            }
+          ]
+        },
+        {
+          "nativeText": "Draußen sucht ihr Freund Lukas einen Bankomat. „Servus, Klara! Gehen wir am Abend ins Beisl?“, fragt er. Zum Kellner sagt Klara: „Danke, auf Wiederschauen!“",
+          "translation": "Outside, her friend Lukas is looking for an ATM. 'Hi, Klara! Shall we go to the neighborhood bistro this evening?' he asks. To the waiter Klara says: 'Thanks, goodbye!'",
+          "segments": [
+            {
+              "surface": "Draußen",
+              "meaning": "outside"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sucht",
+              "meaning": "looks for"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ihr",
+              "meaning": "her"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Freund",
+              "meaning": "friend"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Lukas",
+              "meaning": "Lukas"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "einen",
+              "meaning": "an (accusative)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Bankomat",
+              "meaning": "ATM / cash machine",
+              "regionalNote": "Austrian standard; DE: Geldautomat."
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Servus",
+              "meaning": "hi / bye (among friends)",
+              "regionalNote": "Warm informal greeting and farewell across Austria and Bavaria."
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Klara",
+              "meaning": "Klara"
+            },
+            {
+              "surface": "!"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Gehen",
+              "meaning": "go"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "wir",
+              "meaning": "we"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "am",
+              "meaning": "in the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Abend",
+              "meaning": "evening"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ins",
+              "meaning": "into the (in + das)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Beisl",
+              "meaning": "cozy Viennese bistro-pub",
+              "regionalNote": "Austrian institution; DE: Wirtshaus / Kneipe."
+            },
+            {
+              "surface": "?"
+            },
+            {
+              "surface": "“"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fragt",
+              "meaning": "asks"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "er",
+              "meaning": "he"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zum",
+              "meaning": "to the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Kellner",
+              "meaning": "waiter"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sagt",
+              "meaning": "says"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Klara",
+              "meaning": "Klara"
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Danke",
+              "meaning": "thanks"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "auf",
+              "meaning": "until"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Wiederschauen",
+              "meaning": "goodbye (until looking again)",
+              "compoundParts": [
+                "Wieder",
+                "schauen"
+              ],
+              "regionalNote": "Austrian polite farewell; DE: Auf Wiedersehen."
+            },
+            {
+              "surface": "!"
+            },
+            {
+              "surface": "“"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u001-t1-story-01-q1",
+          "question": "What does Klara order to drink and eat in the Kaffeehaus?",
+          "options": [
+            "A lengthened espresso with whipped cream and an apple cake",
+            "An iced tea and a cheese sandwich",
+            "Only a bottle of sparkling mineral water",
+            "Two espressos without water"
+          ],
+          "correctIndex": 0,
+          "explanation": "Klara orders 'Ein Verlängerter mit Schlagobers und ein Apfelkuchen, bitte'—a lengthened espresso with whipped cream plus apple cake."
+        },
+        {
+          "id": "de-u001-t1-story-01-q2",
+          "question": "Why does Lukas say 'Servus' to Klara while Klara says 'Auf Wiederschauen' to the waiter?",
+          "options": [
+            "Servus is only used in the morning, while Auf Wiederschauen is only for evenings",
+            "Servus is casual between friends, whereas Auf Wiederschauen is polite with staff and strangers",
+            "Auf Wiederschauen means 'where is the ATM?'",
+            "Servus is strictly used in northern Germany"
+          ],
+          "correctIndex": 1,
+          "explanation": "In Austria, Servus is warm and informal for friends, whereas Grüß Gott and Auf Wiederschauen maintain polite respect with servers and shopkeepers."
+        },
+        {
+          "id": "de-u001-t1-story-01-q3",
+          "question": "What is Lukas looking for outside the coffeehouse?",
+          "options": [
+            "A train platform",
+            "A paper shopping bag",
+            "An ATM (einen Bankomat)",
+            "A pharmacy"
+          ],
+          "correctIndex": 2,
+          "explanation": "The third paragraph states: 'Draußen sucht ihr Freund Lukas einen Bankomat'—an ATM (Standard German: Geldautomat)."
+        }
+      ],
+      "courseId": "de"
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "de-ref-austrian-matrix",
+      "category": "austrian-matrix",
+      "tier": "essential",
+      "title": "Austrian vs. Standard German Matrix",
+      "subtitle": "Side-by-side de-AT and de-DE everyday vocabulary so you sound right at home in Vienna, Salzburg, Berlin, or Munich",
+      "rows": [
+        {
+          "id": "de-ref-at-row-01",
+          "term": "Grüß Gott! (AT) · Guten Tag! (DE)",
+          "readingOrSubtle": "Polite daytime greeting",
+          "meaning": "Hello / Good day",
+          "exampleNative": "Grüß Gott! Haben Sie noch einen Tisch frei?",
+          "exampleTranslation": "Good day! Do you still have a table free?",
+          "notes": "Standard polite greeting across Austria and southern Germany."
+        },
+        {
+          "id": "de-ref-at-row-02",
+          "term": "Auf Wiederschauen! (AT) · Auf Wiedersehen! (DE)",
+          "readingOrSubtle": "Polite in-person farewell",
+          "meaning": "Goodbye",
+          "exampleNative": "Vielen Dank und auf Wiederschauen!",
+          "exampleTranslation": "Many thanks and goodbye!",
+          "notes": "On the telephone, both countries switch to Auf Wiederhören!"
+        },
+        {
+          "id": "de-ref-at-row-03",
+          "term": "Servus! / Baba! (AT) · Hallo! / Tschüss! (DE)",
+          "readingOrSubtle": "Informal greeting & farewell",
+          "meaning": "Hi / Bye among friends",
+          "exampleNative": "Servus, Nina! Bis morgen — baba!",
+          "exampleTranslation": "Hi, Nina! See you tomorrow — bye!",
+          "notes": "Baba (stress on second syllable: ba-BAH) is a beloved Viennese casual 'bye-bye'."
+        },
+        {
+          "id": "de-ref-at-row-04",
+          "term": "das Sackerl (AT) · die Tüte (DE)",
+          "readingOrSubtle": "Neuter in AT · Feminine in DE",
+          "meaning": "Shopping / carrier / paper bag",
+          "exampleNative": "Brauchen Sie ein Sackerl für das Brot?",
+          "exampleTranslation": "Do you need a bag for the bread?",
+          "notes": "Notice the diminutive ending -erl, ubiquitous in Austrian German."
+        },
+        {
+          "id": "de-ref-at-row-05",
+          "term": "der Bankomat (AT) · der Geldautomat (DE)",
+          "readingOrSubtle": "Masculine in both",
+          "meaning": "ATM / cash dispenser",
+          "exampleNative": "Der nächste Bankomat ist gleich ums Eck.",
+          "exampleTranslation": "The nearest ATM is right around the corner.",
+          "notes": "Debit card is likewise die Bankomatkarte in Austria (DE: Girocard / EC-Karte)."
+        },
+        {
+          "id": "de-ref-at-row-06",
+          "term": "ein Verlängerter (AT) · ein Café Crème (DE)",
+          "readingOrSubtle": "Adjectival noun: ein Verlängerter / einen Verlängerten",
+          "meaning": "Espresso lengthened with hot water",
+          "exampleNative": "Ich nehme bitte einen Verlängerten.",
+          "exampleTranslation": "I'll take a lengthened espresso, please.",
+          "notes": "For steamed milk and foam (similar to a cappuccino), Austrians order eine Melange."
+        },
+        {
+          "id": "de-ref-at-row-07",
+          "term": "das Schlagobers (AT) · die Schlagsahne (DE)",
+          "readingOrSubtle": "Schlag + Obers (neuter)",
+          "meaning": "Whipped cream",
+          "exampleNative": "Möchten Sie den Apfelstrudel mit Schlagobers?",
+          "exampleTranslation": "Would you like the apple strudel with whipped cream?",
+          "notes": "Plain liquid cream is das Obers in Austria vs. die Sahne in Germany."
+        },
+        {
+          "id": "de-ref-at-row-08",
+          "term": "das Beisl (AT) · das Wirtshaus / die Kneipe (DE)",
+          "readingOrSubtle": "Pronounced 'Bigh-zl'",
+          "meaning": "Neighborhood tavern / bistro",
+          "exampleNative": "Unser Lieblingsbeisl kocht jeden Mittag frisch.",
+          "exampleTranslation": "Our favorite neighborhood bistro cooks fresh lunch every day.",
+          "notes": "Wood-paneled, unpretentious, and central to Viennese social life."
+        },
+        {
+          "id": "de-ref-at-row-09",
+          "term": "die Semmel (AT) · das Brötchen (DE)",
+          "readingOrSubtle": "Plural: die Semmeln",
+          "meaning": "Crusty white bread roll",
+          "exampleNative": "Zwei frische Semmeln zum Frühstück, bitte.",
+          "exampleTranslation": "Two fresh bread rolls for breakfast, please.",
+          "notes": "Classic Viennese Kaisersemmel has a five-point star fold on top."
+        },
+        {
+          "id": "de-ref-at-row-10",
+          "term": "die Erdäpfel (AT) · die Kartoffeln (DE)",
+          "readingOrSubtle": "Erd + Äpfel ('earth-apples')",
+          "meaning": "Potatoes",
+          "exampleNative": "Zum Schnitzel gehört ein warmer Erdäpfelsalat.",
+          "exampleTranslation": "Warm potato salad belongs alongside a schnitzel.",
+          "notes": "Compare French pommes de terre—identical compound metaphor!"
+        },
+        {
+          "id": "de-ref-at-row-11",
+          "term": "der Paradeiser (AT) · die Tomate (DE)",
+          "readingOrSubtle": "From 'Paradiesapfel' (paradise apple)",
+          "meaning": "Tomato",
+          "exampleNative": "Diese Paradeiser aus dem Burgenland riechen herrlich.",
+          "exampleTranslation": "These tomatoes from Burgenland smell wonderful.",
+          "notes": "Especially prominent on menus and market signs in Vienna and eastern Austria."
+        },
+        {
+          "id": "de-ref-at-row-12",
+          "term": "heuer (AT) · dieses Jahr (DE)",
+          "readingOrSubtle": "Adverb of time",
+          "meaning": "This year",
+          "exampleNative": "Der Sommer ist heuer ungewöhnlich mild.",
+          "exampleTranslation": "Summer is unusually mild this year.",
+          "notes": "Also standard in official Austrian news broadcasts and newspapers."
+        }
+      ],
+      "courseId": "de"
+    }
+  ]
+}

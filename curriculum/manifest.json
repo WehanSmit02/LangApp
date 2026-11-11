@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-11-11T22:02:28.315Z",
+  "courses": [
+    {
+      "courseId": "ja",
+      "version": 2,
+      "courseDescriptorPath": "courses/ja/course.json",
+      "blueprintPath": "courses/ja/syllabus-blueprint.json",
+      "unitCount": 3,
+      "totalPlannedUnits": 60,
+      "descriptor": {
+        "id": "ja",
+        "name": "Japanese",
+        "nativeName": "日本語",
+        "summary": "Kana literacy, everyday politeness, rail & dining survival through unassisted JLPT N1 fluency.",
+        "textDirection": "ltr",
+        "ttsLocales": [
+          "ja-JP"
+        ],
+        "sttLocale": "ja-JP",
+        "tierDescriptions": {
+          "essential": "Survival phrases, polite greetings, numbers, prices, menu & station signs, and Hiragana/Katakana recognition.",
+          "travel": "Adds Desu/Masu sentence builders, counters, izakaya & restaurant ordering, directions, konbini interactions, and survival Kanji.",
+          "conversational": "Unscripted social give-and-take (~JLPT N4-N3): plain/casual forms, past & conditional storytelling, multi-clause connectors, and 400+ Kanji.",
+          "fluent": "Complete mastery (JLPT N1): honorific Keigo, nuanced idioms, 2,136 Joyo Kanji, professional register, and unassisted native readings."
+        },
+        "proficiencyFramework": {
+          "name": "JLPT",
+          "stages": [
+            {
+              "id": "ja-stage-1",
+              "stageNumber": 1,
+              "label": "Stage 1: Kana & Survival",
+              "cefrOrJlpt": "Pre-N5",
+              "summary": "Immediate arrival confidence: Hiragana & Katakana sound-script literacy, konbini checkout decoding, polite social cushioning, and rail-gate survival.",
+              "recommendedTier": "essential"
+            },
+            {
+              "id": "ja-stage-2",
+              "stageNumber": 2,
+              "label": "Stage 2: JLPT N5",
+              "cefrOrJlpt": "JLPT N5",
+              "summary": "Core sentence architecture: Desu/Masu politeness, essential particles, Japanese counters, dining & hotel interactions, time expressions, and ~100 foundational Kanji.",
+              "recommendedTier": "travel"
+            },
+            {
+              "id": "ja-stage-3",
+              "stageNumber": 3,
+              "label": "Stage 3: JLPT N4",
+              "cefrOrJlpt": "JLPT N4",
+              "summary": "Everyday independence: Te-form chains, casual plain speech, potential & volitional verbs, giving/receiving favors, conditional clauses, and ~300 Kanji.",
+              "recommendedTier": "travel"
+            },
+            {
+              "id": "ja-stage-4",
+              "stageNumber": 4,
+              "label": "Stage 4: JLPT N3",
+              "cefrOrJlpt": "JLPT N3",
+              "summary": "Fluid social conversation: passive & causative-passive nuance, multi-clause storytelling, workplace rapport, regional ear-tuning, and ~650 Kanji.",
+              "recommendedTier": "conversational"
+            },
+            {
+              "id": "ja-stage-5",
+              "stageNumber": 5,
+              "label": "Stage 5: JLPT N2",
+              "cefrOrJlpt": "JLPT N2",
+              "summary": "Professional & media command: formal written connectors, full Sonkeigo/Kenjougo business honorifics, news & essay comprehension, and ~1,000+ Kanji.",
+              "recommendedTier": "conversational"
+            },
+            {
+              "id": "ja-stage-6",
+              "stageNumber": 6,
+              "label": "Stage 6: JLPT N1 (Full Fluency)",
+              "cefrOrJlpt": "JLPT N1",
+              "summary": "Unassisted native mastery: literary & classical grammar remnants, subtle rhetorical stance, four-character idioms (yojijukugo), and all 2,136 Jōyō Kanji.",
+              "recommendedTier": "fluent"
+            }
+          ]
+        },
+        "readingFeatures": {
+          "rubyAnnotations": {
+            "enabledByDefault": true,
+            "label": "Furigana"
+          },
+          "romanizationLine": {
+            "enabledByDefault": true,
+            "label": "Romaji"
+          }
+        },
+        "hasScriptGrids": true
+      },
+      "units": [
+        {
+          "unitId": "ja-unit-001",
+          "unitNumber": 1,
+          "directory": "courses/ja/units/unit-001",
+          "stageId": "ja-stage-1",
+          "title": "Greetings, Konbini Survival & Everyday Politeness",
+          "subtitle": "Time-of-day greetings, convenience store checkout decoding, essential signage, and polite social cushioning",
+          "estimatedMinutes": 35,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 34752,
+              "sha256": "477a82c065830ed049045d34cc474246d6575e30bdd05fea70a9d62e8c006eef",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 26951,
+              "sha256": "e4132aa8189ec0c69c7d515196e4e35b2259bee700ca7be6355fdba308a395e1",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 32486,
+              "sha256": "d9d81ee13cc249e6590c6c82511226d0a9183b145d0769b793235c5aead4ed42",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 30329,
+              "sha256": "85eaf4c740dc2828561d5423253c615a98fd5a24f8b7964b552857dcee6dbd66",
+              "cardCount": 5,
+              "stepCount": 4
+            }
+          }
+        },
+        {
+          "unitId": "ja-unit-002",
+          "unitNumber": 2,
+          "directory": "courses/ja/units/unit-002",
+          "stageId": "ja-stage-1",
+          "title": "Stations, IC Cards & Navigating Rail Lines",
+          "subtitle": "Ticket gates, Suica/ICOCA top-ups, local vs. Shinkansen trains, exit navigation, and service disruption announcements",
+          "estimatedMinutes": 40,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 25791,
+              "sha256": "1973cc8e80610e6013d655332d7366574011dd3b04f29255e32559f5b91bb492",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 35753,
+              "sha256": "b3c2a40906be2d5287bb3add0c1b0127cb891801868517fb01de9fa14288c692",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 36453,
+              "sha256": "68ab8d9e46bc457eaef455a407b0182898663372c0f3007360fb556cb62acc02",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 31843,
+              "sha256": "0822b6222b3bb88729f8d5b8947514033997ab4a181bd064cca57b52487bc88d",
+              "cardCount": 5,
+              "stepCount": 4
+            }
+          }
+        },
+        {
+          "unitId": "ja-unit-003",
+          "unitNumber": 3,
+          "directory": "courses/ja/units/unit-003",
+          "stageId": "ja-stage-2",
+          "title": "Izakaya, Ramen Counters, Numbers & Ordering",
+          "subtitle": "Party-size seating, ramen ticket machines, essential Japanese counters, allergy requests, and lively dining etiquette",
+          "estimatedMinutes": 45,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 27341,
+              "sha256": "ed6faa631b400fea8f97095e003990d93c25c51a7f27bcc18eb387736ef0ed95",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 35514,
+              "sha256": "3a1822f9e4d269fc251112e89fb409deb9c2d840526eb3eae83387a610c388d7",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 32358,
+              "sha256": "ffc7769c9a86512a6f8f50207bd10d30375459ef1378eade4e39035dcc6e6aef",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 32059,
+              "sha256": "ea4fb07905d1c872a5d1e60782a191d1357076ae8c126d35eb4ecf641c749738",
+              "cardCount": 5,
+              "stepCount": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "courseId": "de",
+      "version": 2,
+      "courseDescriptorPath": "courses/de/course.json",
+      "blueprintPath": "courses/de/syllabus-blueprint.json",
+      "unitCount": 3,
+      "totalPlannedUnits": 60,
+      "descriptor": {
+        "id": "de",
+        "name": "German",
+        "nativeName": "Deutsch",
+        "summary": "Compound-word root decoding, Kaffeehaus & rail essentials through CEFR C1 fluency with Austrian & Standard variants.",
+        "textDirection": "ltr",
+        "ttsLocales": [
+          "de-AT",
+          "de-DE"
+        ],
+        "sttLocale": "de-AT",
+        "tierDescriptions": {
+          "essential": "Polite Austrian & German greetings, numbers, signs, cafe & transit essentials, and compound-word root splitting.",
+          "travel": "Adds polite requests (Ich hätte gern...), Kaffeehaus & Beisl ordering, rail transfers, hotel check-in, and practical phrases.",
+          "conversational": "Natural conversation (~CEFR B1): Perfekt storytelling, subordinate connectors (weil, obwohl), everyday banter, and regional ear-tuning.",
+          "fluent": "Complete mastery (CEFR C1): Konjunktiv II diplomacy, participial structures, regional idioms, abstract discourse, and native prose."
+        },
+        "proficiencyFramework": {
+          "name": "CEFR",
+          "stages": [
+            {
+              "id": "de-stage-1",
+              "stageNumber": 1,
+              "label": "Stage 1: Sound, Compound Roots & Survival",
+              "cefrOrJlpt": "Pre-A1",
+              "summary": "Immediate Austrian & German confidence: clear pronunciation, Lego-style compound root splitting, polite greetings, Kaffeehaus & Beisl basics, and ÖBB transit signs.",
+              "recommendedTier": "essential"
+            },
+            {
+              "id": "de-stage-2",
+              "stageNumber": 2,
+              "label": "Stage 2: CEFR A1",
+              "cefrOrJlpt": "CEFR A1",
+              "summary": "Core building blocks: present-tense verb-second (V2) flow, modal verbs, nominative/accusative/dative cases, separable prefixes, hotels, directions, and daily routines.",
+              "recommendedTier": "travel"
+            },
+            {
+              "id": "de-stage-3",
+              "stageNumber": 3,
+              "label": "Stage 3: CEFR A2",
+              "cefrOrJlpt": "CEFR A2",
+              "summary": "Practical independence: spoken Perfekt storytelling, two-way prepositions, reflexive verbs, comparative adjectives, healthcare, housing, and subordinate clauses.",
+              "recommendedTier": "travel"
+            },
+            {
+              "id": "de-stage-4",
+              "stageNumber": 4,
+              "label": "Stage 4: CEFR B1",
+              "cefrOrJlpt": "CEFR B1",
+              "summary": "Natural social & workplace fluency: relative clauses, Präteritum vs. Perfekt register, passive voice, Konjunktiv II wishes, and Austrian conversational ear-tuning.",
+              "recommendedTier": "conversational"
+            },
+            {
+              "id": "de-stage-5",
+              "stageNumber": 5,
+              "label": "Stage 5: CEFR B2",
+              "cefrOrJlpt": "CEFR B2",
+              "summary": "Nuanced professional & media command: two-part connectors, genitive prepositions, subjective modals, academic/news argumentation, and regional cultural depth.",
+              "recommendedTier": "conversational"
+            },
+            {
+              "id": "de-stage-6",
+              "stageNumber": 6,
+              "label": "Stage 6: CEFR C1 (Full Fluency)",
+              "cefrOrJlpt": "CEFR C1",
+              "summary": "Complete native-level mastery: extended participial attributes, Konjunktiv I indirect discourse, Funktionsverbgefüge, Wiener Schmäh & literary prose.",
+              "recommendedTier": "fluent"
+            }
+          ]
+        },
+        "variants": [
+          {
+            "id": "de-AT",
+            "label": "Austrian (de-AT)",
+            "ttsLocale": "de-AT",
+            "defaultEnabled": true,
+            "description": "Prioritizes authentic Austrian expressions (Grüß Gott, Sackerl, Verlängerter, ÖBB Bahnsteig) alongside Standard German comprehension."
+          },
+          {
+            "id": "de-DE",
+            "label": "Standard (de-DE)",
+            "ttsLocale": "de-DE",
+            "defaultEnabled": false,
+            "description": "Uses Federal German vocabulary and pronunciation as primary phrasing."
+          }
+        ],
+        "readingFeatures": {
+          "compoundSplitter": {
+            "enabledByDefault": true,
+            "label": "Compound Dots"
+          }
+        },
+        "hasScriptGrids": false
+      },
+      "units": [
+        {
+          "unitId": "de-unit-001",
+          "unitNumber": 1,
+          "directory": "courses/de/units/unit-001",
+          "stageId": "de-stage-1",
+          "title": "Austrian Greetings, Kaffeehaus Essentials & Everyday Politeness",
+          "subtitle": "Grüß Gott, Servus, Verlängerter, and navigating Viennese cafés & everyday shops",
+          "estimatedMinutes": 40,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 35068,
+              "sha256": "70bfbaddf70823e61a60b177dfb45601f1d966d5978fa471370da0700fbbd9a2",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 32707,
+              "sha256": "589228c298623e513acab8125759c6e4bd4a31a1370b944a25f37f04e7fb89ff",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 31987,
+              "sha256": "561ee38f9ec529fe158108f315770eeee132f3eebbff7e341f0cebd35b4bf2c6",
+              "cardCount": 5,
+              "stepCount": 3
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 39066,
+              "sha256": "6c71baef12625d7d06401b7b94d41100a04fabb78a5e53b2d44a916eaa504eb4",
+              "cardCount": 5,
+              "stepCount": 3
+            }
+          }
+        },
+        {
+          "unitId": "de-unit-002",
+          "unitNumber": 2,
+          "directory": "courses/de/units/unit-002",
+          "stageId": "de-stage-1",
+          "title": "ÖBB Rail, Alpine Transit & Compound Word Roots",
+          "subtitle": "Decoding Haupt·bahn·hof, Bahn·steig, and Schienen·ersatz·verkehr across Austria and Germany",
+          "estimatedMinutes": 45,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 34539,
+              "sha256": "cd7d49a99b43478e725597d3f3f0858976e326d6fb9ce6d5fa4596a2f12526d9",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 31034,
+              "sha256": "b0a5053c4ae81a4dcd45a883571da4778fd98448dbd7b50a488ac81ca399b600",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 31099,
+              "sha256": "b35b3b70017f705168e24681e25553c779a399fc1d9bdd46b1bc1159f44b00cf",
+              "cardCount": 5,
+              "stepCount": 3
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 34751,
+              "sha256": "f6a3b1be9007287fb1898a582088e5a171a382f6323e61597152f85853d221b3",
+              "cardCount": 5,
+              "stepCount": 3
+            }
+          }
+        },
+        {
+          "unitId": "de-unit-003",
+          "unitNumber": 3,
+          "directory": "courses/de/units/unit-003",
+          "stageId": "de-stage-1",
+          "title": "Markets, Bakery Counters, Beisl Menus & Prices",
+          "subtitle": "Semmeln, Erdäpfel, Paradeiser, Naschmarkt weights, and splitting the bill",
+          "estimatedMinutes": 40,
+          "shards": {
+            "essential": {
+              "file": "tier-1-essential.json",
+              "bytes": 30757,
+              "sha256": "bd2bc0d8744c1ad62699b94cd48423de71541764466ffb293cc55f65d7472b16",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "travel": {
+              "file": "tier-2-travel.json",
+              "bytes": 39899,
+              "sha256": "d6da2276c92de30f5921aabde8182f9bd4f539a85acb4a994a51b7ad23908c48",
+              "cardCount": 5,
+              "stepCount": 4
+            },
+            "conversational": {
+              "file": "tier-3-conversational.json",
+              "bytes": 31346,
+              "sha256": "3c2e862e657e22377e56b8972ffa3044a01ea4c166d480a5434d1f451a545fcb",
+              "cardCount": 5,
+              "stepCount": 3
+            },
+            "fluent": {
+              "file": "tier-4-fluent.json",
+              "bytes": 38848,
+              "sha256": "de7fa7736d0f1ea714ff5976ad0dfa8c70ec0a69e88c1c5b2283fff1cc8efbf6",
+              "cardCount": 5,
+              "stepCount": 3
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+name: Add Language Course
+
+on:
+  workflow_dispatch:
+    inputs:
+      course_id:
+        description: 'ISO / BCP-47 course slug (e.g. ko, es, fr, it, zh-CN)'
+        required: true
+        type: string
+      course_name:
+        description: 'Human-readable language name (e.g. Korean, Spanish, French)'
+        required: true
+        type: string
+      regional_variants:
+        description: 'Optional comma-separated variant codes (e.g. es-MX,es-ES)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: curriculum-data-pipeline
+  cancel-in-progress: false
+
+jobs:
+  bootstrap-language:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare curriculum-data worktree
+        run: |
+          if git ls-remote --exit-code --heads origin curriculum-data >/dev/null 2>&1; then
+            git fetch origin curriculum-data:curriculum-data
+            git worktree add .curriculum-worktree curriculum-data
+          else
+            git worktree add --detach .curriculum-worktree
+            (
+              cd .curriculum-worktree
+              git checkout --orphan curriculum-data
+              git rm -rf . >/dev/null 2>&1 || true
+              cp -R ../curriculum ./curriculum
+              git config user.name "${{ github.repository_owner }}"
+              git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+              git add curriculum
+              git commit -m "seed initial curriculum-data branch"
+            )
+          fi
+
+      - name: Bootstrap new language course and starter unit
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CURRICULUM_DIR: .curriculum-worktree/curriculum
+          INPUT_COURSE_ID: ${{ inputs.course_id }}
+          INPUT_COURSE_NAME: ${{ inputs.course_name }}
+          INPUT_REGIONAL_VARIANTS: ${{ inputs.regional_variants }}
+        run: npm run curriculum:add-language
+
+      - name: Validate curriculum-data integrity
+        env:
+          CURRICULUM_DIR: .curriculum-worktree/curriculum
+        run: npm run curriculum:validate
+
+      - name: Commit and push new language to curriculum-data
+        env:
+          COURSE_ID_LABEL: ${{ inputs.course_id }}
+        run: |
+          cd .curriculum-worktree
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git add curriculum
+          git commit -m "add ${COURSE_ID_LABEL} course descriptor, blueprint, and unit 001 shards"
+          git push origin curriculum-data

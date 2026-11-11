@@ -1,0 +1,764 @@
+{
+  "shardId": "ja-unit-003-travel",
+  "unitId": "ja-unit-003",
+  "tier": "travel",
+  "tierNumber": 2,
+  "focusSummary": "Universal & shape-based izakaya counters (一つ・二つ・三つ, 生ビール二杯, 焼き鳥三本, お皿二枚), polite ingredient & customization checks (〜は入っていますか, 〜抜きでお願いします), and the Counters Reference Sheet.",
+  "introducedLexiconIds": [
+    "ja-u003-t2-lex-01",
+    "ja-u003-t2-lex-02",
+    "ja-u003-t2-lex-03",
+    "ja-u003-t2-lex-04",
+    "ja-u003-t2-lex-05",
+    "ja-u003-t2-lex-06",
+    "ja-u003-t2-lex-07",
+    "ja-u003-t2-lex-08"
+  ],
+  "introducedGrammarIds": [
+    "ja-u003-t2-gram-01",
+    "ja-u003-t2-gram-02",
+    "ja-u003-t2-gram-03"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "四",
+    "五",
+    "生",
+    "杯",
+    "焼",
+    "鳥",
+    "本",
+    "皿",
+    "枚",
+    "抜",
+    "卵"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u003-t2-step-01",
+      "tier": "travel",
+      "heading": "The Universal Safety-Net Counter: 一つ・二つ・三つ",
+      "explanation": "Native Japanese numbers ending in 〜つ (ひとつ 1, ふたつ 2, みっつ 3, よっつ 4, いつつ 5) count almost ANY general menu item—from edamame bowls to karaage portions or desserts—and go AFTER the particle を!",
+      "scenarioPrompt": "You open an izakaya evening with two cold draft beers and one order of edamame.",
+      "nativeText": "とりあえず生を二つと、枝豆を一つお願いします。",
+      "rubyHtml": "とりあえず<ruby>生<rt>なま</rt></ruby>を<ruby>二<rt>ふた</rt></ruby>つと、<ruby>枝豆<rt>えだまめ</rt></ruby>を<ruby>一<rt>ひと</rt></ruby>つお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Toriaezu nama o futatsu to, edamame o hitotsu onegaishimasu.",
+      "translation": "To start off, two draft beers and one edamame, please.",
+      "literalBreakdown": "とりあえず (for starters) + 生を二つ (draft [beer], two) + 枝豆を一つ (edamame, one) + お願いします",
+      "usageTip": "Notice Japanese counter word order: [Item] を [Counter] お願いします ('Draft beer [object] two, please')—no の needed!"
+    },
+    {
+      "id": "ja-u003-t2-step-02",
+      "tier": "travel",
+      "heading": "Izakaya Shape Counters: 〜杯 (Cups), 〜本 (Skewers), 〜枚 (Flat Plates)",
+      "explanation": "Three specialized counters make you sound right at home at an izakaya: 〜杯 (はい/ぱい/ばい) for glasses, mugs, and ramen bowls; 〜本 (ほん/ぽん/ぼん) for long cylindrical items like yakitori skewers or bottles; and 〜枚 (まい) for flat items like small sharing plates (取り皿) or okonomiyaki.",
+      "scenarioPrompt": "You order another round of drinks, yakitori skewers, and two small sharing plates.",
+      "nativeText": "生ビールを二杯、焼き鳥を三本、あと取り皿を二枚お願いします。",
+      "rubyHtml": "<ruby>生<rt>なま</rt></ruby>ビールを<ruby>二杯<rt>にはい</rt></ruby>、<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>三本<rt>さんぼん</rt></ruby>、あと<ruby>取<rt>と</rt></ruby>り<ruby>皿<rt>ざら</rt></ruby>を<ruby>二枚<rt>にまい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Nama bīru o ni-hai, yakitori o san-bon, ato torizara o ni-mai onegaishimasu.",
+      "translation": "Two glasses of draft beer, three yakitori skewers, and also two small sharing plates, please.",
+      "literalBreakdown": "生ビール二杯 (2 glasses) + 焼き鳥三本 (3 skewers—note san-bon sound shift!) + 取り皿二枚 (2 flat sharing plates)",
+      "usageTip": "Watch the sound shifts on 1 and 3: 一杯 (いっぱい) / 三杯 (さんばい), and 一本 (いっぽん) / 三本 (さんぼん). 〜枚 never changes sound!"
+    },
+    {
+      "id": "ja-u003-t2-step-03",
+      "tier": "travel",
+      "heading": "Checking Ingredients & Allergens: 〜は入っていますか",
+      "explanation": "Because dashi broths, dressings, and batters can contain hidden seafood, egg, wheat, or pork, ask [Ingredient] は入っていますか ('Is X contained in this?') before ordering.",
+      "scenarioPrompt": "You check whether a dipping sauce or potato salad contains egg (卵) or shrimp (えび).",
+      "nativeText": "すみません、この料理に卵やえびは入っていますか。",
+      "rubyHtml": "すみません、この<ruby>料理<rt>りょうり</rt></ruby>に<ruby>卵<rt>たまご</rt></ruby>やえびは<ruby>入<rt>はい</rt></ruby>っていますか。",
+      "romanization": "Sumimasen, kono ryōri ni tamago ya ebi wa haitte imasu ka.",
+      "translation": "Excuse me, does this dish contain egg or shrimp (among other things)?",
+      "literalBreakdown": "この料理に (in this dish) + 卵やえびは (egg or shrimp, etc.) + 入っていますか (is contained/inside?)",
+      "usageTip": "To explain an allergy clearly, add: 「えびアレルギーがあります」 ('I have a shrimp allergy')."
+    },
+    {
+      "id": "ja-u003-t2-step-04",
+      "tier": "travel",
+      "heading": "Polite Customization: 〜抜きでお願いします",
+      "explanation": "Attach 抜き (ぬき, 'leaving out / without') right after a topping or garnish—like わさび抜き (without wasabi), ねぎ抜き (without green onions), or マヨネーズ抜き—followed by でお願いします.",
+      "scenarioPrompt": "You order sushi or a rice bowl and politely ask to hold the wasabi.",
+      "nativeText": "わさび抜きでお願いします。",
+      "rubyHtml": "わさび<ruby>抜<rt>ぬ</rt></ruby>きでお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Wasabi-nuki de onegaishimasu.",
+      "translation": "Without wasabi, please.",
+      "literalBreakdown": "わさび (wasabi) + 抜き (omitted/extracted) + で (in that state) + お願いします (please)",
+      "usageTip": "抜き works best for removable toppings/condiments; for broth bases (like pork bone or bonito dashi), check with 〜は入っていますか first."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u003-t2-drill-01",
+      "tier": "travel",
+      "prompt": "You want to ask for two flat sharing plates (お皿) so you and your friend can split dishes at an izakaya. Which counter fits flat plates?",
+      "baseSentence": "すみません、お皿を＿＿＿お願いします。",
+      "cue": "2 flat objects",
+      "options": [
+        "二本",
+        "二番線",
+        "二人",
+        "二枚"
+      ],
+      "correctAnswer": "二枚",
+      "explanation": "〜枚 (まい) counts flat, thin items such as plates (お皿), tickets, slices of toast, and shirts."
+    },
+    {
+      "id": "ja-u003-t2-drill-02",
+      "tier": "travel",
+      "prompt": "You cannot eat pork (豚肉, ぶたにく) and want to check politely whether a soup contains it. Which question do you ask?",
+      "cue": "Ask 'Is pork in this soup?' using 入っていますか",
+      "options": [
+        "すみません、このスープに豚肉は入っていますか。",
+        "すみません、このスープに豚肉は乗っていますか。",
+        "すみません、このスープは豚肉行きですか。",
+        "すみません、豚肉で払えますか。"
+      ],
+      "correctAnswer": "すみません、このスープに豚肉は入っていますか。",
+      "explanation": "Ingredient + は入っていますか checks whether an ingredient is inside a dish or broth."
+    },
+    {
+      "id": "ja-u003-t2-drill-03",
+      "tier": "travel",
+      "prompt": "You'd like your ramen served without green onions (ねぎ). Complete the polite request:",
+      "baseSentence": "ねぎ＿＿＿でお願いします。",
+      "cue": "Suffix meaning 'without / leaving out'",
+      "options": [
+        "行き",
+        "抜き",
+        "番線",
+        "会計"
+      ],
+      "correctAnswer": "抜き",
+      "explanation": "Noun + 抜きでお願いします politely asks the kitchen to omit a topping or condiment."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u003-t2-card-01",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "frontPrompt": "Two draft beers and three yakitori skewers, please.",
+      "targetText": "生ビールを二杯と、焼き鳥を三本お願いします。",
+      "rubyHtml": "<ruby>生<rt>なま</rt></ruby>ビールを<ruby>二杯<rt>にはい</rt></ruby>と、<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>三本<rt>さんぼん</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "なまびーるをにはいと、やきとりをさんぼんおねがいします。",
+      "contextSentence": "とりあえず生ビールを二杯と、焼き鳥を三本お願いします。",
+      "contextRubyHtml": "とりあえず<ruby>生<rt>なま</rt></ruby>ビールを<ruby>二杯<rt>にはい</rt></ruby>と、<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>三本<rt>さんぼん</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "To start, two draft beers and three yakitori skewers, please.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t2-card-02",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "frontPrompt": "Does this contain egg?",
+      "targetText": "これに卵は入っていますか。",
+      "rubyHtml": "これに<ruby>卵<rt>たまご</rt></ruby>は<ruby>入<rt>はい</rt></ruby>っていますか。",
+      "reading": "これにたまごははいっていますか。",
+      "contextSentence": "アレルギーがあるんですが、これに卵は入っていますか。",
+      "contextRubyHtml": "アレルギーがあるんですが、これに<ruby>卵<rt>たまご</rt></ruby>は<ruby>入<rt>はい</rt></ruby>っていますか。",
+      "contextTranslation": "I have an allergy—does this contain egg?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t2-card-03",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "frontPrompt": "Without wasabi, please.",
+      "targetText": "わさび抜きでお願いします。",
+      "rubyHtml": "わさび<ruby>抜<rt>ぬ</rt></ruby>きでお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "わさびぬきでおねがいします。",
+      "contextSentence": "お寿司を二つ、わさび抜きでお願いします。",
+      "contextRubyHtml": "お<ruby>寿司<rt>すし</rt></ruby>を<ruby>二<rt>ふた</rt></ruby>つ、わさび<ruby>抜<rt>ぬ</rt></ruby>きでお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Two orders of sushi, without wasabi please.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t2-card-04",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "frontPrompt": "Two small plates, please.",
+      "targetText": "お皿を二枚お願いします。",
+      "rubyHtml": "お<ruby>皿<rt>さら</rt></ruby>を<ruby>二枚<rt>にまい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "おさらをにまいおねがいします。",
+      "contextSentence": "すみません、取り分けたいのでお皿を二枚お願いします。",
+      "contextRubyHtml": "すみません、<ruby>取<rt>と</rt></ruby>り<ruby>分<rt>わ</rt></ruby>けたいのでお<ruby>皿<rt>さら</rt></ruby>を<ruby>二枚<rt>にまい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Excuse me, since we'd like to share, two plates please.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t2-card-05",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "frontPrompt": "One / Two / Three (universal native counter 〜つ)",
+      "targetText": "一つ・二つ・三つ",
+      "rubyHtml": "<ruby>一<rt>ひと</rt></ruby>つ・<ruby>二<rt>ふた</rt></ruby>つ・<ruby>三<rt>みっ</rt></ruby>つ",
+      "reading": "ひとつ・ふたつ・みっつ",
+      "contextSentence": "唐揚げを一つと、おにぎりを二つください。",
+      "contextRubyHtml": "<ruby>唐揚<rt>からあ</rt></ruby>げを<ruby>一<rt>ひと</rt></ruby>つと、おにぎりを<ruby>二<rt>ふた</rt></ruby>つください。",
+      "contextTranslation": "One fried chicken portion and two rice balls, please.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u003-t2-story-01",
+      "unitId": "ja-unit-003",
+      "tier": "travel",
+      "title": "ちょうちんの居酒屋で乾杯",
+      "titleTranslation": "Cheers at a Lantern-Lit Izakaya",
+      "setting": "7:30 PM under red paper lanterns at a lively neighborhood izakaya in Osaka.",
+      "paragraphs": [
+        {
+          "nativeText": "友だちと二人で居酒屋に入りました。まず「とりあえず生ビールを二杯と、枝豆を一つお願いします」と注文しました。",
+          "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だちと<ruby>二人<rt>ふたり</rt></ruby>で<ruby>居酒屋<rt>いざかや</rt></ruby>に<ruby>入<rt>はい</rt></ruby>りました。まず「とりあえず<ruby>生<rt>なま</rt></ruby>ビールを<ruby>二杯<rt>にはい</rt></ruby>と、<ruby>枝豆<rt>えだまめ</rt></ruby>を<ruby>一<rt>ひと</rt></ruby>つお<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>注文<rt>ちゅうもん</rt></ruby>しました。",
+          "translation": "My friend and I walked into an izakaya together. First we ordered, 'For starters, two draft beers and one edamame, please.'",
+          "segments": [
+            {
+              "surface": "友だち",
+              "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だち",
+              "reading": "ともだち",
+              "meaning": "friend"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "with"
+            },
+            {
+              "surface": "二人",
+              "rubyHtml": "<ruby>二人<rt>ふたり</rt></ruby>",
+              "reading": "ふたり",
+              "meaning": "two people"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "as a party of / together"
+            },
+            {
+              "surface": "居酒屋",
+              "rubyHtml": "<ruby>居酒屋<rt>いざかや</rt></ruby>",
+              "reading": "いざかや",
+              "meaning": "izakaya (Japanese pub-eatery)"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "into"
+            },
+            {
+              "surface": "入りました",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>りました",
+              "reading": "はいりました",
+              "meaning": "entered (polite past)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "まず",
+              "reading": "まず",
+              "meaning": "first of all"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "とりあえず",
+              "reading": "とりあえず",
+              "meaning": "for starters / first off"
+            },
+            {
+              "surface": "生ビール",
+              "rubyHtml": "<ruby>生<rt>なま</rt></ruby>ビール",
+              "reading": "なまびーる",
+              "meaning": "draft beer"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "二杯",
+              "rubyHtml": "<ruby>二杯<rt>にはい</rt></ruby>",
+              "reading": "にはい",
+              "meaning": "two glasses/mugs"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "枝豆",
+              "rubyHtml": "<ruby>枝豆<rt>えだまめ</rt></ruby>",
+              "reading": "えだまめ",
+              "meaning": "steamed salted edamame"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "一つ",
+              "rubyHtml": "<ruby>一<rt>ひと</rt></ruby>つ",
+              "reading": "ひとつ",
+              "meaning": "one order"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "注文しました",
+              "rubyHtml": "<ruby>注文<rt>ちゅうもん</rt></ruby>しました",
+              "reading": "ちゅうもんしました",
+              "meaning": "ordered (polite past)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "友だちは卵アレルギーがあるので、店員さんに「このサラダに卵は入っていますか」と聞きました。「マヨネーズに卵が入っていますが、マヨネーズ抜きもできますよ」と教えてくれました。",
+          "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だちは<ruby>卵<rt>たまご</rt></ruby>アレルギーがあるので、<ruby>店員<rt>てんいん</rt></ruby>さんに「このサラダに<ruby>卵<rt>たまご</rt></ruby>は<ruby>入<rt>はい</rt></ruby>っていますか」と<ruby>聞<rt>き</rt></ruby>きました。「マヨネーズに<ruby>卵<rt>たまご</rt></ruby>が<ruby>入<rt>はい</rt></ruby>っていますが、マヨネーズ<ruby>抜<rt>ぬ</rt></ruby>きもできますよ」と<ruby>教<rt>おし</rt></ruby>えてくれました。",
+          "translation": "Since my friend has an egg allergy, I asked the server, 'Does this salad contain egg?' They kindly replied, 'There is egg in the mayonnaise, but we can also make it without mayonnaise!'",
+          "segments": [
+            {
+              "surface": "友だち",
+              "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だち",
+              "reading": "ともだち",
+              "meaning": "friend"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "卵アレルギー",
+              "rubyHtml": "<ruby>卵<rt>たまご</rt></ruby>アレルギー",
+              "reading": "たまごあれるぎー",
+              "meaning": "egg allergy"
+            },
+            {
+              "surface": "があるので",
+              "reading": "があるので",
+              "meaning": "since (they) have"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "server / staff"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "この",
+              "reading": "この",
+              "meaning": "this"
+            },
+            {
+              "surface": "サラダ",
+              "reading": "さらだ",
+              "meaning": "salad"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "in"
+            },
+            {
+              "surface": "卵",
+              "rubyHtml": "<ruby>卵<rt>たまご</rt></ruby>",
+              "reading": "たまご",
+              "meaning": "egg"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "入っていますか",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>っていますか",
+              "reading": "はいっていますか",
+              "meaning": "is contained?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きました",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きました",
+              "reading": "ききました",
+              "meaning": "asked"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "マヨネーズ",
+              "reading": "まよねーず",
+              "meaning": "mayonnaise"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "in"
+            },
+            {
+              "surface": "卵",
+              "rubyHtml": "<ruby>卵<rt>たまご</rt></ruby>",
+              "reading": "たまご",
+              "meaning": "egg"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "入っていますが",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>っていますが",
+              "reading": "はいっていますが",
+              "meaning": "is contained, however"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "マヨネーズ抜き",
+              "rubyHtml": "マヨネーズ<ruby>抜<rt>ぬ</rt></ruby>き",
+              "reading": "まよねーずぬき",
+              "meaning": "without mayonnaise"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also"
+            },
+            {
+              "surface": "できますよ",
+              "reading": "できますよ",
+              "meaning": "we can do!"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "教えてくれました",
+              "rubyHtml": "<ruby>教<rt>おし</rt></ruby>えてくれました",
+              "reading": "おしえてくれました",
+              "meaning": "kindly told us"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "わたしたちは「マヨネーズ抜きでお願いします。あと、焼き鳥を四本とお皿を二枚お願いします」と頼みました。焼きたての焼き鳥はとてもおいしかったです。",
+          "rubyHtml": "わたしたちは「マヨネーズ<ruby>抜<rt>ぬ</rt></ruby>きでお<ruby>願<rt>ねが</rt></ruby>いします。あと、<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>四本<rt>よんほん</rt></ruby>とお<ruby>皿<rt>さら</rt></ruby>を<ruby>二枚<rt>にまい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>頼<rt>たの</rt></ruby>みました。<ruby>焼<rt>や</rt></ruby>きたての<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>はとてもおいしかったです。",
+          "translation": "We requested, 'Without mayonnaise, please. Also, four yakitori skewers and two small plates, please.' The freshly grilled yakitori was delicious.",
+          "segments": [
+            {
+              "surface": "わたしたち",
+              "reading": "わたしたち",
+              "meaning": "we"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "マヨネーズ抜き",
+              "rubyHtml": "マヨネーズ<ruby>抜<rt>ぬ</rt></ruby>き",
+              "reading": "まよねーずぬき",
+              "meaning": "without mayonnaise"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "in that way"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "あと",
+              "reading": "あと",
+              "meaning": "also / and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "焼き鳥",
+              "rubyHtml": "<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>",
+              "reading": "やきとり",
+              "meaning": "grilled chicken skewers"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "四本",
+              "rubyHtml": "<ruby>四本<rt>よんほん</rt></ruby>",
+              "reading": "よんほん",
+              "meaning": "four skewers"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "お皿",
+              "rubyHtml": "お<ruby>皿<rt>さら</rt></ruby>",
+              "reading": "おさら",
+              "meaning": "plates"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "二枚",
+              "rubyHtml": "<ruby>二枚<rt>にまい</rt></ruby>",
+              "reading": "にまい",
+              "meaning": "two flat plates"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "頼みました",
+              "rubyHtml": "<ruby>頼<rt>たの</rt></ruby>みました",
+              "reading": "たのみました",
+              "meaning": "ordered / requested"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "焼きたて",
+              "rubyHtml": "<ruby>焼<rt>や</rt></ruby>きたて",
+              "reading": "やきたて",
+              "meaning": "fresh off the grill"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "焼き鳥",
+              "rubyHtml": "<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>",
+              "reading": "やきとり",
+              "meaning": "yakitori"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "とても",
+              "reading": "とても",
+              "meaning": "very"
+            },
+            {
+              "surface": "おいしかったです",
+              "reading": "おいしかったです",
+              "meaning": "was delicious (polite past)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u003-t2-story-01-q1",
+          "question": "What did the two friends order right at the start with とりあえず?",
+          "options": [
+            "Four bowls of ramen and green tea",
+            "Three bottles of sake only",
+            "Two glasses of draft beer (二杯) and one order of edamame (一つ)",
+            "Two desserts and coffee"
+          ],
+          "correctIndex": 2,
+          "explanation": "They opened with 「とりあえず生ビールを二杯と、枝豆を一つお願いします」."
+        },
+        {
+          "id": "ja-u003-t2-story-01-q2",
+          "question": "How did the kitchen accommodate the friend's egg allergy on the salad?",
+          "options": [
+            "Replaced the salad with fried rice",
+            "Boiled the mayonnaise",
+            "Served only water instead",
+            "Prepared the salad without mayonnaise (マヨネーズ抜き)"
+          ],
+          "correctIndex": 3,
+          "explanation": "Because the mayonnaise contained egg, the server offered 「マヨネーズ抜きもできますよ」."
+        },
+        {
+          "id": "ja-u003-t2-story-01-q3",
+          "question": "How many yakitori skewers and small plates did they add?",
+          "options": [
+            "Four skewers (四本) and two plates (二枚)",
+            "Two skewers and four plates",
+            "One skewer and one plate",
+            "Ten skewers and five plates"
+          ],
+          "correctIndex": 0,
+          "explanation": "They ordered 焼き鳥を四本 (four skewers) and お皿を二枚 (two flat plates)."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "ja-ref-counters",
+      "category": "counters",
+      "tier": "travel",
+      "title": "Universal & Izakaya Counters",
+      "subtitle": "Master five core counters plus Japan's classic first-round opener",
+      "rows": [
+        {
+          "id": "ja-ref-counters-row-01",
+          "term": "〜つ (一つ・二つ・三つ・四つ・五つ)",
+          "rubyHtml": "〜つ (<ruby>一<rt>ひと</rt></ruby>つ・<ruby>二<rt>ふた</rt></ruby>つ・<ruby>三<rt>みっ</rt></ruby>つ・<ruby>四<rt>よっ</rt></ruby>つ・<ruby>五<rt>いつ</rt></ruby>つ)",
+          "readingOrSubtle": "hitotsu, futatsu, mittsu, yottsu, itsutsu",
+          "meaning": "Universal native counter (1–9) — works for almost any dish, set meal, or object",
+          "exampleNative": "餃子を二つと、唐揚げを一つお願いします。",
+          "exampleTranslation": "Two orders of gyoza and one fried chicken, please.",
+          "notes": "Your ultimate safety net whenever you aren't sure of an item's shape counter!"
+        },
+        {
+          "id": "ja-ref-counters-row-02",
+          "term": "〜人 (一人・二人・三人・四人)",
+          "rubyHtml": "〜<ruby>人<rt>にん</rt></ruby> (<ruby>一人<rt>ひとり</rt></ruby>・<ruby>二人<rt>ふたり</rt></ruby>・<ruby>三人<rt>さんにん</rt></ruby>・<ruby>四人<rt>よにん</rt></ruby>)",
+          "readingOrSubtle": "hitori, futari, san-nin, yo-nin (note: NOT yon-nin)",
+          "meaning": "Counter for people / party size",
+          "exampleNative": "予約していないんですが、三人いけますか。",
+          "exampleTranslation": "We don't have a reservation—can you seat three?",
+          "notes": "Staff ask in honorific 〜名様 (なんめいさま); you always answer with 〜人!"
+        },
+        {
+          "id": "ja-ref-counters-row-03",
+          "term": "〜杯 (一杯・二杯・三杯)",
+          "rubyHtml": "〜<ruby>杯<rt>はい</rt></ruby> (<ruby>一杯<rt>いっぱい</rt></ruby>・<ruby>二杯<rt>にはい</rt></ruby>・<ruby>三杯<rt>さんばい</rt></ruby>)",
+          "readingOrSubtle": "ippai (1), ni-hai (2), san-bai (3), yon-hai (4)",
+          "meaning": "Glasses, mugs, cups, and deep bowls (draft beer, highballs, coffee, ramen)",
+          "exampleNative": "ハイボールを二杯お願いします。",
+          "exampleTranslation": "Two highballs, please.",
+          "notes": "Notice h → pp on 1 (いっぱい) and h → b on 3 (さんばい)."
+        },
+        {
+          "id": "ja-ref-counters-row-04",
+          "term": "〜本 (一本・二本・三本)",
+          "rubyHtml": "〜<ruby>本<rt>ほん</rt></ruby> (<ruby>一本<rt>いっぽん</rt></ruby>・<ruby>二本<rt>にほん</rt></ruby>・<ruby>三本<rt>さんぼん</rt></ruby>)",
+          "readingOrSubtle": "ippon (1), ni-hon (2), san-bon (3), yon-hon (4)",
+          "meaning": "Long cylindrical items (yakitori skewers, bottled beer, umbrellas, train departures)",
+          "exampleNative": "ねぎまを二本と、つくねを三本ください。",
+          "exampleTranslation": "Two chicken-and-scallion skewers and three meatball skewers, please.",
+          "notes": "Follows the exact same p/b sound-shift pattern on 1 and 3 as 〜杯!"
+        },
+        {
+          "id": "ja-ref-counters-row-05",
+          "term": "〜枚 (一枚・二枚・三枚)",
+          "rubyHtml": "〜<ruby>枚<rt>まい</rt></ruby> (<ruby>一枚<rt>いちまい</rt></ruby>・<ruby>二枚<rt>にまい</rt></ruby>・<ruby>三枚<rt>さんまい</rt></ruby>)",
+          "readingOrSubtle": "ichi-mai, ni-mai, san-mai, yon-mai (zero irregular sound shifts!)",
+          "meaning": "Flat, thin objects (sharing plates, tickets, okonomiyaki, pizza, paper sheets)",
+          "exampleNative": "取り皿を三枚いただけますか。",
+          "exampleTranslation": "Could we get three small sharing plates?",
+          "notes": "取り皿 (torizara) are small individual plates used for sharing izakaya dishes."
+        },
+        {
+          "id": "ja-ref-counters-row-06",
+          "term": "とりあえず生二つ！",
+          "rubyHtml": "とりあえず<ruby>生<rt>なま</rt></ruby><ruby>二<rt>ふた</rt></ruby>つ！",
+          "readingOrSubtle": "Toriaezu nama futatsu! (or 生二杯お願いします)",
+          "meaning": "'Two draft beers to start while we look over the food menu!'",
+          "exampleNative": "すみません、とりあえず生二つお願いします！",
+          "exampleTranslation": "Excuse me, two draft beers for starters, please!",
+          "notes": "生 (nama) alone at an izakaya always means chilled draft beer (生ビール)."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ]
+}

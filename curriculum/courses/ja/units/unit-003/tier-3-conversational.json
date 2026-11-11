@@ -1,0 +1,749 @@
+{
+  "shardId": "ja-unit-003-conversational",
+  "unitId": "ja-unit-003",
+  "tier": "conversational",
+  "tierNumber": 3,
+  "focusSummary": "Lively izakaya banter, asking staff recommendations (おすすめは何ですか), sharing flavor impressions (思ったよりさっぱりしている), and splitting vs. treating (割り勘にしよう, ごちそうさまでした).",
+  "introducedLexiconIds": [
+    "ja-u003-t3-lex-01",
+    "ja-u003-t3-lex-02",
+    "ja-u003-t3-lex-03",
+    "ja-u003-t3-lex-04",
+    "ja-u003-t3-lex-05",
+    "ja-u003-t3-lex-06",
+    "ja-u003-t3-lex-07",
+    "ja-u003-t3-lex-08"
+  ],
+  "introducedGrammarIds": [
+    "ja-u003-t3-gram-01",
+    "ja-u003-t3-gram-02",
+    "ja-u003-t3-gram-03"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "味",
+    "思",
+    "濃",
+    "辛",
+    "割",
+    "勘",
+    "飲",
+    "食",
+    "薦"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u003-t3-step-01",
+      "tier": "conversational",
+      "heading": "Asking for House Specialties: 今日のおすすめは何ですか",
+      "explanation": "Izakayas often write daily specials on a chalkboard or vertical paper strips on the wall. Asking 今日のおすすめは何ですか ('What do you recommend today?') unlocks the freshest seasonal fish or signature dish.",
+      "scenarioPrompt": "You spot a handwritten daily menu at a counter izakaya and ask the chef what's best tonight.",
+      "nativeText": "今日のおすすめは何ですか。辛い料理も好きです。",
+      "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>のおすすめは<ruby>何<rt>なん</rt></ruby>ですか。<ruby>辛<rt>から</rt></ruby>い<ruby>料理<rt>りょうり</rt></ruby>も<ruby>好<rt>す</rt></ruby>きです。",
+      "romanization": "Kyō no osusume wa nan desu ka. Karai ryōri mo suki desu.",
+      "translation": "What do you recommend today? I like spicy dishes too.",
+      "literalBreakdown": "今日のおすすめは (today's recommendation) + 何ですか (what is it?) / 辛い料理も (spicy dishes too) + 好きです (like)",
+      "usageTip": "You can narrow it down effortlessly: 日本酒のおすすめは何ですか ('What sake do you recommend?')."
+    },
+    {
+      "id": "ja-u003-t3-step-02",
+      "tier": "conversational",
+      "heading": "Expressing Flavor Impressions: 思ったよりさっぱりしている",
+      "explanation": "思ったより ('more than I expected') paired with flavor words like さっぱりしている (light, clean, refreshing) or 味が濃い (rich/deeply seasoned) turns a simple 'おいしい' into real foodie conversation.",
+      "scenarioPrompt": "You take a sip of golden yuzu-salt ramen broth that looked rich at first glance.",
+      "nativeText": "このスープ、思ったよりさっぱりしていて飲みやすいね！",
+      "rubyHtml": "このスープ、<ruby>思<rt>おも</rt></ruby>ったよりさっぱりしていて<ruby>飲<rt>の</rt></ruby>みやすいね！",
+      "romanization": "Kono sūpu, omotta yori sappari shite ite nomiyasui ne!",
+      "translation": "This broth is lighter and cleaner than I expected, and so easy to drink!",
+      "literalBreakdown": "思ったより (compared to what I thought) + さっぱりしていて (is light/refreshing and) + 飲みやすいね (easy to drink!)",
+      "usageTip": "Verb stem + やすい ('easy to...') works anywhere: 食べやすい ('easy to eat'), わかりやすい ('easy to understand')."
+    },
+    {
+      "id": "ja-u003-t3-step-03",
+      "tier": "conversational",
+      "heading": "Splitting the Check vs. Treating: 割り勘にしよう",
+      "explanation": "Because izakayas bring one combined bill to the register rather than splitting by card at the table, friends usually say 割り勘にしよう (わりかんにしよう, 'Let's split it evenly!', volitional form) and settle up in cash or PayPay afterward.",
+      "scenarioPrompt": "The server places the bill slip on the table after a fun dinner with friends.",
+      "nativeText": "今日は割り勘にしよう。一人三千円ずつだね。",
+      "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>は<ruby>割り勘<rt>わりかん</rt></ruby>にしよう。<ruby>一人<rt>ひとり</rt></ruby><ruby>三千円<rt>さんぜんえん</rt></ruby>ずつだね。",
+      "romanization": "Kyō wa warikan ni shiyō. Hitori sanzen-en zutsu da ne.",
+      "translation": "Let's split the bill today. That's 3,000 yen each, right?",
+      "literalBreakdown": "今日は (today) + 割り勘にしよう (let's make it Dutch treat) / 一人三千円ずつ (3,000 yen apiece per person)",
+      "usageTip": "If someone insists 「ここは出すよ」 / 「おごるよ」 ('My treat!'), thank them warmly when leaving with 「ごちそうさまでした！」."
+    },
+    {
+      "id": "ja-u003-t3-step-04",
+      "tier": "conversational",
+      "heading": "Heartfelt Meal Gratitude: ごちそうさまでした",
+      "explanation": "Said both to the chef/staff as you walk out the door AND to a friend or senior who treated you, ごちそうさまでした literally honors the 'running around' (馳走) involved in sourcing and preparing the feast.",
+      "scenarioPrompt": "You step away from a neighborhood ramen counter after finishing every drop.",
+      "nativeText": "すごくおいしかったです。ごちそうさまでした！",
+      "romanization": "Sugoku oishikatta desu. Gochisōsama deshita!",
+      "translation": "That was super delicious. Thank you for the wonderful meal!",
+      "literalBreakdown": "すごく (really/super) + おいしかったです (was delicious) + ごちそうさまでした (thank you for the feast)",
+      "usageTip": "Calling out 「ごちそうさまでした！」 toward the open kitchen as you slide the door shut always earns a big 「ありがとうございました！」 back."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u003-t3-drill-01",
+      "tier": "conversational",
+      "prompt": "You want to ask the izakaya server what their top recommendation is today. Which phrase is natural?",
+      "cue": "Ask 'What is today's recommendation?'",
+      "options": [
+        "すみません、今日の割り勘は何番線ですか。",
+        "すみません、今日のおすすめは何ですか。",
+        "すみません、精算機はさっぱりしていますか。",
+        "すみません、出口は辛いですか。"
+      ],
+      "correctAnswer": "すみません、今日のおすすめは何ですか。",
+      "explanation": "今日のおすすめは何ですか asks directly and warmly for the house's daily standout dish."
+    },
+    {
+      "id": "ja-u003-t3-drill-02",
+      "tier": "conversational",
+      "prompt": "You taste a dish that looked fiery red, yet it turns out much milder and lighter than you expected. Complete the impression:",
+      "baseSentence": "これ、＿＿＿辛くないし、さっぱりしているね！",
+      "cue": "'More than I thought / Contrary to expectation'",
+      "options": [
+        "割り勘より",
+        "乗り換えより",
+        "思ったより",
+        "お会計より"
+      ],
+      "correctAnswer": "思ったより",
+      "explanation": "思ったより ('compared to what I thought') expresses pleasant surprise when reality differs from expectation."
+    },
+    {
+      "id": "ja-u003-t3-drill-03",
+      "tier": "conversational",
+      "prompt": "After sharing skewers and drinks equally with classmates, you suggest splitting the bill evenly. What do you say?",
+      "cue": "'Let's split the check!' using 割り勘",
+      "options": [
+        "今日は各駅停車にしよう！",
+        "今日はわさび抜きにしよう！",
+        "今日は営業中にしよう！",
+        "今日は割り勘にしよう！"
+      ],
+      "correctAnswer": "今日は割り勘にしよう！",
+      "explanation": "割り勘にしよう uses Noun + にしよう (volitional of にする, 'let's decide on X') to propose splitting the bill."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u003-t3-card-01",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "frontPrompt": "What do you recommend today?",
+      "targetText": "今日のおすすめは何ですか。",
+      "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>のおすすめは<ruby>何<rt>なん</rt></ruby>ですか。",
+      "reading": "きょうのおすすめはなんですか。",
+      "contextSentence": "すみません、お魚料理で今日のおすすめは何ですか。",
+      "contextRubyHtml": "すみません、お<ruby>魚料理<rt>さかなりょうり</rt></ruby>で<ruby>今日<rt>きょう</rt></ruby>のおすすめは<ruby>何<rt>なん</rt></ruby>ですか。",
+      "contextTranslation": "Excuse me, among your fish dishes, what do you recommend today?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t3-card-02",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "frontPrompt": "It's lighter and more refreshing than I expected!",
+      "targetText": "思ったよりさっぱりしていますね。",
+      "rubyHtml": "<ruby>思<rt>おも</rt></ruby>ったよりさっぱりしていますね。",
+      "reading": "おもったよりさっぱりしていますね。",
+      "contextSentence": "このラーメン、味が濃そうだけど、思ったよりさっぱりしていますね。",
+      "contextRubyHtml": "このラーメン、<ruby>味<rt>あじ</rt></ruby>が<ruby>濃<rt>こ</rt></ruby>そうだけど、<ruby>思<rt>おも</rt></ruby>ったよりさっぱりしていますね。",
+      "contextTranslation": "This ramen looks rich, yet it's lighter and cleaner than I expected!",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t3-card-03",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "frontPrompt": "Let's split the bill evenly.",
+      "targetText": "割り勘にしよう。",
+      "rubyHtml": "<ruby>割り勘<rt>わりかん</rt></ruby>にしよう。",
+      "reading": "わりかんにしよう。",
+      "contextSentence": "みんな同じくらい飲んだから、割り勘にしよう。",
+      "contextRubyHtml": "みんな<ruby>同<rt>おな</rt></ruby>じくらい<ruby>飲<rt>の</rt></ruby>んだから、<ruby>割り勘<rt>わりかん</rt></ruby>にしよう。",
+      "contextTranslation": "Since everyone drank about the same amount, let's split it evenly.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t3-card-04",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "frontPrompt": "Thank you for the wonderful meal! (after eating / to chef or host)",
+      "targetText": "ごちそうさまでした。",
+      "reading": "ごちそうさまでした。",
+      "contextSentence": "全部おいしかったです。ごちそうさまでした！",
+      "contextRubyHtml": "<ruby>全部<rt>ぜんぶ</rt></ruby>おいしかったです。ごちそうさまでした！",
+      "contextTranslation": "Everything was delicious. Thank you for the meal!",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u003-t3-card-05",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "frontPrompt": "Rich/strong flavor vs. Spicy/hot",
+      "targetText": "味が濃い / 辛い",
+      "rubyHtml": "<ruby>味<rt>あじ</rt></ruby>が<ruby>濃<rt>こ</rt></ruby>い / <ruby>辛<rt>から</rt></ruby>い",
+      "reading": "あじがこい / からい",
+      "contextSentence": "味が濃い料理はお酒によく合います。",
+      "contextRubyHtml": "<ruby>味<rt>あじ</rt></ruby>が<ruby>濃<rt>こ</rt></ruby>い<ruby>料理<rt>りょうり</rt></ruby>はお<ruby>酒<rt>さけ</rt></ruby>によく<ruby>合<rt>あ</rt></ruby>います。",
+      "contextTranslation": "Richly seasoned dishes pair well with drinks.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u003-t3-story-01",
+      "unitId": "ja-unit-003",
+      "tier": "conversational",
+      "title": "金曜日のおすすめと割り勘",
+      "titleTranslation": "Friday Night Specials and Splitting the Check",
+      "setting": "8:15 PM on a lively Friday night inside a cozy wood-paneled yakitori & seafood izakaya.",
+      "paragraphs": [
+        {
+          "nativeText": "金曜日の夜、友だちと三人で駅前の居酒屋に行きました。黒板にたくさんのメニューがあったので、店員さんに「今日のおすすめは何ですか」と聞きました。",
+          "rubyHtml": "<ruby>金曜日<rt>きんようび</rt></ruby>の<ruby>夜<rt>よる</rt></ruby>、<ruby>友<rt>とも</rt></ruby>だちと<ruby>三人<rt>さんにん</rt></ruby>で<ruby>駅前<rt>えきまえ</rt></ruby>の<ruby>居酒屋<rt>いざかや</rt></ruby>に<ruby>行<rt>い</rt></ruby>きました。<ruby>黒板<rt>こくばん</rt></ruby>にたくさんのメニューがあったので、<ruby>店員<rt>てんいん</rt></ruby>さんに「<ruby>今日<rt>きょう</rt></ruby>のおすすめは<ruby>何<rt>なん</rt></ruby>ですか」と<ruby>聞<rt>き</rt></ruby>きました。",
+          "translation": "On Friday evening, three of us went to an izakaya right outside the station. Since the chalkboard was packed with dishes, I asked the server, 'What do you recommend today?'",
+          "segments": [
+            {
+              "surface": "金曜日",
+              "rubyHtml": "<ruby>金曜日<rt>きんようび</rt></ruby>",
+              "reading": "きんようび",
+              "meaning": "Friday"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "夜",
+              "rubyHtml": "<ruby>夜<rt>よる</rt></ruby>",
+              "reading": "よる",
+              "meaning": "evening / night"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "友だち",
+              "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だち",
+              "reading": "ともだち",
+              "meaning": "friends"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "with"
+            },
+            {
+              "surface": "三人",
+              "rubyHtml": "<ruby>三人<rt>さんにん</rt></ruby>",
+              "reading": "さんにん",
+              "meaning": "three people"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "as a group of"
+            },
+            {
+              "surface": "駅前",
+              "rubyHtml": "<ruby>駅前<rt>えきまえ</rt></ruby>",
+              "reading": "えきまえ",
+              "meaning": "area in front of the station"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of / in"
+            },
+            {
+              "surface": "居酒屋",
+              "rubyHtml": "<ruby>居酒屋<rt>いざかや</rt></ruby>",
+              "reading": "いざかや",
+              "meaning": "izakaya"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "行きました",
+              "rubyHtml": "<ruby>行<rt>い</rt></ruby>きました",
+              "reading": "いきました",
+              "meaning": "went"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "黒板",
+              "rubyHtml": "<ruby>黒板<rt>こくばん</rt></ruby>",
+              "reading": "こくばん",
+              "meaning": "chalkboard"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "on"
+            },
+            {
+              "surface": "たくさん",
+              "reading": "たくさん",
+              "meaning": "many"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "メニュー",
+              "reading": "めにゅー",
+              "meaning": "menu items"
+            },
+            {
+              "surface": "があったので",
+              "reading": "があったので",
+              "meaning": "since there were"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "server"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "今日",
+              "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>",
+              "reading": "きょう",
+              "meaning": "today"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "おすすめ",
+              "reading": "おすすめ",
+              "meaning": "recommendation"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "何",
+              "rubyHtml": "<ruby>何<rt>なん</rt></ruby>",
+              "reading": "なん",
+              "meaning": "what"
+            },
+            {
+              "surface": "ですか",
+              "reading": "ですか",
+              "meaning": "is it?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きました",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きました",
+              "reading": "ききました",
+              "meaning": "asked"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "店員さんがお薦めしてくれた柚子塩鍋を食べてみると、「味が濃いかと思ったけど、思ったよりさっぱりしていてすごくおいしいね！」とみんなで盛り上がりました。",
+          "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さんがお<ruby>薦<rt>すす</rt></ruby>めしてくれた<ruby>柚子塩鍋<rt>ゆずしおなべ</rt></ruby>を<ruby>食<rt>た</rt></ruby>べてみると、「<ruby>味<rt>あじ</rt></ruby>が<ruby>濃<rt>こ</rt></ruby>いかと<ruby>思<rt>おも</rt></ruby>ったけど、<ruby>思<rt>おも</rt></ruby>ったよりさっぱりしていてすごくおいしいね！」とみんなで<ruby>盛<rt>も</rt></ruby>り<ruby>上<rt>あ</rt></ruby>がりました。",
+          "translation": "When we tried the yuzu-salt hotpot the server recommended, everyone lit up saying, 'I thought the seasoning might be heavy, yet it's way lighter and more refreshing than expected—so good!'",
+          "segments": [
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "server"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "お薦めしてくれた",
+              "rubyHtml": "お<ruby>薦<rt>すす</rt></ruby>めしてくれた",
+              "reading": "おすすめしてくれた",
+              "meaning": "kindly recommended"
+            },
+            {
+              "surface": "柚子塩鍋",
+              "rubyHtml": "<ruby>柚子塩鍋<rt>ゆずしおなべ</rt></ruby>",
+              "reading": "ゆずしおなべ",
+              "meaning": "yuzu-citrus salt hotpot"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "食べてみると",
+              "rubyHtml": "<ruby>食<rt>た</rt></ruby>べてみると",
+              "reading": "たべてみると",
+              "meaning": "when we tried eating"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "味",
+              "rubyHtml": "<ruby>味<rt>あじ</rt></ruby>",
+              "reading": "あじ",
+              "meaning": "flavor / seasoning"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "濃い",
+              "rubyHtml": "<ruby>濃<rt>こ</rt></ruby>い",
+              "reading": "こい",
+              "meaning": "rich / heavy / strong"
+            },
+            {
+              "surface": "かと",
+              "reading": "かと",
+              "meaning": "whether / might be"
+            },
+            {
+              "surface": "思ったけど",
+              "rubyHtml": "<ruby>思<rt>おも</rt></ruby>ったけど",
+              "reading": "おもったけど",
+              "meaning": "I thought, though"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "思ったより",
+              "rubyHtml": "<ruby>思<rt>おも</rt></ruby>ったより",
+              "reading": "おもったより",
+              "meaning": "more than expected"
+            },
+            {
+              "surface": "さっぱりしていて",
+              "reading": "さっぱりしていて",
+              "meaning": "light and refreshing, and"
+            },
+            {
+              "surface": "すごく",
+              "reading": "すごく",
+              "meaning": "super / really"
+            },
+            {
+              "surface": "おいしいね",
+              "reading": "おいしいね",
+              "meaning": "delicious, isn't it!"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "みんなで",
+              "reading": "みんなで",
+              "meaning": "all together"
+            },
+            {
+              "surface": "盛り上がりました",
+              "rubyHtml": "<ruby>盛<rt>も</rt></ruby>り<ruby>上<rt>あ</rt></ruby>がりました",
+              "reading": "もりあがりました",
+              "meaning": "had a lively time / got excited"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "お会計は全部で九千円だったので、「今日は割り勘にしよう。一人三千円ね！」と決めました。レジで払ったあと、お店のみなさんに「ごちそうさまでした！」と言って外へ出ました。",
+          "rubyHtml": "お<ruby>会計<rt>かいけい</rt></ruby>は<ruby>全部<rt>ぜんぶ</rt></ruby>で<ruby>九千円<rt>きゅうせんえん</rt></ruby>だったので、「<ruby>今日<rt>きょう</rt></ruby>は<ruby>割り勘<rt>わりかん</rt></ruby>にしよう。<ruby>一人<rt>ひとり</rt></ruby><ruby>三千円<rt>さんぜんえん</rt></ruby>ね！」と<ruby>決<rt>き</rt></ruby>めました。レジで<ruby>払<rt>はら</rt></ruby>ったあと、お<ruby>店<rt>みせ</rt></ruby>のみなさんに「ごちそうさまでした！」と<ruby>言<rt>い</rt></ruby>って<ruby>外<rt>そと</rt></ruby>へ<ruby>出<rt>で</rt></ruby>ました。",
+          "translation": "Since the bill came to 9,000 yen in total, we decided, 'Let's split it today—3,000 yen each!' After paying at the register, we called out 'Thank you for the wonderful meal!' to everyone on staff and stepped outside.",
+          "segments": [
+            {
+              "surface": "お会計",
+              "rubyHtml": "お<ruby>会計<rt>かいけい</rt></ruby>",
+              "reading": "おかいけい",
+              "meaning": "the bill"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "全部で",
+              "rubyHtml": "<ruby>全部<rt>ぜんぶ</rt></ruby>で",
+              "reading": "ぜんぶで",
+              "meaning": "in total"
+            },
+            {
+              "surface": "九千円",
+              "rubyHtml": "<ruby>九千円<rt>きゅうせんえん</rt></ruby>",
+              "reading": "きゅうせんえん",
+              "meaning": "9,000 yen"
+            },
+            {
+              "surface": "だったので",
+              "reading": "だったので",
+              "meaning": "since it was"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "今日",
+              "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>",
+              "reading": "きょう",
+              "meaning": "today"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "割り勘",
+              "rubyHtml": "<ruby>割り勘<rt>わりかん</rt></ruby>",
+              "reading": "わりかん",
+              "meaning": "splitting the bill evenly"
+            },
+            {
+              "surface": "にしよう",
+              "reading": "にしよう",
+              "meaning": "let's make it"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "一人",
+              "rubyHtml": "<ruby>一人<rt>ひとり</rt></ruby>",
+              "reading": "ひとり",
+              "meaning": "per person"
+            },
+            {
+              "surface": "三千円",
+              "rubyHtml": "<ruby>三千円<rt>さんぜんえん</rt></ruby>",
+              "reading": "さんぜんえん",
+              "meaning": "3,000 yen"
+            },
+            {
+              "surface": "ね",
+              "reading": "ね",
+              "meaning": "right?"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "決めました",
+              "rubyHtml": "<ruby>決<rt>き</rt></ruby>めました",
+              "reading": "きめました",
+              "meaning": "decided"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "レジ",
+              "reading": "れじ",
+              "meaning": "register"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at"
+            },
+            {
+              "surface": "払った",
+              "rubyHtml": "<ruby>払<rt>はら</rt></ruby>った",
+              "reading": "はらった",
+              "meaning": "paid"
+            },
+            {
+              "surface": "あと",
+              "reading": "あと",
+              "meaning": "after"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "お店",
+              "rubyHtml": "お<ruby>店<rt>みせ</rt></ruby>",
+              "reading": "おみせ",
+              "meaning": "restaurant / shop"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "みなさん",
+              "reading": "みなさん",
+              "meaning": "everyone"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ごちそうさまでした",
+              "reading": "ごちそうさまでした",
+              "meaning": "thank you for the meal"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "外",
+              "rubyHtml": "<ruby>外<rt>そと</rt></ruby>",
+              "reading": "そと",
+              "meaning": "outside"
+            },
+            {
+              "surface": "へ",
+              "reading": "え",
+              "meaning": "toward / out"
+            },
+            {
+              "surface": "出ました",
+              "rubyHtml": "<ruby>出<rt>で</rt></ruby>ました",
+              "reading": "でました",
+              "meaning": "stepped out"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u003-t3-story-01-q1",
+          "question": "Why did the narrator ask the server 「今日のおすすめは何ですか」?",
+          "options": [
+            "There were lots of daily items written on the chalkboard",
+            "There was no menu anywhere in the restaurant",
+            "Everything else was sold out",
+            "They wanted to know the train schedule"
+          ],
+          "correctIndex": 0,
+          "explanation": "黒板にたくさんのメニューがあったので ('Because there were so many menu items on the chalkboard'), they asked for the daily recommendation."
+        },
+        {
+          "id": "ja-u003-t3-story-01-q2",
+          "question": "What was the group's impression of the yuzu-salt hotpot (柚子塩鍋)?",
+          "options": [
+            "It was far too spicy to finish",
+            "It was lighter and more refreshing than they had expected (思ったよりさっぱりしていた)",
+            "It tasted like sweet chocolate",
+            "It was served frozen"
+          ],
+          "correctIndex": 1,
+          "explanation": "They expected a heavy seasoning (味が濃いかと思ったけど), yet found it 思ったよりさっぱりしていてすごくおいしい."
+        },
+        {
+          "id": "ja-u003-t3-story-01-q3",
+          "question": "How did the three friends handle the ¥9,000 total bill?",
+          "options": [
+            "One friend paid the entire ¥9,000 alone",
+            "Each person paid ¥9,000",
+            "They split it evenly (割り勘) at ¥3,000 per person",
+            "They paid with train tickets"
+          ],
+          "correctIndex": 2,
+          "explanation": "九千円 divided among 三人 in a 割り勘 came to 一人三千円 (¥3,000 each)."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": []
+}

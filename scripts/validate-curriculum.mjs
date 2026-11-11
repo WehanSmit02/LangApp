@@ -1,13 +1,13 @@
 import { existsSync } from "node:fs";
+import path from "node:path";
 import {
-  LEDGER_PATH,
-  MANIFEST_PATH,
   readJsonFile,
+  resolveCurriculumRoot,
   scanAndValidateCurriculum,
-  writeManifestAndLedger,
+  writeManifestAndCourseLedgers,
 } from "./lib/curriculum-io.mjs";
 import {
-  LexiconLedgerSchema,
+  CourseLexiconLedgerSchema,
   ManifestSchema,
   TIER_ORDER,
 } from "../src/schemas/curriculum.ts";
@@ -15,9 +15,11 @@ import {
 async function main() {
   const args = new Set(process.argv.slice(2));
   const forceSync = args.has("--sync");
+  const curriculumRoot = resolveCurriculumRoot();
+  const manifestPath = path.join(curriculumRoot, "manifest.json");
 
-  const { errors, manifestLanguages, ledgerLanguages } =
-    await scanAndValidateCurriculum();
+  const { courseIds, errors, manifestCourses, courseLedgers } =
+    await scanAndValidateCurriculum(curriculumRoot);
 
   if (errors.length > 0) {
     console.error("Curriculum validation failed:");
@@ -27,85 +29,118 @@ async function main() {
     process.exit(1);
   }
 
-  const missingIndexFiles = !existsSync(MANIFEST_PATH) || !existsSync(LEDGER_PATH);
+  const missingLedger = courseIds.some(
+    (cid) =>
+      !existsSync(path.join(curriculumRoot, "courses", cid, "lexicon-ledger.json"))
+  );
+  const missingIndexFiles = !existsSync(manifestPath) || missingLedger;
 
   if (forceSync || missingIndexFiles) {
-    const existingTimestamp = existsSync(MANIFEST_PATH) && !forceSync
-      ? (await readJsonFile(MANIFEST_PATH)).parsed.updatedAt
-      : new Date().toISOString();
+    const existingTimestamp =
+      existsSync(manifestPath) && !forceSync
+        ? (await readJsonFile(manifestPath)).parsed.updatedAt
+        : new Date().toISOString();
 
-    const { manifest, ledger } = await writeManifestAndLedger(
-      manifestLanguages,
-      ledgerLanguages,
+    const { manifest, writtenLedgers } = await writeManifestAndCourseLedgers(
+      curriculumRoot,
+      manifestCourses,
+      courseLedgers,
       existingTimestamp
     );
 
-    const jaUnits = manifest.languages.ja.units.length;
-    const deUnits = manifest.languages.de.units.length;
+    const totalUnits = manifest.courses.reduce(
+      (sum, c) => sum + c.units.length,
+      0
+    );
+    const totalLexicon = Object.values(writtenLedgers).reduce(
+      (sum, l) => sum + l.lexiconIds.length,
+      0
+    );
     console.log(
-      `Generated and verified manifest.json & lexicon-ledger.json (${jaUnits} JA units, ${deUnits} DE units, ${ledger.languages.ja.lexiconIds.length + ledger.languages.de.lexiconIds.length} lexicon IDs).`
+      `Generated and verified manifest.json & course ledgers across ${manifest.courses.length} course(s) (${courseIds.join(", ")}): ${totalUnits} units, ${totalLexicon} lexicon IDs.`
     );
     return;
   }
 
-  const { parsed: rawManifest } = await readJsonFile(MANIFEST_PATH);
+  const { parsed: rawManifest } = await readJsonFile(manifestPath);
   const manifestOnDisk = ManifestSchema.parse(rawManifest);
 
-  const { parsed: rawLedger } = await readJsonFile(LEDGER_PATH);
-  const ledgerOnDisk = LexiconLedgerSchema.parse(rawLedger);
-
   const driftErrors = [];
-
-  for (const lang of ["ja", "de"]) {
-    const diskUnits = manifestOnDisk.languages[lang].units;
-    const computedUnits = manifestLanguages[lang].units;
-
-    if (diskUnits.length !== computedUnits.length) {
-      driftErrors.push(
-        `manifest.json ${lang} unit count (${diskUnits.length}) differs from disk (${computedUnits.length}).`
+  if (manifestOnDisk.courses.length !== manifestCourses.length) {
+    driftErrors.push(
+      `manifest.json course count (${manifestOnDisk.courses.length}) differs from disk (${manifestCourses.length}).`
+    );
+  } else {
+    for (let cIdx = 0; cIdx < manifestCourses.length; cIdx += 1) {
+      const expectedCourse = manifestCourses[cIdx];
+      const actualCourse = manifestOnDisk.courses.find(
+        (c) => c.courseId === expectedCourse.courseId
       );
-      continue;
-    }
-
-    for (let i = 0; i < computedUnits.length; i += 1) {
-      const expected = computedUnits[i];
-      const actual = diskUnits[i];
-      if (expected.unitId !== actual.unitId) {
+      if (!actualCourse) {
         driftErrors.push(
-          `manifest.json ${lang} unit mismatch at index ${i}: expected ${expected.unitId}, got ${actual.unitId}`
+          `Course "${expectedCourse.courseId}" missing from manifest.json.`
         );
         continue;
       }
 
-      for (const tier of TIER_ORDER) {
-        const expShard = expected.shards[tier];
-        const actShard = actual.shards[tier];
-        if (!expShard && !actShard) continue;
-        if (!expShard || !actShard) {
+      if (actualCourse.units.length !== expectedCourse.units.length) {
+        driftErrors.push(
+          `manifest.json "${expectedCourse.courseId}" unit count (${actualCourse.units.length}) differs from disk (${expectedCourse.units.length}).`
+        );
+        continue;
+      }
+
+      for (let uIdx = 0; uIdx < expectedCourse.units.length; uIdx += 1) {
+        const expUnit = expectedCourse.units[uIdx];
+        const actUnit = actualCourse.units[uIdx];
+        if (expUnit.unitId !== actUnit.unitId) {
           driftErrors.push(
-            `manifest.json ${expected.unitId} shard "${tier}" presence mismatch.`
+            `manifest.json "${expectedCourse.courseId}" unit mismatch at #${uIdx}: expected ${expUnit.unitId}, got ${actUnit.unitId}`
           );
           continue;
         }
-        if (expShard.bytes !== actShard.bytes || expShard.sha256 !== actShard.sha256) {
-          driftErrors.push(
-            `manifest.json ${expected.unitId} (${tier}) hash/bytes drift: disk=${expShard.bytes}B/${expShard.sha256.slice(0, 10)} vs manifest=${actShard.bytes}B/${actShard.sha256.slice(0, 10)}`
-          );
+
+        for (const tier of TIER_ORDER) {
+          const expShard = expUnit.shards[tier];
+          const actShard = actUnit.shards[tier];
+          if (!expShard && !actShard) continue;
+          if (!expShard || !actShard) {
+            driftErrors.push(
+              `manifest.json ${expUnit.unitId} shard "${tier}" presence mismatch.`
+            );
+            continue;
+          }
+          if (
+            expShard.bytes !== actShard.bytes ||
+            expShard.sha256 !== actShard.sha256
+          ) {
+            driftErrors.push(
+              `manifest.json ${expUnit.unitId} (${tier}) hash/bytes drift: disk=${expShard.bytes}B/${expShard.sha256.slice(0, 10)} vs manifest=${actShard.bytes}B/${actShard.sha256.slice(0, 10)}`
+            );
+          }
         }
       }
-    }
 
-    const expectedLexCount = ledgerLanguages[lang].lexiconIds.length;
-    const actualLexCount = ledgerOnDisk.languages[lang].lexiconIds.length;
-    if (expectedLexCount !== actualLexCount) {
-      driftErrors.push(
-        `lexicon-ledger.json ${lang} lexicon count (${actualLexCount}) differs from shard total (${expectedLexCount}).`
+      const ledgerPath = path.join(
+        curriculumRoot,
+        "courses",
+        expectedCourse.courseId,
+        "lexicon-ledger.json"
       );
+      const { parsed: rawLedger } = await readJsonFile(ledgerPath);
+      const ledgerOnDisk = CourseLexiconLedgerSchema.parse(rawLedger);
+      const expectedLexCount =
+        courseLedgers[expectedCourse.courseId].lexiconIds.length;
+      if (ledgerOnDisk.lexiconIds.length !== expectedLexCount) {
+        driftErrors.push(
+          `courses/${expectedCourse.courseId}/lexicon-ledger.json count (${ledgerOnDisk.lexiconIds.length}) differs from shard total (${expectedLexCount}).`
+        );
+      }
     }
   }
 
   if (driftErrors.length > 0) {
-    console.error("Manifest or ledger integrity check failed:");
+    console.error("Manifest or course ledger integrity check failed:");
     for (const drift of driftErrors) {
       console.error(`  - ${drift}`);
     }
@@ -113,11 +148,12 @@ async function main() {
     process.exit(1);
   }
 
-  const totalUnits =
-    manifestOnDisk.languages.ja.units.length +
-    manifestOnDisk.languages.de.units.length;
+  const totalUnits = manifestOnDisk.courses.reduce(
+    (sum, c) => sum + c.units.length,
+    0
+  );
   console.log(
-    `Verified ${totalUnits} curriculum units across ja & de: all schemas, <ruby> annotations, compound splits, byte counts, SHA-256 hashes, and unique IDs valid.`
+    `Verified ${manifestOnDisk.courses.length} course(s) (${courseIds.join(", ")}) and ${totalUnits} unit(s): all schemas, reading capability flags, byte counts, SHA-256 hashes, and unique IDs valid.`
   );
 }
 
