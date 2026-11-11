@@ -1,0 +1,817 @@
+{
+  "shardId": "ja-unit-002-conversational",
+  "unitId": "ja-unit-002",
+  "language": "ja",
+  "tier": "conversational",
+  "tierNumber": 3,
+  "focusSummary": "Explaining train delays or missed connections (電車が遅れていて), asking locals for the closest exit (どの出口が一番近いですか), and using conditionals 〜たら and 〜なら naturally.",
+  "introducedLexiconIds": [
+    "ja-u002-t3-lex-01",
+    "ja-u002-t3-lex-02",
+    "ja-u002-t3-lex-03",
+    "ja-u002-t3-lex-04",
+    "ja-u002-t3-lex-05",
+    "ja-u002-t3-lex-06",
+    "ja-u002-t3-lex-07",
+    "ja-u002-t3-lex-08"
+  ],
+  "introducedKanji": [
+    "電",
+    "遅",
+    "道",
+    "迷",
+    "先",
+    "着",
+    "北",
+    "南",
+    "西"
+  ],
+  "introducedGrammarIds": [
+    "ja-u002-t3-gram-01",
+    "ja-u002-t3-gram-02",
+    "ja-u002-t3-gram-03"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u002-t3-step-01",
+      "tier": "conversational",
+      "heading": "Explaining Ongoing Delays: 電車が遅れていて…",
+      "explanation": "Use the て-form + いて (shortened from います to link clauses) to explain an ongoing circumstance—like a delayed train—when messaging or calling friends who are waiting for you.",
+      "scenarioPrompt": "You are meeting a friend at 6:00 PM, but signal trouble has slowed your line by ten minutes.",
+      "nativeText": "ごめん、電車が遅れていて、十分くらい遅れそう！",
+      "rubyHtml": "ごめん、<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>遅<rt>おく</rt></ruby>れていて、<ruby>十分<rt>じゅっぷん</rt></ruby>くらい<ruby>遅<rt>おく</rt></ruby>れそう！",
+      "romanization": "Gomen, densha ga okurete ite, juppun kurai okuresō!",
+      "translation": "Sorry, my train is running late, so it looks like I'll be about ten minutes late!",
+      "literalBreakdown": "ごめん (sorry, casual) + 電車が遅れていて (train is delayed, and so) + 十分くらい (about 10 min) + 遅れそう (looks like I'll be late)",
+      "usageTip": "With an acquaintance or host in polite register, say: 「すみません、電車が遅れていて、十分ほど遅れそうです。」"
+    },
+    {
+      "id": "ja-u002-t3-step-02",
+      "tier": "conversational",
+      "heading": "Finding the Right Underground Exit: どの出口が一番近いですか",
+      "explanation": "Sprawling stations like Shinjuku have dozens of exits (北口 North, 南口 South, 東口 East, 西口 West, plus numbered subway exits). Asking どの出口が一番近いですか saves long surface detours.",
+      "scenarioPrompt": "You arrive underground at Shinjuku and want the closest exit to the metropolitan observatory.",
+      "nativeText": "都庁に行きたいんですけど、どの出口が一番近いですか。",
+      "rubyHtml": "<ruby>都庁<rt>とちょう</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたいんですけど、どの<ruby>出口<rt>でぐち</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby><ruby>近<rt>ちか</rt></ruby>いですか。",
+      "romanization": "Tochō ni ikitai n desu kedo, dono deguchi ga ichiban chikai desu ka.",
+      "translation": "I'd like to get to the Tokyo Metropolitan Government Building—which exit is closest?",
+      "literalBreakdown": "都庁に行きたいんですけど (want to go to Tochō, though) + どの出口が (which exit) + 一番近いですか (is #1 closest?)",
+      "usageTip": "Remember: どれ ('which one' standalone) vs. どの + Noun ('which [exit/line]')."
+    },
+    {
+      "id": "ja-u002-t3-step-03",
+      "tier": "conversational",
+      "heading": "Topic Advice with 〜なら ('If it's X you're heading to...')",
+      "explanation": "Locals constantly reply to direction questions with Noun + なら ('If you mean X / For X...'). It picks up the topic you just mentioned and offers tailored advice.",
+      "scenarioPrompt": "A friendly commuter responds when you ask which exit leads to the park.",
+      "nativeText": "公園なら、南口から出たほうが早いですよ。",
+      "rubyHtml": "<ruby>公園<rt>こうえん</rt></ruby>なら、<ruby>南口<rt>みなみぐち</rt></ruby>から<ruby>出<rt>で</rt></ruby>たほうが<ruby>早<rt>はや</rt></ruby>いですよ。",
+      "romanization": "Kōen nara, minamiguchi kara deta hō ga hayai desu yo.",
+      "translation": "If it's the park you're going to, going out via the South Exit is faster!",
+      "literalBreakdown": "公園なら (if it's the park) + 南口から (from South Exit) + 出たほうが (exiting is the better option) + 早いですよ (is faster!)",
+      "usageTip": "Past-plain verb + ほうがいい ('you'd better / it's better to...') is the standard pattern for practical travel tips."
+    },
+    {
+      "id": "ja-u002-t3-step-04",
+      "tier": "conversational",
+      "heading": "Sequential 'When / Once' Conditionals with 〜たら",
+      "explanation": "Form 〜たら by adding ら to the plain past (着いた → 着いたら, 出た → 出たら). It means both 'if' and 'when/once an action completes'—indispensable for step-by-step directions and meetup plans!",
+      "scenarioPrompt": "You coordinate with a friend on where to meet once you arrive at the station.",
+      "nativeText": "駅に着いたら、北口の改札の前で連絡するね。",
+      "rubyHtml": "<ruby>駅<rt>えき</rt></ruby>に<ruby>着<rt>つ</rt></ruby>いたら、<ruby>北口<rt>きたぐち</rt></ruby>の<ruby>改札<rt>かいさつ</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>で<ruby>連絡<rt>れんらく</rt></ruby>するね。",
+      "romanization": "Eki ni tsuitara, kitaguchi no kaisatsu no mae de renraku suru ne.",
+      "translation": "Once I get to the station, I'll message you in front of the North Exit ticket gates.",
+      "literalBreakdown": "駅に着いたら (once I arrive at the station) + 北口の改札の前で (in front of the North Exit gates) + 連絡するね (I'll contact you)",
+      "usageTip": "Directions sound just like this too: 改札を出たら、左に曲がってください ('Once you exit the gates, turn left')."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u002-t3-drill-01",
+      "tier": "conversational",
+      "prompt": "You are inside a huge subway concourse and want to ask which exit is closest to the museum (美術館). Choose the natural question:",
+      "cue": "Use どの出口が一番近いですか",
+      "options": [
+        "美術館に行きたいんですけど、どれ出口が一番近いですか。",
+        "美術館に行きたいんですけど、どの出口が一番近いですか。",
+        "美術館は精算機で温めますか。",
+        "美術館なら、電車を払えますか。"
+      ],
+      "correctAnswer": "美術館に行きたいんですけど、どの出口が一番近いですか。",
+      "explanation": "どの modifies a noun directly (どの出口 = which exit), whereas どれ stands alone without a following noun."
+    },
+    {
+      "id": "ja-u002-t3-drill-02",
+      "tier": "conversational",
+      "prompt": "You want to tell your friend: 'Once I arrive at the station, I'll call you.' Complete the conditional clause:",
+      "baseSentence": "駅に＿＿＿、電話するね。",
+      "cue": "'When / Once I arrive' using the 〜たら form of 着く",
+      "options": [
+        "着くを",
+        "着きながら",
+        "着いたら",
+        "着いたへ"
+      ],
+      "correctAnswer": "着いたら",
+      "explanation": "着く → plain past 着いた + ら = 着いたら ('once/when I arrive')."
+    },
+    {
+      "id": "ja-u002-t3-drill-03",
+      "tier": "conversational",
+      "prompt": "Someone asks you about getting to the West Exit shops, and you want to say 'If it's the West Exit you're heading for, go down those stairs.' Which conditional fits best?",
+      "baseSentence": "西口＿＿＿、あの階段を下りてください。",
+      "cue": "'If you mean X / As for X' picking up the listener's topic",
+      "options": [
+        "からを",
+        "だけどに",
+        "ずつ",
+        "なら"
+      ],
+      "correctAnswer": "なら",
+      "explanation": "Noun + なら picks up what the other person just brought up ('If it's the West Exit you're looking for...')."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u002-t3-card-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "frontPrompt": "My train is running late, so it looks like I'll be a little late.",
+      "targetText": "電車が遅れていて、少し遅れそうです。",
+      "rubyHtml": "<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>遅<rt>おく</rt></ruby>れていて、<ruby>少<rt>すこ</rt></ruby>し<ruby>遅<rt>おく</rt></ruby>れそうです。",
+      "reading": "でんしゃがおくれていて、すこしおくれそうです。",
+      "contextSentence": "すみません、電車が遅れていて、少し遅れそうです。先に中に入っていてください。",
+      "contextRubyHtml": "すみません、<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>遅<rt>おく</rt></ruby>れていて、<ruby>少<rt>すこ</rt></ruby>し<ruby>遅<rt>おく</rt></ruby>れそうです。<ruby>先<rt>さき</rt></ruby>に<ruby>中<rt>なか</rt></ruby>に<ruby>入<rt>はい</rt></ruby>っていてください。",
+      "contextTranslation": "Sorry, my train is delayed so I'll likely be a bit late. Please go ahead inside first.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t3-card-02",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "frontPrompt": "Which exit is the closest?",
+      "targetText": "どの出口が一番近いですか。",
+      "rubyHtml": "どの<ruby>出口<rt>でぐち</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby><ruby>近<rt>ちか</rt></ruby>いですか。",
+      "reading": "どのでぐちがいちばんちかいですか。",
+      "contextSentence": "ホテルに行きたいんですけど、どの出口が一番近いですか。",
+      "contextRubyHtml": "ホテルに<ruby>行<rt>い</rt></ruby>きたいんですけど、どの<ruby>出口<rt>でぐち</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby><ruby>近<rt>ちか</rt></ruby>いですか。",
+      "contextTranslation": "I'd like to get to my hotel—which exit is closest?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t3-card-03",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "frontPrompt": "Once you exit the ticket gate, the North Exit is right there.",
+      "targetText": "改札を出たら、すぐ北口ですよ。",
+      "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>を<ruby>出<rt>で</rt></ruby>たら、すぐ<ruby>北口<rt>きたぐち</rt></ruby>ですよ。",
+      "reading": "かいさつをでたら、すぐきたぐちですよ。",
+      "contextSentence": "この改札を出たら、すぐ北口ですよ。",
+      "contextRubyHtml": "この<ruby>改札<rt>かいさつ</rt></ruby>を<ruby>出<rt>で</rt></ruby>たら、すぐ<ruby>北口<rt>きたぐち</rt></ruby>ですよ。",
+      "contextTranslation": "Once you exit this ticket gate, the North Exit is right there.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t3-card-04",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "frontPrompt": "I got a bit turned around / lost inside the station.",
+      "targetText": "駅の中で少し道に迷いました。",
+      "rubyHtml": "<ruby>駅<rt>えき</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で<ruby>少<rt>すこ</rt></ruby>し<ruby>道<rt>みち</rt></ruby>に<ruby>迷<rt>まよ</rt></ruby>いました。",
+      "reading": "えきのなかですこしみちにまよいました。",
+      "contextSentence": "新宿駅が広すぎて、駅の中で少し道に迷いました。",
+      "contextRubyHtml": "<ruby>新宿駅<rt>しんじゅくえき</rt></ruby>が<ruby>広<rt>ひろ</rt></ruby>すぎて、<ruby>駅<rt>えき</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で<ruby>少<rt>すこ</rt></ruby>し<ruby>道<rt>みち</rt></ruby>に<ruby>迷<rt>まよ</rt></ruby>いました。",
+      "contextTranslation": "Shinjuku Station was so huge that I got a little lost inside.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t3-card-05",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "frontPrompt": "North Exit / South Exit / West Exit",
+      "targetText": "北口・南口・西口",
+      "rubyHtml": "<ruby>北口<rt>きたぐち</rt></ruby>・<ruby>南口<rt>みなみぐち</rt></ruby>・<ruby>西口<rt>にしぐち</rt></ruby>",
+      "reading": "きたぐち・みなみぐち・にしぐち",
+      "contextSentence": "西口なら、この階段を下りたほうが近いです。",
+      "contextRubyHtml": "<ruby>西口<rt>にしぐち</rt></ruby>なら、この<ruby>階段<rt>かいだん</rt></ruby>を<ruby>下<rt>お</rt></ruby>りたほうが<ruby>近<rt>ちか</rt></ruby>いです。",
+      "contextTranslation": "For the West Exit, going down these stairs is closer.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u002-t3-story-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "conversational",
+      "title": "新宿駅の待ち合わせと南口",
+      "titleTranslation": "Meeting Up at Shinjuku Station's South Exit",
+      "setting": "Early evening rush in Shinjuku, coordinating by phone after a minor train delay.",
+      "paragraphs": [
+        {
+          "nativeText": "友だちの健太と六時に新宿駅で会う約束をしていましたが、雨が降って電車が少し遅れていました。わたしはすぐに「ごめん、電車が遅れていて、五分くらい遅れそう！先にカフェに入っていてね」とメッセージを送りました。",
+          "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だちの<ruby>健太<rt>けんた</rt></ruby>と<ruby>六時<rt>ろくじ</rt></ruby>に<ruby>新宿駅<rt>しんじゅくえき</rt></ruby>で<ruby>会<rt>あ</rt></ruby>う<ruby>約束<rt>やくそく</rt></ruby>をしていましたが、<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>って<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>少<rt>すこ</rt></ruby>し<ruby>遅<rt>おく</rt></ruby>れていました。わたしはすぐに「ごめん、<ruby>電車<rt>でんしゃ</rt></ruby>が<ruby>遅<rt>おく</rt></ruby>れていて、<ruby>五分<rt>ごふん</rt></ruby>くらい<ruby>遅<rt>おく</rt></ruby>れそう！<ruby>先<rt>さき</rt></ruby>にカフェに<ruby>入<rt>はい</rt></ruby>っていてね」とメッセージを<ruby>送<rt>おく</rt></ruby>りました。",
+          "translation": "I had plans to meet my friend Kenta at Shinjuku Station at six, but rain started falling and my train was running slightly late. Right away I texted him: 'Sorry, my train's delayed so I'll be about five minutes late! Go ahead into the café first.'",
+          "segments": [
+            {
+              "surface": "友だち",
+              "rubyHtml": "<ruby>友<rt>とも</rt></ruby>だち",
+              "reading": "ともだち",
+              "meaning": "friend"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "appositive 'of'"
+            },
+            {
+              "surface": "健太",
+              "rubyHtml": "<ruby>健太<rt>けんた</rt></ruby>",
+              "reading": "けんた",
+              "meaning": "Kenta (given name)"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "with"
+            },
+            {
+              "surface": "六時",
+              "rubyHtml": "<ruby>六時<rt>ろくじ</rt></ruby>",
+              "reading": "ろくじ",
+              "meaning": "six o'clock"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at (time)"
+            },
+            {
+              "surface": "新宿駅",
+              "rubyHtml": "<ruby>新宿駅<rt>しんじゅくえき</rt></ruby>",
+              "reading": "しんじゅくえき",
+              "meaning": "Shinjuku Station"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at (location)"
+            },
+            {
+              "surface": "会う",
+              "rubyHtml": "<ruby>会<rt>あ</rt></ruby>う",
+              "reading": "あう",
+              "meaning": "to meet"
+            },
+            {
+              "surface": "約束",
+              "rubyHtml": "<ruby>約束<rt>やくそく</rt></ruby>",
+              "reading": "やくそく",
+              "meaning": "promise / plan"
+            },
+            {
+              "surface": "をしていましたが",
+              "reading": "をしていましたが",
+              "meaning": "had made, however"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "雨",
+              "rubyHtml": "<ruby>雨<rt>あめ</rt></ruby>",
+              "reading": "あめ",
+              "meaning": "rain"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "降って",
+              "rubyHtml": "<ruby>降<rt>ふ</rt></ruby>って",
+              "reading": "ふって",
+              "meaning": "falling (rain)"
+            },
+            {
+              "surface": "電車",
+              "rubyHtml": "<ruby>電車<rt>でんしゃ</rt></ruby>",
+              "reading": "でんしゃ",
+              "meaning": "train"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "少し",
+              "rubyHtml": "<ruby>少<rt>すこ</rt></ruby>し",
+              "reading": "すこし",
+              "meaning": "a little"
+            },
+            {
+              "surface": "遅れていました",
+              "rubyHtml": "<ruby>遅<rt>おく</rt></ruby>れていました",
+              "reading": "おくれていました",
+              "meaning": "was running late"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "わたし",
+              "reading": "わたし",
+              "meaning": "I"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "すぐに",
+              "reading": "すぐに",
+              "meaning": "right away"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ごめん",
+              "reading": "ごめん",
+              "meaning": "sorry (casual)"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "電車",
+              "rubyHtml": "<ruby>電車<rt>でんしゃ</rt></ruby>",
+              "reading": "でんしゃ",
+              "meaning": "train"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "遅れていて",
+              "rubyHtml": "<ruby>遅<rt>おく</rt></ruby>れていて",
+              "reading": "おくれていて",
+              "meaning": "is delayed, and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "五分",
+              "rubyHtml": "<ruby>五分<rt>ごふん</rt></ruby>",
+              "reading": "ごふん",
+              "meaning": "five minutes"
+            },
+            {
+              "surface": "くらい",
+              "reading": "くらい",
+              "meaning": "about / roughly"
+            },
+            {
+              "surface": "遅れそう",
+              "rubyHtml": "<ruby>遅<rt>おく</rt></ruby>れそう",
+              "reading": "おくれそう",
+              "meaning": "looks like I'll be late"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "先に",
+              "rubyHtml": "<ruby>先<rt>さき</rt></ruby>に",
+              "reading": "さきに",
+              "meaning": "ahead / first"
+            },
+            {
+              "surface": "カフェ",
+              "reading": "かふぇ",
+              "meaning": "café"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "into"
+            },
+            {
+              "surface": "入っていてね",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>っていてね",
+              "meaning": "go on in and wait",
+              "reading": "はいっていてね"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "メッセージ",
+              "reading": "めっせーじ",
+              "meaning": "message"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "送りました",
+              "rubyHtml": "<ruby>送<rt>おく</rt></ruby>りました",
+              "reading": "おくりました",
+              "meaning": "sent"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "新宿駅に着いたら、出口がたくさんあって少し道に迷いそうになりました。近くのお店で働いている人に「バスタ新宿に行きたいんですけど、どの出口が一番近いですか」と聞きました。",
+          "rubyHtml": "<ruby>新宿駅<rt>しんじゅくえき</rt></ruby>に<ruby>着<rt>つ</rt></ruby>いたら、<ruby>出口<rt>でぐち</rt></ruby>がたくさんあって<ruby>少<rt>すこ</rt></ruby>し<ruby>道<rt>みち</rt></ruby>に<ruby>迷<rt>まよ</rt></ruby>いそうになりました。<ruby>近<rt>ちか</rt></ruby>くのお<ruby>店<rt>みせ</rt></ruby>で<ruby>働<rt>はたら</rt></ruby>いている<ruby>人<rt>ひと</rt></ruby>に「バスタ<ruby>新宿<rt>しんじゅく</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたいんですけど、どの<ruby>出口<rt>でぐち</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby><ruby>近<rt>ちか</rt></ruby>いですか」と<ruby>聞<rt>き</rt></ruby>きました。",
+          "translation": "Once I arrived at Shinjuku Station, there were so many exits that I nearly got lost. I asked someone working at a nearby kiosk, 'I'd like to get to Busta Shinjuku—which exit is closest?'",
+          "segments": [
+            {
+              "surface": "新宿駅",
+              "rubyHtml": "<ruby>新宿駅<rt>しんじゅくえき</rt></ruby>",
+              "reading": "しんじゅくえき",
+              "meaning": "Shinjuku Station"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at"
+            },
+            {
+              "surface": "着いたら",
+              "rubyHtml": "<ruby>着<rt>つ</rt></ruby>いたら",
+              "reading": "ついたら",
+              "meaning": "once I arrived"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "出口",
+              "rubyHtml": "<ruby>出口<rt>でぐち</rt></ruby>",
+              "reading": "でぐち",
+              "meaning": "exits"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "たくさん",
+              "reading": "たくさん",
+              "meaning": "many / plenty"
+            },
+            {
+              "surface": "あって",
+              "reading": "あって",
+              "meaning": "existing, and"
+            },
+            {
+              "surface": "少し",
+              "rubyHtml": "<ruby>少<rt>すこ</rt></ruby>し",
+              "reading": "すこし",
+              "meaning": "a bit"
+            },
+            {
+              "surface": "道に迷いそうになりました",
+              "rubyHtml": "<ruby>道<rt>みち</rt></ruby>に<ruby>迷<rt>まよ</rt></ruby>いそうになりました",
+              "reading": "みちにまよいそうになりました",
+              "meaning": "nearly got lost"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "近く",
+              "rubyHtml": "<ruby>近<rt>ちか</rt></ruby>く",
+              "reading": "ちかく",
+              "meaning": "nearby"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "お店",
+              "rubyHtml": "お<ruby>店<rt>みせ</rt></ruby>",
+              "reading": "おみせ",
+              "meaning": "kiosk / shop"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at"
+            },
+            {
+              "surface": "働いている",
+              "rubyHtml": "<ruby>働<rt>はたら</rt></ruby>いている",
+              "reading": "はたらいている",
+              "meaning": "working"
+            },
+            {
+              "surface": "人",
+              "rubyHtml": "<ruby>人<rt>ひと</rt></ruby>",
+              "reading": "ひと",
+              "meaning": "person"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "バスタ新宿",
+              "rubyHtml": "バスタ<ruby>新宿<rt>しんじゅく</rt></ruby>",
+              "reading": "ばすたしんじゅく",
+              "meaning": "Busta Shinjuku (express bus terminal complex)"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "行きたいんですけど",
+              "rubyHtml": "<ruby>行<rt>い</rt></ruby>きたいんですけど",
+              "reading": "いきたいんですけど",
+              "meaning": "I'd like to go, though..."
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "どの",
+              "reading": "どの",
+              "meaning": "which"
+            },
+            {
+              "surface": "出口",
+              "rubyHtml": "<ruby>出口<rt>でぐち</rt></ruby>",
+              "reading": "でぐち",
+              "meaning": "exit"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "一番",
+              "rubyHtml": "<ruby>一番<rt>いちばん</rt></ruby>",
+              "reading": "いちばん",
+              "meaning": "most / number one"
+            },
+            {
+              "surface": "近いですか",
+              "rubyHtml": "<ruby>近<rt>ちか</rt></ruby>いですか",
+              "reading": "ちかいですか",
+              "meaning": "is close?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きました",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きました",
+              "reading": "ききました",
+              "meaning": "asked"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "「バスタ新宿なら、西口ではなく南口の改札を出たらすぐ目の前ですよ」と教えてもらいました。おかげで雨にもぬれず、健太がいるカフェにすぐ着きました。",
+          "rubyHtml": "「バスタ<ruby>新宿<rt>しんじゅく</rt></ruby>なら、<ruby>西口<rt>にしぐち</rt></ruby>ではなく<ruby>南口<rt>みなみぐち</rt></ruby>の<ruby>改札<rt>かいさつ</rt></ruby>を<ruby>出<rt>で</rt></ruby>たらすぐ<ruby>目<rt>め</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>ですよ」と<ruby>教<rt>おし</rt></ruby>えてもらいました。おかげで<ruby>雨<rt>あめ</rt></ruby>にもぬれず、<ruby>健太<rt>けんた</rt></ruby>がいるカフェにすぐ<ruby>着<rt>つ</rt></ruby>きました。",
+          "translation": "They told me, 'If it's Busta Shinjuku you want, rather than the West Exit, once you exit the South Exit gates it's right in front of you!' Thanks to them, without even getting wet in the rain, I reached the café where Kenta was waiting right away.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "バスタ新宿",
+              "rubyHtml": "バスタ<ruby>新宿<rt>しんじゅく</rt></ruby>",
+              "reading": "ばすたしんじゅく",
+              "meaning": "Busta Shinjuku"
+            },
+            {
+              "surface": "なら",
+              "reading": "なら",
+              "meaning": "if it is / for"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "西口",
+              "rubyHtml": "<ruby>西口<rt>にしぐち</rt></ruby>",
+              "reading": "にしぐち",
+              "meaning": "West Exit"
+            },
+            {
+              "surface": "ではなく",
+              "reading": "ではなく",
+              "meaning": "rather than / not"
+            },
+            {
+              "surface": "南口",
+              "rubyHtml": "<ruby>南口<rt>みなみぐち</rt></ruby>",
+              "reading": "みなみぐち",
+              "meaning": "South Exit"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "改札",
+              "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>",
+              "reading": "かいさつ",
+              "meaning": "ticket gates"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "through"
+            },
+            {
+              "surface": "出たら",
+              "rubyHtml": "<ruby>出<rt>で</rt></ruby>たら",
+              "reading": "でたら",
+              "meaning": "once you exit"
+            },
+            {
+              "surface": "すぐ",
+              "reading": "すぐ",
+              "meaning": "immediately"
+            },
+            {
+              "surface": "目の前",
+              "rubyHtml": "<ruby>目<rt>め</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>",
+              "reading": "めのまえ",
+              "meaning": "right in front of your eyes"
+            },
+            {
+              "surface": "ですよ",
+              "reading": "ですよ",
+              "meaning": "it is!"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "教えてもらいました",
+              "rubyHtml": "<ruby>教<rt>おし</rt></ruby>えてもらいました",
+              "reading": "おしえてもらいました",
+              "meaning": "had them kindly tell me"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "おかげで",
+              "reading": "おかげで",
+              "meaning": "thanks to that"
+            },
+            {
+              "surface": "雨",
+              "rubyHtml": "<ruby>雨<rt>あめ</rt></ruby>",
+              "reading": "あめ",
+              "meaning": "rain"
+            },
+            {
+              "surface": "にも",
+              "reading": "にも",
+              "meaning": "even by"
+            },
+            {
+              "surface": "ぬれず",
+              "reading": "ぬれず",
+              "meaning": "without getting wet"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "健太",
+              "rubyHtml": "<ruby>健太<rt>けんた</rt></ruby>",
+              "reading": "けんた",
+              "meaning": "Kenta"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "いる",
+              "reading": "いる",
+              "meaning": "is waiting / is present"
+            },
+            {
+              "surface": "カフェ",
+              "reading": "かふぇ",
+              "meaning": "café"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at"
+            },
+            {
+              "surface": "すぐ",
+              "reading": "すぐ",
+              "meaning": "right away"
+            },
+            {
+              "surface": "着きました",
+              "rubyHtml": "<ruby>着<rt>つ</rt></ruby>きました",
+              "reading": "つきました",
+              "meaning": "arrived"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u002-t3-story-01-q1",
+          "question": "What did the narrator suggest Kenta do when messaging about the five-minute train delay?",
+          "options": [
+            "Go ahead into the café first (先にカフェに入っていてね)",
+            "Take a train back home",
+            "Wait outside in the heavy rain",
+            "Walk to Tokyo Station"
+          ],
+          "correctIndex": 0,
+          "explanation": "先にカフェに入っていてね invites Kenta to head into the café ahead of time rather than standing outside."
+        },
+        {
+          "id": "ja-u002-t3-story-01-q2",
+          "question": "Why did the narrator stop to ask someone working at a nearby shop inside Shinjuku Station?",
+          "options": [
+            "Their phone battery had died",
+            "There were so many exits that they wanted to know which exit was closest to Busta Shinjuku",
+            "They needed to exchange foreign cash",
+            "They lost their train ticket"
+          ],
+          "correctIndex": 1,
+          "explanation": "Seeing all the exits, they asked 「どの出口が一番近いですか」 for Busta Shinjuku."
+        },
+        {
+          "id": "ja-u002-t3-story-01-q3",
+          "question": "Which exit put the narrator right in front of Busta Shinjuku?",
+          "options": [
+            "The West Exit (西口)",
+            "The North Exit (北口)",
+            "The South Exit (南口)",
+            "Track 16"
+          ],
+          "correctIndex": 2,
+          "explanation": "The staff member explained 「西口ではなく南口の改札を出たらすぐ目の前ですよ」."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

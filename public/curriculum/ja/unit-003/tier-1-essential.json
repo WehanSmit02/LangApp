@@ -1,0 +1,664 @@
+{
+  "shardId": "ja-unit-003-essential",
+  "unitId": "ja-unit-003",
+  "language": "ja",
+  "tier": "essential",
+  "tierNumber": 1,
+  "focusSummary": "Party size on arrival (一人です, 二人です), reading yen prices (百円, 千円), pointing & ordering (これをお願いします, お水), and requesting the check (お会計お願いします).",
+  "introducedLexiconIds": [
+    "ja-u003-t1-lex-01",
+    "ja-u003-t1-lex-02",
+    "ja-u003-t1-lex-03",
+    "ja-u003-t1-lex-04",
+    "ja-u003-t1-lex-05",
+    "ja-u003-t1-lex-06",
+    "ja-u003-t1-lex-07",
+    "ja-u003-t1-lex-08"
+  ],
+  "introducedKanji": [
+    "一",
+    "二",
+    "三",
+    "百",
+    "千",
+    "円",
+    "人",
+    "会",
+    "計",
+    "注",
+    "文"
+  ],
+  "introducedGrammarIds": [
+    "ja-u003-t1-gram-01",
+    "ja-u003-t1-gram-02"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u003-t1-step-01",
+      "tier": "essential",
+      "heading": "Entering a Restaurant: 一人です & 二人です",
+      "explanation": "As soon as you slide open a restaurant door, staff ask 「何名様ですか？」 ('How many in your party?'). Note the two irregular native readings for people: 一人 = ひとり (one person) and 二人 = ふたり (two people); from three onward it becomes regular (三人 = さんにん).",
+      "scenarioPrompt": "You and a travel companion step through the curtain of a cozy neighborhood ramen shop.",
+      "nativeText": "こんばんは。二人です。",
+      "rubyHtml": "こんばんは。<ruby>二人<rt>ふたり</rt></ruby>です。",
+      "romanization": "Konbanwa. Futari desu.",
+      "translation": "Good evening. Table for two.",
+      "literalBreakdown": "こんばんは (good evening) + 二人 (two people, irregular native reading futari) + です (is)",
+      "usageTip": "Hold up one or two fingers calmly while saying ひとりです or ふたりです—staff in noisy izakayas appreciate the visual cue!"
+    },
+    {
+      "id": "ja-u003-t1-step-02",
+      "tier": "essential",
+      "heading": "Point-and-Order Confidence: これをお願いします & お水",
+      "explanation": "With photo menus, plastic food displays, or bilingual tablets, pointing respectfully to an item and saying これをお願いします ('This one, please') is 100% polite. Water (お水, おみず) or hot tea is complimentary at almost every restaurant in Japan.",
+      "scenarioPrompt": "You are ready to order a bowl of miso ramen from the menu and ask for water.",
+      "nativeText": "すみません、注文いいですか。これとお水をお願いします。",
+      "rubyHtml": "すみません、<ruby>注文<rt>ちゅうもん</rt></ruby>いいですか。これとお<ruby>水<rt>みず</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Sumimasen, chūmon ii desu ka. Kore to o-mizu o onegaishimasu.",
+      "translation": "Excuse me, may I order? This one and some water, please.",
+      "literalBreakdown": "注文 (order) + いいですか (is it okay?) / これと (this and) + お水 (water) + をお願いします (please)",
+      "usageTip": "Many casual spots have a small call button on the table—press it once and say 「お願いします」 when staff arrive."
+    },
+    {
+      "id": "ja-u003-t1-step-03",
+      "tier": "essential",
+      "heading": "Reading Yen Prices: 百円 & 千円",
+      "explanation": "Everyday menu prices revolve around 百 (ひゃく, 100), 千 (せん, 1,000), and 円 (えん, yen). Watch out for sound shifts like 三百円 (さんびゃくえん, ¥300) and 八百円 (はっぴゃくえん, ¥800).",
+      "scenarioPrompt": "You check the wooden price plaques above a ramen counter before inserting a ¥1,000 bill into the ticket machine.",
+      "nativeText": "ラーメンは九百円です。餃子は三百円です。",
+      "rubyHtml": "ラーメンは<ruby>九百円<rt>きゅうひゃくえん</rt></ruby>です。<ruby>餃子<rt>ぎょうざ</rt></ruby>は<ruby>三百円<rt>さんびゃくえん</rt></ruby>です。",
+      "romanization": "Rāmen wa kyūhyaku-en desu. Gyōza wa sanbyaku-en desu.",
+      "translation": "The ramen is 900 yen. The gyoza dumplings are 300 yen.",
+      "literalBreakdown": "ラーメンは (as for ramen) + 九百円 (900 yen) + です / 餃子は (as for gyoza) + 三百円 (300 yen) + です",
+      "usageTip": "1,000 yen is simply 千円 (せんえん, not いっせんえん), while 1,200 yen is 千二百円 (せんにひゃくえん)."
+    },
+    {
+      "id": "ja-u003-t1-step-04",
+      "tier": "essential",
+      "heading": "Asking for the Check: お会計お願いします",
+      "explanation": "Servers in Japan almost never drop the check while you are still talking unless they slip a small plastic clip/slip face-down into a holder on your table. When ready to leave, say お会計お願いします ('Check, please') or bring the table slip straight to the register.",
+      "scenarioPrompt": "You finish your meal at an izakaya table and want to settle the bill.",
+      "nativeText": "すみません、お会計お願いします。",
+      "rubyHtml": "すみません、お<ruby>会計<rt>かいけい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Sumimasen, o-kaikei onegaishimasu.",
+      "translation": "Excuse me, the check please.",
+      "literalBreakdown": "すみません (excuse me) + お会計 (polite: bill/settlement) + お願いします (please)",
+      "usageTip": "Crossing both index fingers in a tiny 'X' while making eye contact across a bustling room is a playful, universally understood shorthand for お会計!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u003-t1-drill-01",
+      "tier": "essential",
+      "prompt": "You walk into a ramen shop solo and the host asks 「何名様ですか？」 ('How many guests?'). How do you say 'Just one person'?",
+      "cue": "Use the irregular native reading for 1 person (ひとり)",
+      "options": [
+        "二人です。",
+        "一人です。",
+        "百円です。",
+        "お会計です。"
+      ],
+      "correctAnswer": "一人です。",
+      "acceptedVariants": [
+        "ひとりです。"
+      ],
+      "explanation": "一人 (ひとり, hitori) means 'one person', while 二人 (ふたり, futari) means 'two people'."
+    },
+    {
+      "id": "ja-u003-t1-drill-02",
+      "tier": "essential",
+      "prompt": "You have finished eating at a casual restaurant and want to ask the server for the bill. What do you say?",
+      "cue": "Polite phrase for 'Check, please'",
+      "options": [
+        "すみません、乗り換えお願いします。",
+        "すみません、営業中ですか。",
+        "すみません、お会計お願いします。",
+        "すみません、入口をください。"
+      ],
+      "correctAnswer": "すみません、お会計お願いします。",
+      "acceptedVariants": [
+        "お会計お願いします。",
+        "お会計をお願いします。"
+      ],
+      "explanation": "お会計お願いします (O-kaikei onegaishimasu) is the universal polite way to ask for the bill."
+    },
+    {
+      "id": "ja-u003-t1-drill-03",
+      "tier": "essential",
+      "prompt": "A bowl of tonkotsu ramen costs ¥1,000. Which Kanji price matches 1,000 yen?",
+      "cue": "Select 1,000 yen",
+      "options": [
+        "百円",
+        "三円",
+        "二人",
+        "千円"
+      ],
+      "correctAnswer": "千円",
+      "explanation": "千 (sen = 1,000) + 円 (en = yen) = 千円 (1,000 yen). 百円 is 100 yen."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u003-t1-card-01",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "One person / Two people (entering a restaurant)",
+      "targetText": "一人です。 / 二人です。",
+      "rubyHtml": "<ruby>一人<rt>ひとり</rt></ruby>です。 / <ruby>二人<rt>ふたり</rt></ruby>です。",
+      "reading": "ひとりです。 / ふたりです。",
+      "contextSentence": "「いらっしゃいませ、何名様ですか。」「二人です。」",
+      "contextRubyHtml": "「いらっしゃいませ、<ruby>何名様<rt>なんめいさま</rt></ruby>ですか。」「<ruby>二人<rt>ふたり</rt></ruby>です。」",
+      "contextTranslation": "'Welcome, how many in your party?' 'Two people.'",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u003-t1-card-02",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Excuse me, the check please.",
+      "targetText": "すみません、お会計お願いします。",
+      "rubyHtml": "すみません、お<ruby>会計<rt>かいけい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "すみません、おかいけいおねがいします。",
+      "contextSentence": "ごちそうさまでした。すみません、お会計お願いします。",
+      "contextRubyHtml": "ごちそうさまでした。すみません、お<ruby>会計<rt>かいけい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Thank you for the meal. Excuse me, check please.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u003-t1-card-03",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "This one and water, please.",
+      "targetText": "これとお水をお願いします。",
+      "rubyHtml": "これとお<ruby>水<rt>みず</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "これとおみずをおねがいします。",
+      "contextSentence": "メニューを見て、「これとお水をお願いします」と言います。",
+      "contextRubyHtml": "メニューを<ruby>見<rt>み</rt></ruby>て、「これとお<ruby>水<rt>みず</rt></ruby>をお<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>言<rt>い</rt></ruby>います。",
+      "contextTranslation": "Looking at the menu, I say, 'This one and water, please.'",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u003-t1-card-04",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Excuse me, may I place an order?",
+      "targetText": "すみません、注文いいですか。",
+      "rubyHtml": "すみません、<ruby>注文<rt>ちゅうもん</rt></ruby>いいですか。",
+      "reading": "すみません、ちゅうもんいいですか。",
+      "contextSentence": "すみません、注文いいですか。ラーメンをお願いします。",
+      "contextRubyHtml": "すみません、<ruby>注文<rt>ちゅうもん</rt></ruby>いいですか。ラーメンをお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Excuse me, may I order? Ramen, please.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u003-t1-card-05",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "100 yen / 1,000 yen",
+      "targetText": "百円 / 千円",
+      "rubyHtml": "<ruby>百円<rt>ひゃくえん</rt></ruby> / <ruby>千円<rt>せんえん</rt></ruby>",
+      "reading": "ひゃくえん / せんえん",
+      "contextSentence": "このランチセットはちょうど千円です。",
+      "contextRubyHtml": "このランチセットはちょうど<ruby>千円<rt>せんえん</rt></ruby>です。",
+      "contextTranslation": "This lunch set is exactly 1,000 yen.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u003-t1-story-01",
+      "unitId": "ja-unit-003",
+      "language": "ja",
+      "tier": "essential",
+      "title": "千円のラーメンカウンター",
+      "titleTranslation": "A Thousand-Yen Ramen Counter",
+      "setting": "7:00 PM at a warm, steam-filled 10-seat ramen counter down a lantern-lit alley.",
+      "paragraphs": [
+        {
+          "nativeText": "ラーメン屋さんの入口を開けると、「いらっしゃいませ！」と元気な声がします。わたしは「一人です」と言って、カウンターの席に座ります。",
+          "rubyHtml": "ラーメン<ruby>屋<rt>や</rt></ruby>さんの<ruby>入口<rt>いりぐち</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けると、「いらっしゃいませ！」と<ruby>元気<rt>げんき</rt></ruby>な<ruby>声<rt>こえ</rt></ruby>がします。わたしは「<ruby>一人<rt>ひとり</rt></ruby>です」と<ruby>言<rt>い</rt></ruby>って、カウンターの<ruby>席<rt>せき</rt></ruby>に<ruby>座<rt>すわ</rt></ruby>ります。",
+          "translation": "When I slide open the ramen shop's entrance, a cheerful voice calls out 'Welcome!' Saying 'Just one,' I take a seat at the counter.",
+          "segments": [
+            {
+              "surface": "ラーメン屋さん",
+              "rubyHtml": "ラーメン<ruby>屋<rt>や</rt></ruby>さん",
+              "reading": "らーめんやさん",
+              "meaning": "ramen shop"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "入口",
+              "rubyHtml": "<ruby>入口<rt>いりぐち</rt></ruby>",
+              "reading": "いりぐち",
+              "meaning": "entrance"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "開けると",
+              "rubyHtml": "<ruby>開<rt>あ</rt></ruby>けると",
+              "reading": "あけると",
+              "meaning": "when I open"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "いらっしゃいませ",
+              "reading": "いらっしゃいませ",
+              "meaning": "welcome!"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "元気な",
+              "rubyHtml": "<ruby>元気<rt>げんき</rt></ruby>な",
+              "reading": "げんきな",
+              "meaning": "lively / energetic"
+            },
+            {
+              "surface": "声",
+              "rubyHtml": "<ruby>声<rt>こえ</rt></ruby>",
+              "reading": "こえ",
+              "meaning": "voice"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "します",
+              "reading": "します",
+              "meaning": "is heard / sounds"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "わたし",
+              "reading": "わたし",
+              "meaning": "I"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "一人",
+              "rubyHtml": "<ruby>一人<rt>ひとり</rt></ruby>",
+              "reading": "ひとり",
+              "meaning": "one person"
+            },
+            {
+              "surface": "です",
+              "reading": "です",
+              "meaning": "is (party of one)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "カウンター",
+              "reading": "かうんたー",
+              "meaning": "counter"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "席",
+              "rubyHtml": "<ruby>席<rt>せき</rt></ruby>",
+              "reading": "せき",
+              "meaning": "seat"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "in / onto"
+            },
+            {
+              "surface": "座ります",
+              "rubyHtml": "<ruby>座<rt>すわ</rt></ruby>ります",
+              "reading": "すわります",
+              "meaning": "sit down (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "メニューには「みそラーメン九百円、ライス百円」と書いてあります。「すみません、これとライスをお願いします。お水もお願いします」と注文します。",
+          "rubyHtml": "メニューには「みそラーメン<ruby>九百円<rt>きゅうひゃくえん</rt></ruby>、ライス<ruby>百円<rt>ひゃくえん</rt></ruby>」と<ruby>書<rt>か</rt></ruby>いてあります。「すみません、これとライスをお<ruby>願<rt>ねが</rt></ruby>いします。お<ruby>水<rt>みず</rt></ruby>もお<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>注文<rt>ちゅうもん</rt></ruby>します。",
+          "translation": "On the menu it says 'Miso Ramen 900 yen, Rice 100 yen.' I order: 'Excuse me, this one and rice, please. Water too, please.'",
+          "segments": [
+            {
+              "surface": "メニュー",
+              "reading": "めにゅー",
+              "meaning": "menu"
+            },
+            {
+              "surface": "には",
+              "reading": "にわ",
+              "meaning": "on (location + topic)"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "みそラーメン",
+              "reading": "みそらーめん",
+              "meaning": "miso ramen"
+            },
+            {
+              "surface": "九百円",
+              "rubyHtml": "<ruby>九百円<rt>きゅうひゃくえん</rt></ruby>",
+              "reading": "きゅうひゃくえん",
+              "meaning": "900 yen"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "ライス",
+              "reading": "らいす",
+              "meaning": "side bowl of steamed rice"
+            },
+            {
+              "surface": "百円",
+              "rubyHtml": "<ruby>百円<rt>ひゃくえん</rt></ruby>",
+              "reading": "ひゃくえん",
+              "meaning": "100 yen"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "書いてあります",
+              "rubyHtml": "<ruby>書<rt>か</rt></ruby>いてあります",
+              "reading": "かいてあります",
+              "meaning": "is written"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "すみません",
+              "reading": "すみません",
+              "meaning": "excuse me"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "これ",
+              "reading": "これ",
+              "meaning": "this one"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "ライス",
+              "reading": "らいす",
+              "meaning": "rice"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "お水",
+              "rubyHtml": "お<ruby>水<rt>みず</rt></ruby>",
+              "reading": "おみず",
+              "meaning": "water (polite)"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also / too"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "注文します",
+              "rubyHtml": "<ruby>注文<rt>ちゅうもん</rt></ruby>します",
+              "reading": "ちゅうもんします",
+              "meaning": "place an order (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "あたたかいラーメンはとてもおいしいです。食べたあと、「お会計お願いします」と言って、ちょうど千円を払います。",
+          "rubyHtml": "あたたかいラーメンはとてもおいしいです。<ruby>食<rt>た</rt></ruby>べたあと、「お<ruby>会計<rt>かいけい</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>言<rt>い</rt></ruby>って、ちょうど<ruby>千円<rt>せんえん</rt></ruby>を<ruby>払<rt>はら</rt></ruby>います。",
+          "translation": "The hot ramen is delicious. After eating, I say 'Check, please,' and pay exactly 1,000 yen.",
+          "segments": [
+            {
+              "surface": "あたたかい",
+              "reading": "あたたかい",
+              "meaning": "warm / piping hot"
+            },
+            {
+              "surface": "ラーメン",
+              "reading": "らーめん",
+              "meaning": "ramen"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "とても",
+              "reading": "とても",
+              "meaning": "very"
+            },
+            {
+              "surface": "おいしい",
+              "reading": "おいしい",
+              "meaning": "delicious"
+            },
+            {
+              "surface": "です",
+              "reading": "です",
+              "meaning": "is (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "食べた",
+              "rubyHtml": "<ruby>食<rt>た</rt></ruby>べた",
+              "reading": "たべた",
+              "meaning": "ate"
+            },
+            {
+              "surface": "あと",
+              "reading": "あと",
+              "meaning": "after"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "お会計",
+              "rubyHtml": "お<ruby>会計<rt>かいけい</rt></ruby>",
+              "reading": "おかいけい",
+              "meaning": "the check / bill"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "ちょうど",
+              "reading": "ちょうど",
+              "meaning": "exactly"
+            },
+            {
+              "surface": "千円",
+              "rubyHtml": "<ruby>千円<rt>せんえん</rt></ruby>",
+              "reading": "せんえん",
+              "meaning": "1,000 yen"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "払います",
+              "rubyHtml": "<ruby>払<rt>はら</rt></ruby>います",
+              "reading": "はらいます",
+              "meaning": "pay (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u003-t1-story-01-q1",
+          "question": "How many people were dining in the narrator's party?",
+          "options": [
+            "One person (一人です)",
+            "Two people (二人です)",
+            "Three people (三人です)",
+            "Ten people"
+          ],
+          "correctIndex": 0,
+          "explanation": "The narrator entered solo and said 「一人です」 ('One person')."
+        },
+        {
+          "id": "ja-u003-t1-story-01-q2",
+          "question": "Why did the total come out to exactly 千円 (1,000 yen)?",
+          "options": [
+            "Ramen was ¥500 and beer was ¥500",
+            "Miso ramen was ¥900 and rice was ¥100",
+            "Water cost ¥1,000",
+            "Two bowls of ramen were ¥500 each"
+          ],
+          "correctIndex": 1,
+          "explanation": "九百円 (¥900) + 百円 (¥100) = 千円 (¥1,000)."
+        },
+        {
+          "id": "ja-u003-t1-story-01-q3",
+          "question": "What phrase did the narrator use when ready to pay?",
+          "options": [
+            "乗り換えお願いします",
+            "袋にお入れしますか",
+            "お会計お願いします",
+            "京都行きですか"
+          ],
+          "correctIndex": 2,
+          "explanation": "お会計お願いします asks politely for the bill."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

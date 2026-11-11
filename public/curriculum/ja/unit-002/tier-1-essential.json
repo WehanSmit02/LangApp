@@ -1,0 +1,609 @@
+{
+  "shardId": "ja-unit-002-essential",
+  "unitId": "ja-unit-002",
+  "language": "ja",
+  "tier": "essential",
+  "tierNumber": 1,
+  "focusSummary": "Essential station signage (改札, 乗り換え, 番線), IC card top-ups & fare adjustment (チャージ, 精算機), and survival platform checks (東京駅, 京都行き).",
+  "introducedLexiconIds": [
+    "ja-u002-t1-lex-01",
+    "ja-u002-t1-lex-02",
+    "ja-u002-t1-lex-03",
+    "ja-u002-t1-lex-04",
+    "ja-u002-t1-lex-05",
+    "ja-u002-t1-lex-06",
+    "ja-u002-t1-lex-07",
+    "ja-u002-t1-lex-08"
+  ],
+  "introducedKanji": [
+    "駅",
+    "東",
+    "京",
+    "都",
+    "行",
+    "改",
+    "札",
+    "乗",
+    "換",
+    "番",
+    "線"
+  ],
+  "introducedGrammarIds": [
+    "ja-u002-t1-gram-01",
+    "ja-u002-t1-gram-02"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u002-t1-step-01",
+      "tier": "essential",
+      "heading": "Station Gate & Platform Signage: 改札, 乗り換え & 番線",
+      "explanation": "Three signs guide every station transfer: 改札 (かいさつ, ticket gates), 乗り換え (のりかえ, line transfer), and 番線 (ばんせん, platform track number, e.g., 二番線 = Track 2).",
+      "scenarioPrompt": "You step off an airport train and scan overhead signs to transfer to Track 3.",
+      "nativeText": "改札・乗り換え・三番線",
+      "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>・<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>え・<ruby>三番線<rt>さんばんせん</rt></ruby>",
+      "romanization": "Kaisatsu / Norikae / San-bansen",
+      "translation": "Ticket Gate / Transfer / Track 3",
+      "literalBreakdown": "改札 (inspect-ticket) / 乗り換え (ride-swap) / 三 (3) + 番線 (numbered track)",
+      "usageTip": "Follow 乗り換え arrows BEFORE tapping out at 改札 if you are transferring within the same rail network."
+    },
+    {
+      "id": "ja-u002-t1-step-02",
+      "tier": "essential",
+      "heading": "Reading Destinations: 東京駅 & 京都行き",
+      "explanation": "駅 (えき) means 'station', while 行き (ゆき or いき) attached after a city or station name means 'bound for...'. LED boards on the side of every train car flash its destination.",
+      "scenarioPrompt": "A train pulls onto the platform at Tokyo Station and you want to verify right at the door that it is bound for Kyoto.",
+      "nativeText": "すみません、これは京都行きですか。",
+      "rubyHtml": "すみません、これは<ruby>京都行<rt>きょうとゆ</rt></ruby>きですか。",
+      "romanization": "Sumimasen, kore wa Kyōto-yuki desu ka.",
+      "translation": "Excuse me, is this bound for Kyoto?",
+      "literalBreakdown": "すみません (excuse me) + これは (as for this) + 京都 (Kyoto) + 行き (bound for) + ですか (is it?)",
+      "usageTip": "In formal rail announcements 行き is usually pronounced ゆき (Kyōto-yuki), while in casual speech いき (Kyōto-iki) is also common—both are understood everywhere."
+    },
+    {
+      "id": "ja-u002-t1-step-03",
+      "tier": "essential",
+      "heading": "IC Card Top-Ups & Fare Adjustment: チャージ & 精算機",
+      "explanation": "In Japan, topping up an IC card (Suica, PASMO, ICOCA) is called チャージ (chāji, 'charge'). If your balance is too low when exiting the gate, use the yellow 精算機 (せいさんき, fare adjustment machine) right inside the gates.",
+      "scenarioPrompt": "The ticket gate chimes and closes because your Suica needs ¥120 more before you can exit.",
+      "nativeText": "精算機でSuicaにチャージします。",
+      "rubyHtml": "<ruby>精算機<rt>せいさんき</rt></ruby>でSuicaにチャージします。",
+      "romanization": "Seisanki de Suica ni chāji shimasu.",
+      "translation": "I top up my Suica at the fare adjustment machine.",
+      "literalBreakdown": "精算機 (exact-settlement machine) + で (at/using) + Suicaに (onto Suica) + チャージします (top up)",
+      "usageTip": "You can also top up your IC card with cash at any convenience store register by saying 「Suicaにチャージをお願いします」!"
+    },
+    {
+      "id": "ja-u002-t1-step-04",
+      "tier": "essential",
+      "heading": "Quick Platform Check: 何番線ですか",
+      "explanation": "Combine 何 (なん, 'what') + 番線 (ばんせん, 'track number') to ask staff which platform your train leaves from in just four words.",
+      "scenarioPrompt": "You are inside a busy concourse and want to confirm which track goes to Tokyo Station.",
+      "nativeText": "すみません、東京駅は何番線ですか。",
+      "rubyHtml": "すみません、<ruby>東京駅<rt>とうきょうえき</rt></ruby>は<ruby>何番線<rt>なんばんせん</rt></ruby>ですか。",
+      "romanization": "Sumimasen, Tōkyō-eki wa nan-bansen desu ka.",
+      "translation": "Excuse me, what track number is for Tokyo Station?",
+      "literalBreakdown": "すみません (excuse me) + 東京駅は (as for Tokyo Station) + 何番線 (what track number) + ですか (is it?)",
+      "usageTip": "Listen for the number right before 番線 in the answer: 一番線 (1), 二番線 (2), 三番線 (3), 四番線 (4, よんばんせん)."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u002-t1-drill-01",
+      "tier": "essential",
+      "prompt": "You step up to the open doors of a train and want to ask a station attendant if this train is bound for Kyoto. What do you say?",
+      "cue": "Ask 'Is this bound for Kyoto?' using 行き",
+      "options": [
+        "すみません、これは精算機ですか。",
+        "すみません、これは京都行きですか。",
+        "すみません、京都駅を温めますか。",
+        "すみません、改札は大丈夫です。"
+      ],
+      "correctAnswer": "すみません、これは京都行きですか。",
+      "acceptedVariants": [
+        "これは京都行きですか。"
+      ],
+      "explanation": "Destination + 行きですか ('Is it bound for X?') is the fastest way to double-check a train before boarding."
+    },
+    {
+      "id": "ja-u002-t1-drill-02",
+      "tier": "essential",
+      "prompt": "Your IC card beeps at the exit gate because your balance is ¥50 short. Which machine inside the ticket gates lets you top up or pay the difference?",
+      "cue": "Select the Japanese term for 'fare adjustment machine'",
+      "options": [
+        "営業中",
+        "番線",
+        "精算機",
+        "お弁当"
+      ],
+      "correctAnswer": "精算機",
+      "explanation": "のりこし精算機 (fare adjustment machines) sit right beside the inside of the 改札 (ticket gates) so you can top up your IC card or pay excess fare."
+    },
+    {
+      "id": "ja-u002-t1-drill-03",
+      "tier": "essential",
+      "prompt": "You are switching from the Yamanote Line to the Ginza Subway Line. Which overhead sign should you follow?",
+      "cue": "Select the Kanji word for 'Transfer'",
+      "options": [
+        "京都行き",
+        "入口",
+        "チャージ",
+        "乗り換え"
+      ],
+      "correctAnswer": "乗り換え",
+      "explanation": "乗り換え (norikae) marks transfer corridors between lines."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u002-t1-card-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Excuse me, is this bound for Kyoto?",
+      "targetText": "すみません、これは京都行きですか。",
+      "rubyHtml": "すみません、これは<ruby>京都行<rt>きょうとゆ</rt></ruby>きですか。",
+      "reading": "すみません、これはきょうとゆきですか。",
+      "contextSentence": "すみません、これは京都行きですか。はい、そうです。",
+      "contextRubyHtml": "すみません、これは<ruby>京都行<rt>きょうとゆ</rt></ruby>きですか。はい、そうです。",
+      "contextTranslation": "Excuse me, is this bound for Kyoto? Yes, that's right.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t1-card-02",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "What track number is for Tokyo Station?",
+      "targetText": "東京駅は何番線ですか。",
+      "rubyHtml": "<ruby>東京駅<rt>とうきょうえき</rt></ruby>は<ruby>何番線<rt>なんばんせん</rt></ruby>ですか。",
+      "reading": "とうきょうえきはなんばんせんですか。",
+      "contextSentence": "すみません、東京駅は何番線ですか。二番線です。",
+      "contextRubyHtml": "すみません、<ruby>東京駅<rt>とうきょうえき</rt></ruby>は<ruby>何番線<rt>なんばんせん</rt></ruby>ですか。<ruby>二番線<rt>にばんせん</rt></ruby>です。",
+      "contextTranslation": "Excuse me, what track is for Tokyo Station? It's Track 2.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t1-card-03",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Please top up (charge) my IC card.",
+      "targetText": "ICカードにチャージをお願いします。",
+      "rubyHtml": "ICカードにチャージをお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "あいしーかーどにちゃーじをおねがいします。",
+      "contextSentence": "すみません、ICカードにチャージをお願いします。",
+      "contextRubyHtml": "すみません、ICカードにチャージをお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Excuse me, please top up my IC card.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t1-card-04",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Where are the ticket gates?",
+      "targetText": "改札はどこですか。",
+      "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>はどこですか。",
+      "reading": "かいさつはどこですか。",
+      "contextSentence": "すみません、JRの改札はどこですか。",
+      "contextRubyHtml": "すみません、JRの<ruby>改札<rt>かいさつ</rt></ruby>はどこですか。",
+      "contextTranslation": "Excuse me, where are the JR ticket gates?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t1-card-05",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "frontPrompt": "Transfer (between train/subway lines) / Fare adjustment machine",
+      "targetText": "乗り換え / 精算機",
+      "rubyHtml": "<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>え / <ruby>精算機<rt>せいさんき</rt></ruby>",
+      "reading": "のりかえ / せいさんき",
+      "contextSentence": "改札の前で精算機を使います。",
+      "contextRubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>で<ruby>精算機<rt>せいさんき</rt></ruby>を<ruby>使<rt>つか</rt></ruby>います。",
+      "contextTranslation": "I use the fare adjustment machine in front of the ticket gates.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u002-t1-story-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "essential",
+      "title": "はじめての東京駅とICカード",
+      "titleTranslation": "First Time at Tokyo Station with an IC Card",
+      "setting": "Morning rush subsiding at Tokyo Station as you transfer onto a platform.",
+      "paragraphs": [
+        {
+          "nativeText": "東京駅に着いて、「乗り換え」のサインを見ます。改札の近くにある精算機で、Suicaにチャージします。",
+          "rubyHtml": "<ruby>東京駅<rt>とうきょうえき</rt></ruby>に<ruby>着<rt>つ</rt></ruby>いて、「<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>え」のサインを<ruby>見<rt>み</rt></ruby>ます。<ruby>改札<rt>かいさつ</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くにある<ruby>精算機<rt>せいさんき</rt></ruby>で、Suicaにチャージします。",
+          "translation": "Arriving at Tokyo Station, I spot the 'Transfer' sign. At the fare adjustment machine near the ticket gates, I top up my Suica.",
+          "segments": [
+            {
+              "surface": "東京駅",
+              "rubyHtml": "<ruby>東京駅<rt>とうきょうえき</rt></ruby>",
+              "reading": "とうきょうえき",
+              "meaning": "Tokyo Station"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at (arrival point)"
+            },
+            {
+              "surface": "着いて",
+              "rubyHtml": "<ruby>着<rt>つ</rt></ruby>いて",
+              "reading": "ついて",
+              "meaning": "arriving"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "乗り換え",
+              "rubyHtml": "<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>え",
+              "reading": "のりかえ",
+              "meaning": "line transfer"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "サイン",
+              "reading": "さいん",
+              "meaning": "sign"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "見ます",
+              "rubyHtml": "<ruby>見<rt>み</rt></ruby>ます",
+              "reading": "みます",
+              "meaning": "look at / see (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "改札",
+              "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>",
+              "reading": "かいさつ",
+              "meaning": "ticket gate"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "近く",
+              "rubyHtml": "<ruby>近<rt>ちか</rt></ruby>く",
+              "reading": "ちかく",
+              "meaning": "nearby / vicinity"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at / in"
+            },
+            {
+              "surface": "ある",
+              "reading": "ある",
+              "meaning": "located / existing"
+            },
+            {
+              "surface": "精算機",
+              "rubyHtml": "<ruby>精算機<rt>せいさんき</rt></ruby>",
+              "reading": "せいさんき",
+              "meaning": "fare adjustment machine"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at / using"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "Suica",
+              "reading": "すいか",
+              "meaning": "Suica transit IC card"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "onto"
+            },
+            {
+              "surface": "チャージします",
+              "reading": "ちゃーじします",
+              "meaning": "top up / add funds (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "駅員さんに「すみません、京都行きは何番線ですか」と聞きます。駅員さんは「十六番線ですよ」と教えてくれます。",
+          "rubyHtml": "<ruby>駅員<rt>えきいん</rt></ruby>さんに「すみません、<ruby>京都行<rt>きょうとゆ</rt></ruby>きは<ruby>何番線<rt>なんばんせん</rt></ruby>ですか」と<ruby>聞<rt>き</rt></ruby>きます。<ruby>駅員<rt>えきいん</rt></ruby>さんは「<ruby>十六番線<rt>じゅうろくばんせん</rt></ruby>ですよ」と<ruby>教<rt>おし</rt></ruby>えてくれます。",
+          "translation": "I ask a station attendant, 'Excuse me, what track number is bound for Kyoto?' The attendant kindly tells me, 'It's Track 16!'",
+          "segments": [
+            {
+              "surface": "駅員さん",
+              "rubyHtml": "<ruby>駅員<rt>えきいん</rt></ruby>さん",
+              "reading": "えきいんさん",
+              "meaning": "station attendant"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to (person asked)"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "すみません",
+              "reading": "すみません",
+              "meaning": "excuse me"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "京都行き",
+              "rubyHtml": "<ruby>京都行<rt>きょうとゆ</rt></ruby>き",
+              "reading": "きょうとゆき",
+              "meaning": "bound for Kyoto"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "何番線",
+              "rubyHtml": "<ruby>何番線<rt>なんばんせん</rt></ruby>",
+              "reading": "なんばんせん",
+              "meaning": "what track number"
+            },
+            {
+              "surface": "ですか",
+              "reading": "ですか",
+              "meaning": "is it?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きます",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きます",
+              "reading": "ききます",
+              "meaning": "ask (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "駅員さん",
+              "rubyHtml": "<ruby>駅員<rt>えきいん</rt></ruby>さん",
+              "reading": "えきいんさん",
+              "meaning": "station attendant"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "十六番線",
+              "rubyHtml": "<ruby>十六番線<rt>じゅうろくばんせん</rt></ruby>",
+              "reading": "じゅうろくばんせん",
+              "meaning": "Track 16"
+            },
+            {
+              "surface": "ですよ",
+              "reading": "ですよ",
+              "meaning": "it is! (reassuring)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "教えてくれます",
+              "rubyHtml": "<ruby>教<rt>おし</rt></ruby>えてくれます",
+              "reading": "おしえてくれます",
+              "meaning": "kindly tells me"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "「ありがとうございます！」と言って、改札を通ります。ホームで「京都行き」の表示を見て、安心して乗ります。",
+          "rubyHtml": "「ありがとうございます！」と<ruby>言<rt>い</rt></ruby>って、<ruby>改札<rt>かいさつ</rt></ruby>を<ruby>通<rt>とお</rt></ruby>ります。ホームで「<ruby>京都行<rt>きょうとゆ</rt></ruby>き」の<ruby>表示<rt>ひょうじ</rt></ruby>を<ruby>見<rt>み</rt></ruby>て、<ruby>安心<rt>あんしん</rt></ruby>して<ruby>乗<rt>の</rt></ruby>ります。",
+          "translation": "Saying 'Thank you very much!', I pass through the ticket gate. On the platform, seeing the 'Bound for Kyoto' display, I board with peace of mind.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ありがとうございます",
+              "reading": "ありがとうございます",
+              "meaning": "thank you very much"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "改札",
+              "rubyHtml": "<ruby>改札<rt>かいさつ</rt></ruby>",
+              "reading": "かいさつ",
+              "meaning": "ticket gate"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "through (space traversed)"
+            },
+            {
+              "surface": "通ります",
+              "rubyHtml": "<ruby>通<rt>とお</rt></ruby>ります",
+              "reading": "とおります",
+              "meaning": "pass through (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "ホーム",
+              "reading": "ほーむ",
+              "meaning": "station platform"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "at / on (location of action)"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "京都行き",
+              "rubyHtml": "<ruby>京都行<rt>きょうとゆ</rt></ruby>き",
+              "reading": "きょうとゆき",
+              "meaning": "bound for Kyoto"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "表示",
+              "rubyHtml": "<ruby>表示<rt>ひょうじ</rt></ruby>",
+              "reading": "ひょうじ",
+              "meaning": "signboard / electronic display"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "見て",
+              "rubyHtml": "<ruby>見<rt>み</rt></ruby>て",
+              "reading": "みて",
+              "meaning": "seeing"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "安心して",
+              "rubyHtml": "<ruby>安心<rt>あんしん</rt></ruby>して",
+              "reading": "あんしんして",
+              "meaning": "feeling relieved / with peace of mind"
+            },
+            {
+              "surface": "乗ります",
+              "rubyHtml": "<ruby>乗<rt>の</rt></ruby>ります",
+              "reading": "のります",
+              "meaning": "board / get on (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u002-t1-story-01-q1",
+          "question": "What did the traveler do at the 精算機 near the ticket gates?",
+          "options": [
+            "Topped up their Suica card (チャージ)",
+            "Ordered a hot bento",
+            "Left luggage in a coin locker",
+            "Exchanged dollars for euros"
+          ],
+          "correctIndex": 0,
+          "explanation": "They topped up their Suica at the fare adjustment machine (精算機で、Suicaにチャージします)."
+        },
+        {
+          "id": "ja-u002-t1-story-01-q2",
+          "question": "Which track did the station attendant direct the traveler to?",
+          "options": [
+            "Track 2 (二番線)",
+            "Track 16 (十六番線)",
+            "Track 6 (六番線)",
+            "Track 10 (十番線)"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tokaido Shinkansen platforms at Tokyo Station include Track 16 (十六番線)."
+        },
+        {
+          "id": "ja-u002-t1-story-01-q3",
+          "question": "What display on the platform gave the traveler confidence before boarding?",
+          "options": [
+            "「出口」 (Exit)",
+            "「準備中」 (Closed)",
+            "「京都行き」 (Bound for Kyoto)",
+            "「ポイントカード」 (Point Card)"
+          ],
+          "correctIndex": 2,
+          "explanation": "Checking the 「京都行き」 LED display confirmed the train's destination."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

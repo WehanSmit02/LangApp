@@ -1,0 +1,753 @@
+{
+  "shardId": "ja-unit-002-fluent",
+  "unitId": "ja-unit-002",
+  "language": "ja",
+  "tier": "fluent",
+  "tierNumber": 4,
+  "focusSummary": "Formal rail PA announcements (まもなく二番線に…, 運転を見合わせております, 振替輸送), polite ticket rebooking at みどりの窓口, and unassisted native rail prose.",
+  "introducedLexiconIds": [
+    "ja-u002-t4-lex-01",
+    "ja-u002-t4-lex-02",
+    "ja-u002-t4-lex-03",
+    "ja-u002-t4-lex-04",
+    "ja-u002-t4-lex-05",
+    "ja-u002-t4-lex-06",
+    "ja-u002-t4-lex-07",
+    "ja-u002-t4-lex-08"
+  ],
+  "introducedKanji": [
+    "運",
+    "転",
+    "見",
+    "合",
+    "振",
+    "替",
+    "輸",
+    "送",
+    "窓",
+    "変",
+    "更"
+  ],
+  "introducedGrammarIds": [
+    "ja-u002-t4-gram-01",
+    "ja-u002-t4-gram-02",
+    "ja-u002-t4-gram-03"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u002-t4-step-01",
+      "tier": "fluent",
+      "heading": "Decoding Platform PA Announcements: まもなく２番線に…",
+      "explanation": "Platform announcements follow a predictable formal cadence: まもなく ('shortly') + [Track]番線に + [Destination]行きが + まいります ('will arrive', humble kenjōgo) + 危ないですから黄色い点字ブロックまでお下がりください.",
+      "scenarioPrompt": "A melody chimes on the platform followed by a brisk station announcement.",
+      "nativeText": "まもなく、二番線に、京都方面、新大阪行きがまいります。危ないですから、黄色い点字ブロックまでお下がりください。",
+      "romanization": "Mamonaku, ni-bansen ni, Kyōto hōmen, Shin-Ōsaka-yuki ga mairimasu. Abunai desu kara, kiiroi tenji burokku made o-sagari kudasai.",
+      "translation": "Shortly, on Track 2, the train bound for Shin-Osaka via Kyoto will arrive. For your safety, please step back behind the yellow tactile paving blocks.",
+      "literalBreakdown": "まもなく (shortly) + 二番線に (at Track 2) + 京都方面 (Kyoto direction) + まいります (humble: comes) / 点字ブロックまでお下がりください (step back to tactile blocks)",
+      "usageTip": "電車が通過いたします ('A train will pass through without stopping') is crucial to catch—do NOT board or stand near the edge!"
+    },
+    {
+      "id": "ja-u002-t4-step-02",
+      "tier": "fluent",
+      "heading": "Service Suspensions & Alternative Transport: 運転見合わせ & 振替輸送",
+      "explanation": "During typhoons, heavy snow, or track inspections, lines announce 運転を見合わせております ('operations are temporarily suspended', humble progressive おります). Rail operators then authorize 振替輸送 (ふりかえゆそう, free alternative routing on parallel lines).",
+      "scenarioPrompt": "Overhead departure boards switch to red text and broadcast an operational update.",
+      "nativeText": "ただいま、強風の影響により、上下線とも運転を見合わせております。なお、私鉄各線にて振替輸送を実施しております。",
+      "romanization": "Tadaima, kyōfū no eikyō ni yori, jōgesen tomo unten o miawasete orimasu. Nao, shitetsu kakusen nite furikae yusō o jisshi shite orimasu.",
+      "translation": "Currently, due to high winds, train operations are suspended in both directions. Furthermore, alternative transport is in effect on private railway lines.",
+      "literalBreakdown": "強風の影響により (due to strong winds) + 上下線とも (both inbound and outbound lines) + 運転を見合わせております (suspending operations) + 振替輸送を実施 (implementing transfer transport)",
+      "usageTip": "〜により is the formal written/broadcast equivalent of 〜で / 〜のために ('owing to / due to')."
+    },
+    {
+      "id": "ja-u002-t4-step-03",
+      "tier": "fluent",
+      "heading": "Rebooking Reserved Tickets at みどりの窓口",
+      "explanation": "If a delayed connection causes you to miss—or want to move up—your reserved Shinkansen departure, visit みどりの窓口 and politely request 便の変更 ('changing to a different departure').",
+      "scenarioPrompt": "Your connecting express ran late, so you ask the JR ticket agent to rebook your reserved seat onto the next available Nozomi.",
+      "nativeText": "恐れ入りますが、接続電車の遅延で乗り遅れてしまったため、後続の便に指定席を変更していただけますでしょうか。",
+      "romanization": "Osoreirimasu ga, setsuzoku densha no chien de noriokurete shimatta tame, kōzoku no bin ni shiteiseki o henkō shite itadakemasu deshō ka.",
+      "translation": "Excuse me for the trouble, as I missed my train due to a connecting train delay, would it be possible to rebook my reserved seat onto a following departure?",
+      "literalBreakdown": "接続電車の遅延で (due to connecting train delay) + 乗り遅れてしまったため (because I missed boarding) + 後続の便に (to a subsequent service) + 変更していただけますでしょうか",
+      "usageTip": "Under JR tariff rules, even if you miss a reserved Shinkansen on a regular ticket, your ticket generally remains valid for 自由席 on a later train the same day, and railroad-caused connection delays allow re-issuing 指定席!"
+    },
+    {
+      "id": "ja-u002-t4-step-04",
+      "tier": "fluent",
+      "heading": "Obtaining Official Delay Certificates: 遅延証明書",
+      "explanation": "Japanese rail punctuality is so strict that even a five-minute commuter delay prompts stations (and railway websites) to issue a 遅延証明書 (ちえんしょうめいしょ, official delay certificate) excusing late arrival at work or university.",
+      "scenarioPrompt": "You explain to a seminar organizer why you arrived ten minutes past the opening bell.",
+      "nativeText": "電車の遅延に伴い到着が遅れまして、大変失礼いたしました。念のため遅延証明書を受け取ってまいりました。",
+      "romanization": "Densha no chien ni tomonai tōchaku ga okuremashite, taihen shitsurei itashimashita. Nen no tame chien shōmeisho o uketotte mairimashita.",
+      "translation": "I sincerely apologize for arriving late due to the train delay. Just in case, I picked up an official delay certificate on my way.",
+      "literalBreakdown": "遅延に伴い (accompanying/due to the delay) + 大変失礼いたしました (deeply excuse my rudeness) + 念のため (just to be sure) + 受け取ってまいりました (humbly received and came)",
+      "usageTip": "〜に伴い (にともない) expresses a formal consequence accompanying an event."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u002-t4-drill-01",
+      "tier": "fluent",
+      "prompt": "A station announcement states: 「大雨の影響により、運転を見合わせております。」 What does this mean for your train?",
+      "cue": "Interpret 運転を見合わせております",
+      "options": [
+        "The train is departing two minutes early from another platform",
+        "All seats have been upgraded to Green Car",
+        "Ticket gates only accept cash today",
+        "Train operations are currently suspended until conditions are safe"
+      ],
+      "correctAnswer": "Train operations are currently suspended until conditions are safe",
+      "explanation": "運転を見合わせる literally means 'to hold off on operations while monitoring conditions'—the standard rail term for suspended service."
+    },
+    {
+      "id": "ja-u002-t4-drill-02",
+      "tier": "fluent",
+      "prompt": "You finished your meetings an hour early and want to ask the agent at みどりの窓口 to move your reserved Shinkansen ticket to an earlier departure:",
+      "cue": "Polite adult request using 変更していただけますでしょうか",
+      "options": [
+        "恐れ入りますが、予約している指定席を一本早い便に変更していただけますでしょうか。",
+        "すみません、指定席を温めていただけますか。",
+        "ちょっと、電車を振替輸送にしてくれない？",
+        "まもなく二番線に指定席がまいります。"
+      ],
+      "correctAnswer": "恐れ入りますが、予約している指定席を一本早い便に変更していただけますでしょうか。",
+      "explanation": "一本早い便 (ippon hayai bin — 'one departure earlier', using 〜本 for scheduled runs) + に変更していただけますでしょうか is completely idiomatic."
+    },
+    {
+      "id": "ja-u002-t4-drill-03",
+      "tier": "fluent",
+      "prompt": "During a JR line suspension, staff direct pass/ticket holders to take a parallel subway line at no extra charge. What is this arrangement called?",
+      "cue": "Select the four-kanji rail compound for alternative transport",
+      "options": [
+        "各駅停車",
+        "振替輸送",
+        "領収書",
+        "営業中"
+      ],
+      "correctAnswer": "振替輸送",
+      "explanation": "振替輸送 (furikae yusō) allows passengers holding valid pre-purchased tickets or commuter passes to ride designated partner railways during a disruption."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u002-t4-card-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Operations are temporarily suspended (formal rail announcement)",
+      "targetText": "運転を見合わせております。",
+      "reading": "うんてんをみあわせております。",
+      "contextSentence": "信号確認のため、現在、上下線とも運転を見合わせております。",
+      "contextTranslation": "Due to a signal inspection, operations are currently suspended in both directions.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t4-card-02",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Could you change my reserved seat to one train earlier?",
+      "targetText": "指定席を一本早い便に変更していただけますでしょうか。",
+      "reading": "していせきをいっぽんはやいびんにへんこうしていただけますでしょうか。",
+      "contextSentence": "恐れ入りますが、新幹線の指定席を一本早い便に変更していただけますでしょうか。",
+      "contextTranslation": "Pardon the trouble, could you change my Shinkansen reserved seat to the preceding departure?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t4-card-03",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Shortly, on Track 2, the train bound for Kyoto will arrive.",
+      "targetText": "まもなく、二番線に、京都行きがまいります。",
+      "reading": "まもなく、にばんせんに、きょうとゆきがまいります。",
+      "contextSentence": "まもなく、二番線に、京都行きがまいります。黄色い点字ブロックまでお下がりください。",
+      "contextTranslation": "Shortly, on Track 2, the train bound for Kyoto will arrive. Please step back to the yellow tactile blocks.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u002-t4-card-04",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Alternative rail transport during service disruptions",
+      "targetText": "振替輸送",
+      "reading": "ふりかえゆそう",
+      "contextSentence": "地下鉄線にて振替輸送を実施しております。",
+      "contextTranslation": "Alternative transport is being provided on subway lines.",
+      "phraseLockEligible": false
+    },
+    {
+      "id": "ja-u002-t4-card-05",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Is there window seating available on the Mount Fuji side?",
+      "targetText": "富士山側の窓側席は空いておりますでしょうか。",
+      "reading": "ふじさんがわのまどがわせきはあいておりますでしょうか。",
+      "contextSentence": "もし可能でしたら、富士山側の窓側席は空いておりますでしょうか。",
+      "contextTranslation": "If possible, might a window seat on the Mount Fuji side be available?",
+      "phraseLockEligible": true
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u002-t4-story-01",
+      "unitId": "ja-unit-002",
+      "language": "ja",
+      "tier": "fluent",
+      "title": "豪雨による運転見合わせとみどりの窓口",
+      "titleTranslation": "Suspended Operations in Heavy Rain and Rebooking at Midori-no-Madoguchi",
+      "setting": "Evening at Nagoya Station as sudden summer downpours disrupt regional rail connections.",
+      "paragraphs": [
+        {
+          "nativeText": "名古屋駅構内に足を踏み入れた途端、「ただいま局地的な大雨の影響により、一部区間で運転を見合わせております」という構内放送が響き渡った。電光掲示板を見上げると、乗車予定だった特急列車にも大幅な遅れが生じていた。",
+          "translation": "The moment I stepped inside Nagoya Station, a PA announcement echoed through the concourse: 'Currently, due to localized heavy rain, operations are suspended on certain sections.' Looking up at the electronic departure board, substantial delays had hit the limited express I was scheduled to board as well.",
+          "segments": [
+            {
+              "surface": "名古屋駅",
+              "reading": "なごやえき",
+              "meaning": "Nagoya Station"
+            },
+            {
+              "surface": "構内",
+              "reading": "こうない",
+              "meaning": "station premises / concourse"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "into"
+            },
+            {
+              "surface": "足を踏み入れた",
+              "reading": "あしをふみいれた",
+              "meaning": "stepped inside"
+            },
+            {
+              "surface": "途端",
+              "reading": "とたん",
+              "meaning": "the very moment / just as"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ただいま",
+              "reading": "ただいま",
+              "meaning": "presently / currently"
+            },
+            {
+              "surface": "局地的な",
+              "reading": "きょくちてきな",
+              "meaning": "localized"
+            },
+            {
+              "surface": "大雨",
+              "reading": "おおあめ",
+              "meaning": "heavy rain / downpour"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "影響により",
+              "reading": "えいきょうにより",
+              "meaning": "due to the impact of"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "一部区間",
+              "reading": "いちぶくかん",
+              "meaning": "certain route sections"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "in / on"
+            },
+            {
+              "surface": "運転を見合わせております",
+              "reading": "うんてんをみあわせております",
+              "meaning": "operations are temporarily suspended"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "という",
+              "reading": "という",
+              "meaning": "stating that"
+            },
+            {
+              "surface": "構内放送",
+              "reading": "こうないほうそう",
+              "meaning": "station PA announcement"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "響き渡った",
+              "reading": "ひびきわたった",
+              "meaning": "echoed throughout"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "電光掲示板",
+              "reading": "でんこうけいじばん",
+              "meaning": "electronic departure board"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "見上げると",
+              "reading": "みあげると",
+              "meaning": "looking up at"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "乗車予定だった",
+              "reading": "じょうしゃよていだった",
+              "meaning": "scheduled to board"
+            },
+            {
+              "surface": "特急列車",
+              "reading": "とっきゅうれっしゃ",
+              "meaning": "limited express train"
+            },
+            {
+              "surface": "にも",
+              "reading": "にも",
+              "meaning": "also on"
+            },
+            {
+              "surface": "大幅な",
+              "reading": "おおはばな",
+              "meaning": "major / substantial"
+            },
+            {
+              "surface": "遅れ",
+              "reading": "おくれ",
+              "meaning": "delay"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "生じていた",
+              "reading": "しょうじていた",
+              "meaning": "had arisen"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "すぐにみどりの窓口へ並び、順番が回ってくると「恐れ入りますが、在来線の運転見合わせに伴い、新幹線の指定席に間に合いそうにありません。後続の便へ変更していただけますでしょうか」と乗車券と特急券を提示した。",
+          "translation": "I promptly lined up at Midori-no-Madoguchi, and when my turn came, presented my base fare and limited express tickets: 'Excuse me, due to the conventional line suspension, it appears I won't make my reserved Shinkansen. Would it be possible to switch me to a later departure?'",
+          "segments": [
+            {
+              "surface": "すぐに",
+              "reading": "すぐに",
+              "meaning": "promptly / right away"
+            },
+            {
+              "surface": "みどりの窓口",
+              "reading": "みどりのまどぐち",
+              "meaning": "JR staffed ticket office"
+            },
+            {
+              "surface": "へ",
+              "reading": "え",
+              "meaning": "toward"
+            },
+            {
+              "surface": "並び",
+              "reading": "ならび",
+              "meaning": "lined up, and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "順番",
+              "reading": "じゅんばん",
+              "meaning": "one's turn"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "回ってくると",
+              "reading": "まわってくると",
+              "meaning": "when it came around"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "恐れ入りますが",
+              "reading": "おそれいりますが",
+              "meaning": "pardon the trouble, but"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "在来線",
+              "reading": "ざいらいせん",
+              "meaning": "conventional (non-Shinkansen) rail lines"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "運転見合わせ",
+              "reading": "うんてんみあわせ",
+              "meaning": "service suspension"
+            },
+            {
+              "surface": "に伴い",
+              "reading": "にともない",
+              "meaning": "owing to / accompanying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "新幹線",
+              "reading": "しんかんせん",
+              "meaning": "Shinkansen"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "指定席",
+              "reading": "していせき",
+              "meaning": "reserved seat"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "for / in time for"
+            },
+            {
+              "surface": "間に合いそうにありません",
+              "reading": "まにあいそうにありません",
+              "meaning": "unlikely to make it in time"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "後続の便",
+              "reading": "こうぞくのびん",
+              "meaning": "subsequent departure"
+            },
+            {
+              "surface": "へ",
+              "reading": "え",
+              "meaning": "to"
+            },
+            {
+              "surface": "変更していただけますでしょうか",
+              "reading": "へんこうしていただけますでしょうか",
+              "meaning": "could you change it for me?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "乗車券",
+              "reading": "じょうしゃけん",
+              "meaning": "base-fare ticket"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "特急券",
+              "reading": "とっきゅうけん",
+              "meaning": "limited express / Shinkansen supplement ticket"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "提示した",
+              "reading": "ていじした",
+              "meaning": "presented"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "係員は手際よく端末を操作し、「ご不便をおかけしております。三十分後ののぞみ号にて窓側のお席をお取り直しいたしました。あわせて私鉄線への振替輸送もご利用いただけます」と案内してくれた。的確な対応のおかげで、落ち着いて東京への帰路に就くことができた。",
+          "translation": "The agent deftly operated the terminal and guided me: 'We apologize for the inconvenience. I have rebooked a window seat for you on the Nozomi departing in thirty minutes. You may also use alternative transport on private railways.' Thanks to their crisp handling, I was able to head back to Tokyo with complete composure.",
+          "segments": [
+            {
+              "surface": "係員",
+              "reading": "かかりいん",
+              "meaning": "ticket agent / staff member"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "手際よく",
+              "reading": "てぎわよく",
+              "meaning": "deftly / efficiently"
+            },
+            {
+              "surface": "端末",
+              "reading": "たんまつ",
+              "meaning": "computer terminal"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "操作し",
+              "reading": "そうさし",
+              "meaning": "operated, and"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ご不便をおかけしております",
+              "reading": "ごふべんをおかけしております",
+              "meaning": "we apologize for the inconvenience"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "三十分後",
+              "reading": "さんじゅっぷんご",
+              "meaning": "thirty minutes later"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "のぞみ号",
+              "reading": "のぞみごう",
+              "meaning": "Nozomi super-express"
+            },
+            {
+              "surface": "にて",
+              "reading": "にて",
+              "meaning": "on (formal particle for で)"
+            },
+            {
+              "surface": "窓側",
+              "reading": "まどがわ",
+              "meaning": "window side"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "お席",
+              "reading": "おせき",
+              "meaning": "seat (honorific)"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "お取り直しいたしました",
+              "reading": "おとりなおしいたしました",
+              "meaning": "humbly rebooked"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "あわせて",
+              "reading": "あわせて",
+              "meaning": "in addition / alongside this"
+            },
+            {
+              "surface": "私鉄線",
+              "reading": "してつせん",
+              "meaning": "private railway lines"
+            },
+            {
+              "surface": "への",
+              "reading": "えの",
+              "meaning": "onto"
+            },
+            {
+              "surface": "振替輸送",
+              "reading": "ふりかえゆそう",
+              "meaning": "alternative rail transport"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also"
+            },
+            {
+              "surface": "ご利用いただけます",
+              "reading": "ごりよういただけます",
+              "meaning": "you may make use of"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "案内してくれた",
+              "reading": "あんないしてくれた",
+              "meaning": "guided / informed me"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "的確な",
+              "reading": "てきかくな",
+              "meaning": "precise / spot-on"
+            },
+            {
+              "surface": "対応",
+              "reading": "たいおう",
+              "meaning": "handling / service response"
+            },
+            {
+              "surface": "のおかげで",
+              "reading": "のおかげで",
+              "meaning": "thanks to"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "落ち着いて",
+              "reading": "おちついて",
+              "meaning": "calmly"
+            },
+            {
+              "surface": "東京",
+              "reading": "とうきょう",
+              "meaning": "Tokyo"
+            },
+            {
+              "surface": "への",
+              "reading": "えの",
+              "meaning": "to / bound for"
+            },
+            {
+              "surface": "帰路に就く",
+              "reading": "きろにつく",
+              "meaning": "set out on one's return journey"
+            },
+            {
+              "surface": "ことができた",
+              "reading": "ことができた",
+              "meaning": "was able to"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u002-t4-story-01-q1",
+          "question": "What triggered the partial suspension of rail service (運転見合わせ) in the story?",
+          "options": [
+            "A scheduled midnight power outage",
+            "A marathon outside the station",
+            "Localized heavy rain (局地的な大雨)",
+            "Track renovation planned months ahead"
+          ],
+          "correctIndex": 2,
+          "explanation": "The announcement specified 「局地的な大雨の影響により、一部区間で運転を見合わせております」."
+        },
+        {
+          "id": "ja-u002-t4-story-01-q2",
+          "question": "Which two tickets did the narrator hand over at みどりの窓口?",
+          "options": [
+            "An airport boarding pass and passport",
+            "A bus coupon and museum stub",
+            "A formal corporate receipt and business card",
+            "The base-fare ticket (乗車券) and limited express supplement ticket (特急券)"
+          ],
+          "correctIndex": 3,
+          "explanation": "Shinkansen travel uses both a 乗車券 (base distance fare) and a 特急券 (super-express seat supplement), sometimes printed on one combined ticket."
+        },
+        {
+          "id": "ja-u002-t4-story-01-q3",
+          "question": "How did the ticket agent resolve the narrator's situation?",
+          "options": [
+            "Rebooked a window seat on the Nozomi 30 minutes later and informed them of private-line alternative transport",
+            "Refunded only half the ticket in coins",
+            "Asked them to wait until the following morning",
+            "Told them Shinkansen tickets can never be changed"
+          ],
+          "correctIndex": 0,
+          "explanation": "The agent rebooked a window seat (窓側のお席をお取り直しいたしました) on the Nozomi 30 minutes later and noted 振替輸送 availability."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

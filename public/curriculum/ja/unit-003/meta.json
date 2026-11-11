@@ -1,0 +1,17 @@
+{
+  "unitId": "ja-unit-003",
+  "language": "ja",
+  "unitNumber": 3,
+  "stageId": "ja-stage-2",
+  "title": "Izakaya, Ramen Counters, Numbers & Ordering",
+  "subtitle": "Party-size seating, ramen ticket machines, essential Japanese counters, allergy requests, and lively dining etiquette",
+  "summary": "Step beneath the fabric noren curtain of a neighborhood ramen shop or lively izakaya with total ease. State your party size, read yen prices, wield universal and shape-based counters (〜つ, 〜杯, 〜本, 〜枚), check ingredients or customize toppings, swap tasting impressions over shared plates, and appreciate seasonal kaiseki hospitality.",
+  "estimatedMinutes": 45,
+  "communicativeCanDo": [
+    "Give your party size (一人です, 二人です), order from menus or ramen vending machines, and ask for the bill (お会計お願いします)",
+    "Count dishes, draft beers, skewers, and small plates accurately with 〜つ, 〜杯, 〜本, and 〜枚",
+    "Verify allergens or dietary preferences politely with 〜は入っていますか and 〜抜きでお願いします",
+    "Ask for house recommendations, describe flavors naturally, split or treat the check, and navigate formal kaiseki dining"
+  ],
+  "culturalInsight": "Ramen shops often use a 食券機 (meal-ticket machine) by the entrance where you pay first and hand paper tickets to the chef—customize noodle firmness or toppings right at the counter. Izakayas work the opposite way: dishes are ordered in waves to share, a small savory appetizer (お通し, typically ¥300–¥500 per person) serves as the table cover charge, and you settle one combined check (お会計) at the end while thanking the kitchen with 「ごちそうさまでした」."
+}

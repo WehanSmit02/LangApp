@@ -1,0 +1,607 @@
+{
+  "shardId": "de-unit-002-tier-1-essential",
+  "unitId": "de-unit-002",
+  "language": "de",
+  "tier": "essential",
+  "tierNumber": 1,
+  "focusSummary": "Station survival signs (Eingang, Ausgang, Umsteigen), Austrian Bahnsteig vs. German Gleis, and Lego-style compound splitting from Haupt·bahn·hof up to Schienen·ersatz·verkehr.",
+  "introducedLexiconIds": [
+    "de-u002-t1-lex-hauptbahnhof",
+    "de-u002-t1-lex-bahnsteig",
+    "de-u002-t1-lex-fahrkartenautomat",
+    "de-u002-t1-lex-schienenersatzverkehr",
+    "de-u002-t1-lex-ausgang",
+    "de-u002-t1-lex-eingang",
+    "de-u002-t1-lex-umsteigen"
+  ],
+  "introducedRoots": [
+    "Haupt",
+    "Bahn",
+    "Hof",
+    "Steig",
+    "Schiene",
+    "Ersatz",
+    "Verkehr",
+    "Automat",
+    "Gang"
+  ],
+  "introducedGrammarIds": [
+    "de-u002-t1-gram-compound-noun-head-gender",
+    "de-u002-t1-gram-directional-prefixes-ein-aus-um"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u002-t1-step-01",
+      "tier": "essential",
+      "heading": "The Lego Secret: Haupt·bahn·hof & Bahn·steig",
+      "explanation": "German doesn't invent obscure Latinate words for everyday infrastructure—it snaps tiny core roots together! Haupt ('main') + Bahn ('rail/track') + Hof ('courtyard/station') = der Hauptbahnhof ('main train station'). On Austrian ÖBB boards, your platform is der Bahn·steig ('rail-walkway'), whereas Deutsche Bahn (DB) in Germany displays das Gleis ('track').",
+      "scenarioPrompt": "You arrive at Wien Hauptbahnhof and check the overhead departure screen for your Salzburg train.",
+      "nativeText": "Wien Hauptbahnhof — Railjet nach Salzburg auf Bahnsteig 7.",
+      "translation": "Vienna Main Station — Railjet to Salzburg on Platform 7.",
+      "literalBreakdown": "Wien (Vienna) · Haupt·bahn·hof (main-rail-yard) · nach (to) · Bahn·steig 7 (rail-platform 7)",
+      "standardGermanVariant": {
+        "nativeText": "München Hauptbahnhof — ICE nach Berlin auf Gleis 7.",
+        "note": "In Germany, departure boards and announcements say Gleis 7 ('Track 7') instead of ÖBB's Bahnsteig 7."
+      },
+      "compoundParts": [
+        "Haupt",
+        "bahn",
+        "hof"
+      ],
+      "usageTip": "Read German compounds from right to left to find the core thing first: ein Hof ('station yard') -> ein Bahnhof ('rail station') -> der Hauptbahnhof ('the main rail station')."
+    },
+    {
+      "id": "de-u002-t1-step-02",
+      "tier": "essential",
+      "heading": "Directional Prefixes: Ein·gang, Aus·gang & Um·steigen",
+      "explanation": "Once you know der Gang ('walkway / passage', from gehen) and steigen ('to step / climb'), three prefixes unlock every station corridor: Ein- ('in'), Aus- ('out'), and Um- ('around / transfer').",
+      "scenarioPrompt": "Following yellow overhead signs from the subway up to the regional train concourse.",
+      "nativeText": "Eingang zur U-Bahn · Ausgang zur Stadt · Umsteigen zum Regionalzug.",
+      "translation": "Entrance to the metro · Exit to the city · Transfer to the regional train.",
+      "literalBreakdown": "Ein·gang (in-way) · Aus·gang (out-way) · Um·steigen (transfer-stepping) · zum Regional·zug (to the regional-train)",
+      "compoundParts": [
+        "Aus",
+        "gang"
+      ],
+      "usageTip": "Never confuse Ausgang ('way out / pedestrian exit') with Ausfahrt ('vehicle exit' on motorways and parking garages)!"
+    },
+    {
+      "id": "de-u002-t1-step-03",
+      "tier": "essential",
+      "heading": "Ticket Machines: der Fahr·karten·automat",
+      "explanation": "Red ÖBB touchscreens stand at every Austrian station: Fahr ('travel/ride') + Karten ('tickets/cards') + Automat ('machine') = der Fahrkartenautomat.Notice the linking -n- glue sound between Karte and Automat!",
+      "scenarioPrompt": "You look for a red ÖBB touchscreen kiosk in Innsbruck to print your mountain rail ticket.",
+      "nativeText": "Entschuldigung, wo ist der ÖBB-Fahrkartenautomat?",
+      "translation": "Excuse me, where is the ÖBB ticket machine?",
+      "literalBreakdown": "Entschuldigung (excuse me) · wo ist (where is) · der Fahr·karten·automat (the travel-ticket-machine)",
+      "standardGermanVariant": {
+        "nativeText": "Entschuldigung, wo ist der Fahrkartenautomat?",
+        "note": "Identical compound in Germany (sometimes also called Ticketautomat at DB stations)."
+      },
+      "compoundParts": [
+        "Fahr",
+        "karten",
+        "automat"
+      ],
+      "usageTip": "In Austria, die Fahrkarte (or das Ticket) is standard; in Switzerland you'll see das Billett."
+    },
+    {
+      "id": "de-u002-t1-step-04",
+      "tier": "essential",
+      "heading": "Taming 21-Letter Giants: Schienen·ersatz·verkehr",
+      "explanation": "Nothing intimidates travelers like seeing SCHIENENERSATZVERKEHR (often abbreviated SEV) flashing in orange on a platform screen—until you split its three Lego blocks: Schienen ('rails') + Ersatz ('replacement') + Verkehr ('traffic / transit service') = 'rail replacement bus service'!",
+      "scenarioPrompt": "Track maintenance closes a mountain line in Tyrol, and an orange SEV bus icon appears on screen.",
+      "nativeText": "Achtung: Schienenersatzverkehr mit Bus ab Vorplatz!",
+      "translation": "Attention: Rail replacement bus service departing from the station forecourt!",
+      "literalBreakdown": "Achtung (attention) · Schienen·ersatz·verkehr (rails-replacement-traffic) · mit Bus (by bus) · ab Vor·platz (from fore-plaza)",
+      "compoundParts": [
+        "Schienen",
+        "ersatz",
+        "verkehr"
+      ],
+      "usageTip": "Whenever you see orange 'SEV' arrows painted on the floor at an Austrian or German station, follow them outside to the replacement coach—your regular train ticket is 100% valid!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u002-t1-drill-01",
+      "tier": "essential",
+      "prompt": "You see 'Schienenersatzverkehr (SEV)' on the departure board in Salzburg. Splitting Schienen · ersatz · verkehr tells you what?",
+      "cue": "Schienen (rails) + Ersatz (replacement) + Verkehr (transit)",
+      "options": [
+        "Buses are replacing trains along this section of track",
+        "The dining car is serving hot breakfast",
+        "Only first-class tickets are valid today",
+        "This platform is an underground shopping mall"
+      ],
+      "correctAnswer": "Buses are replacing trains along this section of track",
+      "explanation": "Schienen ('rails') + Ersatz ('replacement') + Verkehr ('traffic/service') decodes directly to 'rail replacement bus service'."
+    },
+    {
+      "id": "de-u002-t1-drill-02",
+      "tier": "essential",
+      "prompt": "On an Austrian ÖBB departure screen in Vienna, which word announces the platform number where you board your train?",
+      "cue": "ÖBB Austrian term (contrasted with DB's Gleis)",
+      "options": [
+        "Bahnsteig",
+        "Sackerl",
+        "Schlagobers",
+        "Trinkgeld"
+      ],
+      "correctAnswer": "Bahnsteig",
+      "acceptedVariants": [
+        "Gleis"
+      ],
+      "standardGermanAnswer": "Gleis",
+      "explanation": "ÖBB stations across Austria announce platforms as Bahnsteig (e.g. Bahnsteig 4), whereas Deutsche Bahn in Germany announces Gleis 4."
+    },
+    {
+      "id": "de-u002-t1-drill-03",
+      "tier": "essential",
+      "prompt": "You just stepped off the Railjet and want to walk out into the city street. Which overhead sign do you follow?",
+      "cue": "Aus- (out) + Gang (pedestrian way)",
+      "options": [
+        "Ausgang",
+        "Eingang",
+        "Fahrkartenautomat",
+        "Ruhezone"
+      ],
+      "correctAnswer": "Ausgang",
+      "explanation": "Ausgang ('out-way') marks pedestrian exits to the street, whereas Eingang marks entrances."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u002-t1-srs-01",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "frontPrompt": "Main train station (split: Haupt · bahn · hof)",
+      "targetText": "Hauptbahnhof",
+      "reading": "der Hauptbahnhof",
+      "compoundParts": [
+        "Haupt",
+        "bahn",
+        "hof"
+      ],
+      "contextSentence": "Entschuldigung, wie komme ich zum Hauptbahnhof?",
+      "contextTranslation": "Excuse me, how do I get to the main train station?",
+      "phraseLockEligible": false
+    },
+    {
+      "id": "de-u002-t1-srs-02",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "frontPrompt": "Ask where the ticket machine is",
+      "targetText": "Entschuldigung, wo ist der Fahrkartenautomat?",
+      "contextSentence": "Entschuldigung, wo ist der Fahrkartenautomat? Ich brauche ein Ticket nach Graz.",
+      "contextTranslation": "Excuse me, where is the ticket machine? I need a ticket to Graz.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t1-srs-03",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "frontPrompt": "Ask whether this train goes from Platform 4 (Austrian ÖBB usage)",
+      "targetText": "Fährt der Zug von Bahnsteig vier?",
+      "contextSentence": "Entschuldigung, fährt der Zug nach Innsbruck von Bahnsteig vier?",
+      "contextTranslation": "Excuse me, does the train to Innsbruck depart from Platform 4?",
+      "austrianNote": "ÖBB uses Bahnsteig; in Germany DB uses Gleis ('von Gleis vier').",
+      "standardGermanText": "Fährt der Zug von Gleis vier?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t1-srs-04",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "frontPrompt": "Rail replacement bus service (21-letter station sign compound)",
+      "targetText": "Schienenersatzverkehr",
+      "reading": "der Schienenersatzverkehr (SEV)",
+      "compoundParts": [
+        "Schienen",
+        "ersatz",
+        "verkehr"
+      ],
+      "contextSentence": "Wegen einer Sperre fährt heute ein Bus im Schienenersatzverkehr.",
+      "contextTranslation": "Because of a track closure, a rail replacement bus is running today.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t1-srs-05",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "frontPrompt": "Ask: 'Where is the exit to the city?'",
+      "targetText": "Wo ist der Ausgang zur Stadt?",
+      "contextSentence": "Entschuldigung, wo ist der Ausgang zur Stadt?",
+      "contextTranslation": "Excuse me, where is the exit to the city?",
+      "phraseLockEligible": true
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u002-t1-story-01",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "essential",
+      "title": "Abenteuer am Wiener Hauptbahnhof",
+      "titleTranslation": "Adventure at Vienna Main Station",
+      "setting": "8:15 AM under the glass roof of Wien Hauptbahnhof before an Alpine day trip",
+      "paragraphs": [
+        {
+          "nativeText": "Leo steht früh am Morgen im großen Hauptbahnhof in Wien. Durch den Eingang strömen viele Reisende mit Koffern. Leo sucht zuerst den roten Fahrkartenautomat der ÖBB.",
+          "translation": "Leo stands early in the morning inside the large main train station in Vienna. Many travelers with suitcases stream through the entrance. First Leo looks for the red ÖBB ticket machine.",
+          "segments": [
+            { "surface": "Leo", "meaning": "Leo" },
+            { "surface": " " },
+            { "surface": "steht", "meaning": "stands" },
+            { "surface": " " },
+            { "surface": "früh", "meaning": "early" },
+            { "surface": " " },
+            { "surface": "am", "meaning": "in the" },
+            { "surface": " " },
+            { "surface": "Morgen", "meaning": "morning" },
+            { "surface": " " },
+            { "surface": "im", "meaning": "in the" },
+            { "surface": " " },
+            { "surface": "großen", "meaning": "large" },
+            { "surface": " " },
+            {
+              "surface": "Hauptbahnhof",
+              "meaning": "main train station",
+              "compoundParts": ["Haupt", "bahn", "hof"]
+            },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "Wien", "meaning": "Vienna" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Durch", "meaning": "through" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the (acc.)" },
+            { "surface": " " },
+            {
+              "surface": "Eingang",
+              "meaning": "entrance",
+              "compoundParts": ["Ein", "gang"]
+            },
+            { "surface": " " },
+            { "surface": "strömen", "meaning": "stream / pour" },
+            { "surface": " " },
+            { "surface": "viele", "meaning": "many" },
+            { "surface": " " },
+            { "surface": "Reisende", "meaning": "travelers" },
+            { "surface": " " },
+            { "surface": "mit", "meaning": "with" },
+            { "surface": " " },
+            { "surface": "Koffern", "meaning": "suitcases" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Leo", "meaning": "Leo" },
+            { "surface": " " },
+            { "surface": "sucht", "meaning": "looks for" },
+            { "surface": " " },
+            { "surface": "zuerst", "meaning": "first", "compoundParts": ["zu", "erst"] },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the (acc.)" },
+            { "surface": " " },
+            { "surface": "roten", "meaning": "red" },
+            { "surface": " " },
+            {
+              "surface": "Fahrkartenautomat",
+              "meaning": "ticket machine",
+              "compoundParts": ["Fahr", "karten", "automat"]
+            },
+            { "surface": " " },
+            { "surface": "der", "meaning": "of the" },
+            { "surface": " " },
+            { "surface": "ÖBB", "meaning": "Austrian Federal Railways", "regionalNote": "Österreichische Bundesbahnen (Austria's national railway)." },
+            { "surface": "." }
+          ]
+        },
+        {
+          "nativeText": "Er kauft eine Fahrkarte nach Salzburg und schaut auf die Anzeige: „Railjet um 8:30 Uhr auf Bahnsteig 8.“ Auf einer Nebenstrecke steht heute das lange Wort Schienenersatzverkehr, aber Leos Zug fährt pünktlich auf den Schienen!",
+          "translation": "He buys a ticket to Salzburg and looks at the display board: 'Railjet at 8:30 AM on Platform 8.' On a branch line stands the long word Schienenersatzverkehr today, but Leo's train is running on time on the rails!",
+          "segments": [
+            { "surface": "Er", "meaning": "he" },
+            { "surface": " " },
+            { "surface": "kauft", "meaning": "buys" },
+            { "surface": " " },
+            { "surface": "eine", "meaning": "a" },
+            { "surface": " " },
+            {
+              "surface": "Fahrkarte",
+              "meaning": "travel ticket",
+              "compoundParts": ["Fahr", "karte"]
+            },
+            { "surface": " " },
+            { "surface": "nach", "meaning": "to" },
+            { "surface": " " },
+            { "surface": "Salzburg", "meaning": "Salzburg" },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "schaut", "meaning": "looks", "regionalNote": "In Austria, schauen is much more common in everyday speech than gucken (northern DE)." },
+            { "surface": " " },
+            { "surface": "auf", "meaning": "at" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Anzeige", "meaning": "display board" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Railjet", "meaning": "ÖBB high-speed train" },
+            { "surface": " " },
+            { "surface": "um", "meaning": "at (clock time)" },
+            { "surface": " " },
+            { "surface": "8:30", "meaning": "8:30" },
+            { "surface": " " },
+            { "surface": "Uhr", "meaning": "o'clock" },
+            { "surface": " " },
+            { "surface": "auf", "meaning": "on" },
+            { "surface": " " },
+            {
+              "surface": "Bahnsteig",
+              "meaning": "platform",
+              "compoundParts": ["Bahn", "steig"],
+              "regionalNote": "ÖBB (AT) uses Bahnsteig; DB (DE) uses Gleis."
+            },
+            { "surface": " " },
+            { "surface": "8", "meaning": "eight" },
+            { "surface": "." },
+            { "surface": "“" },
+            { "surface": " " },
+            { "surface": "Auf", "meaning": "on" },
+            { "surface": " " },
+            { "surface": "einer", "meaning": "a (dat.)" },
+            { "surface": " " },
+            {
+              "surface": "Nebenstrecke",
+              "meaning": "branch rail line",
+              "compoundParts": ["Neben", "strecke"]
+            },
+            { "surface": " " },
+            { "surface": "steht", "meaning": "stands / reads" },
+            { "surface": " " },
+            { "surface": "heute", "meaning": "today" },
+            { "surface": " " },
+            { "surface": "das", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "lange", "meaning": "long" },
+            { "surface": " " },
+            { "surface": "Wort", "meaning": "word" },
+            { "surface": " " },
+            {
+              "surface": "Schienenersatzverkehr",
+              "meaning": "rail replacement bus service",
+              "compoundParts": ["Schienen", "ersatz", "verkehr"]
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "aber", "meaning": "but" },
+            { "surface": " " },
+            { "surface": "Leos", "meaning": "Leo's" },
+            { "surface": " " },
+            { "surface": "Zug", "meaning": "train" },
+            { "surface": " " },
+            { "surface": "fährt", "meaning": "runs / departs" },
+            { "surface": " " },
+            { "surface": "pünktlich", "meaning": "on time / punctually" },
+            { "surface": " " },
+            { "surface": "auf", "meaning": "on" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Schienen", "meaning": "rails" },
+            { "surface": "!" }
+          ]
+        },
+        {
+          "nativeText": "Leo muss heute nicht umsteigen. Er geht nicht zum Ausgang, sondern nimmt die Rolltreppe hinauf zu Bahnsteig 8.",
+          "translation": "Leo doesn't have to transfer today. He doesn't walk to the exit, but takes the escalator up to Platform 8.",
+          "segments": [
+            { "surface": "Leo", "meaning": "Leo" },
+            { "surface": " " },
+            { "surface": "muss", "meaning": "must / has to" },
+            { "surface": " " },
+            { "surface": "heute", "meaning": "today" },
+            { "surface": " " },
+            { "surface": "nicht", "meaning": "not" },
+            { "surface": " " },
+            {
+              "surface": "umsteigen",
+              "meaning": "transfer / change trains",
+              "compoundParts": ["um", "steigen"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Er", "meaning": "he" },
+            { "surface": " " },
+            { "surface": "geht", "meaning": "walks" },
+            { "surface": " " },
+            { "surface": "nicht", "meaning": "not" },
+            { "surface": " " },
+            { "surface": "zum", "meaning": "to the" },
+            { "surface": " " },
+            {
+              "surface": "Ausgang",
+              "meaning": "exit",
+              "compoundParts": ["Aus", "gang"]
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "sondern", "meaning": "but rather" },
+            { "surface": " " },
+            { "surface": "nimmt", "meaning": "takes" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Rolltreppe",
+              "meaning": "escalator",
+              "compoundParts": ["Roll", "treppe"]
+            },
+            { "surface": " " },
+            { "surface": "hinauf", "meaning": "upward" },
+            { "surface": " " },
+            { "surface": "zu", "meaning": "to" },
+            { "surface": " " },
+            {
+              "surface": "Bahnsteig",
+              "meaning": "platform",
+              "compoundParts": ["Bahn", "steig"]
+            },
+            { "surface": " " },
+            { "surface": "8", "meaning": "eight" },
+            { "surface": "." }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u002-t1-story-01-q1",
+          "question": "Where does Leo buy his ticket to Salzburg?",
+          "options": [
+            "At the red ÖBB ticket machine (Fahrkartenautomat)",
+            "Inside a coffeehouse next to the river",
+            "On a replacement bus",
+            "At the city exit"
+          ],
+          "correctIndex": 0,
+          "explanation": "Paragraph 1 & 2 explain that Leo finds 'den roten Fahrkartenautomat der ÖBB' and buys 'eine Fahrkarte nach Salzburg'."
+        },
+        {
+          "id": "de-u002-t1-story-01-q2",
+          "question": "Does Leo's Salzburg Railjet require taking a replacement bus (Schienenersatzverkehr) or changing trains (umsteigen)?",
+          "options": [
+            "Yes, he has to take three replacement buses",
+            "No—Schienenersatzverkehr is only on a branch line, and Leo's train runs direct and on time",
+            "Yes, he has to transfer twice at the exit",
+            "His train is canceled until tomorrow"
+          ],
+          "correctIndex": 1,
+          "explanation": "Schienenersatzverkehr applies only 'Auf einer Nebenstrecke' (on a branch line); Leo's Railjet runs on time on the rails and he 'muss heute nicht umsteigen'."
+        },
+        {
+          "id": "de-u002-t1-story-01-q3",
+          "question": "How does Leo get up to Bahnsteig 8?",
+          "options": [
+            "He walks out the Ausgang to the street",
+            "He takes the escalator (die Rolltreppe — Roll 'roll' + Treppe 'stairs')",
+            "He rides a bicycle",
+            "He waits at the Bankomat"
+          ],
+          "correctIndex": 1,
+          "explanation": "Paragraph 3 reads: 'sondern nimmt die Rolltreppe hinauf zu Bahnsteig 8.'"
+        }
+      ]
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "de-ref-lego-roots",
+      "category": "lego-roots",
+      "language": "de",
+      "tier": "essential",
+      "title": "German Transit & Menu Lego Roots",
+      "subtitle": "Master 10 high-leverage root blocks and unlock 50+ everyday station, street, and café compounds on sight",
+      "rows": [
+        {
+          "id": "de-ref-lego-row-01",
+          "term": "Haupt- (main / chief / head)",
+          "readingOrSubtle": "Prefix root",
+          "meaning": "Marks the primary hub, street, or course",
+          "exampleNative": "der Haupt·bahn·hof · die Haupt·straße · die Haupt·speise",
+          "exampleTranslation": "main train station · main street · main dish/entrée",
+          "notes": "Compare old literal meaning 'head' (preserved in 'die Hauptstadt' = capital city)."
+        },
+        {
+          "id": "de-ref-lego-row-02",
+          "term": "Bahn (rail / track / path)",
+          "readingOrSubtle": "die Bahn",
+          "meaning": "Railway, metro, tram, or cableway",
+          "exampleNative": "die U-Bahn · die Straßen·bahn · die Berg·bahn",
+          "exampleTranslation": "underground metro · street-tram · mountain cable car",
+          "notes": "In Vienna, a tram is affectionately called die Bim (from its bell sound!)."
+        },
+        {
+          "id": "de-ref-lego-row-03",
+          "term": "Steig (walkway / climb-path)",
+          "readingOrSubtle": "der Steig (from steigen = step/climb)",
+          "meaning": "Raised boarding platform or mountain trail",
+          "exampleNative": "der Bahn·steig (AT) · der Steig · um·steigen · ein·steigen",
+          "exampleTranslation": "train platform · mountain path · to transfer · to board",
+          "notes": "ÖBB says Bahnsteig; DB in Germany says das Gleis."
+        },
+        {
+          "id": "de-ref-lego-row-04",
+          "term": "Fahr- / Fahrt (drive / ride / travel)",
+          "readingOrSubtle": "From fahren (to go by vehicle)",
+          "meaning": "Anything tied to transit schedules, tickets, or vehicles",
+          "exampleNative": "die Fahr·karte · der Fahr·plan · die Ab·fahrt",
+          "exampleTranslation": "travel ticket · timetable · departure",
+          "notes": "Compare gehen/Gang (on foot) vs. fahren/Fahrt (on wheels/rails)!"
+        },
+        {
+          "id": "de-ref-lego-row-05",
+          "term": "Gang (walkway / course)",
+          "readingOrSubtle": "der Gang (from gehen = walk)",
+          "meaning": "Pedestrian entrance, exit, train aisle, or meal course",
+          "exampleNative": "der Ein·gang · der Aus·gang · der Gang·platz",
+          "exampleTranslation": "entrance · exit · aisle seat",
+          "notes": "Contrast Gangplatz (aisle seat) with Fensterplatz (window seat)."
+        },
+        {
+          "id": "de-ref-lego-row-06",
+          "term": "Ersatz (replacement / substitute)",
+          "readingOrSubtle": "der Ersatz",
+          "meaning": "Backup bus, spare part, or dairy alternative",
+          "exampleNative": "der Schienen·ersatz·verkehr · der Ersatz·zug",
+          "exampleTranslation": "rail replacement bus service · replacement train",
+          "notes": "Even borrowed into English ('ersatz')—in German it's completely neutral and practical!"
+        },
+        {
+          "id": "de-ref-lego-row-07",
+          "term": "Verkehr (traffic / transport)",
+          "readingOrSubtle": "der Verkehr",
+          "meaning": "Public transit, regional lines, or road traffic",
+          "exampleNative": "der Nah·verkehr · der Fern·verkehr · der Stadt·verkehr",
+          "exampleTranslation": "local transit · long-distance rail · city transit",
+          "notes": "Notice linking -s- when Verkehr comes first: das Verkehr·s·mittel ('means of transport')."
+        },
+        {
+          "id": "de-ref-lego-row-08",
+          "term": "Karte (card / ticket / map / menu)",
+          "readingOrSubtle": "die Karte",
+          "meaning": "Any printed or digital card, pass, or menu",
+          "exampleNative": "die Speise·karte · die Fahr·karte · die Bankomat·karte",
+          "exampleTranslation": "food menu · transit ticket · debit card (AT)",
+          "notes": "Die Weinkarte = wine list; die Tageskarte = day pass OR daily specials menu!"
+        },
+        {
+          "id": "de-ref-lego-row-09",
+          "term": "Platz (square / seat / space)",
+          "readingOrSubtle": "der Platz",
+          "meaning": "Public city plaza or individual seat",
+          "exampleNative": "der Stephans·platz · der Sitz·platz · der Fenster·platz",
+          "exampleTranslation": "St. Stephen's Square · seat · window seat",
+          "notes": "Die Sitzplatzreservierung = seat reservation."
+        },
+        {
+          "id": "de-ref-lego-row-10",
+          "term": "Speise (food / dish)",
+          "readingOrSubtle": "die Speise",
+          "meaning": "Dining cars, menus, starters, and desserts",
+          "exampleNative": "der Speise·wagen · die Vor·speise · die Nach·speise",
+          "exampleTranslation": "dining car · starter/appetizer · dessert (AT)",
+          "notes": "Die Mehlspeise = quintessential Austrian sweet pastry/dessert course."
+        }
+      ]
+    }
+  ]
+}

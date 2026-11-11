@@ -1,0 +1,494 @@
+{
+  "shardId": "de-unit-002-tier-2-travel",
+  "unitId": "de-unit-002",
+  "language": "de",
+  "tier": "travel",
+  "tierNumber": 2,
+  "focusSummary": "Buying single & return tickets (hin und retour vs. hin und zurück), booking a Sitzplatzreservierung, separable transit verbs (abfahren, ankommen, umsteigen), and platform transfers.",
+  "introducedLexiconIds": [
+    "de-u002-t2-lex-hin-und-retour",
+    "de-u002-t2-lex-sitzplatzreservierung",
+    "de-u002-t2-lex-abfahren",
+    "de-u002-t2-lex-ankommen",
+    "de-u002-t2-lex-speisewagen",
+    "de-u002-t2-lex-gangplatz"
+  ],
+  "introducedRoots": [
+    "Sitz",
+    "Reservierung",
+    "Wagen",
+    "Fahrt",
+    "Richtung"
+  ],
+  "introducedGrammarIds": [
+    "de-u002-t2-gram-separable-prefix-verbs",
+    "de-u002-t2-gram-modal-muss-koennen-transit"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u002-t2-step-01",
+      "tier": "travel",
+      "heading": "Round-Trip Tickets in Austria: hin und retour",
+      "explanation": "At an ÖBB ticket counter (der Schalter), a round-trip ticket is ordered with the charming Austrian phrase 'hin und retour' ('there and back'), whereas in Germany travelers say 'hin und zurück'. For a one-way journey, simply say 'nur einfach, bitte'.",
+      "scenarioPrompt": "At the ÖBB travel center in Vienna, you buy a round-trip ticket to Graz for second class.",
+      "nativeText": "Grüß Gott! Einmal nach Graz, hin und retour, zweite Klasse, bitte.",
+      "translation": "Good day! One ticket to Graz, round-trip, second class, please.",
+      "literalBreakdown": "Einmal (once / one ticket) · nach Graz (to Graz) · hin und retour (there and back [AT]) · zweite Klasse (second class)",
+      "standardGermanVariant": {
+        "nativeText": "Guten Tag! Einmal nach Graz, hin und zurück, zweite Klasse, bitte.",
+        "note": "In Germany, 'hin und zurück' replaces Austrian 'hin und retour'."
+      },
+      "usageTip": "'Einmal nach ...' ('One time to ...') is the effortless native shortcut—you don't even have to worry about the gender or case of Fahrkarte!"
+    },
+    {
+      "id": "de-u002-t2-step-02",
+      "tier": "travel",
+      "heading": "Booking Your Seat: die Sitz·platz·reservierung",
+      "explanation": "On busy Friday or Sunday Railjet and ICE routes, your ticket covers travel, while a separate Sitzplatzreservierung (~€3–€5) guarantees a numbered seat. Overhead digital displays above each seat show the city pair where a seat is reserved (e.g., WIEN – LINZ).",
+      "scenarioPrompt": "You add a window seat reservation in the quiet zone when booking your ticket.",
+      "nativeText": "Ich hätte gern eine Sitzplatzreservierung — einen Fensterplatz in der Ruhezone, bitte.",
+      "translation": "I would like a seat reservation — a window seat in the quiet zone, please.",
+      "literalBreakdown": "eine Sitz·platz·reservierung (a sit-place-reservation) · einen Fenster·platz (a window-seat) · in der Ruhe·zone (in the quiet-zone)",
+      "standardGermanVariant": {
+        "nativeText": "Ich hätte gern eine Sitzplatzreservierung — einen Fensterplatz im Ruhebereich, bitte.",
+        "note": "ÖBB calls the quiet coach die Ruhezone; DB ICE trains label it der Ruhebereich."
+      },
+      "compoundParts": [
+        "Sitz",
+        "platz",
+        "reservierung"
+      ],
+      "usageTip": "Prefer stretching your legs? Ask for 'einen Gangplatz' ('an aisle seat') instead of 'einen Fensterplatz'."
+    },
+    {
+      "id": "de-u002-t2-step-03",
+      "tier": "travel",
+      "heading": "Separable Transit Verbs: fährt ... ab & kommt ... an",
+      "explanation": "German transit verbs use separable prefixes (ab·fahren 'depart', an·kommen 'arrive', um·steigen 'transfer', ein·steigen 'board'). In a normal present-tense statement or question, the verb stem stands in position 2 and the prefix snaps to the very end of the clause—forming a sentence bracket!",
+      "scenarioPrompt": "You ask an ÖBB conductor on the platform when the train departs and arrives.",
+      "nativeText": "Von welchem Bahnsteig fährt der Zug nach Innsbruck ab, und wann kommt er dort an?",
+      "translation": "From which platform does the train to Innsbruck depart, and when does it arrive there?",
+      "literalBreakdown": "Von welchem Bahn·steig (from which platform) · fährt ... ab (departs) · und wann kommt er dort an (and when arrives it there)",
+      "standardGermanVariant": {
+        "nativeText": "Von welchem Gleis fährt der Zug nach Innsbruck ab, und wann kommt er dort an?",
+        "note": "Separable verb bracket (fährt ... ab / kommt ... an) is identical; only Bahnsteig -> Gleis changes."
+      },
+      "usageTip": "When paired with a modal verb like müssen ('have to') or können ('can'), the separable verb stays glued together at the end: 'Muss ich in Salzburg umsteigen?'."
+    },
+    {
+      "id": "de-u002-t2-step-04",
+      "tier": "travel",
+      "heading": "Checking Your Coach & Transfer Time",
+      "explanation": "Platform sector signs (Sektor A–E) show exactly where your coach (Wagen 24) and the dining car (der Speisewagen) stop before the train even pulls in.",
+      "scenarioPrompt": "You double-check with a fellow traveler whether this train goes straight through or requires a transfer in Linz.",
+      "nativeText": "Entschuldigung, fährt dieser Zug direkt durch, oder muss ich in Linz umsteigen?",
+      "translation": "Excuse me, does this train run straight through, or do I have to transfer in Linz?",
+      "literalBreakdown": "fährt ... direkt durch (runs ... straight through [durch·fahren]) · oder muss ich (or must I) · in Linz um·steigen (in Linz transfer)",
+      "usageTip": "Listen for 'In Fahrtrichtung links/rechts aussteigen' ('Exit on the left/right in the direction of travel') as the train slows down!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u002-t2-drill-01",
+      "tier": "travel",
+      "prompt": "At the ÖBB counter in Salzburg, ask for one round-trip ticket to Vienna in second class using authentic Austrian phrasing.",
+      "cue": "Einmal nach Wien + Austrian 'there and back'",
+      "options": [
+        "Einmal nach Wien, hin und retour, zweite Klasse, bitte.",
+        "Einmal nach Wien, auf Wiederhören, mit Schlagobers.",
+        "Einmal von Wien, Ausgang und Eingang, bitte.",
+        "Zweimal nach Wien, getrennt zahlen im Beisl."
+      ],
+      "correctAnswer": "Einmal nach Wien, hin und retour, zweite Klasse, bitte.",
+      "acceptedVariants": [
+        "Einmal nach Wien, hin und zurück, zweite Klasse, bitte."
+      ],
+      "standardGermanAnswer": "Einmal nach Wien, hin und zurück, zweite Klasse, bitte.",
+      "explanation": "'Hin und retour' is the signature Austrian expression for a round-trip ('return') ticket; Standard German in Germany uses 'hin und zurück'."
+    },
+    {
+      "id": "de-u002-t2-drill-02",
+      "tier": "travel",
+      "prompt": "Form a correct question with the separable verb ab·fahren ('to depart'): 'When does the next train to Graz depart?'",
+      "baseSentence": "der nächste Zug nach Graz · abfahren",
+      "cue": "Conjugated stem in position 2, separable prefix ab at the very end!",
+      "options": [
+        "Wann fährt der nächste Zug nach Graz ab?",
+        "Wann abfährt der nächste Zug nach Graz?",
+        "Wann der nächste Zug nach Graz abfahren?",
+        "Ab wann fährt ab der nächste Zug?"
+      ],
+      "correctAnswer": "Wann fährt der nächste Zug nach Graz ab?",
+      "explanation": "In main-clause questions without a modal verb, ab·fahren splits: 'fährt' occupies position 2 right after 'Wann', and 'ab' closes the clause."
+    },
+    {
+      "id": "de-u002-t2-drill-03",
+      "tier": "travel",
+      "prompt": "You see 'WIEN – SALZBURG' lit up above a window seat on the Railjet, and you are boarding in Vienna bound for Linz (halfway to Salzburg). What does that display mean?",
+      "cue": "Sitzplatzreservierung display logic",
+      "options": [
+        "Someone holds a Sitzplatzreservierung for that seat between Vienna and Salzburg",
+        "The train only stops in Vienna and skips Linz",
+        "The seat is free exclusively for passengers going to Linz",
+        "That coach is the dining car (Speisewagen)"
+      ],
+      "correctAnswer": "Someone holds a Sitzplatzreservierung for that seat between Vienna and Salzburg",
+      "explanation": "Overhead reservation indicators display the reserved segment; since Linz lies between Vienna and Salzburg, that seat is reserved for your stretch—look for an unlit seat or 'ggf. freigeben'!"
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u002-t2-srs-01",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Buy a round-trip second-class ticket to Salzburg (Austrian counter phrase)",
+      "targetText": "Einmal nach Salzburg, hin und retour, zweite Klasse, bitte.",
+      "contextSentence": "Grüß Gott! Einmal nach Salzburg, hin und retour, zweite Klasse, bitte.",
+      "contextTranslation": "Good day! One ticket to Salzburg, round-trip, second class, please.",
+      "austrianNote": "Hin und retour is universal across Austria; DE says hin und zurück.",
+      "standardGermanText": "Einmal nach Salzburg, hin und zurück, zweite Klasse, bitte.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t2-srs-02",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Request a seat reservation by the window",
+      "targetText": "Ich hätte gern eine Sitzplatzreservierung am Fenster, bitte.",
+      "contextSentence": "Der Zug am Freitag ist voll — ich hätte gern eine Sitzplatzreservierung am Fenster, bitte.",
+      "contextTranslation": "Friday's train is full — I'd like a window seat reservation, please.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t2-srs-03",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Ask from which platform the train departs (ÖBB Austrian phrasing)",
+      "targetText": "Von welchem Bahnsteig fährt der Zug ab?",
+      "contextSentence": "Entschuldigung, von welchem Bahnsteig fährt der Zug nach Villach ab?",
+      "contextTranslation": "Excuse me, from which platform does the train to Villach depart?",
+      "austrianNote": "ÖBB: Bahnsteig · DB: Gleis.",
+      "standardGermanText": "Von welchem Gleis fährt der Zug ab?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t2-srs-04",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Ask whether you need to change trains in Linz",
+      "targetText": "Muss ich in Linz umsteigen?",
+      "contextSentence": "Fährt der Railjet direkt nach Innsbruck, oder muss ich in Linz umsteigen?",
+      "contextTranslation": "Does the Railjet go straight to Innsbruck, or do I have to transfer in Linz?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u002-t2-srs-05",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Onboard restaurant / dining car on a train",
+      "targetText": "Speisewagen",
+      "reading": "der Speisewagen",
+      "compoundParts": [
+        "Speise",
+        "wagen"
+      ],
+      "contextSentence": "Im Speisewagen gibt es warmes Essen und einen frischen Verlängerten.",
+      "contextTranslation": "In the dining car there is hot food and a fresh lengthened espresso.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u002-t2-story-01",
+      "unitId": "de-unit-002",
+      "language": "de",
+      "tier": "travel",
+      "title": "Im Railjet durch die Alpen",
+      "titleTranslation": "By Railjet Through the Alps",
+      "setting": "Friday afternoon journey from Salzburg to Innsbruck aboard an ÖBB Railjet",
+      "paragraphs": [
+        {
+          "nativeText": "Am Schalter in Salzburg kauft Miriam ihre Rückfahrkarte: „Grüß Gott! Einmal nach Innsbruck, hin und retour, mit einer Sitzplatzreservierung in der Ruhezone, bitte.“",
+          "translation": "At the counter in Salzburg, Miriam buys her return ticket: 'Good day! One ticket to Innsbruck, round-trip, with a seat reservation in the quiet zone, please.'",
+          "segments": [
+            { "surface": "Am", "meaning": "at the" },
+            { "surface": " " },
+            { "surface": "Schalter", "meaning": "ticket counter" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "Salzburg", "meaning": "Salzburg" },
+            { "surface": " " },
+            { "surface": "kauft", "meaning": "buys" },
+            { "surface": " " },
+            { "surface": "Miriam", "meaning": "Miriam" },
+            { "surface": " " },
+            { "surface": "ihre", "meaning": "her" },
+            { "surface": " " },
+            {
+              "surface": "Rückfahrkarte",
+              "meaning": "return / round-trip ticket",
+              "compoundParts": ["Rück", "fahr", "karte"]
+            },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Grüß", "meaning": "greet", "regionalNote": "AT polite greeting." },
+            { "surface": " " },
+            { "surface": "Gott", "meaning": "God (in Grüß Gott)" },
+            { "surface": "!" },
+            { "surface": " " },
+            { "surface": "Einmal", "meaning": "one ticket / once" },
+            { "surface": " " },
+            { "surface": "nach", "meaning": "to" },
+            { "surface": " " },
+            { "surface": "Innsbruck", "meaning": "Innsbruck" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "hin", "meaning": "there / outbound" },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            {
+              "surface": "retour",
+              "meaning": "back / return",
+              "regionalNote": "hin und retour (AT) = hin und zurück (DE)."
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "mit", "meaning": "with" },
+            { "surface": " " },
+            { "surface": "einer", "meaning": "a (fem. dat.)" },
+            { "surface": " " },
+            {
+              "surface": "Sitzplatzreservierung",
+              "meaning": "seat reservation",
+              "compoundParts": ["Sitz", "platz", "reservierung"]
+            },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Ruhezone",
+              "meaning": "quiet zone",
+              "compoundParts": ["Ruhe", "zone"],
+              "regionalNote": "ÖBB: Ruhezone · DB: Ruhebereich."
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "bitte", "meaning": "please" },
+            { "surface": "." },
+            { "surface": "“" }
+          ]
+        },
+        {
+          "nativeText": "Der Mitarbeiter gibt ihr das Ticket und erklärt: „Ihr Zug fährt um 14:15 Uhr von Bahnsteig 3 ab. Sie müssen nicht umsteigen — der Zug fährt direkt bis Innsbruck durch.“",
+          "translation": "The agent hands her the ticket and explains: 'Your train departs at 2:15 PM from Platform 3. You don't have to transfer — the train runs straight through to Innsbruck.'",
+          "segments": [
+            { "surface": "Der", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Mitarbeiter",
+              "meaning": "staff member / agent",
+              "compoundParts": ["Mit", "arbeiter"]
+            },
+            { "surface": " " },
+            { "surface": "gibt", "meaning": "gives" },
+            { "surface": " " },
+            { "surface": "ihr", "meaning": "to her" },
+            { "surface": " " },
+            { "surface": "das", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Ticket", "meaning": "ticket" },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "erklärt", "meaning": "explains" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Ihr", "meaning": "your (formal)" },
+            { "surface": " " },
+            { "surface": "Zug", "meaning": "train" },
+            { "surface": " " },
+            { "surface": "fährt", "meaning": "departs (fährt ... ab)" },
+            { "surface": " " },
+            { "surface": "um", "meaning": "at" },
+            { "surface": " " },
+            { "surface": "14:15", "meaning": "2:15 PM" },
+            { "surface": " " },
+            { "surface": "Uhr", "meaning": "o'clock" },
+            { "surface": " " },
+            { "surface": "von", "meaning": "from" },
+            { "surface": " " },
+            {
+              "surface": "Bahnsteig",
+              "meaning": "platform",
+              "compoundParts": ["Bahn", "steig"]
+            },
+            { "surface": " " },
+            { "surface": "3", "meaning": "three" },
+            { "surface": " " },
+            { "surface": "ab", "meaning": "off / away (abfahren)" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Sie", "meaning": "you (formal)" },
+            { "surface": " " },
+            { "surface": "müssen", "meaning": "have to" },
+            { "surface": " " },
+            { "surface": "nicht", "meaning": "not" },
+            { "surface": " " },
+            {
+              "surface": "umsteigen",
+              "meaning": "transfer / change trains",
+              "compoundParts": ["um", "steigen"]
+            },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Zug", "meaning": "train" },
+            { "surface": " " },
+            { "surface": "fährt", "meaning": "runs (fährt ... durch)" },
+            { "surface": " " },
+            { "surface": "direkt", "meaning": "directly" },
+            { "surface": " " },
+            { "surface": "bis", "meaning": "all the way to" },
+            { "surface": " " },
+            { "surface": "Innsbruck", "meaning": "Innsbruck" },
+            { "surface": " " },
+            { "surface": "durch", "meaning": "through (durchfahren)" },
+            { "surface": "." },
+            { "surface": "“" }
+          ]
+        },
+        {
+          "nativeText": "Unterwegs schaut Miriam aus ihrem Fensterplatz auf schneebedeckte Berge und holt sich später im Speisewagen einen warmen Apfelstrudel. Um 16:00 Uhr kommt der Zug pünktlich in Tirol an.",
+          "translation": "Along the way Miriam gazes out from her window seat at snow-covered mountains and later gets herself a warm apple strudel in the dining car. At 4:00 PM the train arrives punctually in Tyrol.",
+          "segments": [
+            { "surface": "Unterwegs", "meaning": "along the way" },
+            { "surface": " " },
+            { "surface": "schaut", "meaning": "looks / gazes" },
+            { "surface": " " },
+            { "surface": "Miriam", "meaning": "Miriam" },
+            { "surface": " " },
+            { "surface": "aus", "meaning": "out of" },
+            { "surface": " " },
+            { "surface": "ihrem", "meaning": "her (dat.)" },
+            { "surface": " " },
+            {
+              "surface": "Fensterplatz",
+              "meaning": "window seat",
+              "compoundParts": ["Fenster", "platz"]
+            },
+            { "surface": " " },
+            { "surface": "auf", "meaning": "at" },
+            { "surface": " " },
+            {
+              "surface": "schneebedeckte",
+              "meaning": "snow-covered",
+              "compoundParts": ["schnee", "bedeckte"]
+            },
+            { "surface": " " },
+            { "surface": "Berge", "meaning": "mountains" },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "holt", "meaning": "gets / fetches" },
+            { "surface": " " },
+            { "surface": "sich", "meaning": "for herself" },
+            { "surface": " " },
+            { "surface": "später", "meaning": "later" },
+            { "surface": " " },
+            { "surface": "im", "meaning": "in the" },
+            { "surface": " " },
+            {
+              "surface": "Speisewagen",
+              "meaning": "dining car",
+              "compoundParts": ["Speise", "wagen"]
+            },
+            { "surface": " " },
+            { "surface": "einen", "meaning": "a (acc.)" },
+            { "surface": " " },
+            { "surface": "warmen", "meaning": "warm" },
+            { "surface": " " },
+            {
+              "surface": "Apfelstrudel",
+              "meaning": "apple strudel",
+              "compoundParts": ["Apfel", "strudel"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Um", "meaning": "at" },
+            { "surface": " " },
+            { "surface": "16:00", "meaning": "4:00 PM" },
+            { "surface": " " },
+            { "surface": "Uhr", "meaning": "o'clock" },
+            { "surface": " " },
+            { "surface": "kommt", "meaning": "arrives (kommt ... an)" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Zug", "meaning": "train" },
+            { "surface": " " },
+            { "surface": "pünktlich", "meaning": "on time" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "Tirol", "meaning": "Tyrol" },
+            { "surface": " " },
+            { "surface": "an", "meaning": "at (ankommen)" },
+            { "surface": "." }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u002-t2-story-01-q1",
+          "question": "What kind of seat and coach does Miriam request along with her round-trip ticket?",
+          "options": [
+            "A seat reservation in the quiet zone (in der Ruhezone)",
+            "A standing spot next to the locomotive",
+            "A bicycle space in the baggage van",
+            "A bus seat in Schienenersatzverkehr"
+          ],
+          "correctIndex": 0,
+          "explanation": "Miriam asks for 'hin und retour, mit einer Sitzplatzreservierung in der Ruhezone, bitte'."
+        },
+        {
+          "id": "de-u002-t2-story-01-q2",
+          "question": "At what time and from which platform does her train depart?",
+          "options": [
+            "At 4:00 PM from Platform 8",
+            "At 2:15 PM (14:15 Uhr) from Bahnsteig 3",
+            "At 8:30 AM from Gleis 12",
+            "Midnight from the forecourt"
+          ],
+          "correctIndex": 1,
+          "explanation": "The agent tells her: 'Ihr Zug fährt um 14:15 Uhr von Bahnsteig 3 ab.'"
+        },
+        {
+          "id": "de-u002-t2-story-01-q3",
+          "question": "Where does Miriam go to get a warm Apfelstrudel during the journey?",
+          "options": [
+            "She steps off the train in Linz",
+            "To the onboard dining car (im Speisewagen)",
+            "To the ticket machine",
+            "To a Viennese Beisl"
+          ],
+          "correctIndex": 1,
+          "explanation": "Paragraph 3 says she 'holt sich später im Speisewagen einen warmen Apfelstrudel'."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

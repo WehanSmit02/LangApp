@@ -1,0 +1,71 @@
+name: Daily Curriculum Shards
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      language:
+        description: 'Language course to expand'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - ja
+          - de
+      units_count:
+        description: 'Units per language to generate'
+        required: true
+        default: '1'
+        type: choice
+        options:
+          - '1'
+          - '2'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-curriculum-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate next syllabus shards
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          INPUT_LANGUAGE: ${{ inputs.language || 'all' }}
+          INPUT_UNITS_COUNT: ${{ inputs.units_count || '1' }}
+        run: npm run curriculum:generate
+
+      - name: Validate curriculum shards and manifest hashes
+        run: npm run curriculum:validate
+
+      - name: Commit and push updated shards
+        run: |
+          if [ -z "$(git status --porcelain public/curriculum)" ]; then
+            echo "No new curriculum shards generated."
+            exit 0
+          fi
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git add public/curriculum
+          git commit -m "add daily curriculum shards for next syllabus unit"
+          git push origin main

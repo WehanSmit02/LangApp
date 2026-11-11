@@ -1,0 +1,629 @@
+{
+  "shardId": "de-unit-003-tier-2-travel",
+  "unitId": "de-unit-003",
+  "language": "de",
+  "tier": "travel",
+  "tierNumber": 2,
+  "focusSummary": "Ordering market & deli weights (ein Viertelkilo, zehn Deka vs. hundert Gramm), asking about allergies & vegetarian dishes, and splitting bills (getrennt oder zusammen).",
+  "introducedLexiconIds": [
+    "de-u003-t2-lex-viertelkilo",
+    "de-u003-t2-lex-deka",
+    "de-u003-t2-lex-allergie-drinnen",
+    "de-u003-t2-lex-getrennt-oder-zusammen",
+    "de-u003-t2-lex-leitungswasser",
+    "de-u003-t2-lex-darf-es-sonst-noch-was-sein"
+  ],
+  "introducedRoots": [
+    "Viertel",
+    "Kilo",
+    "Salat",
+    "Wasser",
+    "Rechnung"
+  ],
+  "introducedGrammarIds": [
+    "de-u003-t2-gram-measure-phrases-without-von",
+    "de-u003-t2-gram-dietary-and-payment-questions"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u003-t2-step-01",
+      "tier": "travel",
+      "heading": "Deli & Market Weights: zehn Deka & ein Viertelkilo",
+      "explanation": "In German, weight phrases attach directly to the food noun WITH NO 'von' ('of'): ein Viertelkilo Erdäpfel ('a quarter-kilo [250g] of potatoes'). Even more distinctively Austrian: at cheese and charcuterie counters, 100 grams is 'zehn Deka' (10 Dekagramm), 150 grams is 'fünfzehn Deka', and 200 grams is 'zwanzig Deka'!",
+      "scenarioPrompt": "At Vienna's Naschmarkt cheese stall, you order 150g of Alpine cheese and 250g of olives.",
+      "nativeText": "Ich hätte gern fünfzehn Deka Bergkäse und ein Viertelkilo Oliven, bitte.",
+      "translation": "I would like 150 grams of Alpine mountain cheese and a quarter-kilo (250g) of olives, please.",
+      "literalBreakdown": "fünfzehn Deka (15 decagrams = 150g [AT]) · Berg·käse (mountain-cheese) · und ein Viertel·kilo Oliven (and a quarter-kilo olives)",
+      "standardGermanVariant": {
+        "nativeText": "Ich hätte gern hundertfünfzig Gramm Bergkäse und ein Viertelkilo Oliven, bitte.",
+        "note": "Germany never uses Deka—deli counters in Berlin or Munich always weigh in Gramm ('hundert Gramm', 'zweihundert Gramm') or ein halbes Pfund (250g)."
+      },
+      "compoundParts": [
+        "Viertel",
+        "kilo"
+      ],
+      "usageTip": "After weighing your item, the vendor will ask: 'Darf es sonst noch etwas sein?' ('May there be anything else?'). Reply 'Danke, das ist alles!' when finished."
+    },
+    {
+      "id": "de-u003-t2-step-02",
+      "tier": "travel",
+      "heading": "Allergies & Dietary Needs on Beisl Menus",
+      "explanation": "Every Austrian and German menu lists standardized single-letter allergen codes (A = gluten, C = eggs, G = dairy/milk, H = tree nuts). Still, confirming verbally with 'Sind da ... drinnen?' (AT, DE: 'drin') or 'Haben Sie etwas Vegetarisches?' keeps ordering stress-free.",
+      "scenarioPrompt": "You have a nut allergy and check with the server before ordering a pastry and main dish.",
+      "nativeText": "Entschuldigung, ich habe eine Nussallergie — sind in diesem Strudel Nüsse drinnen?",
+      "translation": "Excuse me, I have a nut allergy — are there nuts inside this strudel?",
+      "literalBreakdown": "ich habe eine Nuss·allergie (I have a nut-allergy) · sind ... Nüsse drinnen (are ... nuts inside [AT])",
+      "standardGermanVariant": {
+        "nativeText": "Entschuldigung, ich habe eine Nussallergie — sind in diesem Strudel Nüsse drin?",
+        "note": "Austrian German favors the full form drinnen ('inside'), whereas Standard German in Germany shortens it to drin."
+      },
+      "usageTip": "Need gluten-free or plant-based options? Use 'glutenfrei' and 'vegan / vegetarisch': 'Haben Sie auch ein vegetarisches Hauptgericht?'."
+    },
+    {
+      "id": "de-u003-t2-step-03",
+      "tier": "travel",
+      "heading": "Water on the Table: Leitungswasser vs. Mineralwasser",
+      "explanation": "Ordering 'ein Wasser' in a restaurant brings bottled sparkling mineral water (prickelnd in AT / mit Kohlensäure in DE). If you want still water, specify 'stilles Mineralwasser'—or in Vienna, where pristine Hochquellwasser flows straight from the Alps through the tap, ask politely for 'ein Glas Leitungswasser'.",
+      "scenarioPrompt": "Ordering drinks alongside dinner at a Viennese Beisl.",
+      "nativeText": "Für mich bitte ein kleines Mineralwasser prickelnd und dazu ein Glas Leitungswasser.",
+      "translation": "For me a small sparkling mineral water and a glass of tap water alongside it, please.",
+      "literalBreakdown": "ein kleines Mineral·wasser prickelnd (a small mineral-water sparkling [AT]) · ein Glas Leitungs·wasser (a glass pipe/tap-water)",
+      "standardGermanVariant": {
+        "nativeText": "Für mich bitte ein kleines Mineralwasser mit Kohlensäure und dazu ein Glas Leitungswasser.",
+        "note": "On menus and bottles, Austria says prickelnd / mild / ohne, whereas Germany typically says mit Kohlensäure (or Classic / Sprudel) vs. still."
+      },
+      "compoundParts": [
+        "Leitungs",
+        "wasser"
+      ],
+      "usageTip": "Asking for Leitungswasser alongside wine or coffee is completely normal in Austria; ordering ONLY free tap water with a meal can seem stingy."
+    },
+    {
+      "id": "de-u003-t2-step-04",
+      "tier": "travel",
+      "heading": "Splitting the Check Smoothly: Getrennt oder zusammen?",
+      "explanation": "Unlike countries where splitting a restaurant bill requires awkward math, Austrian and German servers routinely carry handheld terminals or wallets to settle each diner's exact items individually! Expect the question 'Zahlen Sie getrennt oder zusammen?' right after you say 'Zahlen, bitte!'.",
+      "scenarioPrompt": "You and two friends want to pay separately for what each of you ordered.",
+      "nativeText": "„Zahlen Sie getrennt oder zusammen?“ — „Getrennt, bitte! Ich hatte den Schweinsbraten und das Mineralwasser.“",
+      "translation": "'Are you paying separately or together?' — 'Separately, please! I had the roast pork and the mineral water.'",
+      "literalBreakdown": "Getrennt (separately) · oder (or) · zusammen (together) — Ich hatte (I had) · den Schweins·braten (the roast pork [acc.])",
+      "usageTip": "Notice how German uses simple past 'Ich hatte...' ('I had...') when listing your items to the server during bill-splitting!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u003-t2-drill-01",
+      "tier": "travel",
+      "prompt": "At a Viennese deli counter, you want 100 grams of sliced mountain cheese. Which authentic Austrian weight phrase do you use?",
+      "cue": "1 Deka = 10 grams -> 100 grams = 10 Deka",
+      "options": [
+        "Zehn Deka Bergkäse, bitte.",
+        "Zehn Kilometer Bergkäse, bitte.",
+        "Zehn Bahnsteige Bergkäse, bitte.",
+        "Zehn von dem Bergkäse getrennt, bitte."
+      ],
+      "correctAnswer": "Zehn Deka Bergkäse, bitte.",
+      "acceptedVariants": [
+        "Hundert Gramm Bergkäse, bitte."
+      ],
+      "standardGermanAnswer": "Hundert Gramm Bergkäse, bitte.",
+      "explanation": "In Austria, 10 Deka (10 Dekagramm = 100g) is the everyday deli measurement; in Germany, you ask for 'Hundert Gramm Bergkäse, bitte'."
+    },
+    {
+      "id": "de-u003-t2-drill-02",
+      "tier": "travel",
+      "prompt": "The waiter asks your group: 'Zahlen Sie getrennt oder zusammen?' You want to pay individually for your own dishes. How do you answer?",
+      "cue": "Individually / separate checks",
+      "options": [
+        "Getrennt, bitte!",
+        "Zusammen, bitte!",
+        "Prickelnd, bitte!",
+        "Hin und retour, bitte!"
+      ],
+      "correctAnswer": "Getrennt, bitte!",
+      "explanation": "'Getrennt, bitte!' means 'Separately, please!', after which each person simply names the items they ordered ('Ich hatte...')."
+    },
+    {
+      "id": "de-u003-t2-drill-03",
+      "tier": "travel",
+      "prompt": "After handing you a bag of cherries, the Naschmarkt vendor smiles and asks: 'Darf es sonst noch etwas sein?' You don't need anything else. What do you say?",
+      "cue": "Polite 'Thank you, that's everything!'",
+      "options": [
+        "Danke schön, das ist alles!",
+        "Ja, wir haben Verspätung!",
+        "Nein, zahlen wir getrennt im Zug!",
+        "Ist dieser Sessel noch frei?"
+      ],
+      "correctAnswer": "Danke schön, das ist alles!",
+      "explanation": "'Danke schön, das ist alles!' (or 'Nein danke, das wär's!') warmly signals that your order is complete so the vendor can total the price."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u003-t2-srs-01",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Order 100g of cheese and a quarter-kilo (250g) of tomatoes at an Austrian market",
+      "targetText": "Zehn Deka Käse und ein Viertelkilo Paradeiser, bitte.",
+      "contextSentence": "Ich hätte gern zehn Deka Käse und ein Viertelkilo Paradeiser, bitte.",
+      "contextTranslation": "I'd like 100g of cheese and 250g of tomatoes, please.",
+      "austrianNote": "Zehn Deka (100g) and Paradeiser are quintessential Austrian market usage.",
+      "standardGermanText": "Hundert Gramm Käse und ein Viertelkilo Tomaten, bitte.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t2-srs-02",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Ask the server whether a dish contains nuts",
+      "targetText": "Entschuldigung, sind da Nüsse drinnen?",
+      "contextSentence": "Ich habe eine Allergie — entschuldigung, sind da Nüsse drinnen?",
+      "contextTranslation": "I have an allergy — excuse me, are there nuts in that?",
+      "austrianNote": "AT uses drinnen; DE shortens to drin.",
+      "standardGermanText": "Entschuldigung, sind da Nüsse drin?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t2-srs-03",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Tell the server you'd like to pay separately and state what you had",
+      "targetText": "Getrennt, bitte! Ich hatte den Erdäpfelsalat.",
+      "contextSentence": "„Getrennt oder zusammen?“ — „Getrennt, bitte! Ich hatte den Erdäpfelsalat.“",
+      "contextTranslation": "'Separately or together?' — 'Separately, please! I had the potato salad.'",
+      "standardGermanText": "Getrennt, bitte! Ich hatte den Kartoffelsalat.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t2-srs-04",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Order a sparkling mineral water (Austrian restaurant phrasing)",
+      "targetText": "Ein kleines Mineralwasser prickelnd, bitte.",
+      "contextSentence": "Zum Essen hätte ich gern ein kleines Mineralwasser prickelnd, bitte.",
+      "contextTranslation": "With the meal I'd like a small sparkling mineral water, please.",
+      "austrianNote": "Austria says prickelnd (sparkling) vs. ohne (still); Germany says mit Kohlensäure vs. still.",
+      "standardGermanText": "Ein kleines Mineralwasser mit Kohlensäure, bitte.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t2-srs-05",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "frontPrompt": "Tap water (literally 'pipe-water')",
+      "targetText": "Leitungswasser",
+      "reading": "das Leitungswasser",
+      "compoundParts": [
+        "Leitungs",
+        "wasser"
+      ],
+      "contextSentence": "Das Wiener Leitungswasser kommt direkt aus den Alpen.",
+      "contextTranslation": "Vienna's tap water comes straight from the Alps.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u003-t2-story-01",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "travel",
+      "title": "Vom Naschmarkt ins Beisl",
+      "titleTranslation": "From the Naschmarkt into the Beisl",
+      "setting": "Midday stroll through Vienna's famous Naschmarkt followed by lunch with friends",
+      "paragraphs": [
+        {
+          "nativeText": "Am Wiener Naschmarkt kauft Paul Proviant für morgen: „Grüß Gott! Ich hätte gern zwanzig Deka Bergkäse und ein Viertelkilo Kirschen, bitte.“ Der Verkäufer fragt: „Darf es sonst noch etwas sein?“ — „Danke schön, das ist alles!“",
+          "translation": "At Vienna's Naschmarkt, Paul buys provisions for tomorrow: 'Good day! I would like 200 grams of mountain cheese and a quarter-kilo of cherries, please.' The vendor asks: 'Can I get you anything else?' — 'Thank you very much, that's everything!'",
+          "segments": [
+            { "surface": "Am", "meaning": "at the" },
+            { "surface": " " },
+            { "surface": "Wiener", "meaning": "Viennese" },
+            { "surface": " " },
+            {
+              "surface": "Naschmarkt",
+              "meaning": "Vienna's historic open-air food market",
+              "compoundParts": ["Nasch", "markt"]
+            },
+            { "surface": " " },
+            { "surface": "kauft", "meaning": "buys" },
+            { "surface": " " },
+            { "surface": "Paul", "meaning": "Paul" },
+            { "surface": " " },
+            { "surface": "Proviant", "meaning": "provisions / food supplies" },
+            { "surface": " " },
+            { "surface": "für", "meaning": "for" },
+            { "surface": " " },
+            { "surface": "morgen", "meaning": "tomorrow" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Grüß", "meaning": "greet" },
+            { "surface": " " },
+            { "surface": "Gott", "meaning": "God (Grüß Gott = Good day)" },
+            { "surface": "!" },
+            { "surface": " " },
+            { "surface": "Ich", "meaning": "I" },
+            { "surface": " " },
+            { "surface": "hätte", "meaning": "would have" },
+            { "surface": " " },
+            { "surface": "gern", "meaning": "gladly" },
+            { "surface": " " },
+            { "surface": "zwanzig", "meaning": "twenty" },
+            { "surface": " " },
+            {
+              "surface": "Deka",
+              "meaning": "decagrams (20 Deka = 200g)",
+              "regionalNote": "Standard Austrian deli weight unit (1 Deka = 10g); DE uses Gramm."
+            },
+            { "surface": " " },
+            {
+              "surface": "Bergkäse",
+              "meaning": "Alpine mountain cheese",
+              "compoundParts": ["Berg", "käse"]
+            },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "ein", "meaning": "a" },
+            { "surface": " " },
+            {
+              "surface": "Viertelkilo",
+              "meaning": "quarter-kilo (250g)",
+              "compoundParts": ["Viertel", "kilo"]
+            },
+            { "surface": " " },
+            { "surface": "Kirschen", "meaning": "cherries" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "bitte", "meaning": "please" },
+            { "surface": "." },
+            { "surface": "“" },
+            { "surface": " " },
+            { "surface": "Der", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Verkäufer", "meaning": "vendor / seller" },
+            { "surface": " " },
+            { "surface": "fragt", "meaning": "asks" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Darf", "meaning": "may" },
+            { "surface": " " },
+            { "surface": "es", "meaning": "it" },
+            { "surface": " " },
+            { "surface": "sonst", "meaning": "else" },
+            { "surface": " " },
+            { "surface": "noch", "meaning": "still / additional" },
+            { "surface": " " },
+            { "surface": "etwas", "meaning": "anything" },
+            { "surface": " " },
+            { "surface": "sein", "meaning": "be" },
+            { "surface": "?" },
+            { "surface": "“" },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Danke", "meaning": "thank you" },
+            { "surface": " " },
+            { "surface": "schön", "meaning": "very much" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "das", "meaning": "that" },
+            { "surface": " " },
+            { "surface": "ist", "meaning": "is" },
+            { "surface": " " },
+            { "surface": "alles", "meaning": "everything" },
+            { "surface": "!" },
+            { "surface": "“" }
+          ]
+        },
+        {
+          "nativeText": "Gleich danach trifft er Sofia in einem Beisl und liest die Speisekarte. Sofia fragt den Kellner: „Entschuldigung, haben Sie ein vegetarisches Gericht, und sind in den Spinatknödeln Nüsse drinnen?“ — „Keine Sorge, da sind gar keine Nüsse drinnen!“, versichert er.",
+          "translation": "Right afterward he meets Sofia in a bistro and reads the menu. Sofia asks the waiter: 'Excuse me, do you have a vegetarian dish, and are there nuts inside the spinach dumplings?' — 'No worries, there are no nuts in them at all!' he assures her.",
+          "segments": [
+            { "surface": "Gleich", "meaning": "right / immediately" },
+            { "surface": " " },
+            { "surface": "danach", "meaning": "afterward" },
+            { "surface": " " },
+            { "surface": "trifft", "meaning": "meets" },
+            { "surface": " " },
+            { "surface": "er", "meaning": "he" },
+            { "surface": " " },
+            { "surface": "Sofia", "meaning": "Sofia" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "einem", "meaning": "a" },
+            { "surface": " " },
+            { "surface": "Beisl", "meaning": "bistro-pub", "regionalNote": "AT: Beisl · DE: Wirtshaus." },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "liest", "meaning": "reads" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Speisekarte",
+              "meaning": "menu",
+              "compoundParts": ["Speise", "karte"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Sofia", "meaning": "Sofia" },
+            { "surface": " " },
+            { "surface": "fragt", "meaning": "asks" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the (acc.)" },
+            { "surface": " " },
+            { "surface": "Kellner", "meaning": "waiter" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Entschuldigung", "meaning": "excuse me" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "haben", "meaning": "have" },
+            { "surface": " " },
+            { "surface": "Sie", "meaning": "you (formal)" },
+            { "surface": " " },
+            { "surface": "ein", "meaning": "a" },
+            { "surface": " " },
+            { "surface": "vegetarisches", "meaning": "vegetarian" },
+            { "surface": " " },
+            { "surface": "Gericht", "meaning": "dish" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "sind", "meaning": "are" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Spinatknödeln",
+              "meaning": "spinach dumplings",
+              "compoundParts": ["Spinat", "knödeln"]
+            },
+            { "surface": " " },
+            { "surface": "Nüsse", "meaning": "nuts" },
+            { "surface": " " },
+            { "surface": "drinnen", "meaning": "inside", "regionalNote": "AT: drinnen · DE: drin." },
+            { "surface": "?" },
+            { "surface": "“" },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Keine", "meaning": "no" },
+            { "surface": " " },
+            { "surface": "Sorge", "meaning": "worry" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "da", "meaning": "in there" },
+            { "surface": " " },
+            { "surface": "sind", "meaning": "are" },
+            { "surface": " " },
+            { "surface": "gar", "meaning": "at all" },
+            { "surface": " " },
+            { "surface": "keine", "meaning": "no" },
+            { "surface": " " },
+            { "surface": "Nüsse", "meaning": "nuts" },
+            { "surface": " " },
+            { "surface": "drinnen", "meaning": "inside" },
+            { "surface": "!" },
+            { "surface": "“" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "versichert", "meaning": "assures" },
+            { "surface": " " },
+            { "surface": "er", "meaning": "he" },
+            { "surface": "." }
+          ]
+        },
+        {
+          "nativeText": "Paul nimmt einen Erdäpfelsalat und ein Glas Leitungswasser. Am Ende fragt der Kellner: „Zahlen Sie getrennt oder zusammen?“ — „Getrennt, bitte!“, sagen beide.",
+          "translation": "Paul orders a potato salad and a glass of tap water. At the end the waiter asks: 'Are you paying separately or together?' — 'Separately, please!' they both say.",
+          "segments": [
+            { "surface": "Paul", "meaning": "Paul" },
+            { "surface": " " },
+            { "surface": "nimmt", "meaning": "takes / orders" },
+            { "surface": " " },
+            { "surface": "einen", "meaning": "a (acc.)" },
+            { "surface": " " },
+            {
+              "surface": "Erdäpfelsalat",
+              "meaning": "Viennese potato salad",
+              "compoundParts": ["Erd", "äpfel", "salat"],
+              "regionalNote": "AT: Erdäpfelsalat · DE: Kartoffelsalat."
+            },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "ein", "meaning": "a" },
+            { "surface": " " },
+            { "surface": "Glas", "meaning": "glass" },
+            { "surface": " " },
+            {
+              "surface": "Leitungswasser",
+              "meaning": "tap water",
+              "compoundParts": ["Leitungs", "wasser"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Am", "meaning": "at the" },
+            { "surface": " " },
+            { "surface": "Ende", "meaning": "end" },
+            { "surface": " " },
+            { "surface": "fragt", "meaning": "asks" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Kellner", "meaning": "waiter" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Zahlen", "meaning": "pay" },
+            { "surface": " " },
+            { "surface": "Sie", "meaning": "you (formal)" },
+            { "surface": " " },
+            { "surface": "getrennt", "meaning": "separately" },
+            { "surface": " " },
+            { "surface": "oder", "meaning": "or" },
+            { "surface": " " },
+            { "surface": "zusammen", "meaning": "together" },
+            { "surface": "?" },
+            { "surface": "“" },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Getrennt", "meaning": "separately" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "bitte", "meaning": "please" },
+            { "surface": "!" },
+            { "surface": "“" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "sagen", "meaning": "say" },
+            { "surface": " " },
+            { "surface": "beide", "meaning": "both" },
+            { "surface": "." }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u003-t2-story-01-q1",
+          "question": "How many grams of mountain cheese (Bergkäse) did Paul buy when he ordered 'zwanzig Deka'?",
+          "options": [
+            "20 grams",
+            "200 grams (since 1 Deka = 10 grams)",
+            "2 kilograms",
+            "500 grams"
+          ],
+          "correctIndex": 1,
+          "explanation": "One Dekagramm ('Deka') equals 10 grams, so 'zwanzig Deka Bergkäse' is 200 grams."
+        },
+        {
+          "id": "de-u003-t2-story-01-q2",
+          "question": "What does Sofia check with the waiter before ordering the Spinatknödel?",
+          "options": [
+            "Whether they are served with roast pork",
+            "Whether there are nuts inside them",
+            "Whether they cost twenty euros",
+            "Whether she can take them onto the train"
+          ],
+          "correctIndex": 1,
+          "explanation": "Sofia asks: 'haben Sie ein vegetarisches Gericht, und sind in den Spinatknödeln Nüsse drinnen?'"
+        },
+        {
+          "id": "de-u003-t2-story-01-q3",
+          "question": "How do Paul and Sofia decide to settle the bill at the end of lunch?",
+          "options": [
+            "Paul pays for everything together",
+            "They pay separately ('Getrennt, bitte!')",
+            "Sofia leaves cash on the table and walks out",
+            "They ask for a monthly invoice"
+          ],
+          "correctIndex": 1,
+          "explanation": "When asked 'Zahlen Sie getrennt oder zusammen?', both answer 'Getrennt, bitte!'."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "de-ref-dining",
+      "category": "transit-dining",
+      "language": "de",
+      "tier": "travel",
+      "title": "Vienna Bakery, Market & Beisl Ordering",
+      "subtitle": "Weights, menu codes, water styles, and payment phrases across Austria and Germany",
+      "rows": [
+        {
+          "id": "de-ref-din-row-01",
+          "term": "zehn Deka / zwanzig Deka (AT)",
+          "readingOrSubtle": "1 dag = 10 g · DE: 100 g / 200 g",
+          "meaning": "100 grams / 200 grams at deli & cheese counters",
+          "exampleNative": "Zehn Deka Beinschinken, dünn geschnitten, bitte.",
+          "exampleTranslation": "100 grams of cured ham, thinly sliced, please.",
+          "notes": "In Germany, always state exact grams ('hundert Gramm Schinken')."
+        },
+        {
+          "id": "de-ref-din-row-02",
+          "term": "ein Viertelkilo / ein halbes Kilo",
+          "readingOrSubtle": "250 g / 500 g",
+          "meaning": "A quarter-kilo / half a kilo",
+          "exampleNative": "Ein Viertelkilo Marillen und ein halbes Kilo Erdäpfel, bitte.",
+          "exampleTranslation": "250g of apricots (AT: Marillen; DE: Aprikosen) and 500g of potatoes, please.",
+          "notes": "No preposition 'von' is used between the weight and the food noun!"
+        },
+        {
+          "id": "de-ref-din-row-03",
+          "term": "Darf es sonst noch etwas sein?",
+          "readingOrSubtle": "Counter prompt",
+          "meaning": "Can I get you anything else?",
+          "exampleNative": "„Darf es sonst noch etwas sein?“ — „Danke, das wär's!“",
+          "exampleTranslation": "'Anything else?' — 'Thanks, that'll be all!'",
+          "notes": "In bakeries you'll also hear 'Sonst noch einen Wunsch?' ('Any other wish?')."
+        },
+        {
+          "id": "de-ref-din-row-04",
+          "term": "zum Hieressen oder zum Mitnehmen?",
+          "readingOrSubtle": "Counter dining vs. takeaway",
+          "meaning": "For here or to go?",
+          "exampleNative": "Zwei Topfengolatschen zum Mitnehmen, bitte.",
+          "exampleTranslation": "Two sweet quark pastries to go, please.",
+          "notes": "AT: der Topfen · DE: der Quark (curd cheese used in Austrian pastries)."
+        },
+        {
+          "id": "de-ref-din-row-05",
+          "term": "das Gedeck (AT)",
+          "readingOrSubtle": "Table cover & bread basket",
+          "meaning": "Optional bread basket & cover charge at upscale restaurants",
+          "exampleNative": "Auf der Rechnung steht zweimal Gedeck mit frischem Schwarzbrot.",
+          "exampleTranslation": "The bill lists two table covers with fresh dark rye bread.",
+          "notes": "Common in upscale Viennese restaurants (~€3–€5 per person); casual Beisln charge per Semmel eaten."
+        },
+        {
+          "id": "de-ref-din-row-06",
+          "term": "prickelnd / ohne (AT) · mit Kohlensäure / still (DE)",
+          "readingOrSubtle": "Mineralwasser styles",
+          "meaning": "Sparkling vs. still mineral water",
+          "exampleNative": "Ein großes Römerquelle prickelnd, bitte.",
+          "exampleTranslation": "A large sparkling mineral water, please.",
+          "notes": "Ein Gespritzter / G'spritzter (AT) = white wine spritzer (DE: Weinschorle)!"
+        },
+        {
+          "id": "de-ref-din-row-07",
+          "term": "Allergenbuchstaben A–R (AT)",
+          "readingOrSubtle": "Standardized Austrian letter codes",
+          "meaning": "A = gluten · C = egg · G = dairy · H = nuts · L = celery",
+          "exampleNative": "Entschuldigung, ist dieses Gericht laktosefrei (ohne G)?",
+          "exampleTranslation": "Excuse me, is this dish lactose-free (without code G)?",
+          "notes": "Austria uses letters A–R consistently nationwide; Germany often uses numbered footnotes."
+        },
+        {
+          "id": "de-ref-din-row-08",
+          "term": "Getrennt oder zusammen?",
+          "readingOrSubtle": "Bill-splitting prompt",
+          "meaning": "Paying separately or together?",
+          "exampleNative": "Wir zahlen bitte getrennt — ich hatte die Kaspressknödel.",
+          "exampleTranslation": "We're paying separately, please — I had the Tyrolean pressed-cheese dumplings.",
+          "notes": "Use 'Ich hatte...' ('I had...') to list your own items quickly."
+        }
+      ]
+    }
+  ]
+}

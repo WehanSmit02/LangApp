@@ -1,0 +1,745 @@
+{
+  "shardId": "ja-unit-001-fluent",
+  "unitId": "ja-unit-001",
+  "language": "ja",
+  "tier": "fluent",
+  "tierNumber": 4,
+  "focusSummary": "Full honorific Keigo (sonkeigo & kenjōgo: いらっしゃいませ, かしこまりました, 恐れ入りますが, お預かりいたします), cushion phrases (クッション言葉), formal receipts (領収書), and unassisted native reading.",
+  "introducedLexiconIds": [
+    "ja-u001-t4-lex-01",
+    "ja-u001-t4-lex-02",
+    "ja-u001-t4-lex-03",
+    "ja-u001-t4-lex-04",
+    "ja-u001-t4-lex-05",
+    "ja-u001-t4-lex-06",
+    "ja-u001-t4-lex-07",
+    "ja-u001-t4-lex-08"
+  ],
+  "introducedKanji": [
+    "恐",
+    "縮",
+    "承",
+    "知",
+    "預",
+    "領",
+    "収",
+    "書",
+    "様"
+  ],
+  "introducedGrammarIds": [
+    "ja-u001-t4-gram-01",
+    "ja-u001-t4-gram-02",
+    "ja-u001-t4-gram-03"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u001-t4-step-01",
+      "tier": "fluent",
+      "heading": "Decoding Sonkeigo vs. Kenjōgo at High-End Counters",
+      "explanation": "Japanese service Keigo splits into 尊敬語 (sonkeigo, elevating the guest's action: いらっしゃいませ, なさいますか) and 謙譲語 (kenjōgo, humbling the staff's action with お + stem + いたします: お預かりいたします 'I humbly take this into my care').",
+      "scenarioPrompt": "A hotel concierge or boutique cashier receives your credit card and jacket with impeccable formality.",
+      "nativeText": "いらっしゃいませ。カードをお預かりいたします。少々お待ちくださいませ。",
+      "romanization": "Irasshaimase. Kādo o o-azukari itashimasu. Shōshō o-machi kudasaimase.",
+      "translation": "Welcome. I will humbly take charge of your card. Please wait just a moment.",
+      "literalBreakdown": "いらっしゃいませ (honorific welcome) / お預かりいたします (humble: hold in trust) / 少々お待ちくださいませ (honorific request to wait briefly)",
+      "usageTip": "At cash registers, 10,000円お預かりいたします means 'I am accepting ¥10,000 from you (before making change)', not keeping it permanently."
+    },
+    {
+      "id": "ja-u001-t4-step-02",
+      "tier": "fluent",
+      "heading": "Kushon Kotoba (クッション言葉): 恐れ入りますが & お手数ですが",
+      "explanation": "In business and refined adult Japanese, bare requests—even in です/ます—can feel sharp. Placing a 'cushion phrase' like 恐れ入りますが ('I am awed/sorry to impose, but...') or お手数ですが ('I know it is a trouble for you, but...') makes any request effortlessly gracious.",
+      "scenarioPrompt": "You are checking out at a bookstore on a business trip and need a formal itemized corporate receipt (領収書).",
+      "nativeText": "恐れ入りますが、領収書を発行していただけますでしょうか。",
+      "romanization": "Osoreirimasu ga, ryōshūsho o hakkō shite itadakemasu deshō ka.",
+      "translation": "I am sorry to trouble you, but would you possibly be able to issue a formal receipt?",
+      "literalBreakdown": "恐れ入りますが (cushion: pardon the imposition) + 領収書を (formal receipt) + 発行して (issuing) + いただけますでしょうか (humble potential + soft conjecture)",
+      "usageTip": "Theclerk will typically ask 「お宛名はいかがなさいますか？」 ('How would you like the recipient name written?')."
+    },
+    {
+      "id": "ja-u001-t4-step-03",
+      "tier": "fluent",
+      "heading": "Crisp Professional Acknowledgment: かしこまりました & 承知いたしました",
+      "explanation": "Where everyday speech uses わかりました ('Got it'), customer-facing staff use かしこまりました ('Certainly, right away') and business colleagues use 承知いたしました ('Understood and acknowledged').",
+      "scenarioPrompt": "A client or hotel front-desk manager asks if you can confirm your arrival time by email.",
+      "nativeText": "承知いたしました。到着次第、改めてご連絡いたします。",
+      "romanization": "Shōchi itashimashita. Tōchaku shidai, aratamete go-renraku itashimasu.",
+      "translation": "Understood. As soon as I arrive, I will reach out to you again.",
+      "literalBreakdown": "承知いたしました (humbly understood) + 到着次第 (immediately upon arrival) + 改めて (anew) + ご連絡いたします (humbly contact)",
+      "usageTip": "Noun + 次第 (しだい) is an essential N2/N1 formal connector meaning 'as soon as X occurs'."
+    },
+    {
+      "id": "ja-u001-t4-step-04",
+      "tier": "fluent",
+      "heading": "Graceful Refusal & Apology Cushions: あいにくですが & 恐縮ですが",
+      "explanation": "When declining an invitation or delivering an inconvenient truth in formal settings, speakers preface with あいにくですが ('Unfortunately / As ill luck would have it...') or 誠に恐縮ですが ('I feel truly indebted/apologetic, however...').",
+      "scenarioPrompt": "A colleague invites you for drinks tonight, or a boutique clerk checks inventory that happens to be out of stock.",
+      "nativeText": "誠に恐縮ですが、本日は先約がございますので、またの機会にお願いいたします。",
+      "romanization": "Makoto ni kyōshuku desu ga, honjitsu wa sen'yaku ga gozaimasu node, mata no kikai ni onegai itashimasu.",
+      "translation": "I am truly sorry, but as I have a prior engagement today, please allow me to join on another occasion.",
+      "literalBreakdown": "誠に恐縮ですが (truly apologetic, but) + 本日は (today) + 先約がございますので (since a prior appointment exists) + またの機会に (at another opportunity)",
+      "usageTip": "先約 (せんやく, 'prior engagement') politely shields privacy without fabricating excuses."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u001-t4-drill-01",
+      "tier": "fluent",
+      "prompt": "You need to ask a hotel receptionist to hold your luggage before check-in time, framed in refined adult Keigo with a cushion phrase:",
+      "cue": "Select the expression combining a cushion phrase (恐れ入りますが) and humble request (〜ていただけますでしょうか)",
+      "options": [
+        "ちょっと、チェックインまで荷物を預かってくれない？",
+        "荷物があるから、入口は大丈夫です。",
+        "いらっしゃいませ、荷物をお預かりいたします。",
+        "恐れ入りますが、チェックインまで荷物をお預かりいただけますでしょうか。"
+      ],
+      "correctAnswer": "恐れ入りますが、チェックインまで荷物をお預かりいただけますでしょうか。",
+      "explanation": "恐れ入りますが cushions the imposition, while お預かりいただけますでしょうか politely asks the hotel to take custody of your bags."
+    },
+    {
+      "id": "ja-u001-t4-drill-02",
+      "tier": "fluent",
+      "prompt": "At a department store counter, you hand over a ¥10,000 note for a ¥6,800 purchase. Which phrase does the cashier use to confirm receiving your ¥10,000?",
+      "cue": "Standard humble kenjōgo register formula",
+      "options": [
+        "一万円お預かりいたします。",
+        "一万円をください。",
+        "一万円かしこまりましたけど。",
+        "一万円は営業中です。"
+      ],
+      "correctAnswer": "一万円お預かりいたします。",
+      "explanation": "お預かりいたします ('I humbly hold this while calculating your change') is used whenever you tender more cash than the exact total; exact change uses ちょうど頂戴いたします."
+    },
+    {
+      "id": "ja-u001-t4-drill-03",
+      "tier": "fluent",
+      "prompt": "Your business contact asks you to forward a PDF invoice this afternoon. Which reply matches formal professional register?",
+      "cue": "Humble acknowledgment equivalent to 'Certainly / Understood'",
+      "options": [
+        "うん、わかったよ。今日送るね。",
+        "承知いたしました。本日中にお送りいたします。",
+        "大丈夫です、袋はいりません。",
+        "いらっしゃいませ、少々お待ちください。"
+      ],
+      "correctAnswer": "承知いたしました。本日中にお送りいたします。",
+      "explanation": "承知いたしました paired with お送りいたします (humble kenjōgo of 送る) is crisp, natural B2B Japanese."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u001-t4-card-01",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "I'm sorry to trouble you, but could you issue a formal receipt?",
+      "targetText": "恐れ入りますが、領収書を発行していただけますでしょうか。",
+      "reading": "おそれいりますが、りょうしゅうしょをはっこうしていただけますでしょうか。",
+      "contextSentence": "恐れ入りますが、上様ではなく会社名で領収書を発行していただけますでしょうか。",
+      "contextTranslation": "Pardon the trouble, but could you issue a formal receipt under my company's name rather than 'Uesama'?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u001-t4-card-02",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Certainly, right away (service Keigo acknowledgment)",
+      "targetText": "かしこまりました。",
+      "reading": "かしこまりました。",
+      "contextSentence": "「ギフト用の包装をお願いできますか。」「かしこまりました。ただいまご用意いたします。」",
+      "contextTranslation": "'Could I ask for gift wrapping?' 'Certainly. I will prepare it right now.'",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u001-t4-card-03",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "I will humbly take charge of (your card / luggage / cash tendered)",
+      "targetText": "お預かりいたします。",
+      "reading": "おあずかりいたします。",
+      "contextSentence": "お荷物はこちらでお預かりいたしますので、どうぞごゆっくりお過ごしください。",
+      "contextTranslation": "We will take care of your luggage right here, so please relax and enjoy your stay.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u001-t4-card-04",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Understood / Acknowledged (formal professional register)",
+      "targetText": "承知いたしました。",
+      "reading": "しょうちいたしました。",
+      "contextSentence": "日程変更の件、承知いたしました。",
+      "contextTranslation": "Regarding the schedule change, I have understood and noted it.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "ja-u001-t4-card-05",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "frontPrompt": "Feeling indebted / apologetic for imposing (formal noun/na-adj)",
+      "targetText": "恐縮",
+      "reading": "きょうしゅく",
+      "contextSentence": "お忙しいところ大変恐縮ですが、ご確認のほどよろしくお願いいたします。",
+      "contextTranslation": "I am deeply sorry to impose while you are busy, but I kindly ask for your review.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u001-t4-story-01",
+      "unitId": "ja-unit-001",
+      "language": "ja",
+      "tier": "fluent",
+      "title": "老舗百貨店のサービスカウンターにて",
+      "titleTranslation": "At a Heritage Department Store Service Counter",
+      "setting": "Early afternoon at a storied Nihonbashi department store purchasing a client gift before an executive meeting.",
+      "paragraphs": [
+        {
+          "nativeText": "取引先への手土産を選ぶため、日本橋の老舗百貨店に足を運んだ。「いらっしゃいませ。贈り物をお探しでいらっしゃいますか」と店員が穏やかに声をかけてくれたので、「ええ、恐れ入りますが、日持ちのする和菓子を見せていただけますか」と尋ねた。",
+          "translation": "To select a gift for a business partner, I visited a long-established department store in Nihonbashi. When the attendant gently greeted me—'Welcome. Are you looking for a gift?'—I asked, 'Yes, pardon the trouble, could you show me Japanese confections with a good shelf life?'",
+          "segments": [
+            {
+              "surface": "取引先",
+              "reading": "とりひきさき",
+              "meaning": "business partner / client"
+            },
+            {
+              "surface": "への",
+              "reading": "えの",
+              "meaning": "for / toward (attributive)"
+            },
+            {
+              "surface": "手土産",
+              "reading": "てみやげ",
+              "meaning": "visiting gift"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "選ぶ",
+              "reading": "えらぶ",
+              "meaning": "to choose / select"
+            },
+            {
+              "surface": "ため",
+              "reading": "ため",
+              "meaning": "in order to"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "日本橋",
+              "reading": "にほんばし",
+              "meaning": "Nihonbashi (historic Tokyo district)"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of / in"
+            },
+            {
+              "surface": "老舗",
+              "reading": "しにせ",
+              "meaning": "long-established heritage shop"
+            },
+            {
+              "surface": "百貨店",
+              "reading": "ひゃっかてん",
+              "meaning": "department store"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to"
+            },
+            {
+              "surface": "足を運んだ",
+              "reading": "あしをはこんだ",
+              "meaning": "visited / made the trip (idiom)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "いらっしゃいませ",
+              "reading": "いらっしゃいませ",
+              "meaning": "welcome (honorific)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "贈り物",
+              "reading": "おくりもの",
+              "meaning": "gift / present"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "お探しでいらっしゃいますか",
+              "reading": "おさがしでいらっしゃいますか",
+              "meaning": "are you looking for? (sonkeigo)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "店員",
+              "reading": "てんいん",
+              "meaning": "store attendant"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "穏やかに",
+              "reading": "おだやかに",
+              "meaning": "calmly / graciously"
+            },
+            {
+              "surface": "声をかけてくれた",
+              "reading": "こえをかけてくれた",
+              "meaning": "spoke to / greeted me"
+            },
+            {
+              "surface": "ので",
+              "reading": "ので",
+              "meaning": "since / because"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ええ",
+              "reading": "ええ",
+              "meaning": "yes (refined)"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "恐れ入りますが",
+              "reading": "おそれいりますが",
+              "meaning": "pardon the imposition, but"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "日持ちのする",
+              "reading": "ひもちのする",
+              "meaning": "having a long shelf life"
+            },
+            {
+              "surface": "和菓子",
+              "reading": "わがし",
+              "meaning": "traditional Japanese confections"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "見せていただけますか",
+              "reading": "みせていただけますか",
+              "meaning": "could I ask you to show me?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "尋ねた",
+              "reading": "たずねた",
+              "meaning": "inquired"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "季節の羊羹を勧められ、包装をお願いした際、「お手数ですが、会社名で領収書を切っていただけますでしょうか」と添えた。店員は「かしこまりました。お名刺を一枚お預かりしてもよろしいでしょうか」と淀みなく応じた。",
+          "translation": "Recommended a seasonal sweet bean jelly, when requesting wrapping I added, 'Sorry for the trouble, could you write out a formal receipt under my company name?' The attendant replied seamlessly, 'Certainly. May I take temporary hold of one of your business cards?'",
+          "segments": [
+            {
+              "surface": "季節",
+              "reading": "きせつ",
+              "meaning": "season"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "羊羹",
+              "reading": "ようかん",
+              "meaning": "yōkan (jellied sweet bean confection)"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "勧められ",
+              "reading": "すすめられ",
+              "meaning": "being recommended"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "包装",
+              "reading": "ほうそう",
+              "meaning": "wrapping"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "お願いした",
+              "reading": "おねがいした",
+              "meaning": "requested"
+            },
+            {
+              "surface": "際",
+              "reading": "さい",
+              "meaning": "when / on the occasion of"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "お手数ですが",
+              "reading": "おてすうですが",
+              "meaning": "sorry for the trouble, but (cushion)"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "会社名",
+              "reading": "かいしゃめい",
+              "meaning": "company name"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "under / using"
+            },
+            {
+              "surface": "領収書",
+              "reading": "りょうしゅうしょ",
+              "meaning": "formal receipt"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "切っていただけますでしょうか",
+              "reading": "きっていただけますでしょうか",
+              "meaning": "could you issue (lit. cut) a receipt?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "添えた",
+              "reading": "そえた",
+              "meaning": "added (words)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "店員",
+              "reading": "てんいん",
+              "meaning": "attendant"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "かしこまりました",
+              "reading": "かしこまりました",
+              "meaning": "certainly (humble service)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "お名刺",
+              "reading": "おめいし",
+              "meaning": "business card (polite)"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "一枚",
+              "reading": "いちまい",
+              "meaning": "one flat sheet"
+            },
+            {
+              "surface": "お預かりしてもよろしいでしょうか",
+              "reading": "おあずかりしてもよろしいでしょうか",
+              "meaning": "may I humbly borrow/hold onto?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "淀みなく",
+              "reading": "よどみなく",
+              "meaning": "fluently / without hesitation"
+            },
+            {
+              "surface": "応じた",
+              "reading": "おうじた",
+              "meaning": "responded"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "名刺を渡すと、誤字一つない丁寧な領収書と紙袋が手渡された。過剰にならず相手への敬意が自然に滲むクッション言葉の心地よさを実感しながら、気持ちよく店を後にした。",
+          "translation": "Handing over my business card, I was presented with a spotless, meticulously written receipt and a paper carrier bag. Appreciating the quiet grace of cushion words that convey natural respect without feeling stiff, I left the store in high spirits.",
+          "segments": [
+            {
+              "surface": "名刺",
+              "reading": "めいし",
+              "meaning": "business card"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "渡すと",
+              "reading": "わたすと",
+              "meaning": "upon handing over"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "誤字",
+              "reading": "ごじ",
+              "meaning": "miswritten character / typo"
+            },
+            {
+              "surface": "一つない",
+              "reading": "ひとつない",
+              "meaning": "without a single"
+            },
+            {
+              "surface": "丁寧な",
+              "reading": "ていねいな",
+              "meaning": "careful / polite"
+            },
+            {
+              "surface": "領収書",
+              "reading": "りょうしゅうしょ",
+              "meaning": "formal receipt"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and"
+            },
+            {
+              "surface": "紙袋",
+              "reading": "かみぶくろ",
+              "meaning": "paper bag"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "手渡された",
+              "reading": "てわたされた",
+              "meaning": "were handed over"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "過剰にならず",
+              "reading": "かじょうにならず",
+              "meaning": "without becoming excessive"
+            },
+            {
+              "surface": "相手",
+              "reading": "あいて",
+              "meaning": "the other party"
+            },
+            {
+              "surface": "への",
+              "reading": "えの",
+              "meaning": "toward"
+            },
+            {
+              "surface": "敬意",
+              "reading": "けいい",
+              "meaning": "respect / deference"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "自然に",
+              "reading": "しぜんに",
+              "meaning": "naturally"
+            },
+            {
+              "surface": "滲む",
+              "reading": "にじむ",
+              "meaning": "shines through / permeates"
+            },
+            {
+              "surface": "クッション言葉",
+              "reading": "くっしょんことば",
+              "meaning": "cushion phrases"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of"
+            },
+            {
+              "surface": "心地よさ",
+              "reading": "ここちよさ",
+              "meaning": "pleasantness / comfort"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object particle"
+            },
+            {
+              "surface": "実感しながら",
+              "reading": "じっかんしながら",
+              "meaning": "while keenly feeling"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "気持ちよく",
+              "reading": "きもちよく",
+              "meaning": "pleasantly / in good spirits"
+            },
+            {
+              "surface": "店を後にした",
+              "reading": "みせをあとにした",
+              "meaning": "left the shop behind"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u001-t4-story-01-q1",
+          "question": "What specific quality did the narrator ask for when selecting Japanese confections?",
+          "options": [
+            "Frozen desserts that must be eaten within an hour",
+            "Imported chocolates from Vienna",
+            "Confections with a good shelf life (日持ちのする和菓子)",
+            "Sugar-free rice crackers only"
+          ],
+          "correctIndex": 2,
+          "explanation": "日持ちのする (himochi no suru) means 'keeps well / has a good shelf life', an essential consideration for business 手土産."
+        },
+        {
+          "id": "ja-u001-t4-story-01-q2",
+          "question": "Why did the attendant ask 「お名刺を一枚お預かりしてもよろしいでしょうか」?",
+          "options": [
+            "To mail the yōkan overseas next month",
+            "To sign the customer up for a credit card",
+            "Because cash payment was not allowed",
+            "To copy the exact kanji of the company name onto the formal receipt without any error"
+          ],
+          "correctIndex": 3,
+          "explanation": "Borrowing a business card ensures the cashier writes the exact corporate kanji on the 領収書 with zero 誤字 (character errors)."
+        },
+        {
+          "id": "ja-u001-t4-story-01-q3",
+          "question": "Which two cushion phrases (クッション言葉) did the narrator use during the interaction?",
+          "options": [
+            "恐れ入りますが and お手数ですが",
+            "とりあえず and やっぱり",
+            "いってきます and ただいま",
+            "営業中 and 準備中"
+          ],
+          "correctIndex": 0,
+          "explanation": "The narrator cushioned the first inquiry with 恐れ入りますが and the receipt request with お手数ですが."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}

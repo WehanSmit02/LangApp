@@ -1,0 +1,17 @@
+{
+  "unitId": "ja-unit-002",
+  "language": "ja",
+  "unitNumber": 2,
+  "stageId": "ja-stage-1",
+  "title": "Stations, IC Cards & Navigating Rail Lines",
+  "subtitle": "Ticket gates, Suica/ICOCA top-ups, local vs. Shinkansen trains, exit navigation, and service disruption announcements",
+  "summary": "Navigate Japan's world-renowned rail network without hesitation. Read overhead station signage (改札, 乗り換え, 番線), top up IC cards and use fare-adjustment machines, distinguish local, rapid, and Shinkansen seat classes, ask locals for the closest exit, and handle delays or ticket rebookings at Midori-no-Madoguchi.",
+  "estimatedMinutes": 40,
+  "communicativeCanDo": [
+    "Read ticket-gate, platform-track, transfer, and train-destination signs at a glance",
+    "Top up IC cards (チャージ) and settle short fares at a 精算機 before tapping out",
+    "Distinguish 各駅停車, 急行, and 新幹線 (自由席 vs. 指定席) and ask platform staff polite transfer questions",
+    "Explain transit delays to friends and rebook reserved seats during suspended operations"
+  ],
+  "culturalInsight": "Major Japanese hubs like Shinjuku, Tokyo, and Umeda weave together JR lines, municipal subways, and private railways under one roof. Tapping an IC card (Suica, PASMO, ICOCA—including mobile Apple Wallet versions) seamlessly calculates cross-operator fares, while yellow exit signs (東口, 西口, 北口, 南口, or numbered subway exits A1–E8) determine whether you surface right beside your destination or ten minutes away."
+}

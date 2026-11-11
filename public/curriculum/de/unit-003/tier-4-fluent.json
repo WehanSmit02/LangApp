@@ -1,0 +1,597 @@
+{
+  "shardId": "de-unit-003-tier-4-fluent",
+  "unitId": "de-unit-003",
+  "language": "de",
+  "tier": "fluent",
+  "tierNumber": 4,
+  "focusSummary": "Idiomatic Austrian & German culinary metaphors (weggehen wie die warmen Semmeln, seinen Kren/Senf dazugeben, eine Extrawurst verlangen), Mehlspeisen & Heuriger culture, and nuanced C1 prose.",
+  "introducedLexiconIds": [
+    "de-u003-t4-lex-warme-semmeln-idiom",
+    "de-u003-t4-lex-kren-senf-dazugeben",
+    "de-u003-t4-lex-extrawurst",
+    "de-u003-t4-lex-mehlspeise",
+    "de-u003-t4-lex-heuriger"
+  ],
+  "introducedRoots": [
+    "Mehl",
+    "Wein",
+    "Garten",
+    "Bäckerei",
+    "Wurst"
+  ],
+  "introducedGrammarIds": [
+    "de-u003-t4-gram-idiomatic-figurative-comparisons",
+    "de-u003-t4-gram-concessive-and-contrastive-discourse"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u003-t4-step-01",
+      "tier": "fluent",
+      "heading": "Selling Like Hotcakes: weggehen wie die warmen Semmeln",
+      "explanation": "Everyday bakery words power some of German's sharpest C1 idioms! When concert tickets, apartments, or pastries sell out in minutes, they 'gehen weg wie die warmen Semmeln' ('go away like warm bread rolls'—notice even northern Germans keep 'Semmeln' inside this frozen idiom!).",
+      "scenarioPrompt": "Trying to book seats for the Salzburg Festival only to see the premiere sell out in ten minutes.",
+      "nativeText": "Kaum hat der Vorverkauf begonnen, sind die Festspielkarten weggegangen wie die warmen Semmeln.",
+      "translation": "Hardly had advance ticket sales begun when the festival tickets sold like hotcakes.",
+      "literalBreakdown": "Kaum hat ... begonnen (scarcely had ... begun [inverted C1 opener]) · sind ... weg·gegangen (have ... gone away) · wie die warmen Semmeln (like the warm rolls)",
+      "usageTip": "Notice the C1 inversion after fronted 'Kaum' ('Hardly/Scarcely'): 'Kaum hat..., sind...' puts immediate narrative pace into your storytelling!"
+    },
+    {
+      "id": "de-u003-t4-step-02",
+      "tier": "fluent",
+      "heading": "Unsolicited Opinions & Special Treatment: Kren vs. Senf & die Extrawurst",
+      "explanation": "In Standard German, someone who chimes in with an unasked-for opinion 'gibt seinen Senf dazu' ('adds their mustard'). In Austria, where freshly grated horseradish (der Kren; DE: der Meerrettich) crowns boiled beef and sausages, you'll also hear 'seinen Kren dazugeben'! And anyone demanding special rules just for themselves 'verlangt mal wieder eine Extrawurst'—a word that in Austria literally names a beloved mild cold-cut sausage at the deli counter!",
+      "scenarioPrompt": "Wryly describing an opinionated colleague during a project debrief over wine.",
+      "nativeText": "Obwohl er mit dem Projekt kaum vertraut war, musste er natürlich zu jedem Punkt seinen Kren dazugeben und eine Extrawurst verlangen.",
+      "translation": "Although he was barely familiar with the project, naturally he had to put in his two cents on every point and demand special treatment.",
+      "literalBreakdown": "seinen Kren dazu·geben (add his horseradish [AT] = put in his two cents) · eine Extra·wurst verlangen (demand a special-sausage = demand special treatment)",
+      "standardGermanVariant": {
+        "nativeText": "Obwohl er mit dem Projekt kaum vertraut war, musste er natürlich zu jedem Punkt seinen Senf dazugeben und eine Extrawurst verlangen.",
+        "note": "'Seinen Senf dazugeben' works everywhere in the German-speaking world; knowing Austrian 'der Kren' unlocks both menus (Apfelkren!) and Viennese banter."
+      },
+      "compoundParts": [
+        "Extra",
+        "wurst"
+      ],
+      "usageTip": "Fun double meaning in Austria: at a supermarket deli you literally order 'zehn Deka Extrawurst in die Semmel' with zero negative connotation!"
+    },
+    {
+      "id": "de-u003-t4-step-03",
+      "tier": "fluent",
+      "heading": "Viennese Culinary Heritage: Mehlspeisen & beim Heurigen sitzen",
+      "explanation": "Two cultural concepts round out fluent Austrian table talk: die Mehlspeise ('flour-dish') encompasses Vienna's entire pantheon of warm sweet pastries (Kaiserschmarrn, Palatschinken, Buchteln, Strudel—sometimes eaten as a full Friday main course after soup!), and 'zum Heurigen gehen' means spending an evening under vineyard arbors on the edge of Vienna drinking this year's wine.",
+      "scenarioPrompt": "Inviting visiting friends to experience a vineyard tavern in Grinzing or Nussdorf.",
+      "nativeText": "Wenn das Wetter am Wochenende hält, könnten wir durch die Weingärten spazieren und anschließend gemütlich beim Heurigen einkehren.",
+      "translation": "If the weather holds this weekend, we could stroll through the vineyards and afterward stop in cozily at a Heuriger wine tavern.",
+      "literalBreakdown": "durch die Wein·gärten (through the wine-gardens/vineyards [AT]) · beim Heurigen (at the young-wine tavern) · ein·kehren (stop in for food & drink)",
+      "standardGermanVariant": {
+        "nativeText": "Wenn das Wetter am Wochenende hält, könnten wir durch die Weinberge spazieren und anschließend gemütlich in einer Straußwirtschaft einkehren.",
+        "note": "Austria calls vineyards die Weingärten (DE: die Weinberge) and seasonal vintner taverns der Heurige / Buschenschank (Rhineland/Baden DE: Straußwirtschaft / Besenwirtschaft)."
+      },
+      "compoundParts": [
+        "Wein",
+        "gärten"
+      ],
+      "usageTip": "A pine branch ('der Buschen') hung above a tavern gate traditionally signals 'Ausg'steckt is!'—that vintner's Heuriger is currently open and pouring!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u003-t4-drill-01",
+      "tier": "fluent",
+      "prompt": "A small artisan bakery in Vienna bakes fresh apricot pastries at 9:00 AM, and by 9:20 AM every single tray is sold out. Which idiom captures this?",
+      "cue": "German/Austrian idiom for 'selling like hotcakes'",
+      "options": [
+        "Die frischen Mehlspeisen gehen weg wie die warmen Semmeln.",
+        "Die frischen Mehlspeisen fahren im Schienenersatzverkehr.",
+        "Die frischen Mehlspeisen zahlen heute leider getrennt.",
+        "Die frischen Mehlspeisen stehen auf Bahnsteig neun."
+      ],
+      "correctAnswer": "Die frischen Mehlspeisen gehen weg wie die warmen Semmeln.",
+      "explanation": "'Weggehen wie die warmen Semmeln' ('to go like warm bread rolls') is the classic idiomatic equivalent of 'to sell like hotcakes'."
+    },
+    {
+      "id": "de-u003-t4-drill-02",
+      "tier": "fluent",
+      "prompt": "On an Austrian menu you spot 'Tafelspitz mit Apfelkren' AND at the office you hear someone say 'Er gibt überall seinen Kren dazu.' What is 'der Kren' in Standard German (and English)?",
+      "cue": "Austrian culinary noun used both literally and idiomatically",
+      "options": [
+        "der Meerrettich (horseradish)",
+        "die Schlagsahne (whipped cream)",
+        "der Fahrplan (timetable)",
+        "die Tageszeitung (daily newspaper)"
+      ],
+      "correctAnswer": "der Meerrettich (horseradish)",
+      "explanation": "In Austria and Bavaria, horseradish is der Kren (from Slavic root hren), corresponding to der Meerrettich in Standard German."
+    },
+    {
+      "id": "de-u003-t4-drill-03",
+      "tier": "fluent",
+      "prompt": "Complete the inverted C1 'Kaum...' sentence correctly: 'Kaum hatte die Stammbäckerei aufgesperrt, ...'",
+      "cue": "Kaum + Clause 1 -> main verb follows the comma immediately!",
+      "options": [
+        "...bildete sich schon eine lange Schlange vor der Theke.",
+        "...eine lange Schlange sich schon bildete vor der Theke.",
+        "...vor der Theke eine lange Schlange bilden.",
+        "...schon eine Schlange gebildet sich."
+      ],
+      "correctAnswer": "...bildete sich schon eine lange Schlange vor der Theke.",
+      "explanation": "In C1 narrative prose, 'Kaum hatte..., bildete sich...' uses Verb-Comma-Verb inversion to convey immediate sequence ('Hardly had the bakery unlocked its doors when a long queue formed...'). Note also Austrian 'aufsperren' ('to unlock/open up' vs. DE 'aufschließen / öffnen')!"
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u003-t4-srs-01",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "frontPrompt": "Idiom: 'The tickets sold like hotcakes.'",
+      "targetText": "Die Karten sind weggegangen wie die warmen Semmeln.",
+      "contextSentence": "Kein Wunder, dass es ausverkauft ist — die Karten sind weggegangen wie die warmen Semmeln!",
+      "contextTranslation": "No wonder it's sold out — the tickets sold like hotcakes!",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t4-srs-02",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "frontPrompt": "Idiom: 'He always has to put in his two cents (unsolicited opinion).' (Austrian variant)",
+      "targetText": "Er muss immer seinen Kren dazugeben.",
+      "contextSentence": "Auch wenn niemand ihn fragt, muss er immer seinen Kren dazugeben.",
+      "contextTranslation": "Even when nobody asks him, he always has to put in his two cents.",
+      "austrianNote": "Der Kren = horseradish (DE: Meerrettich); pan-German idiom uses seinen Senf dazugeben.",
+      "standardGermanText": "Er muss immer seinen Senf dazugeben.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t4-srs-03",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "frontPrompt": "Suggest an outing: 'We could stroll through the vineyards and stop in at a Heuriger wine tavern.'",
+      "targetText": "Wir könnten durch die Weingärten spazieren und beim Heurigen einkehren.",
+      "contextSentence": "Am Sonntag könnten wir durch die Weingärten spazieren und beim Heurigen einkehren.",
+      "contextTranslation": "On Sunday we could stroll through the vineyards and stop in at a Heuriger wine tavern.",
+      "austrianNote": "Weingärten & Heuriger are classic eastern Austrian wine-country vocabulary.",
+      "standardGermanText": "Wir könnten durch die Weinberge spazieren und in einem Weinlokal einkehren.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t4-srs-04",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "frontPrompt": "Idiom: 'Stop demanding special treatment!'",
+      "targetText": "Verlang bitte nicht schon wieder eine Extrawurst!",
+      "contextSentence": "Alle halten sich an die Regeln — verlang bitte nicht schon wieder eine Extrawurst!",
+      "contextTranslation": "Everyone is sticking to the rules — please don't demand special treatment again!",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u003-t4-srs-05",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "frontPrompt": "Traditional Austrian sweet pastry or warm dessert dish",
+      "targetText": "Mehlspeise",
+      "reading": "die Mehlspeise",
+      "compoundParts": [
+        "Mehl",
+        "speise"
+      ],
+      "contextSentence": "In Wien gilt eine warme Mehlspeise wie Kaiserschmarrn nach einer Suppe oft als vollwertiges Mittagessen.",
+      "contextTranslation": "In Vienna a warm sweet pastry dish like Kaiserschmarrn after soup often counts as a full lunch.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u003-t4-story-01",
+      "unitId": "de-unit-003",
+      "language": "de",
+      "tier": "fluent",
+      "title": "Warme Semmeln und ein Spaziergang durch die Weingärten",
+      "titleTranslation": "Warm Bread Rolls and a Stroll Through the Vineyards",
+      "setting": "Golden October Sunday from a neighborhood bakery in Döbling up into Vienna's Nussberg vineyards",
+      "paragraphs": [
+        {
+          "nativeText": "Am Sonntagmorgen duftet die ganze Gasse nach frischem Gebäck. Kaum hat unsere kleine Stammbäckerei um sieben Uhr aufgesperrt, gehen die handgeschlagenen Kaisersemmeln und Marillenkrapfen weg wie die warmen Semmeln.",
+          "translation": "On Sunday morning the entire lane smells of fresh baked goods. Hardly has our little neighborhood bakery unlocked its doors at seven o'clock when the hand-folded Kaiser rolls and apricot doughnuts sell like hotcakes.",
+          "segments": [
+            { "surface": "Am", "meaning": "on" },
+            { "surface": " " },
+            {
+              "surface": "Sonntagmorgen",
+              "meaning": "Sunday morning",
+              "compoundParts": ["Sonntag", "morgen"]
+            },
+            { "surface": " " },
+            { "surface": "duftet", "meaning": "smells fragrant" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "ganze", "meaning": "entire" },
+            { "surface": " " },
+            { "surface": "Gasse", "meaning": "narrow street / lane", "regionalNote": "Many Viennese streets end in -gasse." },
+            { "surface": " " },
+            { "surface": "nach", "meaning": "of (duften nach)" },
+            { "surface": " " },
+            { "surface": "frischem", "meaning": "fresh" },
+            { "surface": " " },
+            { "surface": "Gebäck", "meaning": "baked goods / rolls & pastries" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Kaum", "meaning": "hardly / scarcely" },
+            { "surface": " " },
+            { "surface": "hat", "meaning": "has" },
+            { "surface": " " },
+            { "surface": "unsere", "meaning": "our" },
+            { "surface": " " },
+            { "surface": "kleine", "meaning": "little" },
+            { "surface": " " },
+            {
+              "surface": "Stammbäckerei",
+              "meaning": "regular neighborhood bakery",
+              "compoundParts": ["Stamm", "bäckerei"]
+            },
+            { "surface": " " },
+            { "surface": "um", "meaning": "at" },
+            { "surface": " " },
+            { "surface": "sieben", "meaning": "seven" },
+            { "surface": " " },
+            { "surface": "Uhr", "meaning": "o'clock" },
+            { "surface": " " },
+            {
+              "surface": "aufgesperrt",
+              "meaning": "unlocked / opened up",
+              "compoundParts": ["auf", "gesperrt"],
+              "regionalNote": "AT: aufsperren / zusperren · DE: aufschließen / öffnen."
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "gehen", "meaning": "go (weggehen = sell out)" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "handgeschlagenen",
+              "meaning": "hand-folded",
+              "compoundParts": ["hand", "geschlagenen"]
+            },
+            { "surface": " " },
+            {
+              "surface": "Kaisersemmeln",
+              "meaning": "star-folded Kaiser bread rolls",
+              "compoundParts": ["Kaiser", "semmeln"]
+            },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            {
+              "surface": "Marillenkrapfen",
+              "meaning": "apricot jam doughnuts",
+              "compoundParts": ["Marillen", "krapfen"],
+              "regionalNote": "AT: Marillenkrapfen · DE: Berliner / Pfannkuchen mit Aprikosenmarmelade."
+            },
+            { "surface": " " },
+            { "surface": "weg", "meaning": "away" },
+            { "surface": " " },
+            { "surface": "wie", "meaning": "like" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "warmen", "meaning": "warm" },
+            { "surface": " " },
+            { "surface": "Semmeln", "meaning": "bread rolls" },
+            { "surface": "." }
+          ]
+        },
+        {
+          "nativeText": "Am Nachmittag wandern wir mit Freunden durch die herbstlichen Weingärten hinauf auf den Nussberg. Natürlich muss mein Cousin wieder seinen Kren zu unserer Routenwahl dazugeben — aber sobald wir vor dem Heurigen den grünen Buschen sehen, ist wieder alles in Butter.",
+          "translation": "In the afternoon we hike with friends up onto the Nussberg hill through the autumnal vineyards. Naturally my cousin has to put in his two cents about our choice of route again — yet as soon as we spot the green pine bough outside the Heuriger tavern, everything is right with the world again.",
+          "segments": [
+            { "surface": "Am", "meaning": "in the" },
+            { "surface": " " },
+            {
+              "surface": "Nachmittag",
+              "meaning": "afternoon",
+              "compoundParts": ["Nach", "mittag"]
+            },
+            { "surface": " " },
+            { "surface": "wandern", "meaning": "hike / stroll" },
+            { "surface": " " },
+            { "surface": "wir", "meaning": "we" },
+            { "surface": " " },
+            { "surface": "mit", "meaning": "with" },
+            { "surface": " " },
+            { "surface": "Freunden", "meaning": "friends" },
+            { "surface": " " },
+            { "surface": "durch", "meaning": "through" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "herbstlichen", "meaning": "autumnal" },
+            { "surface": " " },
+            {
+              "surface": "Weingärten",
+              "meaning": "vineyards",
+              "compoundParts": ["Wein", "gärten"],
+              "regionalNote": "AT: Weingärten · DE: Weinberge."
+            },
+            { "surface": " " },
+            { "surface": "hinauf", "meaning": "upward" },
+            { "surface": " " },
+            { "surface": "auf", "meaning": "onto" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Nussberg",
+              "meaning": "Nussberg vineyard hill overlooking Vienna",
+              "compoundParts": ["Nuss", "berg"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Natürlich", "meaning": "naturally" },
+            { "surface": " " },
+            { "surface": "muss", "meaning": "has to" },
+            { "surface": " " },
+            { "surface": "mein", "meaning": "my" },
+            { "surface": " " },
+            { "surface": "Cousin", "meaning": "cousin (male)" },
+            { "surface": " " },
+            { "surface": "wieder", "meaning": "again" },
+            { "surface": " " },
+            { "surface": "seinen", "meaning": "his" },
+            { "surface": " " },
+            {
+              "surface": "Kren",
+              "meaning": "horseradish (in idiom: unsolicited opinion)",
+              "regionalNote": "seinen Kren dazugeben (AT) = seinen Senf dazugeben (DE)."
+            },
+            { "surface": " " },
+            { "surface": "zu", "meaning": "on / to" },
+            { "surface": " " },
+            { "surface": "unserer", "meaning": "our" },
+            { "surface": " " },
+            {
+              "surface": "Routenwahl",
+              "meaning": "choice of route",
+              "compoundParts": ["Routen", "wahl"]
+            },
+            { "surface": " " },
+            {
+              "surface": "dazugeben",
+              "meaning": "add to it",
+              "compoundParts": ["dazu", "geben"]
+            },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "aber", "meaning": "but" },
+            { "surface": " " },
+            { "surface": "sobald", "meaning": "as soon as" },
+            { "surface": " " },
+            { "surface": "wir", "meaning": "we" },
+            { "surface": " " },
+            { "surface": "vor", "meaning": "in front of" },
+            { "surface": " " },
+            { "surface": "dem", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Heurigen", "meaning": "Heuriger wine tavern", "regionalNote": "Viennese vintner's tavern." },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "grünen", "meaning": "green" },
+            { "surface": " " },
+            { "surface": "Buschen", "meaning": "pine bough sign signaling an open Heuriger" },
+            { "surface": " " },
+            { "surface": "sehen", "meaning": "see" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "ist", "meaning": "is" },
+            { "surface": " " },
+            { "surface": "wieder", "meaning": "again" },
+            { "surface": " " },
+            { "surface": "alles", "meaning": "everything" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in (alles in Butter = all good!)" },
+            { "surface": " " },
+            { "surface": "Butter", "meaning": "butter" },
+            { "surface": "." }
+          ]
+        },
+        {
+          "nativeText": "Am Buffet holen wir uns Liptauer, frisches Bauernbrot und feine Mehlspeisen, während unten im Tal die Donau in der Abendsonne glitzert. Niemand verlangt eine Extrawurst — heuer schmeckt der junge Jahrgang einfach allen.",
+          "translation": "At the buffet counter we get spiced Liptauer cheese spread, fresh farmhouse bread, and delicate sweet pastries while down in the valley the Danube glitters in the evening sun. Nobody asks for special treatment — this year the young vintage simply tastes great to everyone.",
+          "segments": [
+            { "surface": "Am", "meaning": "at the" },
+            { "surface": " " },
+            { "surface": "Buffet", "meaning": "Heuriger deli buffet" },
+            { "surface": " " },
+            { "surface": "holen", "meaning": "fetch / get" },
+            { "surface": " " },
+            { "surface": "wir", "meaning": "we" },
+            { "surface": " " },
+            { "surface": "uns", "meaning": "for ourselves" },
+            { "surface": " " },
+            { "surface": "Liptauer", "meaning": "paprika-spiced curd cheese spread", "regionalNote": "Classic Viennese Heuriger spread." },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "frisches", "meaning": "fresh" },
+            { "surface": " " },
+            {
+              "surface": "Bauernbrot",
+              "meaning": "sourdough farmhouse bread",
+              "compoundParts": ["Bauern", "brot"]
+            },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "feine", "meaning": "fine / delicate" },
+            { "surface": " " },
+            {
+              "surface": "Mehlspeisen",
+              "meaning": "sweet Austrian pastries",
+              "compoundParts": ["Mehl", "speisen"]
+            },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "während", "meaning": "while" },
+            { "surface": " " },
+            { "surface": "unten", "meaning": "down below" },
+            { "surface": " " },
+            { "surface": "im", "meaning": "in the" },
+            { "surface": " " },
+            { "surface": "Tal", "meaning": "valley" },
+            { "surface": " " },
+            { "surface": "die", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "Donau", "meaning": "Danube River" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "in" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            {
+              "surface": "Abendsonne",
+              "meaning": "evening sun",
+              "compoundParts": ["Abend", "sonne"]
+            },
+            { "surface": " " },
+            { "surface": "glitzert", "meaning": "glitters" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Niemand", "meaning": "nobody" },
+            { "surface": " " },
+            { "surface": "verlangt", "meaning": "demands" },
+            { "surface": " " },
+            { "surface": "eine", "meaning": "an" },
+            { "surface": " " },
+            {
+              "surface": "Extrawurst",
+              "meaning": "special treatment (lit. special sausage)",
+              "compoundParts": ["Extra", "wurst"]
+            },
+            { "surface": " " },
+            { "surface": "—" },
+            { "surface": " " },
+            { "surface": "heuer", "meaning": "this year", "regionalNote": "AT: heuer · DE: dieses Jahr." },
+            { "surface": " " },
+            { "surface": "schmeckt", "meaning": "tastes good" },
+            { "surface": " " },
+            { "surface": "der", "meaning": "the" },
+            { "surface": " " },
+            { "surface": "junge", "meaning": "young" },
+            { "surface": " " },
+            {
+              "surface": "Jahrgang",
+              "meaning": "wine vintage",
+              "compoundParts": ["Jahr", "gang"]
+            },
+            { "surface": " " },
+            { "surface": "einfach", "meaning": "simply" },
+            { "surface": " " },
+            { "surface": "allen", "meaning": "to everyone (dative)" },
+            { "surface": "." }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u003-t4-story-01-q1",
+          "question": "What happens at the neighborhood bakery right after it opens at 7:00 AM ('aufgesperrt')?",
+          "options": [
+            "Nobody arrives until noon",
+            "The Kaisersemmeln and Marillenkrapfen sell out rapidly ('gehen weg wie die warmen Semmeln')",
+            "They serve roast pork and wine",
+            "The baker closes for vacation"
+          ],
+          "correctIndex": 1,
+          "explanation": "Paragraph 1 uses the idiom 'gehen ... weg wie die warmen Semmeln' ('sell like hotcakes')."
+        },
+        {
+          "id": "de-u003-t4-story-01-q2",
+          "question": "What does the narrator mean by saying the cousin had to 'seinen Kren zu unserer Routenwahl dazugeben'?",
+          "options": [
+            "He brought freshly grated horseradish in his backpack",
+            "He felt compelled to add his unsolicited opinion about their choice of route",
+            "He paid for everyone's train tickets",
+            "He got lost in the valley"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Seinen Kren dazugeben' (AT) / 'seinen Senf dazugeben' (DE) means to chime in with one's unsolicited two cents."
+        },
+        {
+          "id": "de-u003-t4-story-01-q3",
+          "question": "What traditional sign outside the Heuriger tells the hikers that the wine tavern is open?",
+          "options": [
+            "A flashing orange SEV sign",
+            "A green pine bough ('den grünen Buschen')",
+            "A red ticket machine",
+            "A velvet rope"
+          ],
+          "correctIndex": 1,
+          "explanation": "In Austrian Heuriger tradition, hanging out a green pine bough ('der grüne Buschen') signals that the vintner's tavern is open."
+        }
+      ]
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "de-ref-culinary-idioms",
+      "category": "idioms-register",
+      "language": "de",
+      "tier": "fluent",
+      "title": "Austrian & German Culinary Idioms",
+      "subtitle": "High-frequency C1 idioms drawn from bakeries, sausages, butter, and wine taverns",
+      "rows": [
+        {
+          "id": "de-ref-ci-row-01",
+          "term": "weggehen wie die warmen Semmeln",
+          "readingOrSubtle": "Pan-German idiom using Austrian/southern Semmel",
+          "meaning": "To sell like hotcakes",
+          "exampleNative": "Die Wohnungen im Neubau sind weggegangen wie die warmen Semmeln.",
+          "exampleTranslation": "The apartments in the new building sold like hotcakes.",
+          "notes": "Even speakers in Hamburg who say Brötchen at the bakery use 'warme Semmeln' in this idiom!"
+        },
+        {
+          "id": "de-ref-ci-row-02",
+          "term": "seinen Kren (AT) / seinen Senf (DE) dazugeben",
+          "readingOrSubtle": "Kren = horseradish · Senf = mustard",
+          "meaning": "To put in one's (unsolicited) two cents",
+          "exampleNative": "Musst du wirklich zu allem deinen Senf dazugeben?",
+          "exampleTranslation": "Do you really have to put your two cents into everything?",
+          "notes": "Playful or mildly exasperated in tone."
+        },
+        {
+          "id": "de-ref-ci-row-03",
+          "term": "eine Extrawurst verlangen / bekommen",
+          "readingOrSubtle": "Literally 'a special sausage'",
+          "meaning": "To demand / receive special treatment",
+          "exampleNative": "Für ihn wird heute keine Extrawurst gebraten!",
+          "exampleTranslation": "No special exceptions are being made for him today!",
+          "notes": "Remember: at an Austrian deli counter, 'die Extrawurst' is also a literal mild cold-cut sausage."
+        },
+        {
+          "id": "de-ref-ci-row-04",
+          "term": "alles in Butter sein",
+          "readingOrSubtle": "Colloquial reassurance",
+          "meaning": "Everything is fine / shipshape",
+          "exampleNative": "Wir haben das Missverständnis geklärt — jetzt ist wieder alles in Butter.",
+          "exampleTranslation": "We cleared up the misunderstanding — everything is fine again now.",
+          "notes": "Originates from medieval merchants pouring melted butter around fragile Venetian glassware in transit crates so nothing broke!"
+        },
+        {
+          "id": "de-ref-ci-row-05",
+          "term": "das ist nicht mein Bier",
+          "readingOrSubtle": "Colloquial boundary phrase",
+          "meaning": "That's none of my business / not my problem",
+          "exampleNative": "Wie die andere Abteilung das löst, ist ehrlich gesagt nicht mein Bier.",
+          "exampleTranslation": "How the other department solves that is frankly not my problem.",
+          "notes": "Informal; in formal meetings say 'Das fällt nicht in meinen Zuständigkeitsbereich'."
+        }
+      ]
+    }
+  ]
+}

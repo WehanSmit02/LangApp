@@ -1,0 +1,485 @@
+{
+  "shardId": "de-unit-001-tier-3-conversational",
+  "unitId": "de-unit-001",
+  "language": "de",
+  "tier": "conversational",
+  "tierNumber": 3,
+  "focusSummary": "Unscripted café & Beisl socializing, spoken Perfekt past storytelling (sein vs. haben auxiliaries), and everyday Austrian conversational flavor (eh, leiwand, plaudern).",
+  "introducedLexiconIds": [
+    "de-u001-t3-lex-plaudern",
+    "de-u001-t3-lex-stammtisch",
+    "de-u001-t3-lex-feierabend",
+    "de-u001-t3-lex-leiwand",
+    "de-u001-t3-lex-eh-partikel"
+  ],
+  "introducedRoots": [
+    "Stamm",
+    "Tisch",
+    "Feier",
+    "Abend",
+    "Wirts",
+    "Nach",
+    "Speise"
+  ],
+  "introducedGrammarIds": [
+    "de-u001-t3-gram-perfekt-sein-vs-haben",
+    "de-u001-t3-gram-austrian-modal-particles"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u001-t3-step-01",
+      "tier": "conversational",
+      "heading": "Spoken Past Storytelling: Perfekt with sein vs. haben",
+      "explanation": "In spoken German—especially in Austria and southern Germany—almost all past storytelling uses the Perfekt tense (auxiliary + past participle at the very end of the clause). Movement from A to B uses sein ('Wir sind ins Beisl gegangen'), while most other actions use haben ('Wir haben lange geplaudert').",
+      "scenarioPrompt": "Over morning coffee, a colleague asks what you did after work yesterday evening.",
+      "nativeText": "Nach dem Feierabend sind wir noch gemütlich ins Beisl gegangen und haben bis zehn Uhr geplaudert.",
+      "translation": "After finishing work for the day, we went cozily to the neighborhood bistro and chatted until ten o'clock.",
+      "literalBreakdown": "Nach dem Feier·abend (after work-end) · sind wir ... gegangen (are we ... gone = we went) · und haben ... geplaudert (and have ... chatted)",
+      "standardGermanVariant": {
+        "nativeText": "Nach dem Feierabend sind wir noch gemütlich ins Wirtshaus gegangen und haben uns bis zehn Uhr unterhalten.",
+        "note": "Standard German prefers ins Wirtshaus / in die Kneipe and sich unterhalten or quatschen instead of Austrian plaudern / tratschen."
+      },
+      "compoundParts": [
+        "Feier",
+        "abend"
+      ],
+      "usageTip": "In Austria, even standing, sitting, and lying take sein in the Perfekt: 'Wir sind draußen gesessen' (AT) vs. 'Wir haben draußen gesessen' (northern DE)!"
+    },
+    {
+      "id": "de-u001-t3-step-02",
+      "tier": "conversational",
+      "heading": "Austrian Ear-Tuning: eh, gemütlich & leiwand",
+      "explanation": "Two tiny words make spoken Viennese feel warm and effortless: the modal particle eh ('anyway / as we both know', DE: sowieso / ja) reassures the listener, and leiwand (originally from canvas linen sold at medieval beer taverns!) means 'awesome / wonderful'.",
+      "scenarioPrompt": "Your friend apologizes for arriving five minutes late to your Stammtisch (regulars' table) at the Beisl.",
+      "nativeText": "Kein Stress, wir sind eh erst gerade gekommen — die Stimmung hier im Beisl ist ur leiwand!",
+      "translation": "No stress, we only just got here anyway — the atmosphere here in the bistro is super awesome!",
+      "literalBreakdown": "Kein Stress (no stress) · wir sind eh erst gerade gekommen (we arrived anyway only just now) · ur leiwand (super awesome [Viennese])",
+      "standardGermanVariant": {
+        "nativeText": "Kein Stress, wir sind sowieso erst gerade gekommen — die Stimmung hier ist total klasse!",
+        "note": "Standard German uses sowieso instead of eh, and total klasse / super / toll instead of Viennese ur leiwand."
+      },
+      "usageTip": "Eh is polite and ubiquitous across all Austrian age groups ('Das passt eh!' = 'That works totally fine!'); ur leiwand is casual and upbeat among friends."
+    },
+    {
+      "id": "de-u001-t3-step-03",
+      "tier": "conversational",
+      "heading": "Inviting Someone Along & Moving from 'Sie' to 'du'",
+      "explanation": "Making friends over coffee or at a Stammtisch often involves extending a low-pressure invitation ('Hast du Lust, mitzukommen?') or offering the informal 'du' ('Wollen wir uns nicht duzen? — Ich bin die Hannah!').",
+      "scenarioPrompt": "You're hitting it off with a new neighbor in Vienna and invite them to join your Friday regulars' table.",
+      "nativeText": "Wir treffen uns am Freitag am Stammtisch im Beisl ums Eck — magst du vielleicht mitkommen?",
+      "translation": "We're meeting on Friday at the regulars' table in the bistro around the corner — would you maybe like to come along?",
+      "literalBreakdown": "Wir treffen uns (we meet each other) · am Stamm·tisch (at the regulars'-table) · ums Eck (around the corner) · magst du (would you like [AT]) · mitkommen (to come along)",
+      "standardGermanVariant": {
+        "nativeText": "Wir treffen uns am Freitag am Stammtisch im Wirtshaus um die Ecke — möchtest du vielleicht mitkommen?",
+        "note": "Austrians very frequently use 'magst du + infinitive?' where northern Germans say 'möchtest du / hast du Lust?' and 'ums Eck' where DE says 'um die Ecke'."
+      },
+      "compoundParts": [
+        "Stamm",
+        "tisch"
+      ],
+      "usageTip": "Notice how Austrian 'ich bin die Hannah / der Lukas' affectionately adds the definite article before first names in spoken conversation!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u001-t3-drill-01",
+      "tier": "conversational",
+      "prompt": "Tell a friend in the Perfekt tense that you and Clara went to the neighborhood bistro yesterday evening.",
+      "baseSentence": "Wir gehen ins Beisl.",
+      "cue": "Perfekt past of motion verb gehen (uses sein!)",
+      "options": [
+        "Wir sind gestern Abend ins Beisl gegangen.",
+        "Wir haben gestern Abend ins Beisl gegangen.",
+        "Wir sind gestern Abend gegangen ins Beisl.",
+        "Wir gehen gestern Abend ins Beisl sein."
+      ],
+      "correctAnswer": "Wir sind gestern Abend ins Beisl gegangen.",
+      "standardGermanAnswer": "Wir sind gestern Abend ins Wirtshaus gegangen.",
+      "explanation": "Motion verbs like gehen form the Perfekt with sein ('wir sind'), and the past participle gegangen locks into the final position of the main clause."
+    },
+    {
+      "id": "de-u001-t3-drill-02",
+      "tier": "conversational",
+      "prompt": "A friend worries that choosing a small neighborhood Beisl won't be fancy enough. Reassure them warmly like a Viennese local!",
+      "cue": "Use 'eh' (anyway/totally) and 'leiwand' (awesome/great)",
+      "options": [
+        "Das passt eh super — das kleine Beisl ums Eck ist total leiwand!",
+        "Zahlen Sie bitte sofort mit Bankomatkarte!",
+        "Auf Wiederhören am Fahrkartenautomat!",
+        "Ist dieser Fensterplatz gestern gegangen?"
+      ],
+      "correctAnswer": "Das passt eh super — das kleine Beisl ums Eck ist total leiwand!",
+      "standardGermanAnswer": "Das passt sowieso super — das kleine Wirtshaus um die Ecke ist total klasse!",
+      "explanation": "'Das passt eh!' ('That's totally fine anyway!') plus 'leiwand' ('great/awesome') is quintessential warm Viennese reassurance."
+    },
+    {
+      "id": "de-u001-t3-drill-03",
+      "tier": "conversational",
+      "prompt": "How do Austrians typically express 'We sat outside in the garden' in the spoken Perfekt?",
+      "baseSentence": "Wir sitzen draußen im Gastgarten.",
+      "cue": "Austrian/Southern German Perfekt of sitzen (uses sein!)",
+      "options": [
+        "Wir sind draußen im Gastgarten gesessen.",
+        "Wir werden draußen im Gastgarten sitzen.",
+        "Wir sind draußen gesessen im Gastgarten gestern haben.",
+        "Wir sitzen draußen gesessen."
+      ],
+      "correctAnswer": "Wir sind draußen im Gastgarten gesessen.",
+      "acceptedVariants": [
+        "Wir haben draußen im Biergarten gesessen."
+      ],
+      "standardGermanAnswer": "Wir haben draußen im Biergarten gesessen.",
+      "explanation": "In Austrian Standard German (Österreichisches Deutsch), posture verbs (sitzen, stehen, liegen) take sein in the Perfekt ('sind gesessen'), whereas northern Standard German uses haben ('haben gesessen')."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u001-t3-srs-01",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "frontPrompt": "Say in the past (Perfekt): 'Yesterday evening we went to the neighborhood bistro.'",
+      "targetText": "Wir sind gestern Abend ins Beisl gegangen.",
+      "contextSentence": "Wir sind gestern Abend ins Beisl gegangen und haben dort Freunde getroffen.",
+      "contextTranslation": "Yesterday evening we went to the bistro and met friends there.",
+      "austrianNote": "Beisl is Austrian; Perfekt of gehen uses sein in both AT and DE.",
+      "standardGermanText": "Wir sind gestern Abend ins Wirtshaus gegangen.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u001-t3-srs-02",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "frontPrompt": "Reassure a friend casually: 'No problem, that works totally fine anyway!'",
+      "targetText": "Kein Problem, das passt eh!",
+      "contextSentence": "Kommst du zehn Minuten später? Kein Problem, das passt eh!",
+      "contextTranslation": "Coming ten minutes late? No problem, that's totally fine anyway!",
+      "austrianNote": "Das passt eh! is one of the highest-frequency conversational phrases in Austria.",
+      "standardGermanText": "Kein Problem, das passt sowieso!",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u001-t3-srs-03",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "frontPrompt": "Invite a friend casually: 'Would you like to come along to the coffeehouse?'",
+      "targetText": "Magst du mit ins Kaffeehaus kommen?",
+      "contextSentence": "Servus! Ich hole mir noch einen Verlängerten — magst du mit ins Kaffeehaus kommen?",
+      "contextTranslation": "Hi! I'm grabbing a lengthened espresso — would you like to come along to the coffeehouse?",
+      "austrianNote": "Magst du + infinitive is the natural Austrian invitation frame.",
+      "standardGermanText": "Möchtest du mit ins Café kommen?",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u001-t3-srs-04",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "frontPrompt": "Say: 'We sat outside for a long time and chatted.' (Austrian Perfekt)",
+      "targetText": "Wir sind lange draußen gesessen und haben geplaudert.",
+      "contextSentence": "Der Abend war mild, also sind wir lange draußen gesessen und haben geplaudert.",
+      "contextTranslation": "The evening was mild, so we sat outside for a long time and chatted.",
+      "austrianNote": "Austrian Standard German uses 'sind gesessen' (DE: 'haben gesessen') and 'plaudern' (DE: 'sich unterhalten').",
+      "standardGermanText": "Wir haben lange draußen gesessen und uns unterhalten.",
+      "phraseLockEligible": true
+    },
+    {
+      "id": "de-u001-t3-srs-05",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "frontPrompt": "Regulars' table at a pub or café",
+      "targetText": "Stammtisch",
+      "reading": "der Stammtisch",
+      "compoundParts": [
+        "Stamm",
+        "tisch"
+      ],
+      "contextSentence": "Jeden Donnerstag treffen sich unsere Nachbarn am Stammtisch.",
+      "contextTranslation": "Every Thursday our neighbors meet at the regulars' table.",
+      "phraseLockEligible": false
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u001-t3-story-01",
+      "unitId": "de-unit-001",
+      "language": "de",
+      "tier": "conversational",
+      "title": "Feierabend am Stammtisch",
+      "titleTranslation": "After-Work Evening at the Regulars' Table",
+      "setting": "Saturday morning phone catch-up in Graz recounting Friday night at a neighborhood Beisl",
+      "paragraphs": [
+        {
+          "nativeText": "„Servus, Hannah! Wie war euer Freitagabend?“, fragt Moritz beim Frühstück im Kaffeehaus. Hannah lacht: „Ur leiwand! Nach dem Feierabend sind wir zu viert in unser kleines Beisl ums Eck gegangen.“",
+          "translation": "'Hi, Hannah! How was your Friday evening?' Moritz asks over breakfast in the coffeehouse. Hannah laughs: 'Super awesome! After finishing work, the four of us went to our little bistro around the corner.'",
+          "segments": [
+            { "surface": "„" },
+            { "surface": "Servus", "meaning": "hi (informal)", "regionalNote": "AT/Bavarian informal greeting." },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "Hannah", "meaning": "Hannah" },
+            { "surface": "!" },
+            { "surface": " " },
+            { "surface": "Wie", "meaning": "how" },
+            { "surface": " " },
+            { "surface": "war", "meaning": "was" },
+            { "surface": " " },
+            { "surface": "euer", "meaning": "your (plural)" },
+            { "surface": " " },
+            {
+              "surface": "Freitagabend",
+              "meaning": "Friday evening",
+              "compoundParts": ["Freitag", "abend"]
+            },
+            { "surface": "?" },
+            { "surface": "“" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "fragt", "meaning": "asks" },
+            { "surface": " " },
+            { "surface": "Moritz", "meaning": "Moritz" },
+            { "surface": " " },
+            { "surface": "beim", "meaning": "at / during the" },
+            { "surface": " " },
+            {
+              "surface": "Frühstück",
+              "meaning": "breakfast",
+              "compoundParts": ["Früh", "stück"]
+            },
+            { "surface": " " },
+            { "surface": "im", "meaning": "in the" },
+            { "surface": " " },
+            {
+              "surface": "Kaffeehaus",
+              "meaning": "coffeehouse",
+              "compoundParts": ["Kaffee", "haus"]
+            },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "Hannah", "meaning": "Hannah" },
+            { "surface": " " },
+            { "surface": "lacht", "meaning": "laughs" },
+            { "surface": ":" },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Ur", "meaning": "super / really (Viennese)", "regionalNote": "Informal Austrian intensifier." },
+            { "surface": " " },
+            { "surface": "leiwand", "meaning": "awesome / great", "regionalNote": "Iconic Austrian adjective; DE: klasse / super." },
+            { "surface": "!" },
+            { "surface": " " },
+            { "surface": "Nach", "meaning": "after" },
+            { "surface": " " },
+            { "surface": "dem", "meaning": "the (dative)" },
+            { "surface": " " },
+            {
+              "surface": "Feierabend",
+              "meaning": "end of the workday",
+              "compoundParts": ["Feier", "abend"]
+            },
+            { "surface": " " },
+            { "surface": "sind", "meaning": "are (Perfekt aux. for gehen)" },
+            { "surface": " " },
+            { "surface": "wir", "meaning": "we" },
+            { "surface": " " },
+            { "surface": "zu", "meaning": "in a group of" },
+            { "surface": " " },
+            { "surface": "viert", "meaning": "four (zu viert = four of us)" },
+            { "surface": " " },
+            { "surface": "in", "meaning": "into" },
+            { "surface": " " },
+            { "surface": "unser", "meaning": "our" },
+            { "surface": " " },
+            { "surface": "kleines", "meaning": "little" },
+            { "surface": " " },
+            { "surface": "Beisl", "meaning": "neighborhood bistro-pub", "regionalNote": "AT: Beisl · DE: Wirtshaus." },
+            { "surface": " " },
+            { "surface": "ums", "meaning": "around the" },
+            { "surface": " " },
+            { "surface": "Eck", "meaning": "corner (ums Eck = around the corner)", "regionalNote": "AT: ums Eck · DE: um die Ecke." },
+            { "surface": " " },
+            { "surface": "gegangen", "meaning": "gone / went" },
+            { "surface": "." },
+            { "surface": "“" }
+          ]
+        },
+        {
+          "nativeText": "„Unser Stammtisch im Gastgarten war eh schon reserviert“, erzählt sie weiter. „Wir sind den ganzen Abend draußen gesessen und haben über unsere Sommerpläne geplaudert.“",
+          "translation": "'Our regulars' table in the outdoor garden was already reserved anyway,' she continues. 'We sat outside all evening and chatted about our summer plans.'",
+          "segments": [
+            { "surface": "„" },
+            { "surface": "Unser", "meaning": "our" },
+            { "surface": " " },
+            {
+              "surface": "Stammtisch",
+              "meaning": "regulars' table",
+              "compoundParts": ["Stamm", "tisch"]
+            },
+            { "surface": " " },
+            { "surface": "im", "meaning": "in the" },
+            { "surface": " " },
+            {
+              "surface": "Gastgarten",
+              "meaning": "outdoor restaurant patio / beer garden",
+              "compoundParts": ["Gast", "garten"],
+              "regionalNote": "AT: Gastgarten / Schanigarten · DE: Biergarten."
+            },
+            { "surface": " " },
+            { "surface": "war", "meaning": "was" },
+            { "surface": " " },
+            { "surface": "eh", "meaning": "anyway / already", "regionalNote": "High-frequency AT modal particle; DE: sowieso." },
+            { "surface": " " },
+            { "surface": "schon", "meaning": "already" },
+            { "surface": " " },
+            { "surface": "reserviert", "meaning": "reserved" },
+            { "surface": "“" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "erzählt", "meaning": "tells / recounts" },
+            { "surface": " " },
+            { "surface": "sie", "meaning": "she" },
+            { "surface": " " },
+            { "surface": "weiter", "meaning": "further / on" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Wir", "meaning": "we" },
+            { "surface": " " },
+            { "surface": "sind", "meaning": "are (AT Perfekt aux. for sitzen)" },
+            { "surface": " " },
+            { "surface": "den", "meaning": "the (acc. duration)" },
+            { "surface": " " },
+            { "surface": "ganzen", "meaning": "whole / entire" },
+            { "surface": " " },
+            { "surface": "Abend", "meaning": "evening" },
+            { "surface": " " },
+            { "surface": "draußen", "meaning": "outside" },
+            { "surface": " " },
+            { "surface": "gesessen", "meaning": "sat (sind gesessen in AT)", "regionalNote": "AT uses sein with sitzen; northern DE uses haben." },
+            { "surface": " " },
+            { "surface": "und", "meaning": "and" },
+            { "surface": " " },
+            { "surface": "haben", "meaning": "have (Perfekt aux.)" },
+            { "surface": " " },
+            { "surface": "über", "meaning": "about" },
+            { "surface": " " },
+            { "surface": "unsere", "meaning": "our" },
+            { "surface": " " },
+            {
+              "surface": "Sommerpläne",
+              "meaning": "summer plans",
+              "compoundParts": ["Sommer", "pläne"]
+            },
+            { "surface": " " },
+            { "surface": "geplaudert", "meaning": "chatted", "regionalNote": "AT favorite verb for relaxed chatting." },
+            { "surface": "." },
+            { "surface": "“" }
+          ]
+        },
+        {
+          "nativeText": "Zum Schluss haben alle noch eine warme Nachspeise mit Schlagobers geteilt. „Nächste Woche musst du unbedingt mitkommen!“, sagt Hannah zu Moritz.",
+          "translation": "At the end everyone shared a warm dessert with whipped cream. 'Next week you definitely have to come along!' Hannah says to Moritz.",
+          "segments": [
+            { "surface": "Zum", "meaning": "at the" },
+            { "surface": " " },
+            { "surface": "Schluss", "meaning": "end / conclusion" },
+            { "surface": " " },
+            { "surface": "haben", "meaning": "have" },
+            { "surface": " " },
+            { "surface": "alle", "meaning": "everyone / all" },
+            { "surface": " " },
+            { "surface": "noch", "meaning": "still / also" },
+            { "surface": " " },
+            { "surface": "eine", "meaning": "a" },
+            { "surface": " " },
+            { "surface": "warme", "meaning": "warm" },
+            { "surface": " " },
+            {
+              "surface": "Nachspeise",
+              "meaning": "dessert",
+              "compoundParts": ["Nach", "speise"],
+              "regionalNote": "AT standard for dessert; DE often says Nachtisch or Dessert."
+            },
+            { "surface": " " },
+            { "surface": "mit", "meaning": "with" },
+            { "surface": " " },
+            {
+              "surface": "Schlagobers",
+              "meaning": "whipped cream",
+              "compoundParts": ["Schlag", "obers"]
+            },
+            { "surface": " " },
+            { "surface": "geteilt", "meaning": "shared" },
+            { "surface": "." },
+            { "surface": " " },
+            { "surface": "„" },
+            { "surface": "Nächste", "meaning": "next" },
+            { "surface": " " },
+            { "surface": "Woche", "meaning": "week" },
+            { "surface": " " },
+            { "surface": "musst", "meaning": "must / have to" },
+            { "surface": " " },
+            { "surface": "du", "meaning": "you (informal)" },
+            { "surface": " " },
+            { "surface": "unbedingt", "meaning": "definitely / by all means" },
+            { "surface": " " },
+            { "surface": "mitkommen", "meaning": "come along", "compoundParts": ["mit", "kommen"] },
+            { "surface": "!" },
+            { "surface": "“" },
+            { "surface": "," },
+            { "surface": " " },
+            { "surface": "sagt", "meaning": "says" },
+            { "surface": " " },
+            { "surface": "Hannah", "meaning": "Hannah" },
+            { "surface": " " },
+            { "surface": "zu", "meaning": "to" },
+            { "surface": " " },
+            { "surface": "Moritz", "meaning": "Moritz" },
+            { "surface": "." }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u001-t3-story-01-q1",
+          "question": "Where did Hannah and her friends sit on Friday night?",
+          "options": [
+            "At their reserved regulars' table in the Beisl's outdoor garden (im Gastgarten)",
+            "Inside a noisy train station waiting hall",
+            "At Moritz's office desk",
+            "On a mountain ski lift"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hannah says their Stammtisch in the Gastgarten was already reserved and 'Wir sind den ganzen Abend draußen gesessen'."
+        },
+        {
+          "id": "de-u001-t3-story-01-q2",
+          "question": "What does Hannah mean when she describes the evening as 'Ur leiwand!'?",
+          "options": [
+            "Too expensive and crowded",
+            "Super awesome / really great",
+            "Canceled because of rain",
+            "Very formal and quiet"
+          ],
+          "correctIndex": 1,
+          "explanation": "'Ur leiwand!' is enthusiastic Austrian colloquial praise meaning 'super awesome / really great!'."
+        },
+        {
+          "id": "de-u001-t3-story-01-q3",
+          "question": "What did the group share at the end of the evening?",
+          "options": [
+            "A taxi receipt",
+            "Four cold espressos",
+            "A warm dessert (Nachspeise) with whipped cream",
+            "A newspaper"
+          ],
+          "correctIndex": 2,
+          "explanation": "Paragraph 3 notes: 'Zum Schluss haben alle noch eine warme Nachspeise mit Schlagobers geteilt.'"
+        }
+      ]
+    }
+  ],
+  "referenceSheets": []
+}
