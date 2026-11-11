@@ -1,0 +1,1059 @@
+{
+  "shardId": "de-unit-002-tier-4-fluent",
+  "unitId": "de-unit-002",
+  "tier": "fluent",
+  "tierNumber": 4,
+  "focusSummary": "Decoding formal ÖBB & DB loudspeaker announcements (Lautsprecherdurchsagen), genitive prepositions (aufgrund, infolge), nominalized officialese, and extended participial modifiers.",
+  "introducedLexiconIds": [
+    "de-u002-t4-lex-aufgrund-genitiv",
+    "de-u002-t4-lex-betriebsablauf",
+    "de-u002-t4-lex-wir-bitten-um-verstaendnis",
+    "de-u002-t4-lex-wagenreihung",
+    "de-u002-t4-lex-fahrgastrechte"
+  ],
+  "introducedGrammarIds": [
+    "de-u002-t4-gram-extended-participial-attributes",
+    "de-u002-t4-gram-genitive-prepositions-official-register"
+  ],
+  "courseId": "de",
+  "introducedOrthography": [
+    "Betrieb",
+    "Ablauf",
+    "Lautsprecher",
+    "Durchsage",
+    "Ruhe",
+    "Zone"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u002-t4-step-01",
+      "tier": "fluent",
+      "heading": "Cracking Rail Officialese: aufgrund + Genitive & Betriebsablauf",
+      "explanation": "Loudspeaker announcements (Lautsprecherdurchsagen) pack dense information into formal genitive prepositions—aufgrund ('on the basis of / due to'), infolge ('as a result of'), während ('during')—and institutional nouns like eine Verzögerung im Betriebsablauf ('an operational delay').",
+      "scenarioPrompt": "A chime echoes across Linz Hauptbahnhof followed by a rapid-fire formal announcement.",
+      "nativeText": "Achtung auf Bahnsteig 6: Aufgrund einer Verzögerung im Betriebsablauf fährt der Railjet Xpress nach Zürich heute voraussichtlich zwanzig Minuten später ab.",
+      "translation": "Attention on Platform 6: Due to an operational delay, the Railjet Xpress to Zurich is expected to depart twenty minutes later today.",
+      "literalBreakdown": "Aufgrund (due to [+ genitive]) · einer Verzögerung (a delay [fem. gen.]) · im Betriebs·ablauf (in the operations-flow) · voraussichtlich (expectedly / est.)",
+      "compoundParts": [
+        "Betriebs",
+        "ablauf"
+      ],
+      "usageTip": "Key C1 listening anchor: whenever you hear 'voraussichtlich' ('presumably / estimated'), the number right after it is your updated delay or new departure time!",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Achtung auf Bahnsteig 6: Aufgrund einer Verzögerung im Betriebsablauf fährt der Railjet Xpress nach Zürich heute voraussichtlich zwanzig Minuten später ab."
+        },
+        "de-DE": {
+          "nativeText": "Information zu ICE 612 nach Köln an Gleis 6: Aufgrund einer Verzögerung im Betriebsablauf fährt der Zug heute voraussichtlich zwanzig Minuten später ab.",
+          "note": "DB announcements open with 'Information zu [Zug] an Gleis X', using the exact same 'aufgrund einer Verzögerung im Betriebsablauf' formula."
+        }
+      },
+      "regionalNote": "DE: Information zu ICE 612 nach Köln an Gleis 6: Aufgrund einer Verzögerung im Betriebsablauf fährt der Zug heute voraussichtlich zwanzig Minuten später ab. (DB announcements open with 'Information zu [Zug] an Gleis X', using the exact same 'aufgrund einer Verzögerung im Betriebsablauf' formula.)"
+    },
+    {
+      "id": "de-u002-t4-step-02",
+      "tier": "fluent",
+      "heading": "Unpacking Extended Participial Phrases Left of the Noun",
+      "explanation": "Formal German loves tucking an entire relative clause between the article ('der') and its noun ('Zug') using a present (-end-) or past participle: 'der planmäßig um 15:08 Uhr von Bahnsteig 4 abfahrende Zug' = 'the train [that is] scheduled to depart at 15:08 from Platform 4'.",
+      "scenarioPrompt": "An announcement redirects passengers for a specific scheduled train to an opposite platform.",
+      "nativeText": "Die Reisenden für den planmäßig um 15:08 Uhr nach Bregenz abfahrenden Zug werden gebeten, heute auf Bahnsteig 9 gegenüber einzusteigen.",
+      "translation": "Passengers for the train scheduled to depart for Bregenz at 3:08 PM are requested to board today on Platform 9 directly opposite.",
+      "literalBreakdown": "den [planmäßig um 15:08 Uhr nach Bregenz abfahrenden] Zug (the [scheduled at 15:08 to Bregenz departing] train) · werden gebeten (are requested [passive])",
+      "usageTip": "Listening strategy: when you hear an article ('den') followed by a time or adverb ('planmäßig um...'), hold 'den' in working memory until the participle + noun ('abfahrenden Zug') snaps the bracket shut!"
+    },
+    {
+      "id": "de-u002-t4-step-03",
+      "tier": "fluent",
+      "heading": "Reversed Coach Order & Passenger Rights: umgekehrte Wagenreihung",
+      "explanation": "Two final C1 survival announcements save you a 400-meter sprint down the platform: 'heute in umgekehrter Wagenreihung' ('today in reversed coach order'—meaning first class and sector A/E have swapped ends!) and 'Wir bitten um Ihr Verständnis' ('We ask for your understanding / apologize for the inconvenience').",
+      "scenarioPrompt": "Before your train pulls in, the display updates the sector chart and closes politely.",
+      "nativeText": "Bitte beachten Sie, dass dieser Zug heute in umgekehrter Wagenreihung geführt wird; die Erste Klasse befindet sich im Sektor E. Wir bitten um Ihr Verständnis.",
+      "translation": "Please note that this train is operating in reversed coach order today; First Class is located in Sector E. Thank you for your understanding.",
+      "literalBreakdown": "in umgekehrter Wagen·reihung (in reversed coach-ordering) · geführt wird (is operated [ÖBB formal]) · Wir bitten um Ihr Verständnis (we ask for your understanding)",
+      "compoundParts": [
+        "Wagen",
+        "reihung"
+      ],
+      "usageTip": "For delays of 60+ minutes in the EU, Fahrgastrechte ('passenger rights') entitle you to 25% compensation (50% from 120 minutes) directly in the ÖBB or DB app.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Bitte beachten Sie, dass dieser Zug heute in umgekehrter Wagenreihung geführt wird; die Erste Klasse befindet sich im Sektor E. Wir bitten um Ihr Verständnis."
+        },
+        "de-DE": {
+          "nativeText": "Bitte beachten Sie: Dieser Zug fährt heute in umgekehrter Wagenreihung; die Erste Klasse befindet sich im Abschnitt E. Wir bitten um Entschuldigung.",
+          "note": "ÖBB favors 'Sektor A–E' and 'wird geführt'; DB uses 'Abschnitt A–F' and recently shifted many delay closings to 'Wir bitten um Entschuldigung'."
+        }
+      },
+      "regionalNote": "DE: Bitte beachten Sie: Dieser Zug fährt heute in umgekehrter Wagenreihung; die Erste Klasse befindet sich im Abschnitt E. Wir bitten um Entschuldigung. (ÖBB favors 'Sektor A–E' and 'wird geführt'; DB uses 'Abschnitt A–F' and recently shifted many delay closings to 'Wir bitten um Entschuldigung'.)"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u002-t4-drill-01",
+      "tier": "fluent",
+      "prompt": "Choose the grammatically accurate genitive phrase after 'aufgrund' in a formal rail announcement: 'Due to a technical malfunction on the train...'",
+      "baseSentence": "eine technische Störung am Zug (feminine)",
+      "cue": "aufgrund + feminine genitive (einer -en)",
+      "options": [
+        "Aufgrund einer technischen Störung am Zug verzögert sich die Weiterfahrt.",
+        "Aufgrund einen technischen Störung am Zug verzögert sich die Weiterfahrt.",
+        "Aufgrund eine technische Störung verzögern der Zug.",
+        "Aufgrund dem technisches Störung fahren wir ab."
+      ],
+      "correctAnswer": "Aufgrund einer technischen Störung am Zug verzögert sich die Weiterfahrt.",
+      "explanation": "Aufgrund governs the genitive case; feminine singular 'eine technische Störung' becomes 'einer technischen Störung'."
+    },
+    {
+      "id": "de-u002-t4-drill-02",
+      "tier": "fluent",
+      "prompt": "Unpack this extended participial phrase: 'der aus Richtung Wien ankommende Zug'. Which relative clause means the exact same thing?",
+      "cue": "ankommend- (present participle = ongoing/active arrival)",
+      "options": [
+        "der Zug, der aus Richtung Wien ankommt",
+        "der Zug, der gestern nach Wien abgefahren war",
+        "die Richtung, die keinen Zug mehr hat",
+        "der Fahrgast, der in Wien aussteigt"
+      ],
+      "correctAnswer": "der Zug, der aus Richtung Wien ankommt",
+      "explanation": "The present participle 'ankommende' modifies 'der Zug', embedding 'aus Richtung Wien' inside the article-noun bracket—equivalent to 'der Zug, der aus Richtung Wien ankommt'."
+    },
+    {
+      "id": "de-u002-t4-drill-03",
+      "tier": "fluent",
+      "prompt": "You are standing in Sector A because the poster shows Coach 26 stops in Sector A. Suddenly the loudspeaker announces 'heute in umgekehrter Wagenreihung'. What should you do?",
+      "cue": "umgekehrte Wagenreihung = reversed coach sequence",
+      "options": [
+        "Check the overhead digital sector screen and walk toward the opposite end of the platform",
+        "Leave the station and hail a taxi immediately",
+        "Validate your ticket twice at the machine",
+        "Wait in the Kaffeehaus until tomorrow"
+      ],
+      "correctAnswer": "Check the overhead digital sector screen and walk toward the opposite end of the platform",
+      "explanation": "'In umgekehrter Wagenreihung' means the train is entering backward relative to the printed chart, so coaches at the front are now at the rear."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u002-t4-srs-01",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "frontPrompt": "Formal rail phrase: 'due to an operational delay'",
+      "targetText": "aufgrund einer Verzögerung im Betriebsablauf",
+      "contextSentence": "Aufgrund einer Verzögerung im Betriebsablauf fährt dieser Zug heute zehn Minuten später ab.",
+      "contextTranslation": "Due to an operational delay, this train will depart ten minutes later today.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t4-srs-02",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "frontPrompt": "Formal announcement closing: 'We ask for your understanding / Thank you for your patience.'",
+      "targetText": "Wir bitten um Ihr Verständnis.",
+      "contextSentence": "Die Weiterfahrt verzögert sich um wenige Minuten — wir bitten um Ihr Verständnis.",
+      "contextTranslation": "Onward travel is delayed by a few minutes — thank you for your understanding.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t4-srs-03",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "frontPrompt": "Announcement alert: 'This train is operating in reversed coach order today.' (ÖBB style)",
+      "targetText": "Dieser Zug wird heute in umgekehrter Wagenreihung geführt.",
+      "contextSentence": "Bitte beachten Sie: Dieser Zug wird heute in umgekehrter Wagenreihung geführt.",
+      "contextTranslation": "Please note: This train is operating in reversed coach order today.",
+      "phraseLockEligible": true,
+      "courseId": "de",
+      "variantTargets": {
+        "de-AT": "Dieser Zug wird heute in umgekehrter Wagenreihung geführt.",
+        "de-DE": "Dieser Zug fährt heute in umgekehrter Wagenreihung."
+      },
+      "regionalNote": "ÖBB formal style uses 'wird ... geführt'; DB says 'fährt heute in umgekehrter Wagenreihung'."
+    },
+    {
+      "id": "de-u002-t4-srs-04",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "frontPrompt": "Extended participial phrase: 'the train scheduled to depart at 2:12 PM'",
+      "targetText": "der planmäßig um 14:12 Uhr abfahrende Zug",
+      "contextSentence": "Der planmäßig um 14:12 Uhr abfahrende Zug hält heute außerplanmäßig auf Bahnsteig 9.",
+      "contextTranslation": "The train scheduled to depart at 2:12 PM is stopping today on Platform 9 instead.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t4-srs-05",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "frontPrompt": "Rail/transit passenger rights for delay compensation",
+      "targetText": "Fahrgastrechte",
+      "reading": "die Fahrgastrechte (Pl.)",
+      "compoundParts": [
+        "Fahr",
+        "gast",
+        "rechte"
+      ],
+      "contextSentence": "Ab sechzig Minuten Verspätung greifen in der gesamten EU die gesetzlichen Fahrgastrechte.",
+      "contextTranslation": "Starting at sixty minutes' delay, statutory rail passenger rights apply across the entire EU.",
+      "phraseLockEligible": false,
+      "courseId": "de"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u002-t4-story-01",
+      "unitId": "de-unit-002",
+      "tier": "fluent",
+      "title": "Die Kunst, eine Lautsprecherdurchsage zu entschlüsseln",
+      "titleTranslation": "The Art of Decoding a Loudspeaker Announcement",
+      "setting": "Evening rush hour on Platform 6 at Linz Hauptbahnhof",
+      "paragraphs": [
+        {
+          "nativeText": "Auf Bahnsteig 6 in Linz herrscht dichtes Abendgedränge, als plötzlich der vertraute Dreiklang ertönt. Eine kristallklare Lautsprecherdurchsage verkündet: „Aufgrund einer witterungsbedingten Verzögerung im Betriebsablauf wird der planmäßig um 18:14 Uhr nach Zürich fahrende Railjet heute über eine Umleitungsstrecke geführt.“",
+          "translation": "On Platform 6 in Linz there is a dense evening crowd when suddenly the familiar three-note chime rings out. A crystal-clear loudspeaker announcement declares: 'Due to a weather-related operational delay, the Railjet scheduled to depart for Zurich at 6:14 PM is being routed via a diversion line today.'",
+          "segments": [
+            {
+              "surface": "Auf",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Bahnsteig",
+              "meaning": "platform",
+              "compoundParts": [
+                "Bahn",
+                "steig"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "6",
+              "meaning": "six"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "in",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Linz",
+              "meaning": "Linz"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "herrscht",
+              "meaning": "prevails / there is"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "dichtes",
+              "meaning": "dense"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Abendgedränge",
+              "meaning": "evening rush crowd",
+              "compoundParts": [
+                "Abend",
+                "gedränge"
+              ]
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "als",
+              "meaning": "when"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "plötzlich",
+              "meaning": "suddenly"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "vertraute",
+              "meaning": "familiar"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Dreiklang",
+              "meaning": "three-note chime / triad",
+              "compoundParts": [
+                "Drei",
+                "klang"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ertönt",
+              "meaning": "rings out / sounds"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Eine",
+              "meaning": "a"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "kristallklare",
+              "meaning": "crystal-clear",
+              "compoundParts": [
+                "kristall",
+                "klare"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Lautsprecherdurchsage",
+              "meaning": "loudspeaker announcement",
+              "compoundParts": [
+                "Laut",
+                "sprecher",
+                "durch",
+                "sage"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "verkündet",
+              "meaning": "announces / proclaims"
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Aufgrund",
+              "meaning": "due to (+ genitive)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "einer",
+              "meaning": "a (fem. gen.)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "witterungsbedingten",
+              "meaning": "weather-related",
+              "compoundParts": [
+                "witterungs",
+                "bedingten"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Verzögerung",
+              "meaning": "delay"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "im",
+              "meaning": "in the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Betriebsablauf",
+              "meaning": "operational flow",
+              "compoundParts": [
+                "Betriebs",
+                "ablauf"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "wird",
+              "meaning": "is (passive aux.)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "planmäßig",
+              "meaning": "scheduled / according to timetable"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "um",
+              "meaning": "at"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "18:14",
+              "meaning": "6:14 PM"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Uhr",
+              "meaning": "o'clock"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "nach",
+              "meaning": "to"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zürich",
+              "meaning": "Zurich"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fahrende",
+              "meaning": "traveling / running (participle)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Railjet",
+              "meaning": "Railjet"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "heute",
+              "meaning": "today"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "über",
+              "meaning": "via"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "eine",
+              "meaning": "a"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Umleitungsstrecke",
+              "meaning": "diversion route",
+              "compoundParts": [
+                "Umleitungs",
+                "strecke"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "geführt",
+              "meaning": "routed / operated",
+              "regionalNote": "ÖBB formal rail phrasing."
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": "“"
+            }
+          ]
+        },
+        {
+          "nativeText": "Während einige Touristen ratlos auf ihre Smartphones blicken, übersetzt Elena die Meldung gelassen für ihren kanadischen Kollegen: „Keine Sorge — wir müssen weder in den Schienenersatzverkehr wechseln noch neu buchen.“",
+          "translation": "While several tourists stare baffled at their smartphones, Elena calmly translates the announcement for her Canadian colleague: 'Don't worry — we neither have to switch to a rail replacement bus nor rebook.'",
+          "segments": [
+            {
+              "surface": "Während",
+              "meaning": "while"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "einige",
+              "meaning": "several / some"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Touristen",
+              "meaning": "tourists"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ratlos",
+              "meaning": "baffled / at a loss"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "auf",
+              "meaning": "at"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ihre",
+              "meaning": "their"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Smartphones",
+              "meaning": "smartphones"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "blicken",
+              "meaning": "look / gaze"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "übersetzt",
+              "meaning": "translates"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Elena",
+              "meaning": "Elena"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "die",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Meldung",
+              "meaning": "announcement / notice"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "gelassen",
+              "meaning": "calmly / with composure"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "für",
+              "meaning": "for"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ihren",
+              "meaning": "her (acc.)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "kanadischen",
+              "meaning": "Canadian"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Kollegen",
+              "meaning": "colleague"
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Keine",
+              "meaning": "no"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Sorge",
+              "meaning": "worry (Keine Sorge = Don't worry)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "—"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "wir",
+              "meaning": "we"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "müssen",
+              "meaning": "have to"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "weder",
+              "meaning": "neither (weder ... noch)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "in",
+              "meaning": "into"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "den",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Schienenersatzverkehr",
+              "meaning": "rail replacement bus service",
+              "compoundParts": [
+                "Schienen",
+                "ersatz",
+                "verkehr"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "wechseln",
+              "meaning": "switch"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "noch",
+              "meaning": "nor"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "neu",
+              "meaning": "anew"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "buchen",
+              "meaning": "book"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": "“"
+            }
+          ]
+        },
+        {
+          "nativeText": "Nur eines merkt Elena sofort an der digitalen Wagenreihung: „Der Zug fährt heute in umgekehrter Reihenfolge ein — unsere Ruhezone hält also vorne im Sektor A statt hinten im Sektor E!“",
+          "translation": "Elena spots just one thing immediately on the digital coach-order chart: 'The train is pulling in today in reversed sequence — so our quiet zone stops up front in Sector A instead of in back in Sector E!'",
+          "segments": [
+            {
+              "surface": "Nur",
+              "meaning": "only"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "eines",
+              "meaning": "one thing"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "merkt",
+              "meaning": "notices"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Elena",
+              "meaning": "Elena"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sofort",
+              "meaning": "immediately"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "an",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "digitalen",
+              "meaning": "digital"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Wagenreihung",
+              "meaning": "coach order",
+              "compoundParts": [
+                "Wagen",
+                "reihung"
+              ]
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zug",
+              "meaning": "train"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fährt",
+              "meaning": "pulls (fährt ... ein)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "heute",
+              "meaning": "today"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "in",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "umgekehrter",
+              "meaning": "reversed"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Reihenfolge",
+              "meaning": "sequence / order",
+              "compoundParts": [
+                "Reihen",
+                "folge"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ein",
+              "meaning": "in (einfahren)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "—"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "unsere",
+              "meaning": "our"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Ruhezone",
+              "meaning": "quiet zone",
+              "compoundParts": [
+                "Ruhe",
+                "zone"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "hält",
+              "meaning": "stops"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "also",
+              "meaning": "therefore / so"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "vorne",
+              "meaning": "up front"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "im",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Sektor",
+              "meaning": "sector"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "A",
+              "meaning": "A"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "statt",
+              "meaning": "instead of"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "hinten",
+              "meaning": "at the rear"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "im",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Sektor",
+              "meaning": "sector"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "E",
+              "meaning": "E"
+            },
+            {
+              "surface": "!"
+            },
+            {
+              "surface": "“"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u002-t4-story-01-q1",
+          "question": "What does 'witterungsbedingte Verzögerung im Betriebsablauf' mean in plain English?",
+          "options": [
+            "A weather-related operational delay",
+            "A special holiday ticket discount",
+            "A renovation of the station bakery",
+            "A customs inspection at the Swiss border"
+          ],
+          "correctIndex": 0,
+          "explanation": "Witterungsbedingt means 'weather-related' and Verzögerung im Betriebsablauf means 'operational delay'."
+        },
+        {
+          "id": "de-u002-t4-story-01-q2",
+          "question": "What happens to the 18:14 Railjet to Zurich according to the announcement?",
+          "options": [
+            "It is completely canceled for three days",
+            "It is still running as a train, routed via a diversion line (über eine Umleitungsstrecke)",
+            "It turns back to Vienna",
+            "Passengers must walk to Salzburg"
+          ],
+          "correctIndex": 1,
+          "explanation": "The announcement states the Railjet 'wird ... über eine Umleitungsstrecke geführt', so Elena confirms they don't need a replacement bus or new ticket."
+        },
+        {
+          "id": "de-u002-t4-story-01-q3",
+          "question": "Why do Elena and her colleague walk up front to Sector A?",
+          "options": [
+            "Because the train is pulling in with reversed coach order, placing their Ruhezone in Sector A instead of Sector E",
+            "Because Sector E is closed for painting",
+            "Because the exit is in Sector A",
+            "To buy another ticket at the machine"
+          ],
+          "correctIndex": 0,
+          "explanation": "Elena sees on the digital Wagenreihung chart that the train arrives in reversed sequence ('in umgekehrter Reihenfolge')."
+        }
+      ],
+      "courseId": "de"
+    }
+  ],
+  "referenceSheets": []
+}

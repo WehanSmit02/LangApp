@@ -1,0 +1,815 @@
+{
+  "shardId": "ja-unit-001-essential",
+  "unitId": "ja-unit-001",
+  "tier": "essential",
+  "tierNumber": 1,
+  "focusSummary": "Core polite greetings, high-leverage survival responses (すみません, お願いします, 大丈夫です), konbini checkout decoding, and essential entrance/exit signage.",
+  "introducedLexiconIds": [
+    "ja-u001-t1-lex-01",
+    "ja-u001-t1-lex-02",
+    "ja-u001-t1-lex-03",
+    "ja-u001-t1-lex-04",
+    "ja-u001-t1-lex-05",
+    "ja-u001-t1-lex-06",
+    "ja-u001-t1-lex-07",
+    "ja-u001-t1-lex-08",
+    "ja-u001-t1-lex-09"
+  ],
+  "introducedGrammarIds": [
+    "ja-u001-t1-gram-01",
+    "ja-u001-t1-gram-02"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "入",
+    "口",
+    "出",
+    "営",
+    "業",
+    "中",
+    "袋",
+    "温",
+    "大",
+    "丈",
+    "夫"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u001-t1-step-01",
+      "tier": "essential",
+      "heading": "Time-of-Day Greetings & Polite Gratitude",
+      "explanation": "Adding ございます makes morning and thank-you greetings polite enough for hotel front desks, shop clerks, and strangers alike. こんにちは works from late morning until dusk.",
+      "scenarioPrompt": "You walk past your hotel front desk at 8:30 AM and receive a city map from the receptionist.",
+      "nativeText": "おはようございます。ありがとうございます。",
+      "romanization": "Ohayō gozaimasu. Arigatō gozaimasu.",
+      "translation": "Good morning. Thank you very much.",
+      "literalBreakdown": "おはよう (early) + ございます (polite copula) / ありがとう (rare/precious) + ございます (polite)",
+      "usageTip": "Drop ございます only with close friends or family; with staff or strangers, keep the full polite form."
+    },
+    {
+      "id": "ja-u001-t1-step-02",
+      "tier": "essential",
+      "heading": "The Swiss-Army Survival Pair: すみません & お願いします",
+      "explanation": "すみません means 'Excuse me', 'Sorry', and even 'Thank you for going out of your way'. Pair it with お願いします ('Please, I entrust this to you') whenever handing over items, cards, or requests.",
+      "scenarioPrompt": "You want to catch a clerk's attention at the register and ask to pay.",
+      "nativeText": "すみません、これをお願いします。",
+      "rubyHtml": "すみません、これをお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "romanization": "Sumimasen, kore o onegaishimasu.",
+      "translation": "Excuse me, this one please.",
+      "literalBreakdown": "すみません (excuse me) + これ (this) + を (object marker) + お願いします (humbly request)",
+      "usageTip": "Whenever a clerk asks if you want a bag or warming and you DO want it, answer warmly: 「はい、お願いします。」"
+    },
+    {
+      "id": "ja-u001-t1-step-03",
+      "tier": "essential",
+      "heading": "Polite Declining Without Saying 'No': 大丈夫です",
+      "explanation": "Direct いいえ ('No') can sound abrupt at a counter. Instead, Japanese speakers smile slightly and say 大丈夫です ('It's alright / I'm good') to decline plastic bags, receipts, or chopsticks.",
+      "scenarioPrompt": "The konbini clerk holds up a plastic shopping bag and asks 「袋にお入れしますか？」 ('Shall I put this in a bag?'). You have your own backpack.",
+      "nativeText": "大丈夫です。ありがとうございます。",
+      "rubyHtml": "<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。ありがとうございます。",
+      "romanization": "Daijōbu desu. Arigatō gozaimasu.",
+      "translation": "No thank you, I'm fine. Thank you.",
+      "literalBreakdown": "大丈夫 (safe / all right) + です (is) + ありがとうございます (thank you)",
+      "usageTip": "Adding a light hand wave near your chest or a small nod makes it unmistakable that you are declining politely."
+    },
+    {
+      "id": "ja-u001-t1-step-04",
+      "tier": "essential",
+      "heading": "Reading Doorway Signage: 入口, 出口 & 営業中",
+      "explanation": "Three visual Kanji compounds unlock almost every shop door in Japan: 入 ('enter') + 口 ('opening/door') = 入口 (entrance); 出 ('exit/go out') + 口 = 出口 (exit); and 営業中 ('currently in business' = Open).",
+      "scenarioPrompt": "You approach a busy glass storefront with two sliding doors and a wooden plaque hanging in the window.",
+      "nativeText": "入口・出口・営業中",
+      "rubyHtml": "<ruby>入口<rt>いりぐち</rt></ruby>・<ruby>出口<rt>でぐち</rt></ruby>・<ruby>営業中<rt>えいぎょうちゅう</rt></ruby>",
+      "romanization": "Iriguchi / Deguchi / Eigyōchū",
+      "translation": "Entrance / Exit / Open for Business",
+      "literalBreakdown": "入口 (enter-mouth) / 出口 (exit-mouth) / 営業 (business operations) + 中 (in progress)",
+      "usageTip": "If the sign flips to 準備中 (じゅんびちゅう, 'in preparation'), the shop is temporarily closed between lunch and dinner service."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u001-t1-drill-01",
+      "tier": "essential",
+      "prompt": "The konbini clerk points to your bento box and asks 「お弁当温めますか？」 ('Shall I warm up your bento?'). How do you say 'Yes, please'?",
+      "baseSentence": "お弁当温めますか？",
+      "cue": "Accept politely with 'Yes, please'",
+      "options": [
+        "大丈夫です。",
+        "はい、お願いします。",
+        "おはようございます。",
+        "出口です。"
+      ],
+      "correctAnswer": "はい、お願いします。",
+      "acceptedVariants": [
+        "お願いします。",
+        "はい、おねがいします。"
+      ],
+      "explanation": "「はい、お願いします」 (Hai, onegaishimasu) is the natural, polite way to accept an offer of service such as warming food or receiving a bag."
+    },
+    {
+      "id": "ja-u001-t1-drill-02",
+      "tier": "essential",
+      "prompt": "Next, the clerk asks 「袋にお入れしますか？」 ('Would you like a bag?'), and you already have a tote bag. Choose the most natural polite refusal.",
+      "baseSentence": "袋にお入れしますか？",
+      "cue": "Decline smoothly ('I'm fine / No thank you')",
+      "options": [
+        "すみません、お願いします。",
+        "こんにちは。",
+        "大丈夫です。",
+        "営業中です。"
+      ],
+      "correctAnswer": "大丈夫です。",
+      "acceptedVariants": [
+        "だいじょうぶです。",
+        "大丈夫です。ありがとうございます。"
+      ],
+      "explanation": "「大丈夫です」 (Daijōbu desu) softly declines bags, receipts, or point cards without the bluntness of a bare 「いいえ」."
+    },
+    {
+      "id": "ja-u001-t1-drill-03",
+      "tier": "essential",
+      "prompt": "You have finished shopping and want to walk out through the correct one-way automatic door. Which sign marks the exit?",
+      "cue": "Select the Kanji compound for 'Exit'",
+      "options": [
+        "入口",
+        "営業中",
+        "袋",
+        "出口"
+      ],
+      "correctAnswer": "出口",
+      "explanation": "出 (de, go out) + 口 (guchi, doorway) forms 出口 (deguchi, Exit), whereas 入口 (iriguchi) means Entrance."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u001-t1-card-01",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Good morning (polite)",
+      "targetText": "おはようございます",
+      "reading": "おはようございます",
+      "contextSentence": "おはようございます。いい天気ですね。",
+      "contextRubyHtml": "おはようございます。いい<ruby>天気<rt>てんき</rt></ruby>ですね。",
+      "contextTranslation": "Good morning. Nice weather, isn't it?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t1-card-02",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Excuse me / Sorry (getting attention or apologizing lightly)",
+      "targetText": "すみません",
+      "reading": "すみません",
+      "contextSentence": "すみません、これをお願いします。",
+      "contextRubyHtml": "すみません、これをお<ruby>願<rt>ねが</rt></ruby>いします。",
+      "contextTranslation": "Excuse me, I'd like this please.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t1-card-03",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Yes, please (accepting a clerk's offer)",
+      "targetText": "はい、お願いします。",
+      "rubyHtml": "はい、お<ruby>願<rt>ねが</rt></ruby>いします。",
+      "reading": "はい、おねがいします。",
+      "contextSentence": "「温めますか？」「はい、お願いします。」",
+      "contextRubyHtml": "「<ruby>温<rt>あたた</rt></ruby>めますか？」「はい、お<ruby>願<rt>ねが</rt></ruby>いします。」",
+      "contextTranslation": "'Shall I warm this up?' 'Yes, please.'",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t1-card-04",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "frontPrompt": "I'm fine / No, thank you (politely declining an offer)",
+      "targetText": "大丈夫です。",
+      "rubyHtml": "<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。",
+      "reading": "だいじょうぶです。",
+      "contextSentence": "「袋にお入れしますか？」「大丈夫です。」",
+      "contextRubyHtml": "「<ruby>袋<rt>ふくろ</rt></ruby>にお<ruby>入<rt>い</rt></ruby>れしますか？」「<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。」",
+      "contextTranslation": "'Would you like a bag?' 'No thank you, I'm fine.'",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t1-card-05",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "frontPrompt": "Entrance / Exit (storefront signs)",
+      "targetText": "入口 / 出口",
+      "rubyHtml": "<ruby>入口<rt>いりぐち</rt></ruby> / <ruby>出口<rt>でぐち</rt></ruby>",
+      "reading": "いりぐち / でぐち",
+      "contextSentence": "コンビニの入口はあちらです。",
+      "contextRubyHtml": "コンビニの<ruby>入口<rt>いりぐち</rt></ruby>はあちらです。",
+      "contextTranslation": "The convenience store entrance is over there.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u001-t1-story-01",
+      "unitId": "ja-unit-001",
+      "tier": "essential",
+      "title": "あさのコンビニ",
+      "titleTranslation": "Morning at the Konbini",
+      "setting": "8:15 AM at a bright neighborhood convenience store near your Tokyo hotel.",
+      "paragraphs": [
+        {
+          "nativeText": "「営業中」のサインを見て、コンビニの入口から入ります。「おはようございます！」と店員さんが言います。",
+          "rubyHtml": "「<ruby>営業中<rt>えいぎょうちゅう</rt></ruby>」のサインを<ruby>見<rt>み</rt></ruby>て、コンビニの<ruby>入口<rt>いりぐち</rt></ruby>から<ruby>入<rt>はい</rt></ruby>ります。「おはようございます！」と<ruby>店員<rt>てんいん</rt></ruby>さんが<ruby>言<rt>い</rt></ruby>います。",
+          "translation": "Seeing the 'Open for Business' sign, I walk in through the convenience store entrance. 'Good morning!' says the clerk.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "営業中",
+              "rubyHtml": "<ruby>営業中<rt>えいぎょうちゅう</rt></ruby>",
+              "reading": "えいぎょうちゅう",
+              "meaning": "open for business"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "linking particle (of)"
+            },
+            {
+              "surface": "サイン",
+              "reading": "さいん",
+              "meaning": "sign"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "見て",
+              "rubyHtml": "<ruby>見<rt>み</rt></ruby>て",
+              "reading": "みて",
+              "meaning": "looking at / seeing"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "コンビニ",
+              "reading": "こんびに",
+              "meaning": "convenience store"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of / possessive particle"
+            },
+            {
+              "surface": "入口",
+              "rubyHtml": "<ruby>入口<rt>いりぐち</rt></ruby>",
+              "reading": "いりぐち",
+              "meaning": "entrance"
+            },
+            {
+              "surface": "から",
+              "reading": "から",
+              "meaning": "from / through"
+            },
+            {
+              "surface": "入ります",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>ります",
+              "reading": "はいります",
+              "meaning": "enter (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "おはようございます",
+              "reading": "おはようございます",
+              "meaning": "good morning (polite)"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "store clerk"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "言います",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>います",
+              "reading": "いいます",
+              "meaning": "says (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "わたしはお弁当とコーヒーをレジに置きます。店員さんが「お弁当温めますか？」と聞きます。わたしは「はい、お願いします」と答えます。",
+          "rubyHtml": "わたしはお<ruby>弁当<rt>べんとう</rt></ruby>とコーヒーをレジに<ruby>置<rt>お</rt></ruby>きます。<ruby>店員<rt>てんいん</rt></ruby>さんが「お<ruby>弁当<rt>べんとう</rt></ruby><ruby>温<rt>あたた</rt></ruby>めますか？」と<ruby>聞<rt>き</rt></ruby>きます。わたしは「はい、お<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>答<rt>こた</rt></ruby>えます。",
+          "translation": "I place a bento box and coffee at the register. The clerk asks, 'Shall I warm up your bento?' I answer, 'Yes, please.'",
+          "segments": [
+            {
+              "surface": "わたし",
+              "reading": "わたし",
+              "meaning": "I / me"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "お弁当",
+              "rubyHtml": "お<ruby>弁当<rt>べんとう</rt></ruby>",
+              "reading": "おべんとう",
+              "meaning": "bento lunch box"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "and (connecting nouns)"
+            },
+            {
+              "surface": "コーヒー",
+              "reading": "こーひー",
+              "meaning": "coffee"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "レジ",
+              "reading": "れじ",
+              "meaning": "cash register"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "at / onto (target location)"
+            },
+            {
+              "surface": "置きます",
+              "rubyHtml": "<ruby>置<rt>お</rt></ruby>きます",
+              "reading": "おきます",
+              "meaning": "place / put down (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "店員さん",
+              "rubyHtml": "<ruby>店員<rt>てんいん</rt></ruby>さん",
+              "reading": "てんいんさん",
+              "meaning": "store clerk"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "お弁当",
+              "rubyHtml": "お<ruby>弁当<rt>べんとう</rt></ruby>",
+              "reading": "おべんとう",
+              "meaning": "bento lunch box"
+            },
+            {
+              "surface": "温めますか",
+              "rubyHtml": "<ruby>温<rt>あたた</rt></ruby>めますか",
+              "reading": "あたためますか",
+              "meaning": "shall I warm up?"
+            },
+            {
+              "surface": "？"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きます",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きます",
+              "reading": "ききます",
+              "meaning": "asks (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "わたし",
+              "reading": "わたし",
+              "meaning": "I / me"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "はい",
+              "reading": "はい",
+              "meaning": "yes"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "答えます",
+              "rubyHtml": "<ruby>答<rt>こた</rt></ruby>えます",
+              "reading": "こたえます",
+              "meaning": "answer / reply (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "「袋にお入れしますか？」と聞かれて、「大丈夫です。タッチ決済でお願いします」と言います。「ありがとうございます」と言って、出口から出ます。",
+          "rubyHtml": "「<ruby>袋<rt>ふくろ</rt></ruby>にお<ruby>入<rt>い</rt></ruby>れしますか？」と<ruby>聞<rt>き</rt></ruby>かれて、「<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。タッチ<ruby>決済<rt>けっさい</rt></ruby>でお<ruby>願<rt>ねが</rt></ruby>いします」と<ruby>言<rt>い</rt></ruby>います。「ありがとうございます」と<ruby>言<rt>い</rt></ruby>って、<ruby>出口<rt>でぐち</rt></ruby>から<ruby>出<rt>で</rt></ruby>ます。",
+          "translation": "Asked 'Shall I put this in a bag?', I say 'I'm fine. Contactless payment, please.' Saying 'Thank you very much,' I head out through the exit.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "袋",
+              "rubyHtml": "<ruby>袋<rt>ふくろ</rt></ruby>",
+              "reading": "ふくろ",
+              "meaning": "shopping bag"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "into (destination particle)"
+            },
+            {
+              "surface": "お入れしますか",
+              "rubyHtml": "お<ruby>入<rt>い</rt></ruby>れしますか",
+              "reading": "おいれしますか",
+              "meaning": "shall I put inside? (humble polite)"
+            },
+            {
+              "surface": "？"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞かれて",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>かれて",
+              "reading": "きかれて",
+              "meaning": "being asked"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "大丈夫です",
+              "rubyHtml": "<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です",
+              "reading": "だいじょうぶです",
+              "meaning": "I'm fine / no thank you"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "タッチ決済",
+              "rubyHtml": "タッチ<ruby>決済<rt>けっさい</rt></ruby>",
+              "reading": "たっちけっさい",
+              "meaning": "contactless tap payment"
+            },
+            {
+              "surface": "で",
+              "reading": "で",
+              "meaning": "by means of / with"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言います",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>います",
+              "reading": "いいます",
+              "meaning": "say (polite)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ありがとうございます",
+              "reading": "ありがとうございます",
+              "meaning": "thank you very much"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "出口",
+              "rubyHtml": "<ruby>出口<rt>でぐち</rt></ruby>",
+              "reading": "でぐち",
+              "meaning": "exit"
+            },
+            {
+              "surface": "から",
+              "reading": "から",
+              "meaning": "from / out through"
+            },
+            {
+              "surface": "出ます",
+              "rubyHtml": "<ruby>出<rt>で</rt></ruby>ます",
+              "reading": "でます",
+              "meaning": "go out / exit (polite)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u001-t1-story-01-q1",
+          "question": "How did the shopper know the convenience store was open?",
+          "options": [
+            "There was an 「営業中」 sign displayed",
+            "There was an 「出口」 sign on the register",
+            "A friend called on the phone",
+            "The clerk handed out bags outside"
+          ],
+          "correctIndex": 0,
+          "explanation": "営業中 (eigyōchū) means 'currently open for business'."
+        },
+        {
+          "id": "ja-u001-t1-story-01-q2",
+          "question": "What did the shopper ask the clerk to do with the bento?",
+          "options": [
+            "Put it in two plastic bags",
+            "Warm it up",
+            "Cancel the coffee",
+            "Wrap it as a gift"
+          ],
+          "correctIndex": 1,
+          "explanation": "When the clerk asked 「お弁当温めますか？」 ('Shall I warm up your bento?'), the shopper replied 「はい、お願いします」 ('Yes, please')."
+        },
+        {
+          "id": "ja-u001-t1-story-01-q3",
+          "question": "Did the shopper take a shopping bag, and how did they pay?",
+          "options": [
+            "Took a bag and paid with cash",
+            "Took a bag and paid with a point card",
+            "Declined the bag and paid by contactless tap payment",
+            "Declined the bag and left without buying coffee"
+          ],
+          "correctIndex": 2,
+          "explanation": "The shopper declined the bag with 「大丈夫です」 and requested contactless tap payment with 「タッチ決済でお願いします」."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": [
+    {
+      "id": "ja-ref-konbini",
+      "category": "konbini",
+      "tier": "essential",
+      "title": "Konbini Clerk Decoder",
+      "subtitle": "Decode rapid-fire register questions and answer smoothly in two words",
+      "rows": [
+        {
+          "id": "ja-ref-konbini-row-01",
+          "term": "袋にお入れしますか？",
+          "rubyHtml": "<ruby>袋<rt>ふくろ</rt></ruby>にお<ruby>入<rt>い</rt></ruby>れしますか？",
+          "readingOrSubtle": "Fukuro ni o-ire shimasu ka? (also: レジ袋はご利用ですか？)",
+          "meaning": "Would you like a shopping bag? (bags cost ¥3–¥5)",
+          "exampleNative": "はい、お願いします。 / 大丈夫です。",
+          "exampleTranslation": "Yes, please. / No thank you, I'm fine.",
+          "notes": "Listen for the keyword ふくろ (fukuro = bag)."
+        },
+        {
+          "id": "ja-ref-konbini-row-02",
+          "term": "お弁当温めますか？",
+          "rubyHtml": "お<ruby>弁当<rt>べんとう</rt></ruby><ruby>温<rt>あたた</rt></ruby>めますか？",
+          "readingOrSubtle": "O-bentō atatamemasu ka?",
+          "meaning": "Shall I warm up your bento / meal?",
+          "exampleNative": "はい、お願いします。",
+          "exampleTranslation": "Yes, please (warm it up).",
+          "notes": "Listen for あたため (atatame = warming). Clerks microwave it behind the counter for you."
+        },
+        {
+          "id": "ja-ref-konbini-row-03",
+          "term": "ポイントカードはお持ちですか？",
+          "rubyHtml": "ポイントカードはお<ruby>持<rt>も</rt></ruby>ちですか？",
+          "readingOrSubtle": "Pointo kādo wa o-mochi desu ka?",
+          "meaning": "Do you have a loyalty point card?",
+          "exampleNative": "大丈夫です。 / 持っていないです。",
+          "exampleTranslation": "I'm fine (don't have one). / I don't have one.",
+          "notes": "Listen for ポイントカード; almost all travelers simply smile and say 「大丈夫です」."
+        },
+        {
+          "id": "ja-ref-konbini-row-04",
+          "term": "お箸はお付けしますか？",
+          "rubyHtml": "お<ruby>箸<rt>はし</rt></ruby>はお<ruby>付<rt>つ</rt></ruby>けしますか？",
+          "readingOrSubtle": "O-hashi wa o-tsuke shimasu ka?",
+          "meaning": "Shall I include disposable chopsticks?",
+          "exampleNative": "はい、一膳お願いします。 / 大丈夫です。",
+          "exampleTranslation": "Yes, one pair please. / No thank you.",
+          "notes": "Clerks may also offer スプーン (supūn, spoon) or おしぼり (oshibori, wet wipe)."
+        },
+        {
+          "id": "ja-ref-konbini-row-05",
+          "term": "タッチ決済でお願いします。",
+          "rubyHtml": "タッチ<ruby>決済<rt>けっさい</rt></ruby>でお<ruby>願<rt>ねが</rt></ruby>いします。",
+          "readingOrSubtle": "Tatchi kessai de onegaishimasu.",
+          "meaning": "Contactless tap payment (Visa/Mastercard/Apple Pay credit tap), please.",
+          "exampleNative": "クレジットカードのタッチ決済でお願いします。",
+          "exampleTranslation": "By credit card tap payment, please.",
+          "notes": "Saying 「クレジットカードのタッチで」 tells the terminal to expect contactless NFC credit rather than an IC transit card."
+        },
+        {
+          "id": "ja-ref-konbini-row-06",
+          "term": "画面のタッチをお願いします。",
+          "rubyHtml": "<ruby>画面<rt>がめん</rt></ruby>のタッチをお<ruby>願<rt>ねが</rt></ruby>いします。",
+          "readingOrSubtle": "Gamen no tatchi o onegaishimasu.",
+          "meaning": "Please tap the confirmation button on the screen (age verification for alcohol).",
+          "exampleNative": "はい、わかりました。",
+          "exampleTranslation": "Yes, got it.",
+          "notes": "When buying beer or chūhai, tap 「はい」 (20 years or older) on the customer-facing touchscreen."
+        }
+      ],
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-ref-particles",
+      "category": "particles",
+      "tier": "essential",
+      "title": "Core Particles",
+      "subtitle": "Eight tiny postpositions that snap Japanese words into crystal-clear roles",
+      "rows": [
+        {
+          "id": "ja-ref-particles-row-01",
+          "term": "は (wa)",
+          "readingOrSubtle": "Written は, pronounced 'wa' as a particle",
+          "meaning": "Topic marker — sets the stage ('As for X...')",
+          "exampleNative": "わたしはコーヒーをお願いします。",
+          "exampleTranslation": "As for me, coffee please.",
+          "notes": "Contrasts or introduces what the sentence is about."
+        },
+        {
+          "id": "ja-ref-particles-row-02",
+          "term": "が (ga)",
+          "readingOrSubtle": "ga",
+          "meaning": "Subject / spotlight marker — pinpoints new info, existence, or ability",
+          "exampleNative": "ここにATMがあります。",
+          "exampleTranslation": "There is an ATM right here.",
+          "notes": "Always pairs with あります / います ('there is') and わかります ('understand')."
+        },
+        {
+          "id": "ja-ref-particles-row-03",
+          "term": "を (o)",
+          "readingOrSubtle": "Written を, pronounced 'o'",
+          "meaning": "Direct object marker — marks the thing acted upon",
+          "exampleNative": "お弁当を温めます。",
+          "exampleTranslation": "(They) warm up the bento.",
+          "notes": "In casual spoken Japanese or fast counter phrases, を is sometimes dropped, but keeping it is crystal clear."
+        },
+        {
+          "id": "ja-ref-particles-row-04",
+          "term": "に (ni)",
+          "readingOrSubtle": "ni",
+          "meaning": "Pinpoint target — destination, exact time, or static location",
+          "exampleNative": "袋に入れます。七時に着きます。",
+          "exampleTranslation": "Put into a bag. Arrive at 7 o'clock.",
+          "notes": "Think of に as a pin dropped on a map or clock."
+        },
+        {
+          "id": "ja-ref-particles-row-05",
+          "term": "で (de)",
+          "readingOrSubtle": "de",
+          "meaning": "Arena of action OR tool/means ('at/in' for actions; 'by/with' for payment or transport)",
+          "exampleNative": "コンビニで買います。カードで払います。",
+          "exampleTranslation": "Buy at the konbini. Pay by card.",
+          "notes": "Use で (not に) when an active event happens inside a place, or when naming your payment method."
+        },
+        {
+          "id": "ja-ref-particles-row-06",
+          "term": "へ (e)",
+          "readingOrSubtle": "Written へ, pronounced 'e' as a particle",
+          "meaning": "Direction / heading ('toward X')",
+          "exampleNative": "出口へ行きます。",
+          "exampleTranslation": "Head toward the exit.",
+          "notes": "Highlights the direction of travel rather than arrival."
+        },
+        {
+          "id": "ja-ref-particles-row-07",
+          "term": "と (to)",
+          "readingOrSubtle": "to",
+          "meaning": "Complete 'and' between nouns; 'with' a companion; quotation marker",
+          "exampleNative": "お水とお茶をください。",
+          "exampleTranslation": "Water and green tea, please.",
+          "notes": "Connects nouns — never two full verbs/sentences."
+        },
+        {
+          "id": "ja-ref-particles-row-08",
+          "term": "の (no)",
+          "readingOrSubtle": "no",
+          "meaning": "Noun linker / possession ('X's Y' or 'Y of X')",
+          "exampleNative": "ホテルの入口",
+          "exampleTranslation": "The hotel's entrance",
+          "notes": "The modifier always comes BEFORE の, and the main noun comes AFTER の."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ]
+}

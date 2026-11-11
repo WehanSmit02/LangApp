@@ -1,0 +1,656 @@
+{
+  "schemaVersion": 2,
+  "courseId": "ja",
+  "stages": [
+    {
+      "id": "ja-stage-1",
+      "stageNumber": 1,
+      "label": "Stage 1: Kana & Survival",
+      "cefrOrJlpt": "Pre-N5",
+      "summary": "Immediate arrival confidence: Hiragana & Katakana sound-script literacy, konbini checkout decoding, polite social cushioning, and rail-gate survival.",
+      "recommendedTier": "essential"
+    },
+    {
+      "id": "ja-stage-2",
+      "stageNumber": 2,
+      "label": "Stage 2: JLPT N5",
+      "cefrOrJlpt": "JLPT N5",
+      "summary": "Core sentence architecture: Desu/Masu politeness, essential particles, Japanese counters, dining & hotel interactions, time expressions, and ~100 foundational Kanji.",
+      "recommendedTier": "travel"
+    },
+    {
+      "id": "ja-stage-3",
+      "stageNumber": 3,
+      "label": "Stage 3: JLPT N4",
+      "cefrOrJlpt": "JLPT N4",
+      "summary": "Everyday independence: Te-form chains, casual plain speech, potential & volitional verbs, giving/receiving favors, conditional clauses, and ~300 Kanji.",
+      "recommendedTier": "travel"
+    },
+    {
+      "id": "ja-stage-4",
+      "stageNumber": 4,
+      "label": "Stage 4: JLPT N3",
+      "cefrOrJlpt": "JLPT N3",
+      "summary": "Fluid social conversation: passive & causative-passive nuance, multi-clause storytelling, workplace rapport, regional ear-tuning, and ~650 Kanji.",
+      "recommendedTier": "conversational"
+    },
+    {
+      "id": "ja-stage-5",
+      "stageNumber": 5,
+      "label": "Stage 5: JLPT N2",
+      "cefrOrJlpt": "JLPT N2",
+      "summary": "Professional & media command: formal written connectors, full Sonkeigo/Kenjougo business honorifics, news & essay comprehension, and ~1,000+ Kanji.",
+      "recommendedTier": "conversational"
+    },
+    {
+      "id": "ja-stage-6",
+      "stageNumber": 6,
+      "label": "Stage 6: JLPT N1 (Full Fluency)",
+      "cefrOrJlpt": "JLPT N1",
+      "summary": "Unassisted native mastery: literary & classical grammar remnants, subtle rhetorical stance, four-character idioms (yojijukugo), and all 2,136 Jōyō Kanji.",
+      "recommendedTier": "fluent"
+    }
+  ],
+  "units": [
+    {
+      "unitNumber": 1,
+      "unitId": "ja-unit-001",
+      "stageId": "ja-stage-1",
+      "title": "Greetings, Konbini Survival & Everyday Politeness",
+      "subtitle": "Time-of-day greetings, convenience store checkout decoding, essential signage, and polite social cushioning",
+      "communicativeGoal": "Greet locals warmly, decode rapid konbini checkout questions, and respond calmly with お願いします and 大丈夫です.",
+      "grammarFocus": "Set survival utterances, topic marker は in minimal requests, and polite 〜をお願いします frames.",
+      "culturalNote": "Japanese convenience stores operate 24/7 with elevated clerk honorifics where a calm nod and two core responses handle every interaction."
+    },
+    {
+      "unitNumber": 2,
+      "unitId": "ja-unit-002",
+      "stageId": "ja-stage-1",
+      "title": "Stations, IC Cards & Navigating Rail Lines",
+      "subtitle": "Ticket gates, Suica/ICOCA top-ups, local vs. Shinkansen trains, exit navigation, and service disruption announcements",
+      "communicativeGoal": "Read station gate and platform signs, top up IC cards, verify train stops, and locate numbered or directional exits.",
+      "grammarFocus": "Location query どこですか, destination particle へ/に, and 〜に行きます / 〜で乗り換えます.",
+      "culturalNote": "Urban Japanese stations integrate JR, metro, and private lines seamlessly via IC cards, with yellow signage marking exits vs. transfers."
+    },
+    {
+      "unitNumber": 3,
+      "unitId": "ja-unit-003",
+      "stageId": "ja-stage-2",
+      "title": "Izakaya, Ramen Counters, Numbers & Ordering",
+      "subtitle": "Party-size seating, ramen ticket machines, essential Japanese counters, allergy requests, and lively dining etiquette",
+      "communicativeGoal": "State party size, read yen prices, order food and drinks using accurate counters, check allergens, and ask for the check.",
+      "grammarFocus": "Counters 〜つ, 〜人, 〜杯, 〜本, 〜枚, existential あります, and 〜抜きでお願いします.",
+      "culturalNote": "Ramen counters often use prepay meal-ticket machines (食券機), while izakayas serve a small お通し cover dish and settle one combined bill at the end."
+    },
+    {
+      "unitNumber": 4,
+      "unitId": "ja-unit-004",
+      "stageId": "ja-stage-2",
+      "title": "Hiragana Mora Rhythm, Long Vowels & Pitch Essentials",
+      "subtitle": "Mastering double consonants (っ), long vowels, contracted Yoon syllables, and clean mora timing",
+      "communicativeGoal": "Distinguish minimal pairs like おばさん vs. おばあさん and きって vs. きて clearly in speech and listening.",
+      "grammarFocus": "Moraic timing, Geminate っ (sokuon), palatalized きゃ/しゃ/ちゃ combinations, and question-rising intonation か.",
+      "culturalNote": "Japanese rhythm gives equal beat length to every mora rather than stress-timing syllables like English."
+    },
+    {
+      "unitNumber": 5,
+      "unitId": "ja-unit-005",
+      "stageId": "ja-stage-2",
+      "title": "Katakana Loanwords, Café Menus & Tech Vocabulary",
+      "subtitle": "Decoding menus, hotel amenities, Wi-Fi prompts, and adapting English loanwords into natural Japanese phonetics",
+      "communicativeGoal": "Order specialty drinks at kissaten and cafés, read Katakana signage, and pronounce loanwords so locals understand immediately.",
+      "grammarFocus": "Katakana orthographic rules (ー long vowel bar, ファ/ティ/ヴ extensions) and noun-linking の.",
+      "culturalNote": "Traditional 喫茶店 (kissaten) pair siphon-brewed coffee and thick toast sets with retro Katakana menu classics."
+    },
+    {
+      "unitNumber": 6,
+      "unitId": "ja-unit-006",
+      "stageId": "ja-stage-2",
+      "title": "Self-Introductions, Origin & Polite Desu Identity",
+      "subtitle": "Introducing yourself, sharing nationality and occupation, and exchanging names respectfully",
+      "communicativeGoal": "Deliver a natural 初めまして self-introduction and ask polite getting-to-know-you questions without overusing あなた.",
+      "grammarFocus": "Copula です / ではありません, topic particle は, inclusive も, and affiliation の (会社員・学生).",
+      "culturalNote": "Addressing someone by family name + さん rather than second-person pronouns is fundamental to Japanese politeness."
+    },
+    {
+      "unitNumber": 7,
+      "unitId": "ja-unit-007",
+      "stageId": "ja-stage-2",
+      "title": "Demonstratives Kore/Sore/Are & Department Store Shopping",
+      "subtitle": "Pointing out items, asking to try on clothes, checking tax-free counters, and comparing colors and sizes",
+      "communicativeGoal": "Ask staff to show items behind glass, check sizes in fitting rooms, and complete tax-free (免税) purchases.",
+      "grammarFocus": "Ko-so-a-do series (これ/それ/あれ/どれ and この/その/あの/どの) plus 〜を見せてください.",
+      "culturalNote": "Depachika (デパ地下) basement food halls beneath major department stores showcase regional confections and seasonal bento."
+    },
+    {
+      "unitNumber": 8,
+      "unitId": "ja-unit-008",
+      "stageId": "ja-stage-2",
+      "title": "Clock Time, Days of the Week & Opening Hours",
+      "subtitle": "Scheduling museum tickets, checking last-train times, reading calendar dates, and confirming reservations",
+      "communicativeGoal": "Discuss schedules, verify museum admission cutoffs (最終入場), and catch the 終電 (last train).",
+      "grammarFocus": "Time particle に, span markers 〜から〜まで, irregular minute/day readings (四時, 七時, 四日, 八日).",
+      "culturalNote": "Many Japanese museums and shrines close doors 30 minutes before posted closing time—watch for 最終受付."
+    },
+    {
+      "unitNumber": 9,
+      "unitId": "ja-unit-009",
+      "stageId": "ja-stage-2",
+      "title": "Existence Verbs Imasu vs. Arimasu & Street Directions",
+      "subtitle": "Locating coin lockers, pharmacies, ATMs, and shrines using spatial nouns (上・下・隣・向かい)",
+      "communicativeGoal": "Describe where people and landmarks are located and follow multi-step walking directions through neighborhood blocks.",
+      "grammarFocus": "Animate います vs. inanimate あります, location particle に, and relational nouns (駅の北口の前に).",
+      "culturalNote": "Japanese addresses number blocks and buildings by construction order rather than street names, making landmarks essential."
+    },
+    {
+      "unitNumber": 10,
+      "unitId": "ja-unit-010",
+      "stageId": "ja-stage-2",
+      "title": "Daily Routines & Masu Verb Conjugations Across Time",
+      "subtitle": "Present/future 〜ます, negative 〜ません, past 〜ました, and inviting friends with 〜ませんか",
+      "communicativeGoal": "Talk about weekend plans and past trips, and extend warm invitations to meals or sightseeing.",
+      "grammarFocus": "Polite verb inflections (ます / ません / ました / ませんでした), direct object を, and means/place particle で.",
+      "culturalNote": "Inviting with negative question 〜ませんか ('Won't you join?') leaves graceful room for the listener without pressure."
+    },
+    {
+      "unitNumber": 11,
+      "unitId": "ja-unit-011",
+      "stageId": "ja-stage-2",
+      "title": "I-Adjectives & Na-Adjectives: Weather, Seasons & Impressions",
+      "subtitle": "Describing hot humid summers, autumn foliage, quiet temples, and past food or travel experiences",
+      "communicativeGoal": "Express nuanced reactions to weather, scenery, and dishes across present and past tenses.",
+      "grammarFocus": "い-adjective inflections (〜くない / 〜かった) vs. な-adjective inflections (〜じゃない / 〜だった) and degree adverbs.",
+      "culturalNote": "Everyday Japanese small talk opens with seasonal sensitivity—cherry blossoms, rainy 梅雨, autumn 紅葉, or crisp winter air."
+    },
+    {
+      "unitNumber": 12,
+      "unitId": "ja-unit-012",
+      "stageId": "ja-stage-2",
+      "title": "Ryokan Check-In, Onsen Etiquette & Polite Requests",
+      "subtitle": "Te-form fundamentals: 〜てください, breakfast/dinner times, yukata sizing, and bathhouse rules",
+      "communicativeGoal": "Check into a traditional ryokan, confirm dinner and private bath slots, and make polite room requests.",
+      "grammarFocus": "Verb て-form construction across Godan, Ichidan, and irregular verbs; 〜てください and 〜てもいいですか.",
+      "culturalNote": "At an onsen, guests wash thoroughly at seated showers before soaking and keep small modesty towels out of the mineral water."
+    },
+    {
+      "unitNumber": 13,
+      "unitId": "ja-unit-013",
+      "stageId": "ja-stage-2",
+      "title": "Likes, Skills, Desires & Expressing Personal Interests",
+      "subtitle": "Talking about favorite cuisines, music, sports, and travel bucket lists with 好き・上手・〜たい",
+      "communicativeGoal": "Bond with locals over shared hobbies, deflect compliments humbly, and express what you want to see and eat.",
+      "grammarFocus": "Subject-object が with 好き/嫌い/上手/下手 and desiderative verb stem + たいです.",
+      "culturalNote": "When praised with 日本語が上手ですね, the natural Japanese response is a warm いいえ、まだまだです ('Not yet, still learning!')."
+    },
+    {
+      "unitNumber": 14,
+      "unitId": "ja-unit-014",
+      "stageId": "ja-stage-2",
+      "title": "Pharmacies, Clinics & Describing Symptoms Calmly",
+      "subtitle": "Body vocabulary, explaining fevers or allergies, reading dosage instructions, and prohibition 〜てはいけません",
+      "communicativeGoal": "Describe symptoms at a drugstore or clinic, understand medicine schedules (食後・一日三回), and follow health advice.",
+      "grammarFocus": "Topic + part が痛いです, ongoing state 〜ています, obligation 〜なければなりません, and 〜なくてもいいです.",
+      "culturalNote": "Japanese pharmacies distinguish OTC medications by class (第1類〜第3類医薬品), where a pharmacist explains Type 1 items directly."
+    },
+    {
+      "unitNumber": 15,
+      "unitId": "ja-unit-015",
+      "stageId": "ja-stage-3",
+      "title": "Stepping Into Plain Speech: Casual Forms & Close Friendships",
+      "subtitle": "Dictionary, Nai, Ta, and Nakatta forms for natural conversation with peers and reading quoted thoughts",
+      "communicativeGoal": "Follow rapid casual banter among Japanese peers and switch cleanly between です/ます and plain style.",
+      "grammarFocus": "Plain present/past affirmative and negative across verbs and adjectives; casual question drop intonation.",
+      "culturalNote": "Shifting from です/ます to タメ口 (peer speech) reflects mutual closeness and shared age or cohort status."
+    },
+    {
+      "unitNumber": 16,
+      "unitId": "ja-unit-016",
+      "stageId": "ja-stage-3",
+      "title": "Framing Opinions, Quotes & Indirect Questions",
+      "subtitle": "Sharing thoughts with 〜と思います, relaying announcements with 〜と言っていました, and embedded clauses",
+      "communicativeGoal": "State personal opinions softly, report what staff or friends said, and ask indirect questions.",
+      "grammarFocus": "Plain form + と思います / と言っていました, plus embedded 〜か / 〜かどうか clauses.",
+      "culturalNote": "Ending assertions with 〜と思います softens directness and invites collaborative agreement in Japanese conversation."
+    },
+    {
+      "unitNumber": 17,
+      "unitId": "ja-unit-017",
+      "stageId": "ja-stage-3",
+      "title": "Relative Clauses: Describing People, Cafés & Hidden Gems",
+      "subtitle": "Modifying nouns directly with plain-form clauses ('the bakery my friend recommended')",
+      "communicativeGoal": "Specify exact places, items, and people in conversation without needing English-style 'who/which/that' pronouns.",
+      "grammarFocus": "Pre-nominal relative clauses with plain verbs and Ga-for-Wa subject marking inside modifiers.",
+      "culturalNote": "Neighborhood kissaten, shotengai arcades, and tiny Michelin Bib Gourmand counters are passed along by word of mouth."
+    },
+    {
+      "unitNumber": 18,
+      "unitId": "ja-unit-018",
+      "stageId": "ja-stage-3",
+      "title": "Experiences,Weekend Variety & Changing Seasons",
+      "subtitle": "Talking about life experiences (〜たことがあります), sampling activities (〜たり〜たり), and becoming (〜くなる/になる)",
+      "communicativeGoal": "Share places you've visited, list varied weekend plans, and describe gradual changes in skill or weather.",
+      "grammarFocus": "Past plain + ことがある, representative 〜たり〜たりする, and change-of-state 〜くなる / 〜になる.",
+      "culturalNote": "Domestic travel around 47 prefectures—each prized for its own local 名物 (specialty dish)—is a favorite conversation opener."
+    },
+    {
+      "unitNumber": 19,
+      "unitId": "ja-unit-019",
+      "stageId": "ja-stage-3",
+      "title": "Potential Verbs: What You Can Read, Eat, Speak & Reserve",
+      "subtitle": "Expressing ability, venue rules, seasonal availability, and contrasting は vs. が in capability statements",
+      "communicativeGoal": "Ask whether card payment, vegetarian menus, or late check-in is possible and discuss growing language skills.",
+      "grammarFocus": "Potential verb formation (読める・食べられる), audible/visible 見える・聞こえる, and object particle が.",
+      "culturalNote": "Distinguishing natural visibility from sightings (富士山が見える vs. 見られる) makes travel storytelling crisp."
+    },
+    {
+      "unitNumber": 20,
+      "unitId": "ja-unit-020",
+      "stageId": "ja-stage-3",
+      "title": "Giving & Receiving Gifts, Souvenirs & Everyday Kindness",
+      "subtitle": "Mastering あげる・くれる・もらう and the warmth of 〜てくれる / 〜てもらう favors",
+      "communicativeGoal": "Express gratitude when locals walk you to a destination, offer regional omiyage souvenirs, and request help gracefully.",
+      "grammarFocus": "Directional giving/receiving verbs (あげる/くれる/もらう) and benefactive auxiliary verbs (〜てあげる/〜てくれる/〜てもらう).",
+      "culturalNote": "Bringing boxed regional お土産 back to coworkers or hosts after a trip strengthens social bonds across Japan."
+    },
+    {
+      "unitNumber": 21,
+      "unitId": "ja-unit-021",
+      "stageId": "ja-stage-3",
+      "title": "Four Conditionals Demystified: と, ば, たら & なら",
+      "subtitle": "Choosing the right 'if/when' for ticket machines, advice, future plans, and contextual recommendations",
+      "communicativeGoal": "Give directions ('turn right and you'll see it'), ask for advice ('what should I do if...'), and respond to plans ('if you're going to Kyoto...').",
+      "grammarFocus": "Natural-consequence と, hypothetical ば, sequential/universal たら, and contextual topic なら.",
+      "culturalNote": "Recommending local spots with 京都に行くなら ('If it's Kyoto you're visiting...') signals attentive listening."
+    },
+    {
+      "unitNumber": 22,
+      "unitId": "ja-unit-022",
+      "stageId": "ja-stage-3",
+      "title": "Intention, Resolutions & Advance Travel Preparation",
+      "subtitle": "Volitional forms (〜よう), planning ahead with 〜ようと思う, and preparing in advance with 〜ておく",
+      "communicativeGoal": "Share study or career goals, suggest spontaneous outings to friends, and talk about booking tickets ahead of Golden Week.",
+      "grammarFocus": "Volitional conjugation, 〜ようと思っています, preparatory 〜ておく, and purposeful 〜ために / 〜ように.",
+      "culturalNote": "During peak seasons like Golden Week, Obon, and New Year, reserving Shinkansen seats weeks ahead (予約しておく) is vital."
+    },
+    {
+      "unitNumber": 23,
+      "unitId": "ja-unit-023",
+      "stageId": "ja-stage-3",
+      "title": "Transitive vs. Intransitive Pairs & Completed States",
+      "subtitle": "Understanding ドアが開いている vs. 窓を開けてある in homes, trains, and shops",
+      "communicativeGoal": "Describe whether reservations are already booked, lights are left on, or train doors are closing without sounding blaming.",
+      "grammarFocus": "Transitive/intransitive verb pairs (開ける/開く, 閉める/閉まる, 決める/決まる) with 〜ている vs. 〜てある.",
+      "culturalNote": "Japanese strongly prefers intransitive framing ('the ticket wasn't issued' / 'the schedule was decided') to preserve harmony."
+    },
+    {
+      "unitNumber": 24,
+      "unitId": "ja-unit-024",
+      "stageId": "ja-stage-3",
+      "title": "Conjectures, Hearsay & Reading Visual Clues",
+      "subtitle": "Distinguishing 〜そうだ (looks like / I heard), 〜ようだ, and 〜らしい in everyday life",
+      "communicativeGoal": "Comment that food looks delicious, warn that rain is about to start, and share local news you heard.",
+      "grammarFocus": "Stem + そうだ (appearance) vs. plain form + そうだ (hearsay), evidence-based 〜ようだ, and reliable 〜らしい.",
+      "culturalNote": "Weather forecasts track the cherry-blossom front (桜前線) northward from Kyushu to Hokkaido every spring."
+    },
+    {
+      "unitNumber": 25,
+      "unitId": "ja-unit-025",
+      "stageId": "ja-stage-3",
+      "title": "Causes, Soft Apologies & Nuanced Explanations",
+      "subtitle": "Contrasting から, ので, and 〜て for tactful excuses, delivery updates, and unexpected outcomes (のに)",
+      "communicativeGoal": "Apologize gracefully for delays or cancellations using soft ので and express mild surprise or regret with のに.",
+      "grammarFocus": "Subjective から vs. polite objective ので, te-form cause constraints, and concessive のに.",
+      "culturalNote": "Trailing off softly at ちょっと用事がありまして… lets a listener infer a polite decline without a blunt 'no'."
+    },
+    {
+      "unitNumber": 26,
+      "unitId": "ja-unit-026",
+      "stageId": "ja-stage-3",
+      "title": "City Hall, Postal Services & Settling Into Neighborhood Life",
+      "subtitle": "Parcel shipping (宅急便), address registration, recycling schedules, and polite counter requests",
+      "communicativeGoal": "Ship luggage between hotels via Takkyubin, schedule redelivery, and understand municipal sorting guides.",
+      "grammarFocus": "Honorific request 〜ていただけますか, time-slot specification, and compound nouns in civic life.",
+      "culturalNote": "Luggage-forwarding services (宅急便) let travelers cross Japan hands-free with overnight delivery to their next hotel."
+    },
+    {
+      "unitNumber": 27,
+      "unitId": "ja-unit-027",
+      "stageId": "ja-stage-4",
+      "title": "Passive Voice & Navigating Crowded Urban Life",
+      "subtitle": "Direct passive, 'suffering' indirect passive, and objective event descriptions (〜で行われる)",
+      "communicativeGoal": "Recount relatable mishaps (getting caught in rain, stepped on in rush hour) and understand festival announcements.",
+      "grammarFocus": "Passive verb conjugation (〜れる/〜られる), adversity passive, and impersonal passive for public events.",
+      "culturalNote": "Festivals (祭り) and fireworks (花火大会) are announced in passive voice to keep focus on the shared community event."
+    },
+    {
+      "unitNumber": 28,
+      "unitId": "ja-unit-028",
+      "stageId": "ja-stage-4",
+      "title": "Causative & Causative-Passive: Permission, Requests & Tact",
+      "subtitle": "Asking permission humbly with 〜させてください and expressing obligation with 〜させられる",
+      "communicativeGoal": "Ask to take a day off, volunteer to handle a task (私にやらせてください), and discuss childhood or work obligations.",
+      "grammarFocus": "Causative (〜せる/〜させる), contracted causative-passive, and 〜させていただく diplomacy.",
+      "culturalNote": "Asking 'Please let me introduce myself' (自己紹介させていただきます) frames action as gratitude for the group's permission."
+    },
+    {
+      "unitNumber": 29,
+      "unitId": "ja-unit-029",
+      "stageId": "ja-stage-4",
+      "title": "Conversational Flow, Aizuchi & Spoken Contractions",
+      "subtitle": "Decoding 〜ちゃう/〜じゃう, 〜とく, 〜てる, active-listening cues, and trailing sentence-enders",
+      "communicativeGoal": "Understand fast native dialogue at natural speed and keep conversations warm with well-timed 相槌 (backchanneling).",
+      "grammarFocus": "Spoken contractions (〜てしまう→〜ちゃう, 〜ておく→〜とく, 〜なければ→〜なきゃ) and discourse markers なんか / やっぱり.",
+      "culturalNote": "Frequent nods and soft 相槌 (なるほど、そうですね、へえ！) mean 'I'm attentively following you', not necessarily 'I agree'."
+    },
+    {
+      "unitNumber": 30,
+      "unitId": "ja-unit-030",
+      "stageId": "ja-stage-4",
+      "title": "Festivals, Shrines, Temples & Cultural Storytelling",
+      "subtitle": "Explaining customs with 〜という, defining terms (〜とは), and comparing Shinto and Buddhist traditions",
+      "communicativeGoal": "Discuss omikuji fortunes, shrine etiquette, and regional traditions with curious visitors and Japanese friends alike.",
+      "grammarFocus": "Naming/framing 〜というN, explanatory 〜というのは〜のことだ, and habitual 〜ものだ.",
+      "culturalNote": "Two bows, two claps, and one final bow (二礼二拍手一礼) mark Shinto worship, while temple incense and quiet palms mark Buddhist visits."
+    },
+    {
+      "unitNumber": 31,
+      "unitId": "ja-unit-031",
+      "stageId": "ja-stage-4",
+      "title": "Workplace Harmony, Horenso & Team Communication",
+      "subtitle": "Reporting progress, flagging issues early, cushioning disagreement, and collaborative phrasing",
+      "communicativeGoal": "Share status updates, consult colleagues before changing plans, and voice alternative ideas tactfully.",
+      "grammarFocus": "〜について / 〜に関して, tentative suggestion 〜のではないでしょうか, and 〜ようにする.",
+      "culturalNote": "報・連・相 (報告 report, 連絡 update, 相談 consult) underpins smooth teamwork in Japanese organizations."
+    },
+    {
+      "unitNumber": 32,
+      "unitId": "ja-unit-032",
+      "stageId": "ja-stage-4",
+      "title": "Kansai-ben & Regional Ear-Tuning: Osaka, Kyoto & Kobe",
+      "subtitle": "Recognizing ほんま, なんでやねん, 〜へん negation, おおきに, and Kansai pitch melody",
+      "communicativeGoal": "Follow lively street food and comedy banter in Osaka and Kyoto while appreciating regional linguistic pride.",
+      "grammarFocus": "Kansai copula や, negative 〜へん/〜ひん, progressive 〜とる, and gratitude おおきに.",
+      "culturalNote": "Osaka's食い倒れ ('eat till you drop') food culture and warm conversational humor contrast playfully with Tokyo reserve."
+    },
+    {
+      "unitNumber": 33,
+      "unitId": "ja-unit-033",
+      "stageId": "ja-stage-4",
+      "title": "Compound Verbs & Nuanced Aspect in Everyday Action",
+      "subtitle": "Combining stems with 〜始める, 〜続ける, 〜終わる, 〜出す, 〜直す, and 〜忘れる",
+      "communicativeGoal": "Express starting suddenly, redoing a draft, forgetting to tap out, or continuing a habit in compact single verbs.",
+      "grammarFocus": "Masu-stem + aspectual/directional second verbs (降り出す, 書き直す, 乗り遅れる, 話し合う).",
+      "culturalNote": "Japanese packs adverbial nuance into rich V1+V2 compounds rather than stacking separate adverbs."
+    },
+    {
+      "unitNumber": 34,
+      "unitId": "ja-unit-034",
+      "stageId": "ja-stage-4",
+      "title": "Comparisons, Trends & Weighing Everyday Choices",
+      "subtitle": "Proportional change (〜ば〜ほど), contrast (〜に対して / 〜一方で), and urban vs. countryside life",
+      "communicativeGoal": "Discuss remote work, housing trade-offs, and lifestyle trends with balanced multi-perspective sentences.",
+      "grammarFocus": "〜ば〜ほど ('the more... the more'), 〜に比べて, 〜一方で, and 〜わりに ('considering that').",
+      "culturalNote": "Revitalized historic kominka farmhouses and Shinkansen commuting have sparked fresh interest in regional 移住 (relocation)."
+    },
+    {
+      "unitNumber": 35,
+      "unitId": "ja-unit-035",
+      "stageId": "ja-stage-4",
+      "title": "Customer Inquiries, Returns, Exchanges & Problem Resolution",
+      "subtitle": "Explaining mix-ups calmly, requesting receipts or exchanges, and understanding service apologies",
+      "communicativeGoal": "Resolve billing errors, lost-and-found inquiries (忘れ物), or damaged items politely and effectively.",
+      "grammarFocus": "Explanatory 〜んですが lead-ins, 〜ていただきたいのですが, and state-result 〜まま.",
+      "culturalNote": "Station lost-and-found centers reunite commuters with umbrellas, wallets, and phones at remarkable rates."
+    },
+    {
+      "unitNumber": 36,
+      "unitId": "ja-unit-036",
+      "stageId": "ja-stage-4",
+      "title": "Reading Columns, Reviews & Modern Essay Structure",
+      "subtitle": "Written plain style (だ・である), sentence-linking Masu-stems, and summarizing main arguments",
+      "communicativeGoal": "Read restaurant reviews, travel essays, and opinion columns comfortably without losing track of long sentences.",
+      "grammarFocus": "Literary である copula, clause chaining via verb stems, and framing structures 〜というのは〜からだ.",
+      "culturalNote": "Japanese essays often follow 起承転結—introducing, developing, pivoting to an unexpected angle, and synthesizing at the close."
+    },
+    {
+      "unitNumber": 37,
+      "unitId": "ja-unit-037",
+      "stageId": "ja-stage-4",
+      "title": "Regrets, Relief, Expectation & Emotional Shading",
+      "subtitle": "Expressing 〜ばよかった, 〜おかげで vs. 〜せいで, and 〜はずだ / 〜わけだ",
+      "communicativeGoal": "Share hindsight lessons, credit teammates warmly with おかげで, and draw logical conclusions naturally.",
+      "grammarFocus": "Counterfactual 〜ばよかった, attribution おかげで / せいで, logical 〜わけだ, and 〜わけではない partial negation.",
+      "culturalNote": "Crediting success to others via おかげさまで reflects deep appreciation of mutual interdependence."
+    },
+    {
+      "unitNumber": 38,
+      "unitId": "ja-unit-038",
+      "stageId": "ja-stage-4",
+      "title": "Film, Literature, Anime & Pop-Culture Discourse",
+      "subtitle": "Discussing plot twists without spoilers, character voice pronouns (俺・僕・わし), and aesthetic reactions",
+      "communicativeGoal": "Review books, films, and exhibitions with native friends and recognize stylistic role language (役割語).",
+      "grammarFocus": "Emotive 〜ずにはいられない, 〜きっかけで, and role-specific pronouns and sentence particles.",
+      "culturalNote": "Authors and screenwriters use 役割語 (role speech) to signal age, personality, and era instantly in dialogue."
+    },
+    {
+      "unitNumber": 39,
+      "unitId": "ja-unit-039",
+      "stageId": "ja-stage-5",
+      "title": "Mastering Keigo I: Respectful Sonkeigo in Business & Hospitality",
+      "subtitle": "Special respectful verbs (いらっしゃる・おっしゃる・召し上がる) and お〜になる structures",
+      "communicativeGoal": "Address clients, professors, and honored guests with effortless, natural Sonkeigo without double-honorific errors.",
+      "grammarFocus": "Suppletive Sonkeigo verbs, お + stem + になる, and avoiding 二重敬語 (redundant honorific stacking).",
+      "culturalNote": "Japanese honorifics encode 'uchi-soto' (in-group vs. out-group): even your own company president is spoken of humbly to an external client!"
+    },
+    {
+      "unitNumber": 40,
+      "unitId": "ja-unit-040",
+      "stageId": "ja-stage-5",
+      "title": "Mastering Keigo II: Humble Kenjougo & Business Emails",
+      "subtitle": "いたす・申す・伺う・拝見する, お〜する frames, and seasonal business correspondence",
+      "communicativeGoal": "Write crisp Japanese business emails, schedule client visits, and open/close phone calls professionally.",
+      "grammarFocus": "Kenjougo Type I (お/ご〜する, 伺う, 拝見する) vs. Type II (いたす, 申す, 参る) and cushion phrases (恐れ入りますが).",
+      "culturalNote": "Opening an email or call with いつもお世話になっております acknowledges ongoing professional partnership."
+    },
+    {
+      "unitNumber": 41,
+      "unitId": "ja-unit-041",
+      "stageId": "ja-stage-5",
+      "title": "Broadcast News, Headlines & Sino-Japanese Compounds",
+      "subtitle": "Decoding condensed 2- and 4-Kanji news compounds, On'yomi patterns, and NHK-style lead sentences",
+      "communicativeGoal": "Follow television news summaries and newspaper front pages on weather alerts, economics, and society.",
+      "grammarFocus": "Headline nominalization (noun-ending clauses), 〜をめぐって, 〜に伴い, and 〜を受け.",
+      "culturalNote": "Newspaper headlines omit particles and copulas into punchy Kango chains that unlock rapidly once you know On'yomi roots."
+    },
+    {
+      "unitNumber": 42,
+      "unitId": "ja-unit-042",
+      "stageId": "ja-stage-5",
+      "title": "Science, Sustainability & Technological Innovation",
+      "subtitle": "Discussing renewable energy, robotics, disaster resilience, and cause-and-effect chains",
+      "communicativeGoal": "Read technical feature articles and debate environmental and urban-design solutions in structured Japanese.",
+      "grammarFocus": "〜に際して, 〜をきっかけに, 〜ざるを得ない, and 〜にほかならない.",
+      "culturalNote": "From seismic base-isolation engineering to circular waste sorting (もったいない), precision engineering shapes daily Japanese life."
+    },
+    {
+      "unitNumber": 43,
+      "unitId": "ja-unit-043",
+      "stageId": "ja-stage-5",
+      "title": "Formal Logic, Concession & Nuanced Debate",
+      "subtitle": "Weighing competing viewpoints with 〜ものの, 〜にもかかわらず, 〜からといって, and 〜上で",
+      "communicativeGoal": "Build persuasive, even-handed arguments in seminars or meetings while acknowledging counterpoints.",
+      "grammarFocus": "Concessive 〜ものの / 〜にもかかわらず, prerequisite 〜上で, and warning against overgeneralization 〜からといって〜とは限らない.",
+      "culturalNote": "Effective Japanese persuasion validates the counterpart's concern first (おっしゃる通りですが…) before introducing a counterpoint."
+    },
+    {
+      "unitNumber": 44,
+      "unitId": "ja-unit-044",
+      "stageId": "ja-stage-5",
+      "title": "Contracts, Housing Leases & Official Civic Notices",
+      "subtitle": "Understanding apartment terms (敷金・礼金・更新), municipal letters, and conditional stipulations",
+      "communicativeGoal": "Read rental agreements, bank forms, and ward-office notifications without intimidation.",
+      "grammarFocus": "〜を問わず, 〜に限り, 〜次第 ('as soon as / depending on'), and 〜ものとする.",
+      "culturalNote": "Traditional Japanese leases distinguish refundable security deposits (敷金) from key-money gratitude (礼金), though zero-zero listings are growing."
+    },
+    {
+      "unitNumber": 45,
+      "unitId": "ja-unit-045",
+      "stageId": "ja-stage-5",
+      "title": "Idioms of Body, Nature & Craftsmanship (Shokunin Spirit)",
+      "subtitle": "High-frequency figurative expressions (顔が広い・腑に落ちる・腕を磨く) in conversation and prose",
+      "communicativeGoal": "Enrich spoken and written Japanese with vivid somatic and craft idioms that natives use daily.",
+      "grammarFocus": "Idiomatic noun-verb collocations, 〜にかけては ('when it comes to'), and 〜だけのことはある.",
+      "culturalNote": "The 職人 (shokunin) ethos celebrates quiet, lifelong refinement of a craft—from sushi knives to woodworking and software."
+    },
+    {
+      "unitNumber": 46,
+      "unitId": "ja-unit-046",
+      "stageId": "ja-stage-5",
+      "title": "Demographics, Work-Life Balance & Contemporary Society",
+      "subtitle": "Interpreting charts, survey data (〜割・〜を占める), and editorial discussions on modern Japan",
+      "communicativeGoal": "Summarize statistical trends and participate in thoughtful discussions on education, aging, and work reform.",
+      "grammarFocus": "〜つつある (ongoing trend), 〜傾向にある, 〜にとどまらず ('not limited to'), and percentage/ratio framing.",
+      "culturalNote": "Note that Japanese 割 (wari) represents tenths (3割 = 30%), a ubiquitous unit in news graphics and discounts."
+    },
+    {
+      "unitNumber": 47,
+      "unitId": "ja-unit-047",
+      "stageId": "ja-stage-5",
+      "title": "Aesthetics: Wabi-Sabi, Architecture, Tea & Seasonal Arts",
+      "subtitle": "Expressing subtle sensory impressions, onomatopoeia (擬音語・擬態語), and spatial harmony (間)",
+      "communicativeGoal": "Describe textures, light, silence, and artistic craftsmanship using rich Japanese mimetics and aesthetic terms.",
+      "grammarFocus": "Mimetic adverbs (しっとり・凛とした・ほっとする), 〜といったらありゃしない, and 〜かねない.",
+      "culturalNote": "Japanese possesses over a thousand mimetic words (オノマトペ) that turn abstract feelings and textures into immediate sensory sound."
+    },
+    {
+      "unitNumber": 48,
+      "unitId": "ja-unit-048",
+      "stageId": "ja-stage-5",
+      "title": "Presentations, Q&A Sessions & Executive Summaries",
+      "subtitle": "Signposting talks, fielding tough questions gracefully, and synthesizing takeaways",
+      "communicativeGoal": "Deliver a structured 5-minute presentation in Japanese and handle live audience Q&A with poise.",
+      "grammarFocus": "Discourse signposts (冒頭で述べた通り・踏まえて), 〜を抜きにしては語れない, and 〜に先立ち.",
+      "culturalNote": "Thanking the questioner (ご質問ありがとうございます) before answering sets a collaborative, composed tone in Japanese Q&A."
+    },
+    {
+      "unitNumber": 49,
+      "unitId": "ja-unit-049",
+      "stageId": "ja-stage-5",
+      "title": "Modern Short Fiction, Narrative Voice & Subtext",
+      "subtitle": "Reading contemporary Japanese fiction: unspoken emotion, shifting perspectives, and interior monologue",
+      "communicativeGoal": "Read unabridged modern short stories while catching subtle emotional shifts and narrative irony.",
+      "grammarFocus": "〜かのようだ, 〜てたまらない / 〜てならない, and ellipsis of subjects across narrative paragraphs.",
+      "culturalNote": "Modern Japanese fiction often conveys deep emotion through small seasonal details and pauses rather than explicit declaration."
+    },
+    {
+      "unitNumber": 50,
+      "unitId": "ja-unit-050",
+      "stageId": "ja-stage-6",
+      "title": "N1 Gateway: Classical Remnants in Modern High Register",
+      "subtitle": "Mastering 〜ず/〜ぬ, 〜べし/〜べからず, 〜ごとし, and 〜なり in editorials and formal prose",
+      "communicativeGoal": "Decode classical grammatical echoes embedded in modern editorials, proverbs, legal notices, and speeches.",
+      "grammarFocus": "Classical negative 〜ぬ/〜ん, obligation/prohibition 〜べし/〜べからず, and 〜んばかりに ('as if about to').",
+      "culturalNote": "Classical bungo (文語) structures survive everywhere in modern signage ('入るべからず'), proverbs, and literary prose."
+    },
+    {
+      "unitNumber": 51,
+      "unitId": "ja-unit-051",
+      "stageId": "ja-stage-6",
+      "title": "Yojijukugo: Four-Character Idioms in Leadership & Essay Writing",
+      "subtitle": "Deploying 一期一会, 試行錯誤, 臨機応変, and 単刀直入 with precision and restraint",
+      "communicativeGoal": "Understand and deploy high-impact four-character compounds naturally in speeches, essays, and negotiations.",
+      "grammarFocus": "Syntactic integration of 四字熟語 with 〜な / 〜に / 〜する and 〜をもって.",
+      "culturalNote": "Rooted in tea ceremony, Zen, and classical history, well-chosen 四字熟語 compress entire philosophies into four syllables."
+    },
+    {
+      "unitNumber": 52,
+      "unitId": "ja-unit-052",
+      "stageId": "ja-stage-6",
+      "title": "High-Stakes Negotiation, Indirect Refusal & Diplomatic Tact",
+      "subtitle": "Navigating 検討いたします, 〜いたしかねます, and preserving mutual face in complex agreements",
+      "communicativeGoal": "Read subtle signals at the negotiation table and decline or counter-propose without friction.",
+      "grammarFocus": "Polite impossibility 〜いたしかねます, 〜ないとも限らない, and 〜を踏まえた上で.",
+      "culturalNote": "In Japanese business diplomacy, 前向きに検討いたします signals respectful deliberation rather than an instant 'yes'."
+    },
+    {
+      "unitNumber": 53,
+      "unitId": "ja-unit-053",
+      "stageId": "ja-stage-6",
+      "title": "Philosophy, Psychology & Abstract Argumentation",
+      "subtitle": "Unpacking dense academic prose, double negations, and epistemic modality",
+      "communicativeGoal": "Read university-level essays and philosophical commentary while tracking multi-layered qualifications.",
+      "grammarFocus": "〜ないではいられない, 〜ともなると, 〜はおろか ('let alone'), and 〜にたる ('worthy of').",
+      "culturalNote": "Double negatives in scholarly Japanese express measured intellectual humility rather than evasiveness."
+    },
+    {
+      "unitNumber": 54,
+      "unitId": "ja-unit-054",
+      "stageId": "ja-stage-6",
+      "title": "Economics, Monetary Policy & Global Trade Commentary",
+      "subtitle": "Reading Nikkei-level financial analysis, central bank statements, and market metaphors",
+      "communicativeGoal": "Follow macroeconomic briefings, earnings analyses, and currency/trade reporting at native speed.",
+      "grammarFocus": "〜を余儀なくされる ('be forced to'), 〜相まって ('coupled with'), and 〜を皮切りに ('starting with').",
+      "culturalNote": "Understanding fiscal-year rhythms (April 1–March 31 in Japan) contextualizes corporate budgets, hiring, and policy."
+    },
+    {
+      "unitNumber": 55,
+      "unitId": "ja-unit-055",
+      "stageId": "ja-stage-6",
+      "title": "Legal, Civic & Policy Discourse",
+      "subtitle": "Statutory phrasing (〜にあっては・〜を妨げない), public debate, and constitutional concepts",
+      "communicativeGoal": "Comprehend policy white papers, civic referenda, and formal institutional announcements accurately.",
+      "grammarFocus": "〜に即して ('in accordance with'), 〜ない限り, 〜たりとも ('not even a single'), and 〜を禁じ得ない.",
+      "culturalNote": "Modern Japanese civic vocabulary coined during the Meiji era (社会・権利・自由) shaped modern East Asian terminology."
+    },
+    {
+      "unitNumber": 56,
+      "unitId": "ja-unit-056",
+      "stageId": "ja-stage-6",
+      "title": "Historical Narratives: Edo Townsfolk to Meiji Modernization",
+      "subtitle": "Historical vocabulary, period drama (時代劇) registers, and cultural continuity",
+      "communicativeGoal": "Enjoy museum placards, historical novels, and NHK Taiga dramas without needing subtitles.",
+      "grammarFocus": "〜に至るまで, 〜を経て, 〜ならではの ('uniquely characteristic of'), and historical honorifics.",
+      "culturalNote": "Edo-period urban literacy, woodblock publishing, and merchant guilds laid deep foundations for modern Tokyo and Osaka."
+    },
+    {
+      "unitNumber": 57,
+      "unitId": "ja-unit-057",
+      "stageId": "ja-stage-6",
+      "title": "Criticism, Irony, Humor & Rhetorical Stance",
+      "subtitle": "Rakugo storytelling cadence, editorial wit, understatement, and 〜といったらない",
+      "communicativeGoal": "Catch subtle humor, self-deprecating wit, and rhetorical questions in live talks and essays.",
+      "grammarFocus": "〜ではあるまいし, 〜とばかりに, 〜始末だ (critical outcome), and 〜に越したことはない.",
+      "culturalNote": "In 落語 (rakugo), a lone seated storyteller conjures entire worlds using only a paper fan, a hand towel, and vocal register shifts."
+    },
+    {
+      "unitNumber": 58,
+      "unitId": "ja-unit-058",
+      "stageId": "ja-stage-6",
+      "title": "Ceremonial Speeches, Toasts, Condolences & Life Milestones",
+      "subtitle": "Weddings, farewells, seasonal letters (時候の挨拶), and deeply respectful ceremonial phrasing",
+      "communicativeGoal": "Deliver a heartfelt ceremonial toast or farewell message and navigate delicate life milestones with grace.",
+      "grammarFocus": "Elevated congratulatory & condolence formulas, 〜に堪えない (感謝に堪えない), and Imi-kotoba taboos.",
+      "culturalNote": "Traditional formal letters open with a poetic nod to the micro-season before turning to practical matters."
+    },
+    {
+      "unitNumber": 59,
+      "unitId": "ja-unit-059",
+      "stageId": "ja-stage-6",
+      "title": "Full Jōyō Kanji Synthesis: Rare Readings, Ateji & Homophones",
+      "subtitle": "Distinguishing subtle homophones (勧める/進める/薦める) and reading unassisted literary Kanji",
+      "communicativeGoal": "Choose exact Kanji nuances in writing and read dense unannotated Japanese texts effortlessly.",
+      "grammarFocus": "Semantic differentiation of Kun/On homophones, Jukujikun (土産・紅葉・老舗), and 〜極まりない.",
+      "culturalNote": "Selecting 老舗 (shinise, 'centuries-old shop') or 粋 (iki, 'understated chic') carries layers of cultural memory."
+    },
+    {
+      "unitNumber": 60,
+      "unitId": "ja-unit-060",
+      "stageId": "ja-stage-6",
+      "title": "Crowning JLPT N1 Mastery: Unassisted Native Synthesis",
+      "subtitle": "Seamless register switching across casual warmth, executive Keigo, and literary prose",
+      "communicativeGoal": "Move fluidly between spirited neighborhood conversation, high-trust professional leadership, and unassisted native literature.",
+      "grammarFocus": "Full-spectrum register calibration, pragmatic ellipsis, and synthesis of N5–N1 rhetorical architecture.",
+      "culturalNote": "True Japanese fluency lives in 気配り—using language with attentive warmth so every person in the room feels respected and at ease."
+    }
+  ]
+}

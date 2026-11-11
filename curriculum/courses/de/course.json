@@ -1,0 +1,93 @@
+{
+  "id": "de",
+  "name": "German",
+  "nativeName": "Deutsch",
+  "summary": "Compound-word root decoding, Kaffeehaus & rail essentials through CEFR C1 fluency with Austrian & Standard variants.",
+  "textDirection": "ltr",
+  "ttsLocales": [
+    "de-AT",
+    "de-DE"
+  ],
+  "sttLocale": "de-AT",
+  "tierDescriptions": {
+    "essential": "Polite Austrian & German greetings, numbers, signs, cafe & transit essentials, and compound-word root splitting.",
+    "travel": "Adds polite requests (Ich hätte gern...), Kaffeehaus & Beisl ordering, rail transfers, hotel check-in, and practical phrases.",
+    "conversational": "Natural conversation (~CEFR B1): Perfekt storytelling, subordinate connectors (weil, obwohl), everyday banter, and regional ear-tuning.",
+    "fluent": "Complete mastery (CEFR C1): Konjunktiv II diplomacy, participial structures, regional idioms, abstract discourse, and native prose."
+  },
+  "proficiencyFramework": {
+    "name": "CEFR",
+    "stages": [
+      {
+        "id": "de-stage-1",
+        "stageNumber": 1,
+        "label": "Stage 1: Sound, Compound Roots & Survival",
+        "cefrOrJlpt": "Pre-A1",
+        "summary": "Immediate Austrian & German confidence: clear pronunciation, Lego-style compound root splitting, polite greetings, Kaffeehaus & Beisl basics, and ÖBB transit signs.",
+        "recommendedTier": "essential"
+      },
+      {
+        "id": "de-stage-2",
+        "stageNumber": 2,
+        "label": "Stage 2: CEFR A1",
+        "cefrOrJlpt": "CEFR A1",
+        "summary": "Core building blocks: present-tense verb-second (V2) flow, modal verbs, nominative/accusative/dative cases, separable prefixes, hotels, directions, and daily routines.",
+        "recommendedTier": "travel"
+      },
+      {
+        "id": "de-stage-3",
+        "stageNumber": 3,
+        "label": "Stage 3: CEFR A2",
+        "cefrOrJlpt": "CEFR A2",
+        "summary": "Practical independence: spoken Perfekt storytelling, two-way prepositions, reflexive verbs, comparative adjectives, healthcare, housing, and subordinate clauses.",
+        "recommendedTier": "travel"
+      },
+      {
+        "id": "de-stage-4",
+        "stageNumber": 4,
+        "label": "Stage 4: CEFR B1",
+        "cefrOrJlpt": "CEFR B1",
+        "summary": "Natural social & workplace fluency: relative clauses, Präteritum vs. Perfekt register, passive voice, Konjunktiv II wishes, and Austrian conversational ear-tuning.",
+        "recommendedTier": "conversational"
+      },
+      {
+        "id": "de-stage-5",
+        "stageNumber": 5,
+        "label": "Stage 5: CEFR B2",
+        "cefrOrJlpt": "CEFR B2",
+        "summary": "Nuanced professional & media command: two-part connectors, genitive prepositions, subjective modals, academic/news argumentation, and regional cultural depth.",
+        "recommendedTier": "conversational"
+      },
+      {
+        "id": "de-stage-6",
+        "stageNumber": 6,
+        "label": "Stage 6: CEFR C1 (Full Fluency)",
+        "cefrOrJlpt": "CEFR C1",
+        "summary": "Complete native-level mastery: extended participial attributes, Konjunktiv I indirect discourse, Funktionsverbgefüge, Wiener Schmäh & literary prose.",
+        "recommendedTier": "fluent"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "de-AT",
+      "label": "Austrian (de-AT)",
+      "ttsLocale": "de-AT",
+      "defaultEnabled": true,
+      "description": "Prioritizes authentic Austrian expressions (Grüß Gott, Sackerl, Verlängerter, ÖBB Bahnsteig) alongside Standard German comprehension."
+    },
+    {
+      "id": "de-DE",
+      "label": "Standard (de-DE)",
+      "ttsLocale": "de-DE",
+      "defaultEnabled": false,
+      "description": "Uses Federal German vocabulary and pronunciation as primary phrasing."
+    }
+  ],
+  "readingFeatures": {
+    "compoundSplitter": {
+      "enabledByDefault": true,
+      "label": "Compound Dots"
+    }
+  }
+}

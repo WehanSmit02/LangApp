@@ -1,0 +1,762 @@
+{
+  "shardId": "ja-unit-001-conversational",
+  "unitId": "ja-unit-001",
+  "tier": "conversational",
+  "tierNumber": 3,
+  "focusSummary": "Switching between casual plain forms and polite register, softening speech with 〜けど and explaining reasons with 〜から, and warm neighborhood banter with hosts or shopkeepers.",
+  "introducedLexiconIds": [
+    "ja-u001-t3-lex-01",
+    "ja-u001-t3-lex-02",
+    "ja-u001-t3-lex-03",
+    "ja-u001-t3-lex-04",
+    "ja-u001-t3-lex-05",
+    "ja-u001-t3-lex-06",
+    "ja-u001-t3-lex-07",
+    "ja-u001-t3-lex-08"
+  ],
+  "introducedGrammarIds": [
+    "ja-u001-t3-gram-01",
+    "ja-u001-t3-gram-02",
+    "ja-u001-t3-gram-03"
+  ],
+  "courseId": "ja",
+  "introducedOrthography": [
+    "近",
+    "所",
+    "買",
+    "物",
+    "今",
+    "日",
+    "天",
+    "気",
+    "話"
+  ],
+  "lessonSteps": [
+    {
+      "id": "ja-u001-t3-step-01",
+      "tier": "conversational",
+      "heading": "Plain Form vs. Polite Register in Everyday Banter",
+      "explanation": "Close friends and welcoming guesthouse hosts often speak in plain form (いく instead of いきます, いい天気だね instead of いい天気ですね). Even when someone speaks casually to you, replying in warm です/ます with ね ('isn't it?') sounds friendly without overstepping.",
+      "scenarioPrompt": "Your guesthouse host smiles over morning coffee and says 「今日、いい天気だね！どこ行くの？」 ('Nice weather today, huh! Where are you heading?').",
+      "nativeText": "ほんとうにいい天気ですね。ちょっと近所を散歩します。",
+      "rubyHtml": "ほんとうにいい<ruby>天気<rt>てんき</rt></ruby>ですね。ちょっと<ruby>近所<rt>きんじょ</rt></ruby>を<ruby>散歩<rt>さんぽ</rt></ruby>します。",
+      "romanization": "Hontō ni ii tenki desu ne. Chotto kinjo o sanpo shimasu.",
+      "translation": "It really is nice weather, isn't it? I'm going to stroll around the neighborhood for a bit.",
+      "literalBreakdown": "ほんとうに (really) + いい天気 (good weather) + ですね (is, right?) / ちょっと (a little) + 近所を (neighborhood) + 散歩します (stroll)",
+      "usageTip": "ちょっと literally means 'a little', but in conversation it makes actions sound relaxed and unpretentious."
+    },
+    {
+      "id": "ja-u001-t3-step-02",
+      "tier": "conversational",
+      "heading": "Giving Natural Reasons with 〜から",
+      "explanation": "Attach から ('because / since') right after a clause to explain why you are doing something. In friendly polite conversation, plain-form + から before a polite main verb feels natural and unforced.",
+      "scenarioPrompt": "A local bakery owner offers you a plastic bag, and you explain why you don't need one.",
+      "nativeText": "エコバッグがあるから、大丈夫です！",
+      "romanization": "Ekobaggu ga aru kara, daijōbu desu!",
+      "translation": "Since I have a reusable tote bag, I'm all set!",
+      "literalBreakdown": "エコバッグ (eco-bag) + がある (exists/have, plain form) + から (because/so) + 大丈夫です (I'm fine)",
+      "usageTip": "Putting plain form (ある) rather than あります inside the 〜から clause keeps the sentence from sounding stiffly repetitive."
+    },
+    {
+      "id": "ja-u001-t3-step-03",
+      "tier": "conversational",
+      "heading": "Trailing Off & Opening Requests Softly with 〜けど",
+      "explanation": "けど ('though / but') isn't just for contrast—Japanese speakers constantly use 〜んですけど as a gentle conversational opener to introduce context before asking a question or favor.",
+      "scenarioPrompt": "You step into a small neighborhood coffee roaster and want to ask for a recommendation.",
+      "nativeText": "コーヒーを買いたいんですけど、どれが人気ですか。",
+      "rubyHtml": "コーヒーを<ruby>買<rt>か</rt></ruby>いたいんですけど、どれが<ruby>人気<rt>にんき</rt></ruby>ですか。",
+      "romanization": "Kōhī o kaitai n desu kedo, dore ga ninki desu ka.",
+      "translation": "I'd like to buy some coffee—which one is popular?",
+      "literalBreakdown": "コーヒーを買いたい (want to buy coffee) + んですけど (it's that..., softening lead-in) + どれが人気ですか (which is popular?)",
+      "usageTip": "〜んですけど signals 'here is my situation—could you help me out?' and invites the listener into the conversation."
+    },
+    {
+      "id": "ja-u001-t3-step-04",
+      "tier": "conversational",
+      "heading": "Warm Parting Phrases with Shopkeepers & Hosts",
+      "explanation": "When leaving a guesthouse in the morning, say いってきます ('I'm heading out and coming back'), and the host replies いってらっしゃい ('Have a safe outing'). With a friendly neighborhood shopkeeper you plan to visit again, また来ます ('I'll come again!') lights up faces.",
+      "scenarioPrompt": "You finish chatting with the owner of a corner bakery near your stay.",
+      "nativeText": "おいしそうですね！ありがとうございます、また来ます。",
+      "rubyHtml": "おいしそうですね！ありがとうございます、また<ruby>来<rt>き</rt></ruby>ます。",
+      "romanization": "Oishisō desu ne! Arigatō gozaimasu, mata kimasu.",
+      "translation": "That looks delicious! Thank you very much—I'll come by again.",
+      "literalBreakdown": "おいしそう (looks delicious) + ですね (doesn't it!) + ありがとうございます + また (again) + 来ます (will come)",
+      "usageTip": "Verb/i-adjective stem + そう (おいしそう = looks tasty, よさそう = looks good) is effortless small-talk gold in shops."
+    }
+  ],
+  "drills": [
+    {
+      "id": "ja-u001-t3-drill-01",
+      "tier": "conversational",
+      "prompt": "You want to explain to the clerk that you don't need a bag BECAUSE you brought your backpack (リュックがある). Choose the natural sentence:",
+      "cue": "Connect the reason clause with から",
+      "options": [
+        "リュックがあるを、袋は大丈夫です。",
+        "リュックがあるから、袋は大丈夫です。",
+        "リュックがあるどこ、袋は大丈夫です。",
+        "リュックがあるへ、袋は大丈夫です。"
+      ],
+      "correctAnswer": "リュックがあるから、袋は大丈夫です。",
+      "explanation": "Clause + から expresses cause/reason ('Since I have my backpack, I'm good without a bag')."
+    },
+    {
+      "id": "ja-u001-t3-drill-02",
+      "tier": "conversational",
+      "prompt": "You walk into a neighborhood tea shop and want to preface your question softly: 'I'm looking for a gift, so...' Complete the opener:",
+      "baseSentence": "おみやげを探しているんです＿＿＿、どれがいいですか。",
+      "cue": "Conversational softening connector ('...though / and...')",
+      "options": [
+        "からを",
+        "と",
+        "けど",
+        "の"
+      ],
+      "correctAnswer": "けど",
+      "acceptedVariants": [
+        "が"
+      ],
+      "explanation": "〜んですけど gently sets the scene for a request without sounding abrupt or demanding."
+    },
+    {
+      "id": "ja-u001-t3-drill-03",
+      "tier": "conversational",
+      "prompt": "Your guesthouse host calls out 「いってらっしゃい！」 as you step out the front door in the morning. What had you naturally just said—or can say back?",
+      "cue": "Standard phrase when heading out from your home base",
+      "options": [
+        "いらっしゃいませ！",
+        "ごちそうさまでした！",
+        "営業中です！",
+        "いってきます！"
+      ],
+      "correctAnswer": "いってきます！",
+      "explanation": "いってきます ('I'll go and come back') pairs with the host's いってらっしゃい ('Go and come back safely')."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "ja-u001-t3-card-01",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "frontPrompt": "Since I have a reusable bag, I'm fine!",
+      "targetText": "エコバッグがあるから、大丈夫です。",
+      "rubyHtml": "エコバッグがあるから、<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。",
+      "reading": "えこばっぐがあるから、だいじょうぶです。",
+      "contextSentence": "「袋はご利用ですか？」「エコバッグがあるから、大丈夫です。」",
+      "contextRubyHtml": "「<ruby>袋<rt>ふくろ</rt></ruby>はご<ruby>利用<rt>りよう</rt></ruby>ですか？」「エコバッグがあるから、<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です。」",
+      "contextTranslation": "'Would you like a bag?' 'Since I have an eco-bag, I'm fine.'",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t3-card-02",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "frontPrompt": "I'd like to do some shopping, though—is there a supermarket nearby?",
+      "targetText": "買い物をしたいんですけど、近くにスーパーはありますか。",
+      "rubyHtml": "<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をしたいんですけど、<ruby>近<rt>ちか</rt></ruby>くにスーパーはありますか。",
+      "reading": "かいものをしたいんですけど、ちかくにすーぱーはありますか。",
+      "contextSentence": "ちょっと買い物をしたいんですけど、近くにスーパーはありますか。",
+      "contextRubyHtml": "ちょっと<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をしたいんですけど、<ruby>近<rt>ちか</rt></ruby>くにスーパーはありますか。",
+      "contextTranslation": "I'd like to do a bit of shopping—is there a supermarket nearby?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t3-card-03",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "frontPrompt": "Nice weather today, isn't it?",
+      "targetText": "今日はいい天気ですね。",
+      "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>はいい<ruby>天気<rt>てんき</rt></ruby>ですね。",
+      "reading": "きょうはいいてんきですね。",
+      "contextSentence": "おはようございます！今日はいい天気ですね。",
+      "contextRubyHtml": "おはようございます！<ruby>今日<rt>きょう</rt></ruby>はいい<ruby>天気<rt>てんき</rt></ruby>ですね。",
+      "contextTranslation": "Good morning! Nice weather today, isn't it?",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t3-card-04",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "frontPrompt": "Thank you—I'll come by again!",
+      "targetText": "ありがとうございます、また来ます。",
+      "rubyHtml": "ありがとうございます、また<ruby>来<rt>き</rt></ruby>ます。",
+      "reading": "ありがとうございます、またきます。",
+      "contextSentence": "いつもありがとうございます、また明日も来ますね。",
+      "contextRubyHtml": "いつもありがとうございます、また<ruby>明日<rt>あした</rt></ruby>も<ruby>来<rt>き</rt></ruby>ますね。",
+      "contextTranslation": "Thank you as always—I'll come again tomorrow too.",
+      "phraseLockEligible": true,
+      "courseId": "ja"
+    },
+    {
+      "id": "ja-u001-t3-card-05",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "frontPrompt": "Neighborhood / vicinity",
+      "targetText": "近所",
+      "rubyHtml": "<ruby>近所<rt>きんじょ</rt></ruby>",
+      "reading": "きんじょ",
+      "contextSentence": "近所のパン屋さんで買い物をして、少し話しました。",
+      "contextRubyHtml": "<ruby>近所<rt>きんじょ</rt></ruby>のパン<ruby>屋<rt>や</rt></ruby>さんで<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をして、<ruby>少<rt>すこ</rt></ruby>し<ruby>話<rt>はな</rt></ruby>しました。",
+      "contextTranslation": "I shopped at the neighborhood bakery and chatted for a bit.",
+      "phraseLockEligible": false,
+      "courseId": "ja"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "ja-u001-t3-story-01",
+      "unitId": "ja-unit-001",
+      "tier": "conversational",
+      "title": "近所のパン屋さんと朝の会話",
+      "titleTranslation": "Morning Small Talk at the Neighborhood Bakery",
+      "setting": "A sunny morning strolling from a Kyoto machiya guesthouse to a corner bakery.",
+      "paragraphs": [
+        {
+          "nativeText": "ゲストハウスを出るとき、オーナーの田中さんに「いってきます！」と言いました。田中さんは「今日はいい天気だから、散歩にぴったりだね。いってらっしゃい！」と笑いました。",
+          "rubyHtml": "ゲストハウスを<ruby>出<rt>で</rt></ruby>るとき、オーナーの<ruby>田中<rt>たなか</rt></ruby>さんに「いってきます！」と<ruby>言<rt>い</rt></ruby>いました。<ruby>田中<rt>たなか</rt></ruby>さんは「<ruby>今日<rt>きょう</rt></ruby>はいい<ruby>天気<rt>てんき</rt></ruby>だから、<ruby>散歩<rt>さんぽ</rt></ruby>にぴったりだね。いってらっしゃい！」と<ruby>笑<rt>わら</rt></ruby>いました。",
+          "translation": "When heading out of the guesthouse, I called out 'I'm heading out!' to the owner, Tanaka-san. Tanaka-san smiled and said, 'Since the weather's great today, it's perfect for a walk. Have a great time!'",
+          "segments": [
+            {
+              "surface": "ゲストハウス",
+              "reading": "げすとはうす",
+              "meaning": "guesthouse"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "object / departure point particle"
+            },
+            {
+              "surface": "出るとき",
+              "rubyHtml": "<ruby>出<rt>で</rt></ruby>るとき",
+              "reading": "でるとき",
+              "meaning": "when leaving / going out"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "オーナー",
+              "reading": "おーなー",
+              "meaning": "owner"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "appositive 'of'"
+            },
+            {
+              "surface": "田中さん",
+              "rubyHtml": "<ruby>田中<rt>たなか</rt></ruby>さん",
+              "reading": "たなかさん",
+              "meaning": "Mr./Ms. Tanaka"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "to (person)"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "いってきます",
+              "reading": "いってきます",
+              "meaning": "I'm heading out (and coming back)"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言いました",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>いました",
+              "reading": "いいました",
+              "meaning": "said (polite past)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "田中さん",
+              "rubyHtml": "<ruby>田中<rt>たなか</rt></ruby>さん",
+              "reading": "たなかさん",
+              "meaning": "Mr./Ms. Tanaka"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "今日",
+              "rubyHtml": "<ruby>今日<rt>きょう</rt></ruby>",
+              "reading": "きょう",
+              "meaning": "today"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "いい",
+              "reading": "いい",
+              "meaning": "good / nice"
+            },
+            {
+              "surface": "天気",
+              "rubyHtml": "<ruby>天気<rt>てんき</rt></ruby>",
+              "reading": "てんき",
+              "meaning": "weather"
+            },
+            {
+              "surface": "だから",
+              "reading": "だから",
+              "meaning": "because it is (plain)"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "散歩",
+              "rubyHtml": "<ruby>散歩<rt>さんぽ</rt></ruby>",
+              "reading": "さんぽ",
+              "meaning": "stroll / walk"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "for (purpose/suitability)"
+            },
+            {
+              "surface": "ぴったり",
+              "reading": "ぴったり",
+              "meaning": "just right / ideal"
+            },
+            {
+              "surface": "だね",
+              "reading": "だね",
+              "meaning": "isn't it! (casual)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "いってらっしゃい",
+              "reading": "いってらっしゃい",
+              "meaning": "go and come back safely"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "笑いました",
+              "rubyHtml": "<ruby>笑<rt>わら</rt></ruby>いました",
+              "reading": "わらいました",
+              "meaning": "smiled / laughed (polite past)"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "近所の小さなパン屋さんに入って、「朝ごはんを買いたいんですけど、どれが人気ですか」と聞きました。お店の人は「焼きたてのカレーパンが一番人気ですよ」と話してくれました。",
+          "rubyHtml": "<ruby>近所<rt>きんじょ</rt></ruby>の<ruby>小<rt>ちい</rt></ruby>さなパン<ruby>屋<rt>や</rt></ruby>さんに<ruby>入<rt>はい</rt></ruby>って、「<ruby>朝<rt>あさ</rt></ruby>ごはんを<ruby>買<rt>か</rt></ruby>いたいんですけど、どれが<ruby>人気<rt>にんき</rt></ruby>ですか」と<ruby>聞<rt>き</rt></ruby>きました。お<ruby>店<rt>みせ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>は「<ruby>焼<rt>や</rt></ruby>きたてのカレーパンが<ruby>一番<rt>いちばん</rt></ruby><ruby>人気<rt>にんき</rt></ruby>ですよ」と<ruby>話<rt>はな</rt></ruby>してくれました。",
+          "translation": "Stepping into a tiny neighborhood bakery, I asked, 'I'd like to buy breakfast—which one is popular?' The baker told me, 'Our freshly baked curry bread is the number-one favorite!'",
+          "segments": [
+            {
+              "surface": "近所",
+              "rubyHtml": "<ruby>近所<rt>きんじょ</rt></ruby>",
+              "reading": "きんじょ",
+              "meaning": "neighborhood"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "of / in"
+            },
+            {
+              "surface": "小さな",
+              "rubyHtml": "<ruby>小<rt>ちい</rt></ruby>さな",
+              "reading": "ちいさな",
+              "meaning": "small / cozy"
+            },
+            {
+              "surface": "パン屋さん",
+              "rubyHtml": "パン<ruby>屋<rt>や</rt></ruby>さん",
+              "reading": "ぱんやさん",
+              "meaning": "bakery"
+            },
+            {
+              "surface": "に",
+              "reading": "に",
+              "meaning": "into"
+            },
+            {
+              "surface": "入って",
+              "rubyHtml": "<ruby>入<rt>はい</rt></ruby>って",
+              "reading": "はいって",
+              "meaning": "entering"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "朝ごはん",
+              "rubyHtml": "<ruby>朝<rt>あさ</rt></ruby>ごはん",
+              "reading": "あさごはん",
+              "meaning": "breakfast"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "買いたいんですけど",
+              "rubyHtml": "<ruby>買<rt>か</rt></ruby>いたいんですけど",
+              "reading": "かいたいんですけど",
+              "meaning": "I'd like to buy, though..."
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "どれ",
+              "reading": "どれ",
+              "meaning": "which one"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "人気",
+              "rubyHtml": "<ruby>人気<rt>にんき</rt></ruby>",
+              "reading": "にんき",
+              "meaning": "popular"
+            },
+            {
+              "surface": "ですか",
+              "reading": "ですか",
+              "meaning": "is it?"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "聞きました",
+              "rubyHtml": "<ruby>聞<rt>き</rt></ruby>きました",
+              "reading": "ききました",
+              "meaning": "asked (polite past)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "お店の人",
+              "rubyHtml": "お<ruby>店<rt>みせ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>",
+              "reading": "おみせのひと",
+              "meaning": "shopkeeper / staff"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic particle"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "焼きたて",
+              "rubyHtml": "<ruby>焼<rt>や</rt></ruby>きたて",
+              "reading": "やきたて",
+              "meaning": "freshly baked"
+            },
+            {
+              "surface": "の",
+              "reading": "の",
+              "meaning": "linking particle"
+            },
+            {
+              "surface": "カレーパン",
+              "reading": "かれーぱん",
+              "meaning": "savory curry-filled bread"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "一番",
+              "rubyHtml": "<ruby>一番<rt>いちばん</rt></ruby>",
+              "reading": "いちばん",
+              "meaning": "number one / most"
+            },
+            {
+              "surface": "人気",
+              "rubyHtml": "<ruby>人気<rt>にんき</rt></ruby>",
+              "reading": "にんき",
+              "meaning": "popular"
+            },
+            {
+              "surface": "ですよ",
+              "reading": "ですよ",
+              "meaning": "is! (helpful emphasis)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "話してくれました",
+              "rubyHtml": "<ruby>話<rt>はな</rt></ruby>してくれました",
+              "reading": "はなしてくれました",
+              "meaning": "kindly told / chatted with me"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        },
+        {
+          "nativeText": "「じゃあ、それをお願いします。かばんがあるから、袋は大丈夫です」と言って買いました。「ありがとうございます、また来ます！」と言うと、お店の人もにっこりしました。",
+          "rubyHtml": "「じゃあ、それをお<ruby>願<rt>ねが</rt></ruby>いします。かばんがあるから、<ruby>袋<rt>ふくろ</rt></ruby>は<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です」と<ruby>言<rt>い</rt></ruby>って<ruby>買<rt>か</rt></ruby>いました。「ありがとうございます、また<ruby>来<rt>き</rt></ruby>ます！」と<ruby>言<rt>い</rt></ruby>うと、お<ruby>店<rt>みせ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>もにっこりしました。",
+          "translation": "'Well then, I'll take that please. Since I have my bag, I'm fine without a shopping bag,' I said and bought it. When I added 'Thank you, I'll come again!', the shopkeeper beamed.",
+          "segments": [
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "じゃあ",
+              "reading": "じゃあ",
+              "meaning": "well then / in that case"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "それ",
+              "reading": "それ",
+              "meaning": "that one"
+            },
+            {
+              "surface": "を",
+              "reading": "お",
+              "meaning": "direct object particle"
+            },
+            {
+              "surface": "お願いします",
+              "rubyHtml": "お<ruby>願<rt>ねが</rt></ruby>いします",
+              "reading": "おねがいします",
+              "meaning": "please"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "かばん",
+              "reading": "かばん",
+              "meaning": "bag / satchel"
+            },
+            {
+              "surface": "が",
+              "reading": "が",
+              "meaning": "subject particle"
+            },
+            {
+              "surface": "ある",
+              "reading": "ある",
+              "meaning": "have / exists (plain)"
+            },
+            {
+              "surface": "から",
+              "reading": "から",
+              "meaning": "because / since"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "袋",
+              "rubyHtml": "<ruby>袋<rt>ふくろ</rt></ruby>",
+              "reading": "ふくろ",
+              "meaning": "shopping bag"
+            },
+            {
+              "surface": "は",
+              "reading": "わ",
+              "meaning": "topic / contrast particle"
+            },
+            {
+              "surface": "大丈夫です",
+              "rubyHtml": "<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>です",
+              "reading": "だいじょうぶです",
+              "meaning": "I'm fine (without it)"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言って",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>って",
+              "reading": "いって",
+              "meaning": "saying"
+            },
+            {
+              "surface": "買いました",
+              "rubyHtml": "<ruby>買<rt>か</rt></ruby>いました",
+              "reading": "かいました",
+              "meaning": "bought (polite past)"
+            },
+            {
+              "surface": "。"
+            },
+            {
+              "surface": "「"
+            },
+            {
+              "surface": "ありがとうございます",
+              "reading": "ありがとうございます",
+              "meaning": "thank you very much"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "また",
+              "reading": "また",
+              "meaning": "again"
+            },
+            {
+              "surface": "来ます",
+              "rubyHtml": "<ruby>来<rt>き</rt></ruby>ます",
+              "reading": "きます",
+              "meaning": "will come"
+            },
+            {
+              "surface": "！"
+            },
+            {
+              "surface": "」"
+            },
+            {
+              "surface": "と",
+              "reading": "と",
+              "meaning": "quotation particle"
+            },
+            {
+              "surface": "言うと",
+              "rubyHtml": "<ruby>言<rt>い</rt></ruby>うと",
+              "reading": "いうと",
+              "meaning": "when I said"
+            },
+            {
+              "surface": "、"
+            },
+            {
+              "surface": "お店の人",
+              "rubyHtml": "お<ruby>店<rt>みせ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>",
+              "reading": "おみせのひと",
+              "meaning": "shopkeeper"
+            },
+            {
+              "surface": "も",
+              "reading": "も",
+              "meaning": "also"
+            },
+            {
+              "surface": "にっこりしました",
+              "reading": "にっこりしました",
+              "meaning": "smiled warmly"
+            },
+            {
+              "surface": "。"
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "ja-u001-t3-story-01-q1",
+          "question": "Why did Tanaka-san say it was an ideal day for a walk?",
+          "options": [
+            "Because the weather was nice today",
+            "Because the trains were stopped",
+            "Because the bakery was closing early",
+            "Because it was snowing"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tanaka-san said 「今日はいい天気だから、散歩にぴったりだね」 ('Since the weather is nice today, it's perfect for a walk')."
+        },
+        {
+          "id": "ja-u001-t3-story-01-q2",
+          "question": "What did the baker recommend as their most popular item?",
+          "options": [
+            "Chilled melon bread",
+            "Freshly baked curry bread (焼きたてのカレーパン)",
+            "Green tea cookies",
+            "Rice balls"
+          ],
+          "correctIndex": 1,
+          "explanation": "The baker replied 「焼きたてのカレーパンが一番人気ですよ」."
+        },
+        {
+          "id": "ja-u001-t3-story-01-q3",
+          "question": "Why did the narrator decline a shopping bag?",
+          "options": [
+            "Bags were sold out",
+            "They ate the bread inside the bakery",
+            "They already had their own bag/satchel (かばんがあるから)",
+            "Tanaka-san was carrying it"
+          ],
+          "correctIndex": 2,
+          "explanation": "They explained 「かばんがあるから、袋は大丈夫です」 ('Since I have my bag, I'm fine without a bag')."
+        }
+      ],
+      "courseId": "ja"
+    }
+  ],
+  "referenceSheets": []
+}

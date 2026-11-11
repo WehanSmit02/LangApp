@@ -1,0 +1,981 @@
+{
+  "shardId": "de-unit-002-tier-3-conversational",
+  "unitId": "de-unit-002",
+  "tier": "conversational",
+  "tierNumber": 3,
+  "focusSummary": "Explaining delays (Verspätung), track closures, and missed connections (den Anschlusszug verpassen) using verb-final subordinate clauses with weil, obwohl, and damit.",
+  "introducedLexiconIds": [
+    "de-u002-t3-lex-verspaetung",
+    "de-u002-t3-lex-anschlusszug-verpassen",
+    "de-u002-t3-lex-weil",
+    "de-u002-t3-lex-obwohl",
+    "de-u002-t3-lex-damit"
+  ],
+  "introducedGrammarIds": [
+    "de-u002-t3-gram-subordinate-verb-final-weil-obwohl",
+    "de-u002-t3-gram-purpose-clauses-damit"
+  ],
+  "courseId": "de",
+  "introducedOrthography": [
+    "Anschluss",
+    "Zug",
+    "Bau",
+    "Arbeit",
+    "Leitung"
+  ],
+  "lessonSteps": [
+    {
+      "id": "de-u002-t3-step-01",
+      "tier": "conversational",
+      "heading": "Explaining Delays with weil (Verb Kicks to the End!)",
+      "explanation": "When messaging hosts, colleagues, or conductors about a delay (die Verspätung), subordinating conjunctions like weil ('because') send the conjugated verb straight to the very end of the weil-clause—even gluing separable prefixes back onto their verb ('...weil der Zug später abfährt')!",
+      "scenarioPrompt": "You text your host in Graz to explain why you'll arrive half an hour late.",
+      "nativeText": "Ich komme leider dreißig Minuten später an, weil unser Zug wegen Bauarbeiten im Schienenersatzverkehr fährt.",
+      "translation": "Unfortunately I'm arriving thirty minutes later because our train is running as a rail replacement bus due to construction work.",
+      "literalBreakdown": "Ich komme ... später an (I arrive ... later) · weil (because) · unser Zug ... im Schienen·ersatz·verkehr fährt (our train ... in replacement-service runs)",
+      "compoundParts": [
+        "Bau",
+        "arbeiten"
+      ],
+      "usageTip": "Notice how separable 'ankommen' splits in the main clause ('Ich komme ... an'), whereas in a weil-clause it fuses back together at the end ('...weil ich später ankomme')!"
+    },
+    {
+      "id": "de-u002-t3-step-02",
+      "tier": "conversational",
+      "heading": "Unexpected Twists with obwohl ('although')",
+      "explanation": "Obwohl ('although / even though') follows the exact same verb-final subordinate rule as weil. If you start the whole sentence with the obwohl-clause for dramatic emphasis, the main clause verb immediately follows the comma ('Verb-Comma-Verb' rule)!",
+      "scenarioPrompt": "You tell the train conductor how you barely missed your connecting train despite running.",
+      "nativeText": "Obwohl wir auf Bahnsteig 5 gerannt sind, haben wir unseren Anschlusszug leider knapp verpasst.",
+      "translation": "Although we ran onto Platform 5, we unfortunately narrowly missed our connecting train.",
+      "literalBreakdown": "Obwohl wir ... gerannt sind (although we ... ran [verb-final]) , haben wir (have we [verb right after comma!]) · unseren Anschluss·zug knapp verpasst (our connection-train narrowly missed)",
+      "compoundParts": [
+        "Anschluss",
+        "zug"
+      ],
+      "usageTip": "When your ticket's train is delayed by 20+ minutes or you miss an Anschlusszug through no fault of your own, your Zugbindung (train-specific restriction) is lifted—ask the conductor: 'Ist die Zugbindung aufgehoben?'.",
+      "variantForms": {
+        "de-AT": {
+          "nativeText": "Obwohl wir auf Bahnsteig 5 gerannt sind, haben wir unseren Anschlusszug leider knapp verpasst."
+        },
+        "de-DE": {
+          "nativeText": "Obwohl wir auf Gleis 5 gerannt sind, haben wir unseren Anschlusszug leider knapp verpasst.",
+          "note": "Verb-Comma-Verb syntax ('...gerannt sind, haben wir...') is identical across Austrian and German Standard German."
+        }
+      },
+      "regionalNote": "DE: Obwohl wir auf Gleis 5 gerannt sind, haben wir unseren Anschlusszug leider knapp verpasst. (Verb-Comma-Verb syntax ('...gerannt sind, haben wir...') is identical across Austrian and German Standard German.)"
+    },
+    {
+      "id": "de-u002-t3-step-03",
+      "tier": "conversational",
+      "heading": "Expressing Purpose Smoothly with damit ('so that')",
+      "explanation": "Use damit ('so that') whenever two clauses have different subjects and you want to explain why you're calling, sharing live location, or taking an earlier connection.",
+      "scenarioPrompt": "You send your arrival update to a friend picking you up at Innsbruck station.",
+      "nativeText": "Ich schicke dir kurz meine neue Ankunftszeit, damit du am Bahnhof nicht in der Kälte warten musst.",
+      "translation": "I'm quickly sending you my new arrival time so that you don't have to wait in the cold at the station.",
+      "literalBreakdown": "Ich schicke dir (I send you) · meine neue Ankunfts·zeit (my new arrival-time) · damit (so that) · du ... nicht ... warten musst (you ... don't ... wait must)",
+      "usageTip": "When a modal verb appears in a subordinate clause ('warten musst'), the conjugated modal ('musst') goes to the absolute end after the infinitive!"
+    }
+  ],
+  "drills": [
+    {
+      "id": "de-u002-t3-drill-01",
+      "tier": "conversational",
+      "prompt": "Combine into a natural weil-sentence: 'Ich nehme ein Taxi, [der letzte Regionalzug · ausfallen (ist ausgefallen)].'",
+      "baseSentence": "Der letzte Regionalzug ist ausgefallen.",
+      "cue": "Subordinate clause with weil -> conjugated auxiliary 'ist' goes to the very end!",
+      "options": [
+        "Ich nehme ein Taxi, weil der letzte Regionalzug ausgefallen ist.",
+        "Ich nehme ein Taxi, weil ist der letzte Regionalzug ausgefallen.",
+        "Ich nehme ein Taxi, weil der letzte Regionalzug ist ausgefallen.",
+        "Weil ausgefallen der letzte Regionalzug, ich nehme ein Taxi."
+      ],
+      "correctAnswer": "Ich nehme ein Taxi, weil der letzte Regionalzug ausgefallen ist.",
+      "explanation": "In a weil-clause, the conjugated verb ('ist') moves to the very end after the past participle ('ausgefallen ist')."
+    },
+    {
+      "id": "de-u002-t3-drill-02",
+      "tier": "conversational",
+      "prompt": "Complete the 'Verb-Comma-Verb' sentence starting with obwohl: 'Obwohl der Railjet zehn Minuten Verspätung hatte, ...'",
+      "cue": "After a fronted subordinate clause + comma, the main clause MUST start with its conjugated verb!",
+      "options": [
+        "...haben wir unseren Anschlusszug in Linz noch erreicht.",
+        "...wir haben unseren Anschlusszug in Linz noch erreicht.",
+        "...unseren Anschlusszug wir erreicht haben.",
+        "...erreichen in Linz wir haben."
+      ],
+      "correctAnswer": "...haben wir unseren Anschlusszug in Linz noch erreicht.",
+      "explanation": "The entire obwohl-clause counts as Position 1 of the sentence, so Position 2—right after the comma—must be the conjugated main verb 'haben' ('...hatte, haben wir...')."
+    },
+    {
+      "id": "de-u002-t3-drill-03",
+      "tier": "conversational",
+      "prompt": "You missed your connecting train due to a delay and want to ask the ÖBB conductor if you may take the next train instead. Which question is most natural?",
+      "cue": "Missed Anschlusszug + taking the next connection",
+      "options": [
+        "Wir haben wegen der Verspätung unseren Anschlusszug verpasst — dürfen wir den nächsten Zug nehmen?",
+        "Wir haben unseren Fensterplatz gegessen — zahlen wir getrennt?",
+        "Grüß Gott, ist hier ein Bankomat im Sackerl?",
+        "Fährt das Schlagobers heute hin und retour?"
+      ],
+      "correctAnswer": "Wir haben wegen der Verspätung unseren Anschlusszug verpasst — dürfen wir den nächsten Zug nehmen?",
+      "explanation": "'Wir haben wegen der Verspätung unseren Anschlusszug verpasst' clearly states the rail delay reason, and 'dürfen wir den nächsten Zug nehmen?' politely confirms ticket validity."
+    }
+  ],
+  "srsCards": [
+    {
+      "id": "de-u002-t3-srs-01",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "frontPrompt": "Explain: 'I'm arriving later because our train has twenty minutes' delay.'",
+      "targetText": "Ich komme später an, weil unser Zug zwanzig Minuten Verspätung hat.",
+      "contextSentence": "Tut mir leid — ich komme später an, weil unser Zug zwanzig Minuten Verspätung hat.",
+      "contextTranslation": "Sorry — I'm arriving later because our train is twenty minutes delayed.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t3-srs-02",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "frontPrompt": "Say: 'Unfortunately we missed our connecting train.'",
+      "targetText": "Wir haben leider unseren Anschlusszug verpasst.",
+      "contextSentence": "Wir haben leider unseren Anschlusszug verpasst — ist die Zugbindung aufgehoben?",
+      "contextTranslation": "Unfortunately we missed our connecting train — is the train-specific ticket restriction lifted?",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t3-srs-03",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "frontPrompt": "Say: 'Although the train departed late, we arrived almost on time.'",
+      "targetText": "Obwohl der Zug zu spät abgefahren ist, sind wir fast pünktlich angekommen.",
+      "contextSentence": "Obwohl der Zug in Wien zu spät abgefahren ist, sind wir in Salzburg fast pünktlich angekommen.",
+      "contextTranslation": "Although the train departed late in Vienna, we arrived in Salzburg almost on time.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t3-srs-04",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "frontPrompt": "Say: 'I'm texting you now so that you don't have to wait at the station.'",
+      "targetText": "Ich schreibe dir jetzt, damit du am Bahnhof nicht warten musst.",
+      "contextSentence": "Ich schreibe dir jetzt kurz, damit du am Bahnhof nicht unnötig warten musst.",
+      "contextTranslation": "I'm texting you briefly now so that you don't have to wait unnecessarily at the station.",
+      "phraseLockEligible": true,
+      "courseId": "de"
+    },
+    {
+      "id": "de-u002-t3-srs-05",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "frontPrompt": "Track/road construction works causing detours or delays",
+      "targetText": "Bauarbeiten",
+      "reading": "die Bauarbeiten (Pl.)",
+      "compoundParts": [
+        "Bau",
+        "arbeiten"
+      ],
+      "contextSentence": "Wegen Bauarbeiten auf der Weststrecke fahren heute Busse im Schienenersatzverkehr.",
+      "contextTranslation": "Due to construction work on the Western Line, rail replacement buses are running today.",
+      "phraseLockEligible": false,
+      "courseId": "de"
+    }
+  ],
+  "gradedStories": [
+    {
+      "id": "de-u002-t3-story-01",
+      "unitId": "de-unit-002",
+      "tier": "conversational",
+      "title": "Schnee am Semmering und ein verpasster Anschlusszug",
+      "titleTranslation": "Snow on the Semmering Pass and a Missed Connection",
+      "setting": "Winter evening aboard an Alpine train crossing the Semmering mountain pass toward Carinthia",
+      "paragraphs": [
+        {
+          "nativeText": "Jakob ist auf dem Weg nach Klagenfurt, aber im Gebirge schneit es stark. Kurz vor Bruck an der Mur hält der Zug an, weil ein Ast auf die Oberleitung gefallen ist.",
+          "translation": "Jakob is on his way to Klagenfurt, but in the mountains it is snowing heavily. Shortly before Bruck an der Mur the train stops because a branch has fallen onto the overhead power line.",
+          "segments": [
+            {
+              "surface": "Jakob",
+              "meaning": "Jakob"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ist",
+              "meaning": "is"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "auf",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "dem",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Weg",
+              "meaning": "way (auf dem Weg = on the way)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "nach",
+              "meaning": "to"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Klagenfurt",
+              "meaning": "Klagenfurt (capital of Carinthia)"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "aber",
+              "meaning": "but"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "im",
+              "meaning": "in the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Gebirge",
+              "meaning": "mountain range"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "schneit",
+              "meaning": "snows / is snowing"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "es",
+              "meaning": "it"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "stark",
+              "meaning": "heavily"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Kurz",
+              "meaning": "shortly"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "vor",
+              "meaning": "before"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Bruck",
+              "meaning": "Bruck (town in Styria)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "an",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Mur",
+              "meaning": "Mur River"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "hält",
+              "meaning": "stops (hält ... an)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zug",
+              "meaning": "train"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "an",
+              "meaning": "at/stop (anhalten)"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "weil",
+              "meaning": "because (verb-final)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ein",
+              "meaning": "a"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Ast",
+              "meaning": "tree branch"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "auf",
+              "meaning": "onto"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "die",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Oberleitung",
+              "meaning": "overhead catenary power line",
+              "compoundParts": [
+                "Ober",
+                "leitung"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "gefallen",
+              "meaning": "fallen"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ist",
+              "meaning": "is / has"
+            },
+            {
+              "surface": "."
+            }
+          ]
+        },
+        {
+          "nativeText": "Obwohl das Reparaturteam rasch arbeitet, hat der Zug am Ende fünfunddreißig Minuten Verspätung. Deshalb verpasst Jakob seinen Anschlusszug und fragt die Schaffnerin um Rat.",
+          "translation": "Although the repair crew works quickly, in the end the train has a thirty-five-minute delay. Therefore Jakob misses his connecting train and asks the conductor for advice.",
+          "segments": [
+            {
+              "surface": "Obwohl",
+              "meaning": "although (verb-final)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "das",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Reparaturteam",
+              "meaning": "repair crew",
+              "compoundParts": [
+                "Reparatur",
+                "team"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "rasch",
+              "meaning": "quickly / swiftly",
+              "regionalNote": "Rasch is especially crisp and frequent in Austrian German."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "arbeitet",
+              "meaning": "works"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "hat",
+              "meaning": "has"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "der",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zug",
+              "meaning": "train"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "am",
+              "meaning": "in the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Ende",
+              "meaning": "end"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fünfunddreißig",
+              "meaning": "thirty-five"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Minuten",
+              "meaning": "minutes"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Verspätung",
+              "meaning": "delay"
+            },
+            {
+              "surface": "."
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Deshalb",
+              "meaning": "therefore"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "verpasst",
+              "meaning": "misses"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Jakob",
+              "meaning": "Jakob"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "seinen",
+              "meaning": "his (acc.)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Anschlusszug",
+              "meaning": "connecting train",
+              "compoundParts": [
+                "Anschluss",
+                "zug"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "und",
+              "meaning": "and"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fragt",
+              "meaning": "asks"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "die",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Schaffnerin",
+              "meaning": "train conductor (female)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "um",
+              "meaning": "for (um Rat fragen = ask for advice)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Rat",
+              "meaning": "advice"
+            },
+            {
+              "surface": "."
+            }
+          ]
+        },
+        {
+          "nativeText": "Sie beruhigt ihn sofort: „Kein Problem — Ihre Fahrkarte gilt natürlich für den nächsten Zug auf Bahnsteig 2, oder für den Bus im Schienenersatzverkehr!“ Jakob schickt seiner Schwester eine Nachricht, damit sie erst eine Stunde später zum Hauptbahnhof fährt.",
+          "translation": "She reassures him right away: 'No problem — your ticket is of course valid for the next train on Platform 2, or for the rail replacement bus!' Jakob sends his sister a message so that she drives to the main station an hour later.",
+          "segments": [
+            {
+              "surface": "Sie",
+              "meaning": "she"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "beruhigt",
+              "meaning": "reassures / calms"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "ihn",
+              "meaning": "him"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sofort",
+              "meaning": "immediately"
+            },
+            {
+              "surface": ":"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "„"
+            },
+            {
+              "surface": "Kein",
+              "meaning": "no"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Problem",
+              "meaning": "problem"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "—"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Ihre",
+              "meaning": "your (formal)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Fahrkarte",
+              "meaning": "ticket",
+              "compoundParts": [
+                "Fahr",
+                "karte"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "gilt",
+              "meaning": "is valid"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "natürlich",
+              "meaning": "of course"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "für",
+              "meaning": "for"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "den",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "nächsten",
+              "meaning": "next"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Zug",
+              "meaning": "train"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "auf",
+              "meaning": "on"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Bahnsteig",
+              "meaning": "platform",
+              "compoundParts": [
+                "Bahn",
+                "steig"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "2",
+              "meaning": "two"
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "oder",
+              "meaning": "or"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "für",
+              "meaning": "for"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "den",
+              "meaning": "the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Bus",
+              "meaning": "bus"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "im",
+              "meaning": "in"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Schienenersatzverkehr",
+              "meaning": "rail replacement bus service",
+              "compoundParts": [
+                "Schienen",
+                "ersatz",
+                "verkehr"
+              ]
+            },
+            {
+              "surface": "!"
+            },
+            {
+              "surface": "“"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Jakob",
+              "meaning": "Jakob"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "schickt",
+              "meaning": "sends"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "seiner",
+              "meaning": "to his (dat.)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Schwester",
+              "meaning": "sister"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "eine",
+              "meaning": "a"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Nachricht",
+              "meaning": "message",
+              "compoundParts": [
+                "Nach",
+                "richt"
+              ]
+            },
+            {
+              "surface": ","
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "damit",
+              "meaning": "so that (verb-final)"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "sie",
+              "meaning": "she"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "erst",
+              "meaning": "only / not until"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "eine",
+              "meaning": "one"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Stunde",
+              "meaning": "hour"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "später",
+              "meaning": "later"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "zum",
+              "meaning": "to the"
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "Hauptbahnhof",
+              "meaning": "main station",
+              "compoundParts": [
+                "Haupt",
+                "bahn",
+                "hof"
+              ]
+            },
+            {
+              "surface": " "
+            },
+            {
+              "surface": "fährt",
+              "meaning": "drives"
+            },
+            {
+              "surface": "."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "de-u002-t3-story-01-q1",
+          "question": "Why did Jakob's train stop before Bruck an der Mur?",
+          "options": [
+            "He forgot to validate his ticket",
+            "A tree branch fell onto the overhead power line (auf die Oberleitung) during heavy snow",
+            "The dining car ran out of coffee",
+            "Jakob pulled the emergency brake"
+          ],
+          "correctIndex": 1,
+          "explanation": "Paragraph 1 states: 'hält der Zug an, weil ein Ast auf die Oberleitung gefallen ist.'"
+        },
+        {
+          "id": "de-u002-t3-story-01-q2",
+          "question": "Does Jakob need to buy a brand-new ticket after missing his connecting train?",
+          "options": [
+            "Yes, he must pay full price again at the Fahrkartenautomat",
+            "No—his existing Fahrkarte is automatically valid for the next train or replacement bus",
+            "Yes, unless he travels first class",
+            "Only if he pays in cash"
+          ],
+          "correctIndex": 1,
+          "explanation": "The conductor reassures him: 'Ihre Fahrkarte gilt natürlich für den nächsten Zug auf Bahnsteig 2, oder für den Bus im Schienenersatzverkehr!'"
+        },
+        {
+          "id": "de-u002-t3-story-01-q3",
+          "question": "Why does Jakob send his sister a message ('damit sie...')?",
+          "options": [
+            "So that she brings him a Sackerl of groceries",
+            "So that she drives to the main station an hour later instead of waiting",
+            "Because he decided to stay in Vienna",
+            "To ask her where the exit is"
+          ],
+          "correctIndex": 1,
+          "explanation": "He messages her 'damit sie erst eine Stunde später zum Hauptbahnhof fährt.'"
+        }
+      ],
+      "courseId": "de"
+    }
+  ],
+  "referenceSheets": []
+}
